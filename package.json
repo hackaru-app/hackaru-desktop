@@ -40,6 +40,9 @@
     "appImage": {
       "artifactName": "${name}-${version}.${ext}"
     },
+    "nsis": {
+      "artifactName": "${name}-${version}.${ext}"
+    },
     "dmg": {
       "contents": [
         {
