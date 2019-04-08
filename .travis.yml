@@ -44,6 +44,5 @@ deploy:
     - build/hackaru-linux.zip
     - build/hackaru-win.zip
   skip_cleanup: true
-  draft: true
   on:
     tags: true
