@@ -10,6 +10,9 @@
     "build:dir": "node .electron-vue/build.js && electron-builder --dir",
     "build:clean": "cross-env BUILD_TARGET=clean node .electron-vue/build.js",
     "build:web": "cross-env BUILD_TARGET=web node .electron-vue/build.js",
+    "archive:osx": "zip build/hackaru-osx.zip build/Hackaru-*.dmg",
+    "archive:linux": "zip build/hackaru-linux.zip build/Hackaru-*.AppImage",
+    "archive:win": "zip build/hackaru-win.zip build/Hackaru-*.exe",
     "dev": "node .electron-vue/dev-runner.js",
     "e2e": "npm run pack && mocha test/e2e",
     "lint": "eslint --ext .js,.vue -f ./node_modules/eslint-friendly-formatter src test",
@@ -38,6 +41,9 @@
       "dist/electron/**/*"
     ],
     "appImage": {
+      "artifactName": "${name}-${version}.${ext}"
+    },
+    "nsis": {
       "artifactName": "${name}-${version}.${ext}"
     },
     "dmg": {
