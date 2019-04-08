@@ -22,12 +22,21 @@ function getTitle () {
     : ''
 }
 
+function getDefaultTrayIcon () {
+  switch (process.platform) {
+    case 'darwin':
+      return '/icon-tray-dark.png'
+    case 'win32':
+      return '/icon-tray.ico'
+    default:
+      return '/icon-tray-light.png'
+  }
+}
+
 app.on('ready', () => {
   const icon = {
     pressed: '/icon-tray-light.png',
-    default: process.platform === 'darwin'
-      ? '/icon-tray-dark.png'
-      : '/icon-tray-light.png'
+    default: getDefaultTrayIcon()
   }
 
   tray = new Tray(path.join(__static, icon.default))
