@@ -1,0 +1,182 @@
+{
+    "axios@0.18.0": {
+        "licenses": "MIT",
+        "repository": "https://github.com/axios/axios",
+        "licenseUrl": "https://github.com/axios/axios/raw/master/LICENSE",
+        "parents": "Hackaru"
+    },
+    "camelcase-keys@5.0.0": {
+        "licenses": "MIT",
+        "repository": "https://github.com/sindresorhus/camelcase-keys",
+        "licenseUrl": "https://github.com/sindresorhus/camelcase-keys/raw/master/license",
+        "parents": "Hackaru"
+    },
+    "date-fns@1.30.1": {
+        "licenses": "MIT",
+        "repository": "https://github.com/date-fns/date-fns",
+        "licenseUrl": "https://github.com/date-fns/date-fns/raw/master/LICENSE.md",
+        "parents": "Hackaru"
+    },
+    "electron-promise-ipc@1.0.0": {
+        "licenses": "MIT",
+        "repository": "https://github.com/sibnerian/electron-promise-ipc",
+        "licenseUrl": "https://github.com/sibnerian/electron-promise-ipc",
+        "parents": "Hackaru"
+    },
+    "electron-store@2.0.0": {
+        "licenses": "MIT",
+        "repository": "https://github.com/sindresorhus/electron-store",
+        "licenseUrl": "https://github.com/sindresorhus/electron-store/raw/master/license",
+        "parents": "Hackaru"
+    },
+    "feather-icons@4.10.0": {
+        "licenses": "MIT",
+        "repository": "https://github.com/feathericons/feather",
+        "licenseUrl": "https://github.com/feathericons/feather/raw/master/LICENSE",
+        "parents": "Hackaru"
+    },
+    "hh-mm-ss@1.2.0": {
+        "licenses": "MIT",
+        "repository": "https://github.com/Goldob/hh-mm-ss",
+        "licenseUrl": "https://github.com/Goldob/hh-mm-ss/raw/master/LICENSE",
+        "parents": "Hackaru"
+    },
+    "keytar@4.3.0": {
+        "licenses": "MIT",
+        "repository": "https://github.com/atom/node-keytar",
+        "licenseUrl": "https://github.com/atom/node-keytar/raw/master/LICENSE.md",
+        "parents": "Hackaru"
+    },
+    "lodash.get@4.4.2": {
+        "licenses": "MIT",
+        "repository": "https://github.com/lodash/lodash",
+        "licenseUrl": "https://github.com/lodash/lodash/raw/master/LICENSE",
+        "parents": "Hackaru"
+    },
+    "lodash.union@4.6.0": {
+        "licenses": "MIT",
+        "repository": "https://github.com/lodash/lodash",
+        "licenseUrl": "https://github.com/lodash/lodash/raw/master/LICENSE",
+        "parents": "Hackaru"
+    },
+    "lodash.uniq@4.5.0": {
+        "licenses": "MIT",
+        "repository": "https://github.com/lodash/lodash",
+        "licenseUrl": "https://github.com/lodash/lodash/raw/master/LICENSE",
+        "parents": "Hackaru"
+    },
+    "node-notifier@5.3.0": {
+        "licenses": "MIT",
+        "repository": "https://github.com/mikaelbr/node-notifier",
+        "licenseUrl": "https://github.com/mikaelbr/node-notifier/raw/master/LICENSE",
+        "parents": "Hackaru"
+    },
+    "normalize.css@8.0.1": {
+        "licenses": "MIT",
+        "repository": "https://github.com/necolas/normalize.css",
+        "licenseUrl": "https://github.com/necolas/normalize.css/raw/master/LICENSE.md",
+        "parents": "Hackaru"
+    },
+    "normalizr@3.3.0": {
+        "licenses": "MIT",
+        "repository": "https://github.com/paularmstrong/normalizr",
+        "licenseUrl": "https://github.com/paularmstrong/normalizr/raw/master/LICENSE",
+        "parents": "Hackaru"
+    },
+    "ps-list@6.0.0": {
+        "licenses": "MIT",
+        "repository": "https://github.com/sindresorhus/ps-list",
+        "licenseUrl": "https://github.com/sindresorhus/ps-list/raw/master/license",
+        "parents": "Hackaru"
+    },
+    "query-string@6.2.0": {
+        "licenses": "MIT",
+        "repository": "https://github.com/sindresorhus/query-string",
+        "licenseUrl": "https://github.com/sindresorhus/query-string/raw/master/license",
+        "parents": "Hackaru"
+    },
+    "snakecase-keys@2.1.0": {
+        "licenses": "MIT",
+        "repository": "https://github.com/bendrucker/snakecase-keys",
+        "licenseUrl": "https://github.com/bendrucker/snakecase-keys/raw/master/license",
+        "parents": "Hackaru"
+    },
+    "uniqid@5.0.3": {
+        "licenses": "MIT",
+        "repository": "https://github.com/adamhalasz/uniqid",
+        "licenseUrl": "https://github.com/adamhalasz/uniqid",
+        "parents": "Hackaru"
+    },
+    "updeep@1.1.0": {
+        "licenses": "MIT",
+        "repository": "https://github.com/substantial/updeep",
+        "licenseUrl": "https://github.com/substantial/updeep/raw/master/LICENSE.txt",
+        "parents": "Hackaru"
+    },
+    "vue-electron@1.0.6": {
+        "licenses": "ISC",
+        "repository": "https://github.com/SimulatedGREG/vue-electron",
+        "licenseUrl": "https://github.com/SimulatedGREG/vue-electron/raw/master/LICENSE.md",
+        "parents": "Hackaru"
+    },
+    "vue-i18n@8.7.0": {
+        "licenses": "MIT",
+        "repository": "https://github.com/kazupon/vue-i18n",
+        "licenseUrl": "https://github.com/kazupon/vue-i18n/raw/master/LICENSE",
+        "parents": "Hackaru"
+    },
+    "vue-multiselect@2.1.3": {
+        "licenses": "MIT",
+        "repository": "https://github.com/shentao/vue-multiselect",
+        "licenseUrl": "https://github.com/shentao/vue-multiselect/raw/master/LICENSE",
+        "parents": "Hackaru"
+    },
+    "vue-notification@1.3.14": {
+        "licenses": "MIT",
+        "repository": "https://github.com/euvl/vue-notification",
+        "licenseUrl": "https://github.com/euvl/vue-notification/raw/master/LICENSE",
+        "parents": "Hackaru"
+    },
+    "vue-router@3.0.2": {
+        "licenses": "MIT",
+        "repository": "https://github.com/vuejs/vue-router",
+        "licenseUrl": "https://github.com/vuejs/vue-router/raw/master/LICENSE",
+        "parents": "Hackaru"
+    },
+    "vue-timers@1.10.0": {
+        "licenses": "MIT",
+        "repository": "https://github.com/kelin2025/vue-timers",
+        "licenseUrl": "https://github.com/kelin2025/vue-timers/raw/master/LICENSE",
+        "parents": "Hackaru"
+    },
+    "vue2-animate@2.1.0": {
+        "licenses": "MIT",
+        "repository": "https://github.com/asika32764/vue2-animate",
+        "licenseUrl": "https://github.com/asika32764/vue2-animate/raw/master/LICENSE",
+        "parents": "Hackaru"
+    },
+    "vue@2.5.21": {
+        "licenses": "MIT",
+        "repository": "https://github.com/vuejs/vue",
+        "licenseUrl": "https://github.com/vuejs/vue/raw/master/LICENSE",
+        "parents": "Hackaru"
+    },
+    "vuex-electron@1.0.2": {
+        "licenses": "MIT",
+        "repository": "https://github.com/vue-electron/vuex-electron",
+        "licenseUrl": "https://github.com/vue-electron/vuex-electron/raw/master/LICENSE",
+        "parents": "Hackaru"
+    },
+    "vuex-persistedstate@2.5.4": {
+        "licenses": "MIT",
+        "repository": "https://github.com/robinvdvleuten/vuex-persistedstate",
+        "licenseUrl": "https://github.com/robinvdvleuten/vuex-persistedstate/raw/master/LICENSE",
+        "parents": "Hackaru"
+    },
+    "vuex@3.0.1": {
+        "licenses": "MIT",
+        "repository": "https://github.com/vuejs/vuex",
+        "licenseUrl": "https://github.com/vuejs/vuex/raw/master/LICENSE",
+        "parents": "Hackaru"
+    }
+}

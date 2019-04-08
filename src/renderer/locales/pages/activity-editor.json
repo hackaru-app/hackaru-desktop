@@ -1,0 +1,32 @@
+{
+  "en": {
+    "project": "Project",
+    "description": "Description",
+    "startedAt": "Started",
+    "stoppedAt": "Stopped",
+    "update": "Update",
+    "start": "Start",
+    "delete": "Delete",
+    "confirms": {
+      "delete": "Are you sure you want to delete?"
+    },
+    "started": "Activity started.",
+    "updated": "Activity updated.",
+    "deleted": "Activity deleted."
+  },
+  "ja": {
+    "project": "プロジェクト",
+    "description": "備考",
+    "startedAt": "開始",
+    "stoppedAt": "終了",
+    "update": "更新",
+    "start": "開始",
+    "delete": "削除",
+    "confirms": {
+      "delete": "削除しますか？"
+    },
+    "started": "開始しました",
+    "updated": "更新しました",
+    "deleted": "削除しました"
+  }
+}

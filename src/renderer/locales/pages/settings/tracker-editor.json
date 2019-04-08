@@ -1,0 +1,18 @@
+{
+  "en": {
+    "project": "Project",
+    "process": "Process",
+    "processPlaceholder": "Find from working processes",
+    "notFound": "Not found.",
+    "add": "Add",
+    "added": "Added auto tracking"
+  },
+  "ja": {
+    "project": "プロジェクト",
+    "process": "監視対象",
+    "processPlaceholder": "起動中のプロセスから検索",
+    "notFound": "見つかりません",
+    "add": "追加",
+    "added": "追加しました"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "en": {
+    "empty": "No Working Timers.",
+    "stopped": "Activity stopped.",
+    "confirms": {
+      "logout": "Logout?"
+    },
+    "ariaLabels": {
+      "add": "Add activity",
+      "website": "Open Website",
+      "settings": "Settings",
+      "logout": "Logout"
+    }
+  },
+  "ja": {
+    "empty": "稼働中のタイマーはありません。",
+    "stopped": "記録しました",
+    "confirms": {
+      "logout": "ログアウトしますか？"
+    },
+    "ariaLabels": {
+      "add": "計測を開始",
+      "website": "Webサイトを開く",
+      "settings": "設定",
+      "logout": "ログアウト"
+    }
+  }
+}

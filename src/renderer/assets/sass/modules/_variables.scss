@@ -1,0 +1,39 @@
+// Color
+$grey-333: #3f4961;
+$grey-666: #68757d;
+$grey-999: #9aa5ab;
+$grey-ccc: #cdd0d1;
+$grey-eee: #eeeeee;
+$grey-f5f5f5: #f5f6f7;
+$grey-fafafa: #fafafc;
+$grey-fdfdfd: #fdfdfd;
+$cyan: #2daec4;
+$yellow: #ffd96a;
+$red: #eb4f34;
+$white: #fff;
+
+// Text
+$text: $grey-333;
+$text-light: $grey-666;
+$text-lighter: $grey-999;
+
+// Font
+$font-size: 14px;
+$font-family: 'Roboto', sans-serif;
+$line-height: 1.5;
+
+// Border
+$border: $grey-f5f5f5;
+$border-light: $grey-fafafa;
+
+// background
+$background: $white;
+$background-dark: $grey-333;
+
+// Animation
+$animation-duration: .4s;
+
+// Mediaqueries
+$breakpoints: (
+  'small': 640px
+);

@@ -1,0 +1,60 @@
+<template>
+  <time>{{ fromS(duration, 'hh:mm:ss') }}</time>
+</template>
+
+<script>
+import VueTimers from 'vue-timers/mixin'
+import { fromS } from 'hh-mm-ss'
+import { parse, differenceInSeconds } from 'date-fns'
+
+export default {
+  mixins: [VueTimers],
+  timers: {
+    update: {
+      time: 500,
+      autostart: true,
+      repeat: true
+    }
+  },
+  props: {
+    startedAt: {
+      type: String,
+      required: true
+    },
+    stoppedAt: {
+      type: String,
+      default: undefined
+    }
+  },
+  data () {
+    return {
+      fromS,
+      started: parse(this.startedAt),
+      stopped: parse(this.stoppedAt || new Date().toString())
+    }
+  },
+  computed: {
+    duration () {
+      return differenceInSeconds(
+        this.stopped,
+        this.started
+      ) || 0
+    }
+  },
+  watch: {
+    startedAt: function (val) {
+      this.started = parse(val)
+    },
+    stoppedAt: function (val) {
+      this.stopped = parse(val)
+    }
+  },
+  methods: {
+    update () {
+      if (this.stoppedAt) this.$timer.stop('update')
+      this.started = parse(this.startedAt)
+      this.stopped = parse(this.stoppedAt || new Date().toString())
+    }
+  }
+}
+</script>
