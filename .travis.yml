@@ -37,6 +37,7 @@ before_cache:
   - rm -rf $HOME/.cache/electron-builder/wine
 deploy:
   - provider: releases
+    name: "${TRAVIS_TAG}"
     api_key:
       secure: $GH_TOKEN
     file:
@@ -46,6 +47,7 @@ deploy:
       tags: true
       condition: $TRAVIS_OS_NAME = osx
   - provider: releases
+    name: "${TRAVIS_TAG}"
     api_key:
       secure: $GH_TOKEN
     file:
