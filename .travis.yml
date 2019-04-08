@@ -36,14 +36,22 @@ script:
 before_cache:
   - rm -rf $HOME/.cache/electron-builder/wine
 deploy:
-  provider: releases
-  api_key:
-    secure: $GH_TOKEN
-  file:
-    - build/hackaru-osx.zip
-    - build/hackaru-linux.zip
-    - build/hackaru-win.zip
-  skip_cleanup: true
-  draft: true
-  on:
-    tags: true
+  - provider: releases
+    api_key:
+      secure: $GH_TOKEN
+    file:
+      - build/hackaru-osx.zip
+    skip_cleanup: true
+    on:
+      tags: true
+      condition: $TRAVIS_OS_NAME = osx
+  - provider: releases
+    api_key:
+      secure: $GH_TOKEN
+    file:
+      - build/hackaru-linux.zip
+      - build/hackaru-win.zip
+    skip_cleanup: true
+    on:
+      tags: true
+      condition: $TRAVIS_OS_NAME = linux
