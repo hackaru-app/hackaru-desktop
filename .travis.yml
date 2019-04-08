@@ -22,10 +22,28 @@ script:
         -v ~/.cache/electron:/root/.cache/electron \
         -v ~/.cache/electron-builder:/root/.cache/electron-builder \
         electronuserland/builder:wine \
-        /bin/bash -c "npm install && npm run build -- --linux --win && npm run archive:linux && npm run archive:win"
+        /bin/bash -c "\
+          apt-get update && \
+          apt-get install -y zip && \
+          npm install && \
+          npm run build -- --linux --win && \
+          npm run archive:linux && \
+          npm run archive:win \
+        "
     else
       npm run build && npm run archive:osx
     fi
-  - ls -lR build
 before_cache:
   - rm -rf $HOME/.cache/electron-builder/wine
+deploy:
+  provider: releases
+  api_key:
+    secure: $GH_TOKEN
+  file:
+    - build/hackaru-osx.zip
+    - build/hackaru-linux.zip
+    - build/hackaru-win.zip
+  skip_cleanup: true
+  draft: true
+  on:
+    tags: true
