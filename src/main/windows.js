@@ -26,6 +26,9 @@ function createWindow (data) {
     ...getPosition()
   })
 
+  // Disable window menu.
+  win.setMenu(null)
+
   const query = queryString.stringify(data.query)
   const url = process.env.NODE_ENV === 'development'
     ? `http://localhost:9080/#/${data.path}?${query}`
