@@ -17,7 +17,7 @@
         "licenseUrl": "https://github.com/date-fns/date-fns/raw/master/LICENSE.md",
         "parents": "Hackaru"
     },
-    "electron-promise-ipc@1.0.0": {
+    "electron-promise-ipc@1.1.0": {
         "licenses": "MIT",
         "repository": "https://github.com/sibnerian/electron-promise-ipc",
         "licenseUrl": "https://github.com/sibnerian/electron-promise-ipc",
@@ -29,7 +29,7 @@
         "licenseUrl": "https://github.com/sindresorhus/electron-store/raw/master/license",
         "parents": "Hackaru"
     },
-    "feather-icons@4.10.0": {
+    "feather-icons@4.21.0": {
         "licenses": "MIT",
         "repository": "https://github.com/feathericons/feather",
         "licenseUrl": "https://github.com/feathericons/feather/raw/master/LICENSE",
@@ -41,7 +41,7 @@
         "licenseUrl": "https://github.com/Goldob/hh-mm-ss/raw/master/LICENSE",
         "parents": "Hackaru"
     },
-    "keytar@4.3.0": {
+    "keytar@4.4.1": {
         "licenses": "MIT",
         "repository": "https://github.com/atom/node-keytar",
         "licenseUrl": "https://github.com/atom/node-keytar/raw/master/LICENSE.md",
@@ -65,7 +65,7 @@
         "licenseUrl": "https://github.com/lodash/lodash/raw/master/LICENSE",
         "parents": "Hackaru"
     },
-    "node-notifier@5.3.0": {
+    "node-notifier@5.4.0": {
         "licenses": "MIT",
         "repository": "https://github.com/mikaelbr/node-notifier",
         "licenseUrl": "https://github.com/mikaelbr/node-notifier/raw/master/LICENSE",
@@ -83,13 +83,13 @@
         "licenseUrl": "https://github.com/paularmstrong/normalizr/raw/master/LICENSE",
         "parents": "Hackaru"
     },
-    "ps-list@6.0.0": {
+    "ps-list@6.3.0": {
         "licenses": "MIT",
         "repository": "https://github.com/sindresorhus/ps-list",
         "licenseUrl": "https://github.com/sindresorhus/ps-list/raw/master/license",
         "parents": "Hackaru"
     },
-    "query-string@6.2.0": {
+    "query-string@6.4.2": {
         "licenses": "MIT",
         "repository": "https://github.com/sindresorhus/query-string",
         "licenseUrl": "https://github.com/sindresorhus/query-string/raw/master/license",
@@ -119,19 +119,19 @@
         "licenseUrl": "https://github.com/SimulatedGREG/vue-electron/raw/master/LICENSE.md",
         "parents": "Hackaru"
     },
-    "vue-i18n@8.7.0": {
+    "vue-i18n@8.10.0": {
         "licenses": "MIT",
         "repository": "https://github.com/kazupon/vue-i18n",
         "licenseUrl": "https://github.com/kazupon/vue-i18n/raw/master/LICENSE",
         "parents": "Hackaru"
     },
-    "vue-multiselect@2.1.3": {
+    "vue-multiselect@2.1.4": {
         "licenses": "MIT",
         "repository": "https://github.com/shentao/vue-multiselect",
         "licenseUrl": "https://github.com/shentao/vue-multiselect/raw/master/LICENSE",
         "parents": "Hackaru"
     },
-    "vue-notification@1.3.14": {
+    "vue-notification@1.3.16": {
         "licenses": "MIT",
         "repository": "https://github.com/euvl/vue-notification",
         "licenseUrl": "https://github.com/euvl/vue-notification/raw/master/LICENSE",
@@ -155,13 +155,13 @@
         "licenseUrl": "https://github.com/asika32764/vue2-animate/raw/master/LICENSE",
         "parents": "Hackaru"
     },
-    "vue@2.5.21": {
+    "vue@2.6.10": {
         "licenses": "MIT",
         "repository": "https://github.com/vuejs/vue",
         "licenseUrl": "https://github.com/vuejs/vue/raw/master/LICENSE",
         "parents": "Hackaru"
     },
-    "vuex-electron@1.0.2": {
+    "vuex-electron@1.0.3": {
         "licenses": "MIT",
         "repository": "https://github.com/vue-electron/vuex-electron",
         "licenseUrl": "https://github.com/vue-electron/vuex-electron/raw/master/LICENSE",
@@ -173,7 +173,7 @@
         "licenseUrl": "https://github.com/robinvdvleuten/vuex-persistedstate/raw/master/LICENSE",
         "parents": "Hackaru"
     },
-    "vuex@3.0.1": {
+    "vuex@3.1.0": {
         "licenses": "MIT",
         "repository": "https://github.com/vuejs/vuex",
         "licenseUrl": "https://github.com/vuejs/vuex/raw/master/LICENSE",
