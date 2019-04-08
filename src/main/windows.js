@@ -53,7 +53,7 @@ export function showActivityEditor (query) {
   createWindow({
     path: 'activity-editor',
     width: 370,
-    height: 380,
+    height: 420,
     query
   })
 }
