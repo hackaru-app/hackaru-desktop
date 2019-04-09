@@ -14,7 +14,7 @@
 ## AutoTracking
 You can time automatically you are using favorite Applications. (e.g., Sketch, Atom editor...)
 
-![Auto tracking](./docs/images/auto-tracking.gif)
+<img src="./docs/images/auto-tracking.gif" width="730">
 
 ## Installation
 
