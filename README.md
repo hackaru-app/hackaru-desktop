@@ -7,11 +7,11 @@
 ## Feature
 
 - This app is created using [Electron](https://github.com/electron/electron). Support Windows, macOS and Linux.
-- AutoTracking support.
+- Auto tracking support.
 - Track your computer status. (e.g., When your notebook will be suspend, stop the timer.)
 - Completely open source.
 
-## AutoTracking
+## Auto tracking
 You can time automatically you are using favorite Applications. (e.g., Sketch, Atom editor...)
 
 <img src="./docs/images/auto-tracking.gif" width="730">
