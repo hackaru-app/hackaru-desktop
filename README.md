@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/ktmouk/hackaru-desktop.svg?branch=master)](https://travis-ci.org/ktmouk/hackaru-desktop)
 
-Automatically time tracking using [Hackaru](https://github.com/ktmouk/hackaru).
+[Hackaru](https://github.com/ktmouk/hackaru) for Desktop.
 
 ## Feature
 
