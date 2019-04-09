@@ -18,19 +18,28 @@ You can time automatically you are using favorite Applications. (e.g., Sketch, A
 
 ## Installation
 
-### Mac
- 1. Download hackaru-osx.zip from [Release](https://github.com/ktmouk/hackaru-desktop/releases).
- 2. Extract zip file and execute Hackaru-x.y.z.dmg.
- 3. Move Hackaru icon to Application folder.
+1. Download zip and install.
+  - **On Mac**
+    1. Download hackaru-osx.zip from [Release](https://github.com/ktmouk/hackaru-desktop/releases).
+    2. Extract zip file and execute Hackaru-x.y.z.dmg.
+    3. Move Hackaru icon to Application folder.
 
-### Windows
- 1. Download hackaru-win.zip from [Release](https://github.com/ktmouk/hackaru-desktop/releases).
- 2. Extract zip file and execute Hackaru-x.y.z.exe.
+  - **On Windows**
+    1. Download hackaru-win.zip from [Release](https://github.com/ktmouk/hackaru-desktop/releases).
+    2. Extract zip file and execute Hackaru-x.y.z.exe.
 
-### Linux
- 1. Download hackaru-linux.zip from [Release](https://github.com/ktmouk/hackaru-desktop/releases).
- 2. Extract zip file and execute Hackaru-0.1.0.AppImage.
+  - **On Linux**
+     1. Download hackaru-linux.zip from [Release](https://github.com/ktmouk/hackaru-desktop/releases).
+     2. Extract zip file and execute Hackaru-0.1.0.AppImage.
 
+2. Launch installed application.
+
+3. Enter [Hackaru API server](https://github.com/ktmouk/hackaru-api) URL and authenticate.  
+   If you have an account in [hackaru.app](https://hackaru.app), URL is https://api.hackaru.app (default).  
+   If you want to use your private server, Enter your API server URL (e.g., http://localhost:3000)
+
+
+  <img src="./docs/images/login_screen.png" width="300">
 
 ## Contributors
 
