@@ -7,9 +7,14 @@ Automatically time tracking using [Hackaru](https://github.com/ktmouk/hackaru).
 ## Feature
 
 - This app is created using [Electron](https://github.com/electron/electron). Support Windows, macOS and Linux.
-- Automatically time tracking. (e.g., When you launch an Atom editor, start 'Development' activity.)
-- Tracking your computer status. (e.g., When your notebook will be suspend, stop the timer.)
+- AutoTracking support.
+- Track your computer status. (e.g., When your notebook will be suspend, stop the timer.)
 - Completely open source.
+
+## AutoTracking
+You can time automatically you are using favorite Applications. (e.g., Sketch, Atom...)
+
+![Auto tracking](./docs/images/auto-tracking.gif)
 
 ## Installation
 
