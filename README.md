@@ -73,4 +73,9 @@ $ npm run lint:fix
 
 ---
 
+> <a href="https://www.buymeacoffee.com/T4KDHBPV6"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: auto !important;width: auto !important;" ></a>   
+> If you like this app, please consider buying me a coffee. :relaxed:
+
+---
+
 This project was generated with [electron-vue](https://github.com/SimulatedGREG/electron-vue) using [vue-cli](https://github.com/vuejs/vue-cli).
