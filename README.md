@@ -29,8 +29,8 @@ You can time automatically you are using favorite Applications. (e.g., Sketch, A
     2. Extract zip file and execute Hackaru-x.y.z.exe.
 
   - **On Linux**
-     1. Download hackaru-linux.zip from [Release](https://github.com/ktmouk/hackaru-desktop/releases).
-     2. Extract zip file and execute Hackaru-0.1.0.AppImage.
+     1. Download Hackaru-x.y.z.AppImage from [Release](https://github.com/ktmouk/hackaru-desktop/releases).
+     2. Execute Hackaru-x.y.z.AppImage.
 
 2. Launch installed application.
 
