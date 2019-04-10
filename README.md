@@ -71,10 +71,12 @@ $ npm run lint:fix
 
 - [MIT](./LICENSE)
 
----
+## Buy Me A Coffee
 
-> <a href="https://www.buymeacoffee.com/T4KDHBPV6"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: auto !important;width: auto !important;" ></a>   
-> If you like this app, please consider buying me a coffee. :relaxed:
+<a href="https://www.buymeacoffee.com/T4KDHBPV6"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: auto !important;width: auto !important;" ></a>   
+
+If you like this app, please consider buying me a coffee. :relaxed:  
+
 
 ---
 
