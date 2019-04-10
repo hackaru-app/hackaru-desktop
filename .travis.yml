@@ -27,7 +27,6 @@ script:
           apt-get install -y zip && \
           npm install && \
           npm run build -- --linux --win && \
-          npm run archive:linux && \
           npm run archive:win \
         "
     else
@@ -50,8 +49,9 @@ deploy:
     name: "${TRAVIS_TAG}"
     api_key:
       secure: $GH_TOKEN
+    file_glob: true
     file:
-      - build/hackaru-linux.zip
+      - build/Hackaru-*.AppImage
       - build/hackaru-win.zip
     skip_cleanup: true
     on:
