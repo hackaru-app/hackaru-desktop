@@ -1,3 +1,7 @@
+[English](./README.md) | [日本語](./README.ja.md)
+
+---
+
 # Hackaru Desktop
 
 [![Build Status](https://travis-ci.org/ktmouk/hackaru-desktop.svg?branch=master)](https://travis-ci.org/ktmouk/hackaru-desktop)
