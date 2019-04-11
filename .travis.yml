@@ -23,14 +23,11 @@ script:
         -v ~/.cache/electron-builder:/root/.cache/electron-builder \
         electronuserland/builder:wine \
         /bin/bash -c "\
-          apt-get update && \
-          apt-get install -y zip && \
           npm install && \
-          npm run build -- --linux --win && \
-          npm run archive:win \
+          npm run build -- --linux --win
         "
     else
-      npm run build && npm run archive:osx
+      npm run build
     fi
 before_cache:
   - rm -rf $HOME/.cache/electron-builder/wine
@@ -40,7 +37,7 @@ deploy:
     api_key:
       secure: $GH_TOKEN
     file:
-      - build/hackaru-osx.zip
+      - build/Hackaru-*.dmg
     skip_cleanup: true
     on:
       tags: true
@@ -52,7 +49,7 @@ deploy:
     file_glob: true
     file:
       - build/Hackaru-*.AppImage
-      - build/hackaru-win.zip
+      - build/Hackaru-*.exe
     skip_cleanup: true
     on:
       tags: true

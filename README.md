@@ -20,13 +20,13 @@ You can time automatically you are using favorite Applications. (e.g., Sketch, A
 
 1. Download zip and install.
   - **On Mac**
-    1. Download hackaru-osx.zip from [Release](https://github.com/ktmouk/hackaru-desktop/releases).
-    2. Extract zip file and execute Hackaru-x.y.z.dmg.
+    1. Download Hackaru-x.y.z.dmg from [Release](https://github.com/ktmouk/hackaru-desktop/releases).
+    2. Execute Hackaru-x.y.z.dmg.
     3. Move Hackaru icon to Application folder.
 
   - **On Windows**
-    1. Download hackaru-win.zip from [Release](https://github.com/ktmouk/hackaru-desktop/releases).
-    2. Extract zip file and execute Hackaru-x.y.z.exe.
+    1. Download Hackaru-x.y.z.exe from [Release](https://github.com/ktmouk/hackaru-desktop/releases).
+    2. Execute Hackaru-x.y.z.exe.
 
   - **On Linux**
      1. Download Hackaru-x.y.z.AppImage from [Release](https://github.com/ktmouk/hackaru-desktop/releases).
