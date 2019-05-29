@@ -10,7 +10,7 @@
         <h1>
           <feather-icon name="eye" />{{ $t('title') }}
         </h1>
-        <btn
+        <base-button
           type="button"
           class="has-icon"
           :aria-label="$t('add')"
@@ -20,7 +20,7 @@
             name="plus"
             class="is-primary"
           />
-        </btn>
+        </base-button>
       </header>
 
       <transition-group name="fade">
@@ -36,7 +36,7 @@
           <span class="process">
             {{ tracker.process }}
           </span>
-          <btn
+          <base-button
             type="button"
             class="has-icon"
             :aria-label="$t('delete')"
@@ -46,7 +46,7 @@
               name="x"
               class="is-danger"
             />
-          </btn>
+          </base-button>
         </article>
       </transition-group>
 
@@ -61,7 +61,7 @@
 </template>
 
 <script>
-import Btn from '../../atoms/btn'
+import BaseButton from '../../atoms/base-button'
 import SettingMenu from '../../organisms/setting-menu'
 import MainHeader from '../../molecules/main-header'
 import EmptyMessage from '../../atoms/empty-message'
@@ -71,7 +71,7 @@ import { mapGetters } from 'vuex'
 
 export default {
   components: {
-    Btn,
+    BaseButton,
     SettingMenu,
     MainHeader,
     EmptyMessage,

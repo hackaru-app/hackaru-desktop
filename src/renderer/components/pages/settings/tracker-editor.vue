@@ -28,10 +28,10 @@
         </multiselect>
       </div>
       <footer>
-        <btn
+        <base-button
           class="is-rounded is-primary"
           type="submit"
-        >{{ $t('add') }}</btn>
+        >{{ $t('add') }}</base-button>
       </footer>
     </form>
   </section>
@@ -40,13 +40,13 @@
 <script>
 import Multiselect from 'vue-multiselect'
 import MainHeader from '../../molecules/main-header'
-import Btn from '../../atoms/btn'
+import BaseButton from '../../atoms/base-button'
 import ProjectSelect from '../../molecules/project-select'
 import FeatherIcon from '../../atoms/feather-icon'
 
 export default {
   components: {
-    Btn,
+    BaseButton,
     MainHeader,
     Multiselect,
     FeatherIcon,

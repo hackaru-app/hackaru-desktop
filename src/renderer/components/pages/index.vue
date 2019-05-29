@@ -33,7 +33,7 @@
               class="duration"
             />
           </div>
-          <btn
+          <base-button
             type="button"
             class="has-icon"
             @click="stopActivity(activity.id)"
@@ -42,7 +42,7 @@
               name="check"
               class="is-primary"
             />
-          </btn>
+          </base-button>
         </list-item>
       </transition-group>
 
@@ -55,7 +55,7 @@
 
       <footer class="footer">
         <div class="left">
-          <btn
+          <base-button
             type="button"
             class="has-icon"
             @click="showSettings"
@@ -65,8 +65,8 @@
               name="settings"
               class="icon is-small"
             />
-          </btn>
-          <btn
+          </base-button>
+          <base-button
             type="button"
             class="has-icon"
             @click="openWebsite"
@@ -76,9 +76,9 @@
               name="globe"
               class="icon is-small"
             />
-          </btn>
+          </base-button>
         </div>
-        <btn
+        <base-button
           type="button"
           class="has-icon"
           @click="logout"
@@ -88,14 +88,14 @@
             name="log-out"
             class="icon is-small"
           />
-        </btn>
+        </base-button>
       </footer>
     </div>
   </section>
 </template>
 
 <script>
-import Btn from '../atoms/btn'
+import BaseButton from '../atoms/base-button'
 import EmptyMessage from '../atoms/empty-message'
 import MainHeader from '../molecules/main-header'
 import ProjectName from '../molecules/project-name'
@@ -106,7 +106,7 @@ import { mapGetters } from 'vuex'
 
 export default {
   components: {
-    Btn,
+    BaseButton,
     FeatherIcon,
     MainHeader,
     EmptyMessage,

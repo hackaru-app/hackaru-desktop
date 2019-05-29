@@ -11,25 +11,25 @@
         :placeholder="$t('apiUrl')"
         :aria-label="$t('apiUrl')"
       />
-      <btn
+      <base-button
         type="submit"
         class="is-rounded is-primary"
       >
         {{ $t('authenticate') }}
-      </btn>
+      </base-button>
     </form>
   </section>
 </template>
 
 <script>
-import Btn from '../atoms/btn'
+import BaseButton from '../atoms/base-button'
 import MainHeader from '../molecules/main-header'
 import TextField from '../atoms/text-field'
 import FeatherIcon from '../atoms/feather-icon'
 
 export default {
   components: {
-    Btn,
+    BaseButton,
     FeatherIcon,
     TextField,
     MainHeader

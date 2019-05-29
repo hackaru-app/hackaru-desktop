@@ -28,11 +28,11 @@
         <datetime-picker v-model="stoppedAt" />
       </div>
       <footer>
-        <btn
+        <base-button
           class="is-rounded is-primary"
           type="submit"
-        >{{ $t(id ? 'update' : 'start') }}</btn>
-        <btn
+        >{{ $t(id ? 'update' : 'start') }}</base-button>
+        <base-button
           v-if="id"
           type="button"
           class="has-icon"
@@ -43,14 +43,14 @@
             name="trash"
             class="is-danger"
           />
-        </btn>
+        </base-button>
       </footer>
     </form>
   </section>
 </template>
 
 <script>
-import Btn from '../atoms/btn'
+import BaseButton from '../atoms/base-button'
 import DatetimePicker from '../molecules/datetime-picker'
 import MainHeader from '../molecules/main-header'
 import ProjectSelect from '../molecules/project-select'
@@ -59,7 +59,7 @@ import FeatherIcon from '../atoms/feather-icon'
 
 export default {
   components: {
-    Btn,
+    BaseButton,
     FeatherIcon,
     MainHeader,
     DatetimePicker,
