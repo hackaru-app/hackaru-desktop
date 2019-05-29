@@ -27,7 +27,7 @@
   border-bottom: 1px $grey-eee solid;
 }
 .menu-button {
-  transition: all .2s;
+  transition: all 0.2s;
   padding: 6px;
   border-radius: 50%;
   align-items: center;

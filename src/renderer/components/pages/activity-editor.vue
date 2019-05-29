@@ -6,18 +6,15 @@
     <form @submit.prevent="saveActivity">
       <div class="item">
         <label>{{ $t('project') }}</label>
-        <project-select
-          v-model="projectId"
-          class="project-select"
-        />
+        <project-select v-model="projectId" class="project-select" />
       </div>
       <div class="item">
         <label>{{ $t('description') }}</label>
         <input
+          v-model="description"
           :placeholder="$t('description')"
           :aria-label="$t('description')"
-          v-model="description"
-        >
+        />
       </div>
       <div class="item">
         <label>{{ $t('startedAt') }}</label>
@@ -28,21 +25,17 @@
         <datetime-picker v-model="stoppedAt" />
       </div>
       <footer>
-        <base-button
-          class="is-rounded is-primary"
-          type="submit"
-        >{{ $t(id ? 'update' : 'start') }}</base-button>
+        <base-button class="is-rounded is-primary" type="submit">{{
+          $t(id ? 'update' : 'start')
+        }}</base-button>
         <base-button
           v-if="id"
           type="button"
           class="has-icon"
-          @click="deleteActivity"
           :aria-label="$t('delete')"
+          @click="deleteActivity"
         >
-          <feather-icon
-            name="trash"
-            class="is-danger"
-          />
+          <feather-icon name="trash" class="is-danger" />
         </base-button>
       </footer>
     </form>
@@ -50,12 +43,11 @@
 </template>
 
 <script>
-import BaseButton from '../atoms/base-button'
-import DatetimePicker from '../molecules/datetime-picker'
-import MainHeader from '../molecules/main-header'
-import ProjectSelect from '../molecules/project-select'
-import ListItem from '../molecules/list-item'
-import FeatherIcon from '../atoms/feather-icon'
+import BaseButton from '../atoms/base-button';
+import DatetimePicker from '../molecules/datetime-picker';
+import MainHeader from '../molecules/main-header';
+import ProjectSelect from '../molecules/project-select';
+import FeatherIcon from '../atoms/feather-icon';
 
 export default {
   components: {
@@ -63,20 +55,19 @@ export default {
     FeatherIcon,
     MainHeader,
     DatetimePicker,
-    ListItem,
     ProjectSelect
   },
-  data () {
+  data() {
     return {
       id: this.$route.query.id,
       projectId: this.$route.query.projectId,
       description: this.$route.query.description,
       startedAt: this.$route.query.startedAt || new Date().toString(),
       stoppedAt: this.$route.query.stoppedAt
-    }
+    };
   },
   methods: {
-    async saveActivity () {
+    async saveActivity() {
       const success = await this.$store.dispatchPromise(
         `activities/${this.id ? 'updateActivity' : 'addActivity'}`,
         {
@@ -86,29 +77,31 @@ export default {
           startedAt: this.startedAt,
           stoppedAt: this.stoppedAt
         }
-      )
+      );
       if (success) {
-        this.$store.dispatch('toast/showSuccess',
+        this.$store.dispatch(
+          'toast/showSuccess',
           this.$t(this.id ? 'updated' : 'started')
-        )
-        this.$electron.remote.getCurrentWindow().close()
+        );
+        this.$electron.remote.getCurrentWindow().close();
       }
     },
-    async deleteActivity () {
-      if (!window.confirm(this.$t('confirms.delete'))) return
+    async deleteActivity() {
+      if (!window.confirm(this.$t('confirms.delete'))) return;
       const success = await this.$store.dispatchPromise(
-        'activities/deleteActivity', this.id
-      )
+        'activities/deleteActivity',
+        this.id
+      );
       if (success) {
-        this.$store.dispatch('toast/showSuccess', this.$t('deleted'))
-        this.$electron.remote.getCurrentWindow().close()
+        this.$store.dispatch('toast/showSuccess', this.$t('deleted'));
+        this.$electron.remote.getCurrentWindow().close();
       }
     },
-    back () {
-      this.$emit('pop', '/')
+    back() {
+      this.$emit('pop', '/');
     }
   }
-}
+};
 </script>
 
 <style scoped lang="scss">

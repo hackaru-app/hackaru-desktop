@@ -1,13 +1,13 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import Vue from 'vue';
+import Vuex from 'vuex';
 
-import { createSharedMutations } from 'vuex-electron'
-import createPersitor from './persistor'
-import createPromiseAction from './promise-action'
+import { createSharedMutations } from 'vuex-electron';
+import createPersitor from './persistor';
+import createPromiseAction from './promise-action';
 
-import modules from './modules'
+import modules from './modules';
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
 export default new Vuex.Store({
   modules,
@@ -25,4 +25,4 @@ export default new Vuex.Store({
     createPromiseAction()
   ],
   strict: process.env.NODE_ENV !== 'production'
-})
+});

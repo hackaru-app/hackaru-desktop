@@ -11,11 +11,11 @@ export default {
     }
   },
   methods: {
-    input (e) {
-      this.$emit('input', e.target.value)
+    input(e) {
+      this.$emit('input', e.target.value);
     }
   }
-}
+};
 </script>
 
 <style scoped lang="scss">

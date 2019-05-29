@@ -7,27 +7,19 @@
 
     <section class="content">
       <header class="content-header">
-        <h1>
-          <feather-icon name="eye" />{{ $t('title') }}
-        </h1>
+        <h1><feather-icon name="eye" />{{ $t('title') }}</h1>
         <base-button
           type="button"
           class="has-icon"
           :aria-label="$t('add')"
           @click="showEditor"
         >
-          <feather-icon
-            name="plus"
-            class="is-primary"
-          />
+          <feather-icon name="plus" class="is-primary" />
         </base-button>
       </header>
 
       <transition-group name="fade">
-        <article
-          v-for="tracker in trackers"
-          :key="tracker.id"
-        >
+        <article v-for="tracker in trackers" :key="tracker.id">
           <project-name
             :name="tracker.project && tracker.project.name"
             :color="tracker.project && tracker.project.color"
@@ -42,15 +34,12 @@
             :aria-label="$t('delete')"
             @click="deleteTracker(tracker.id)"
           >
-            <feather-icon
-              name="x"
-              class="is-danger"
-            />
+            <feather-icon name="x" class="is-danger" />
           </base-button>
         </article>
       </transition-group>
 
-      <p class="empty-message" v-if="trackers.length <= 0">
+      <p v-if="trackers.length <= 0" class="empty-message">
         {{ $t('empty') }}
       </p>
     </section>
@@ -58,12 +47,12 @@
 </template>
 
 <script>
-import BaseButton from '../../atoms/base-button'
-import SettingMenu from '../../organisms/setting-menu'
-import MainHeader from '../../molecules/main-header'
-import ProjectName from '../../molecules/project-name'
-import FeatherIcon from '../../atoms/feather-icon'
-import { mapGetters } from 'vuex'
+import BaseButton from '../../atoms/base-button';
+import SettingMenu from '../../organisms/setting-menu';
+import MainHeader from '../../molecules/main-header';
+import ProjectName from '../../molecules/project-name';
+import FeatherIcon from '../../atoms/feather-icon';
+import { mapGetters } from 'vuex';
 
 export default {
   components: {
@@ -79,16 +68,16 @@ export default {
     })
   },
   methods: {
-    deleteTracker (id) {
-      if (!window.confirm(this.$t('confirms.delete'))) return
-      this.$store.dispatch('trackers/deleteTracker', { id })
-      this.$store.dispatch('toast/showSuccess', this.$t('deleted'))
+    deleteTracker(id) {
+      if (!window.confirm(this.$t('confirms.delete'))) return;
+      this.$store.dispatch('trackers/deleteTracker', { id });
+      this.$store.dispatch('toast/showSuccess', this.$t('deleted'));
     },
-    showEditor () {
-      this.$electron.ipcRenderer.send('showTrackerEditor')
+    showEditor() {
+      this.$electron.ipcRenderer.send('showTrackerEditor');
     }
   }
-}
+};
 </script>
 
 <style scoped lang="scss">

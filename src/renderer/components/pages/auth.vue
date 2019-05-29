@@ -11,10 +11,7 @@
         :placeholder="$t('apiUrl')"
         :aria-label="$t('apiUrl')"
       />
-      <base-button
-        type="submit"
-        class="is-rounded is-primary"
-      >
+      <base-button type="submit" class="is-rounded is-primary">
         {{ $t('authenticate') }}
       </base-button>
     </form>
@@ -22,61 +19,66 @@
 </template>
 
 <script>
-import BaseButton from '../atoms/base-button'
-import MainHeader from '../molecules/main-header'
-import BaseInput from '../atoms/base-input'
-import FeatherIcon from '../atoms/feather-icon'
+import BaseButton from '../atoms/base-button';
+import MainHeader from '../molecules/main-header';
+import BaseInput from '../atoms/base-input';
 
 export default {
   components: {
     BaseButton,
-    FeatherIcon,
     BaseInput,
     MainHeader
   },
-  data () {
+  data() {
     return {
       apiUrl: this.$store.getters['auth/getApiUrl']
-    }
+    };
   },
   computed: {
-    accessToken () {
-      return this.$store.getters['auth/getAccessToken']
+    accessToken() {
+      return this.$store.getters['auth/getAccessToken'];
     }
   },
   methods: {
-    async fetchAppToken () {
-      await this.$store.dispatchPromise('auth/fetchAppToken', this.apiUrl)
+    async fetchAppToken() {
+      await this.$store.dispatchPromise('auth/fetchAppToken', this.apiUrl);
     },
-    clearLocalstorage () {
+    clearLocalstorage() {
       return new Promise(resolve => {
-        this.$electron.remote.session.defaultSession.clearStorageData({
-          storages: ['localstorage']
-        }, () => resolve())
-      })
+        this.$electron.remote.session.defaultSession.clearStorageData(
+          {
+            storages: ['localstorage']
+          },
+          () => resolve()
+        );
+      });
     },
-    async openBrowser () {
-      await this.clearLocalstorage()
-      const browser = new this.$electron.remote.BrowserWindow({ width: 400, height: 550 })
-      browser.loadURL(this.$store.getters['auth/getAuthorizeUrl'])
+    async openBrowser() {
+      await this.clearLocalstorage();
+      const browser = new this.$electron.remote.BrowserWindow({
+        width: 400,
+        height: 550
+      });
+      browser.loadURL(this.$store.getters['auth/getAuthorizeUrl']);
       browser.webContents.on('did-navigate-in-page', async (event, url) => {
         const success = await this.$store.dispatchPromise(
-          'auth/storeAccessTokenByUrl', url
-        )
+          'auth/storeAccessTokenByUrl',
+          url
+        );
         if (success) {
-          this.$store.dispatch('toast/showSuccess', this.$t('loggedIn'))
-          browser.close()
-          this.$router.push('/')
+          this.$store.dispatch('toast/showSuccess', this.$t('loggedIn'));
+          browser.close();
+          this.$router.push('/');
         }
-      })
+      });
     },
-    async authenticate () {
-      if (!this.apiUrl) return
-      await this.fetchAppToken()
-      this.openBrowser()
+    async authenticate() {
+      if (!this.apiUrl) return;
+      await this.fetchAppToken();
+      this.openBrowser();
     }
   }
-}
+};
 </script>
 
 <style scoped lang="scss">

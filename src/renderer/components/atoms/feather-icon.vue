@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import feather from 'feather-icons'
+import feather from 'feather-icons';
 
 export default {
   props: {
@@ -15,14 +15,14 @@ export default {
     }
   },
   computed: {
-    svg: function () {
+    svg: function() {
       return feather.icons[this.name].toSvg({
         width: '100%',
         height: '100%'
-      })
+      });
     }
   }
-}
+};
 </script>
 
 <style scoped lang="scss">

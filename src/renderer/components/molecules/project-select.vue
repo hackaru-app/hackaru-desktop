@@ -1,9 +1,6 @@
 <template>
   <div class="project-select">
-    <project-name
-      v-bind="selected"
-      class="project-name"
-    />
+    <project-name v-bind="selected" class="project-name" />
     <select @input="input">
       <option
         v-for="project in projects"
@@ -18,7 +15,7 @@
 </template>
 
 <script>
-import ProjectName from '../molecules/project-name'
+import ProjectName from '../molecules/project-name';
 
 export default {
   components: {
@@ -31,28 +28,22 @@ export default {
     }
   },
   computed: {
-    projects () {
+    projects() {
       return [
         { id: null, name: 'No Project', color: '#ccc' },
         ...this.$store.getters['projects/getProjects']
-      ]
+      ];
     },
-    selected () {
-      return this.projects.find(
-        project => project.id === this.value
-      )
+    selected() {
+      return this.projects.find(project => project.id === this.value);
     }
   },
   methods: {
-    input (e) {
-      this.$emit('input',
-        e.target.value
-          ? Number(e.target.value)
-          : null
-      )
+    input(e) {
+      this.$emit('input', e.target.value ? Number(e.target.value) : null);
     }
   }
-}
+};
 </script>
 
 <style scoped lang="scss">
