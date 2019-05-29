@@ -35,7 +35,7 @@
           :aria-label="$t('delete')"
           @click="deleteActivity"
         >
-          <feather-icon name="trash" class="is-danger" />
+          <icon name="trash-icon" class="is-danger" />
         </base-button>
       </footer>
     </form>
@@ -47,12 +47,12 @@ import BaseButton from '../atoms/base-button';
 import DatetimePicker from '../molecules/datetime-picker';
 import MainHeader from '../molecules/main-header';
 import ProjectSelect from '../molecules/project-select';
-import FeatherIcon from '../atoms/feather-icon';
+import Icon from '../atoms/icon';
 
 export default {
   components: {
     BaseButton,
-    FeatherIcon,
+    Icon,
     MainHeader,
     DatetimePicker,
     ProjectSelect

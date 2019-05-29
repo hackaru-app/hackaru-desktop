@@ -4,8 +4,8 @@
   <section>
     <main-header>
       <button class="menu-button" @click="showEditor()">
-        <feather-icon
-          name="plus"
+        <icon
+          name="plus-icon"
           :aria-label="$t('ariaLabels.add')"
           class="icon is-small"
         />
@@ -32,7 +32,7 @@
             class="has-icon"
             @click="stopActivity(activity.id)"
           >
-            <feather-icon name="check" class="is-primary" />
+            <icon name="check-icon" class="is-primary" />
           </base-button>
         </list-item>
       </transition-group>
@@ -49,7 +49,7 @@
             :aria-label="$t('ariaLabels.settings')"
             @click="showSettings"
           >
-            <feather-icon name="settings" class="icon is-small" />
+            <icon name="settings-icon" class="icon is-small" />
           </base-button>
           <base-button
             type="button"
@@ -57,7 +57,7 @@
             :aria-label="$t('ariaLabels.website')"
             @click="openWebsite"
           >
-            <feather-icon name="globe" class="icon is-small" />
+            <icon name="globe-icon" class="icon is-small" />
           </base-button>
         </div>
         <base-button
@@ -66,7 +66,7 @@
           :aria-label="$t('ariaLabels.logout')"
           @click="logout"
         >
-          <feather-icon name="log-out" class="icon is-small" />
+          <icon name="log-out-icon" class="icon is-small" />
         </base-button>
       </footer>
     </div>
@@ -78,14 +78,14 @@ import BaseButton from '../atoms/base-button';
 import MainHeader from '../molecules/main-header';
 import ProjectName from '../molecules/project-name';
 import ListItem from '../molecules/list-item';
-import FeatherIcon from '../atoms/feather-icon';
+import Icon from '../atoms/icon';
 import Ticker from '../atoms/ticker';
 import { mapGetters } from 'vuex';
 
 export default {
   components: {
     BaseButton,
-    FeatherIcon,
+    Icon,
     MainHeader,
     ListItem,
     ProjectName,

@@ -7,14 +7,14 @@
 
     <section class="content">
       <header class="content-header">
-        <h1><feather-icon name="eye" />{{ $t('title') }}</h1>
+        <h1><icon name="eye-icon" />{{ $t('title') }}</h1>
         <base-button
           type="button"
           class="has-icon"
           :aria-label="$t('add')"
           @click="showEditor"
         >
-          <feather-icon name="plus" class="is-primary" />
+          <icon name="plus-icon" class="is-primary" />
         </base-button>
       </header>
 
@@ -34,7 +34,7 @@
             :aria-label="$t('delete')"
             @click="deleteTracker(tracker.id)"
           >
-            <feather-icon name="x" class="is-danger" />
+            <icon name="x-icon" class="is-danger" />
           </base-button>
         </article>
       </transition-group>
@@ -51,7 +51,7 @@ import BaseButton from '../../atoms/base-button';
 import SettingMenu from '../../organisms/setting-menu';
 import MainHeader from '../../molecules/main-header';
 import ProjectName from '../../molecules/project-name';
-import FeatherIcon from '../../atoms/feather-icon';
+import Icon from '../../atoms/icon';
 import { mapGetters } from 'vuex';
 
 export default {
@@ -60,7 +60,7 @@ export default {
     SettingMenu,
     MainHeader,
     ProjectName,
-    FeatherIcon
+    Icon
   },
   computed: {
     ...mapGetters({

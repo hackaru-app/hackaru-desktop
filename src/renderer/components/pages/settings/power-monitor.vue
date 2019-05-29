@@ -7,7 +7,7 @@
 
     <section class="content">
       <header class="content-header">
-        <h1><feather-icon name="power" />{{ $t('title') }}</h1>
+        <h1><icon name="power-icon" />{{ $t('title') }}</h1>
       </header>
 
       <div class="form">
@@ -25,13 +25,13 @@
 <script>
 import SettingMenu from '../../organisms/setting-menu';
 import MainHeader from '../../molecules/main-header';
-import FeatherIcon from '../../atoms/feather-icon';
+import Icon from '../../atoms/icon';
 
 export default {
   components: {
     SettingMenu,
     MainHeader,
-    FeatherIcon
+    Icon
   },
   computed: {
     config() {

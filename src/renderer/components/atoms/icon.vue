@@ -1,25 +1,18 @@
 <template>
-  <span class="icon">
-    <i v-html="svg"></i>
-  </span>
+  <component :is="name" class="icon" />
 </template>
 
 <script>
-import feather from 'feather-icons';
+import * as icons from 'vue-feather-icons';
 
 export default {
+  components: {
+    ...icons
+  },
   props: {
     name: {
       type: String,
       required: true
-    }
-  },
-  computed: {
-    svg: function() {
-      return feather.icons[this.name].toSvg({
-        width: '100%',
-        height: '100%'
-      });
     }
   }
 };
@@ -27,9 +20,8 @@ export default {
 
 <style scoped lang="scss">
 .icon {
-  display: inline-block;
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   vertical-align: bottom;
 }
 .icon.is-small {
