@@ -11,12 +11,11 @@
     "build:clean": "cross-env BUILD_TARGET=clean node .electron-vue/build.js",
     "build:web": "cross-env BUILD_TARGET=web node .electron-vue/build.js",
     "dev": "node .electron-vue/dev-runner.js",
-    "e2e": "npm run pack && mocha test/e2e",
     "lint": "eslint --ext .js,.vue src test",
     "pack": "npm run pack:main && npm run pack:renderer",
     "pack:main": "cross-env NODE_ENV=production webpack --progress --colors --config .electron-vue/webpack.main.config.js",
     "pack:renderer": "cross-env NODE_ENV=production webpack --progress --colors --config .electron-vue/webpack.renderer.config.js",
-    "test": "npm run unit && npm run e2e",
+    "test": "jest",
     "unit": "karma start test/unit/karma.conf.js",
     "postinstall": "npm run license-third-party && electron-rebuild",
     "license-third-party": "npm-license-crawler --onlyDirectDependencies --json src/renderer/assets/licenses.json"
@@ -104,17 +103,22 @@
     "vuex-persistedstate": "^2.5.4"
   },
   "devDependencies": {
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
     "@kazupon/vue-i18n-loader": "^0.3.0",
+    "@vue/test-utils": "^1.0.0-beta.29",
     "ajv": "^6.5.0",
-    "babel-core": "^6.26.3",
+    "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^8.2.3",
+    "babel-jest": "^24.8.0",
     "babel-loader": "^7.1.4",
+    "babel-minify-webpack-plugin": "^0.3.1",
     "babel-plugin-istanbul": "^4.1.6",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.7.0",
+    "babel-preset-minify": "^0.5.0",
     "babel-preset-stage-0": "^6.24.1",
     "babel-register": "^6.26.0",
-    "babili-webpack-plugin": "^0.1.2",
     "cfonts": "^2.1.2",
     "chai": "^4.1.2",
     "chalk": "^2.4.1",
@@ -144,6 +148,7 @@
     "html-webpack-plugin": "^3.2.0",
     "husky": "^2.3.0",
     "inject-loader": "^4.0.1",
+    "jest": "^24.8.0",
     "karma": "^2.0.2",
     "karma-chai": "^0.1.0",
     "karma-coverage": "^1.1.2",
@@ -155,16 +160,18 @@
     "lint-staged": "^8.1.7",
     "mini-css-extract-plugin": "0.4.0",
     "mocha": "^5.2.0",
+    "mockdate": "^2.0.2",
     "multispinner": "^0.2.1",
     "node-loader": "^0.6.0",
     "node-sass": "^4.9.2",
-    "npm-license-crawler": "^0.1.9",
+    "npm-license-crawler": "mwittig/npm-license-crawler#master",
     "require-dir": "^1.0.0",
     "sass-loader": "^7.0.3",
     "spectron": "^3.8.0",
     "style-loader": "^0.21.0",
     "url-loader": "^1.0.1",
     "vue-html-loader": "^1.2.4",
+    "vue-jest": "^3.0.4",
     "vue-loader": "^15.2.4",
     "vue-style-loader": "^4.1.0",
     "vue-template-compiler": "^2.5.16",
@@ -173,5 +180,29 @@
     "webpack-dev-server": "^3.1.4",
     "webpack-hot-middleware": "^2.22.2",
     "webpack-merge": "^4.1.3"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "vue"
+    ],
+    "testPathIgnorePatterns": [
+      "/node_modules/"
+    ],
+    "moduleNameMapper": {
+      "^@/(.*)$": "<rootDir>/src/renderer/$1"
+    },
+    "transform": {
+      "^.+\\.js$": "babel-jest",
+      "^.+\\.vue$": "vue-jest"
+    },
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "src/**/*.{js,vue}",
+      "!coverage/**",
+      "!**/node_modules/**"
+    ],
+    "clearMocks": true
   }
 }

@@ -3,12 +3,10 @@
 </template>
 
 <script>
-import VueTimers from 'vue-timers/mixin';
 import { fromS } from 'hh-mm-ss';
 import { parse, differenceInSeconds } from 'date-fns';
 
 export default {
-  mixins: [VueTimers],
   timers: {
     updateDuration: {
       time: 500,
@@ -48,7 +46,7 @@ export default {
   },
   methods: {
     updateDuration() {
-      if (this.stoppedAt) this.$timer.stop('update');
+      if (this.stoppedAt) this.$timer.stop('updateDuration');
       this.started = parse(this.startedAt);
       this.stopped = parse(this.stoppedAt || `${new Date()}`);
     }
