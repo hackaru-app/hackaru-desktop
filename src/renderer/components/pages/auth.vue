@@ -5,7 +5,7 @@
     <main-header />
     <form @submit.prevent="authenticate">
       <h1>{{ $t('title') }}</h1>
-      <text-field
+      <base-input
         v-model="apiUrl"
         class="has-border"
         :placeholder="$t('apiUrl')"
@@ -24,14 +24,14 @@
 <script>
 import BaseButton from '../atoms/base-button'
 import MainHeader from '../molecules/main-header'
-import TextField from '../atoms/text-field'
+import BaseInput from '../atoms/base-input'
 import FeatherIcon from '../atoms/feather-icon'
 
 export default {
   components: {
     BaseButton,
     FeatherIcon,
-    TextField,
+    BaseInput,
     MainHeader
   },
   data () {
