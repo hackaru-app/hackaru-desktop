@@ -17,7 +17,6 @@ before_script:
   - chmod +x ./cc-test-reporter
   - ./cc-test-reporter before-build
 script:
-  - npm run test
   - |
     if [ "$TRAVIS_OS_NAME" == "linux" ]; then
       docker run --rm \
@@ -29,9 +28,11 @@ script:
         electronuserland/builder:wine \
         /bin/bash -c "\
           npm install && \
+          npm run test && \
           npm run build -- --linux --win
         "
     else
+      npm run test && \
       npm run build
     fi
 before_cache:
