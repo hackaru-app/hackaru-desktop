@@ -5,7 +5,7 @@
         "licenseUrl": "https://github.com/axios/axios/raw/master/LICENSE",
         "parents": "Hackaru"
     },
-    "camelcase-keys@5.2.0": {
+    "camelcase-keys@5.0.0": {
         "licenses": "MIT",
         "repository": "https://github.com/sindresorhus/camelcase-keys",
         "licenseUrl": "https://github.com/sindresorhus/camelcase-keys/raw/master/license",
@@ -17,10 +17,10 @@
         "licenseUrl": "https://github.com/date-fns/date-fns/raw/master/LICENSE.md",
         "parents": "Hackaru"
     },
-    "electron-promise-ipc@1.2.2": {
+    "electron-promise-ipc@1.1.0": {
         "licenses": "MIT",
         "repository": "https://github.com/sibnerian/electron-promise-ipc",
-        "licenseUrl": "https://github.com/sibnerian/electron-promise-ipc/raw/master/LICENSE",
+        "licenseUrl": "https://github.com/sibnerian/electron-promise-ipc",
         "parents": "Hackaru"
     },
     "electron-store@2.0.0": {
@@ -41,7 +41,7 @@
         "licenseUrl": "https://github.com/Goldob/hh-mm-ss/raw/master/LICENSE",
         "parents": "Hackaru"
     },
-    "keytar@4.9.0": {
+    "keytar@4.4.1": {
         "licenses": "MIT",
         "repository": "https://github.com/atom/node-keytar",
         "licenseUrl": "https://github.com/atom/node-keytar/raw/master/LICENSE.md",
@@ -89,7 +89,7 @@
         "licenseUrl": "https://github.com/sindresorhus/ps-list/raw/master/license",
         "parents": "Hackaru"
     },
-    "query-string@6.5.0": {
+    "query-string@6.4.2": {
         "licenses": "MIT",
         "repository": "https://github.com/sindresorhus/query-string",
         "licenseUrl": "https://github.com/sindresorhus/query-string/raw/master/license",
@@ -125,13 +125,13 @@
         "licenseUrl": "https://github.com/egoist/vue-feather-icons/raw/master/LICENSE",
         "parents": "Hackaru"
     },
-    "vue-i18n@8.11.2": {
+    "vue-i18n@8.10.0": {
         "licenses": "MIT",
         "repository": "https://github.com/kazupon/vue-i18n",
         "licenseUrl": "https://github.com/kazupon/vue-i18n/raw/master/LICENSE",
         "parents": "Hackaru"
     },
-    "vue-multiselect@2.1.6": {
+    "vue-multiselect@2.1.4": {
         "licenses": "MIT",
         "repository": "https://github.com/shentao/vue-multiselect",
         "licenseUrl": "https://github.com/shentao/vue-multiselect/raw/master/LICENSE",
@@ -143,7 +143,7 @@
         "licenseUrl": "https://github.com/euvl/vue-notification/raw/master/LICENSE",
         "parents": "Hackaru"
     },
-    "vue-router@3.0.6": {
+    "vue-router@3.0.2": {
         "licenses": "MIT",
         "repository": "https://github.com/vuejs/vue-router",
         "licenseUrl": "https://github.com/vuejs/vue-router/raw/master/LICENSE",
@@ -179,7 +179,7 @@
         "licenseUrl": "https://github.com/robinvdvleuten/vuex-persistedstate/raw/master/LICENSE",
         "parents": "Hackaru"
     },
-    "vuex@3.1.1": {
+    "vuex@3.1.0": {
         "licenses": "MIT",
         "repository": "https://github.com/vuejs/vuex",
         "licenseUrl": "https://github.com/vuejs/vuex/raw/master/LICENSE",
