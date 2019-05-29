@@ -1,11 +1,24 @@
+# MacOS
 .DS_Store
+
+# Windows
+thumbs.db
+
+# Electron
 dist/electron/*
 dist/web/*
 build/*
 !build/icons
+
+# Test
 coverage
+
+# Dependencies
 node_modules/
-npm-debug.log
-npm-debug.log.*
-thumbs.db
-!.gitkeep
+
+# Logs
+npm-debug.log*
+
+# Yarn
+yarn.lock
+yarn-error.log
