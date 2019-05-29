@@ -10,7 +10,7 @@ import { parse, differenceInSeconds } from 'date-fns'
 export default {
   mixins: [VueTimers],
   timers: {
-    update: {
+    updateDuration: {
       time: 500,
       autostart: true,
       repeat: true
@@ -30,7 +30,7 @@ export default {
     return {
       fromS,
       started: parse(this.startedAt),
-      stopped: parse(this.stoppedAt || new Date().toString())
+      stopped: parse(this.stoppedAt || `${new Date()}`)
     }
   },
   computed: {
@@ -50,10 +50,10 @@ export default {
     }
   },
   methods: {
-    update () {
+    updateDuration () {
       if (this.stoppedAt) this.$timer.stop('update')
       this.started = parse(this.startedAt)
-      this.stopped = parse(this.stoppedAt || new Date().toString())
+      this.stopped = parse(this.stoppedAt || `${new Date()}`)
     }
   }
 }
