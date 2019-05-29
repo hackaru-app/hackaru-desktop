@@ -50,12 +50,9 @@
         </article>
       </transition-group>
 
-      <transition name="fade">
-        <empty-message
-          v-if="trackers.length <= 0"
-          :message="$t('empty')"
-        />
-      </transition>
+      <p class="empty-message" v-if="trackers.length <= 0">
+        {{ $t('empty') }}
+      </p>
     </section>
   </section>
 </template>
@@ -64,7 +61,6 @@
 import BaseButton from '../../atoms/base-button'
 import SettingMenu from '../../organisms/setting-menu'
 import MainHeader from '../../molecules/main-header'
-import EmptyMessage from '../../atoms/empty-message'
 import ProjectName from '../../molecules/project-name'
 import FeatherIcon from '../../atoms/feather-icon'
 import { mapGetters } from 'vuex'
@@ -74,7 +70,6 @@ export default {
     BaseButton,
     SettingMenu,
     MainHeader,
-    EmptyMessage,
     ProjectName,
     FeatherIcon
   },
@@ -131,5 +126,13 @@ article {
     color: $text-light;
     padding-right: 20px;
   }
+}
+.empty-message {
+  display: flex;
+  flex: 1;
+  width: 100%;
+  padding: 10px 0;
+  justify-content: center;
+  color: $text-light;
 }
 </style>

@@ -46,12 +46,9 @@
         </list-item>
       </transition-group>
 
-      <transition name="fade">
-        <empty-message
-          v-if="activities.length <= 0"
-          :message="$t('empty')"
-        />
-      </transition>
+      <p class="empty-message" v-if="activities.length <= 0">
+        {{ $t('empty') }}
+      </p>
 
       <footer class="footer">
         <div class="left">
@@ -96,7 +93,6 @@
 
 <script>
 import BaseButton from '../atoms/base-button'
-import EmptyMessage from '../atoms/empty-message'
 import MainHeader from '../molecules/main-header'
 import ProjectName from '../molecules/project-name'
 import ListItem from '../molecules/list-item'
@@ -109,7 +105,6 @@ export default {
     BaseButton,
     FeatherIcon,
     MainHeader,
-    EmptyMessage,
     ListItem,
     ProjectName,
     Ticker
@@ -206,5 +201,13 @@ export default {
   .icon {
     margin-right: 20px;
   }
+}
+.empty-message {
+  display: flex;
+  flex: 1;
+  width: 100%;
+  padding: 10px 0;
+  justify-content: center;
+  color: $text-light;
 }
 </style>
