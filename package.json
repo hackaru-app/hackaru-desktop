@@ -21,6 +21,12 @@
     "postinstall": "npm run license-third-party && electron-rebuild",
     "license-third-party": "npm-license-crawler --onlyDirectDependencies --json src/renderer/assets/licenses.json"
   },
+  "lint-staged": {
+    "*.{js,vue}": [
+      "npm run lint -- --fix",
+      "git add"
+    ]
+  },
   "build": {
     "productName": "Hackaru",
     "appId": "app.hackaru",
@@ -136,6 +142,7 @@
     "eslint-plugin-vue": "^5.2.2",
     "file-loader": "^1.1.11",
     "html-webpack-plugin": "^3.2.0",
+    "husky": "^2.3.0",
     "inject-loader": "^4.0.1",
     "karma": "^2.0.2",
     "karma-chai": "^0.1.0",
@@ -145,6 +152,7 @@
     "karma-sourcemap-loader": "^0.3.7",
     "karma-spec-reporter": "^0.0.32",
     "karma-webpack": "^3.0.0",
+    "lint-staged": "^8.1.7",
     "mini-css-extract-plugin": "0.4.0",
     "mocha": "^5.2.0",
     "multispinner": "^0.2.1",
