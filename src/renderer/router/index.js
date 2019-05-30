@@ -1,8 +1,8 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import store from '../store'
+import Vue from 'vue';
+import Router from 'vue-router';
+import store from '../store';
 
-Vue.use(Router)
+Vue.use(Router);
 
 const router = new Router({
   routes: [
@@ -46,15 +46,15 @@ const router = new Router({
       redirect: '/'
     }
   ]
-})
+});
 
 router.beforeEach(async (to, from, next) => {
-  const accessToken = await store.dispatchPromise('auth/restoreAccessToken')
+  const accessToken = await store.dispatchPromise('auth/restoreAccessToken');
   if (!accessToken && to.path !== '/auth') {
-    next('/auth')
+    next('/auth');
   } else {
-    next()
+    next();
   }
-})
+});
 
-export default router
+export default router;

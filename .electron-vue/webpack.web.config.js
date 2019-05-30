@@ -5,7 +5,7 @@ process.env.BABEL_ENV = 'web'
 const path = require('path')
 const webpack = require('webpack')
 
-const BabiliWebpackPlugin = require('babili-webpack-plugin')
+const MinifyPlugin = require("babel-minify-webpack-plugin")
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
@@ -23,10 +23,7 @@ let webConfig = {
         enforce: 'pre',
         exclude: /node_modules/,
         use: {
-          loader: 'eslint-loader',
-          options: {
-            formatter: require('eslint-friendly-formatter')
-          }
+          loader: 'eslint-loader'
         }
       },
       {
@@ -131,7 +128,10 @@ if (process.env.NODE_ENV === 'production') {
   webConfig.devtool = ''
 
   webConfig.plugins.push(
-    new BabiliWebpackPlugin(),
+    new MinifyPlugin({ builtIns: false }, {
+        babel: require('@babel/core'),
+        minifyPreset: require('babel-preset-minify')
+    }),
     new CopyWebpackPlugin([
       {
         from: path.join(__dirname, '../static'),

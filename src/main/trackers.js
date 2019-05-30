@@ -1,42 +1,42 @@
-'use strict'
+'use strict';
 
-import { app, powerMonitor } from 'electron'
-import psList from 'ps-list'
-import store from '../renderer/store'
+import { app, powerMonitor } from 'electron';
+import psList from 'ps-list';
+import store from '../renderer/store';
 
 app.on('ready', () => {
-  let processTimer
+  let processTimer;
 
-  function startProcessTimer () {
-    clearInterval(processTimer)
+  function startProcessTimer() {
+    clearInterval(processTimer);
     processTimer = setInterval(async () => {
-      if (!store.getters['auth/isLoggedIn']) return
-      await store.dispatch('processes/updateProccesses', await psList())
-      await store.dispatch('trackers/updateTrackings')
-    }, 1000)
+      if (!store.getters['auth/isLoggedIn']) return;
+      await store.dispatch('processes/updateProccesses', await psList());
+      await store.dispatch('trackers/updateTrackings');
+    }, 1000);
   }
 
   powerMonitor.on('suspend', async () => {
-    clearInterval(processTimer)
-    if (!store.getters['auth/isLoggedIn']) return
+    clearInterval(processTimer);
+    if (!store.getters['auth/isLoggedIn']) return;
     if (store.getters['config/getConfig'].powerMonitor.suspend) {
-      await store.dispatch('trackers/stopAllTrackings')
+      await store.dispatch('trackers/stopAllTrackings');
     }
-  })
+  });
 
   powerMonitor.on('resume', async () => {
-    startProcessTimer()
-  })
+    startProcessTimer();
+  });
 
-  powerMonitor.on('shutdown', async (e) => {
-    e.preventDefault()
-    clearInterval(processTimer)
-    if (!store.getters['auth/isLoggedIn']) return
+  powerMonitor.on('shutdown', async e => {
+    e.preventDefault();
+    clearInterval(processTimer);
+    if (!store.getters['auth/isLoggedIn']) return;
     if (store.getters['config/getConfig'].powerMonitor.shutdown) {
-      await store.dispatch('trackers/stopAllTrackings')
+      await store.dispatch('trackers/stopAllTrackings');
     }
-    app.quit()
-  })
+    app.quit();
+  });
 
-  startProcessTimer()
-})
+  startProcessTimer();
+});

@@ -6,7 +6,7 @@ const path = require('path')
 const { dependencies } = require('../package.json')
 const webpack = require('webpack')
 
-const BabiliWebpackPlugin = require('babili-webpack-plugin')
+const MinifyPlugin = require("babel-minify-webpack-plugin")
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
@@ -19,7 +19,7 @@ const { VueLoaderPlugin } = require('vue-loader')
  * that provide pure *.vue files that need compiling
  * https://simulatedgreg.gitbooks.io/electron-vue/content/en/webpack-configurations.html#white-listing-externals
  */
-let whiteListedModules = ['vue']
+let whiteListedModules = ['vue', 'vue-timers']
 
 let rendererConfig = {
   devtool: '#cheap-module-eval-source-map',
@@ -36,10 +36,7 @@ let rendererConfig = {
         enforce: 'pre',
         exclude: /node_modules/,
         use: {
-          loader: 'eslint-loader',
-          options: {
-            formatter: require('eslint-friendly-formatter')
-          }
+          loader: 'eslint-loader'
         }
       },
       {
@@ -180,7 +177,10 @@ if (process.env.NODE_ENV === 'production') {
   rendererConfig.devtool = ''
 
   rendererConfig.plugins.push(
-    new BabiliWebpackPlugin(),
+    new MinifyPlugin({ builtIns: false }, {
+        babel: require('@babel/core'),
+        minifyPreset: require('babel-preset-minify')
+    }),
     new CopyWebpackPlugin([
       {
         from: path.join(__dirname, '../static'),

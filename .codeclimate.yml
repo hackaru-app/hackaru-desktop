@@ -1,0 +1,9 @@
+checks:
+  file-lines:
+    enabled: false
+  similar-code:
+    enabled: false
+  method-lines:
+    enabled: false
+exclude_paths:
+  - "__tests__/**/*"

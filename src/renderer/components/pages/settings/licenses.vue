@@ -7,16 +7,11 @@
 
     <section class="content">
       <header class="content-header">
-        <h1>
-          <feather-icon name="gift" />{{ $t('title') }}
-        </h1>
+        <h1><icon name="gift-icon" />{{ $t('title') }}</h1>
       </header>
 
       <ul>
-        <li
-          v-for="(license, key) in licenses"
-          :key="key"
-        >
+        <li v-for="(license, key) in licenses" :key="key">
           <button @click="openWebsite(license.licenseUrl)">
             {{ key }}
             <span> - {{ license.licenses }}</span>
@@ -28,28 +23,28 @@
 </template>
 
 <script>
-import licenses from '../../../assets/licenses'
-import SettingMenu from '../../organisms/setting-menu'
-import MainHeader from '../../molecules/main-header'
-import FeatherIcon from '../../atoms/feather-icon'
+import licenses from '../../../assets/licenses';
+import SettingMenu from '../../organisms/setting-menu';
+import MainHeader from '../../molecules/main-header';
+import Icon from '../../atoms/icon';
 
 export default {
   components: {
     SettingMenu,
     MainHeader,
-    FeatherIcon
+    Icon
   },
-  data () {
+  data() {
     return {
       licenses
-    }
+    };
   },
   methods: {
-    openWebsite (url) {
-      this.$electron.shell.openExternal(url)
+    openWebsite(url) {
+      this.$electron.shell.openExternal(url);
     }
   }
-}
+};
 </script>
 
 <style scoped lang="scss">

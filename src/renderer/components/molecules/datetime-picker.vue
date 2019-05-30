@@ -7,7 +7,7 @@
       step="1"
       @input="update"
       @focus="setCurrent"
-    >
+    />
     <input
       ref="time"
       :value="time"
@@ -15,12 +15,12 @@
       step="1"
       @input="update"
       @focus="setCurrent"
-    >
+    />
   </div>
 </template>
 
 <script>
-import { parse, format } from 'date-fns'
+import { parse, format } from 'date-fns';
 
 export default {
   props: {
@@ -30,25 +30,25 @@ export default {
     }
   },
   computed: {
-    date () {
-      return this.value && format(this.value, 'YYYY-MM-DD')
+    date() {
+      return this.value && format(this.value, 'YYYY-MM-DD');
     },
-    time () {
-      return this.value && format(this.value, 'HH:mm:ss')
+    time() {
+      return this.value && format(this.value, 'HH:mm:ss');
     }
   },
   methods: {
-    update () {
-      const date = parse(`${this.$refs.date.value} ${this.$refs.time.value}`)
-      this.$emit('input', isNaN(date) ? undefined : `${date}`)
+    update() {
+      const date = parse(`${this.$refs.date.value} ${this.$refs.time.value}`);
+      this.$emit('input', isNaN(date) ? undefined : `${date}`);
     },
-    setCurrent () {
-      this.$refs.date.value = this.date || format(new Date(), 'YYYY-MM-DD')
-      this.$refs.time.value = this.time || format(new Date(), 'HH:mm:ss')
-      this.update()
+    setCurrent() {
+      this.$refs.date.value = this.date || format(new Date(), 'YYYY-MM-DD');
+      this.$refs.time.value = this.time || format(new Date(), 'HH:mm:ss');
+      this.update();
     }
   }
-}
+};
 </script>
 
 <style scoped lang="scss">

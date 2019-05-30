@@ -1,15 +1,12 @@
 <template>
   <div class="project-name">
-    <dot
-      :color="color || '#cccfd9'"
-      class="dot"
-    />
+    <dot :color="color || '#cccfd9'" class="dot" />
     {{ name || 'No Project' }}
   </div>
 </template>
 
 <script>
-import Dot from '../atoms/dot'
+import Dot from '../atoms/dot';
 
 export default {
   components: {
@@ -25,7 +22,7 @@ export default {
       default: null
     }
   }
-}
+};
 </script>
 
 <style scoped lang="scss">

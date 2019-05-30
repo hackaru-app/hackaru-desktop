@@ -7,23 +7,15 @@
 
     <section class="content">
       <header class="content-header">
-        <h1>
-          <feather-icon name="power" />{{ $t('title') }}
-        </h1>
+        <h1><icon name="power-icon" />{{ $t('title') }}</h1>
       </header>
 
       <div class="form">
         <label>
-          <input
-            type="checkbox"
-            v-model="suspend"
-          />{{ $t('suspend') }}
+          <input v-model="suspend" type="checkbox" />{{ $t('suspend') }}
         </label>
         <label>
-          <input
-            type="checkbox"
-            v-model="shutdown"
-          />{{ $t('shutdown') }}
+          <input v-model="shutdown" type="checkbox" />{{ $t('shutdown') }}
         </label>
       </div>
     </section>
@@ -31,35 +23,43 @@
 </template>
 
 <script>
-import SettingMenu from '../../organisms/setting-menu'
-import MainHeader from '../../molecules/main-header'
-import FeatherIcon from '../../atoms/feather-icon'
+import SettingMenu from '../../organisms/setting-menu';
+import MainHeader from '../../molecules/main-header';
+import Icon from '../../atoms/icon';
 
 export default {
   components: {
     SettingMenu,
     MainHeader,
-    FeatherIcon
+    Icon
   },
   computed: {
-    config () {
-      return this.$store.getters['config/getConfig']
+    config() {
+      return this.$store.getters['config/getConfig'];
     },
     suspend: {
-      get () { return this.config.powerMonitor.suspend },
-      set (value) { this.setConfig('powerMonitor.suspend', value) }
+      get() {
+        return this.config.powerMonitor.suspend;
+      },
+      set(value) {
+        this.setConfig('powerMonitor.suspend', value);
+      }
     },
     shutdown: {
-      get () { return this.config.powerMonitor.shutdown },
-      set (value) { this.setConfig('powerMonitor.shutdown', value) }
+      get() {
+        return this.config.powerMonitor.shutdown;
+      },
+      set(value) {
+        this.setConfig('powerMonitor.shutdown', value);
+      }
     }
   },
   methods: {
-    setConfig (path, value) {
-      this.$store.dispatch('config/setConfig', { path, value })
+    setConfig(path, value) {
+      this.$store.dispatch('config/setConfig', { path, value });
     }
   }
-}
+};
 </script>
 
 <style scoped lang="scss">

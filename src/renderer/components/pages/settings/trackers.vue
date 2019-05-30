@@ -7,27 +7,19 @@
 
     <section class="content">
       <header class="content-header">
-        <h1>
-          <feather-icon name="eye" />{{ $t('title') }}
-        </h1>
-        <btn
+        <h1><icon name="eye-icon" />{{ $t('title') }}</h1>
+        <base-button
           type="button"
           class="has-icon"
           :aria-label="$t('add')"
           @click="showEditor"
         >
-          <feather-icon
-            name="plus"
-            class="is-primary"
-          />
-        </btn>
+          <icon name="plus-icon" class="is-primary" />
+        </base-button>
       </header>
 
       <transition-group name="fade">
-        <article
-          v-for="tracker in trackers"
-          :key="tracker.id"
-        >
+        <article v-for="tracker in trackers" :key="tracker.id">
           <project-name
             :name="tracker.project && tracker.project.name"
             :color="tracker.project && tracker.project.color"
@@ -36,47 +28,39 @@
           <span class="process">
             {{ tracker.process }}
           </span>
-          <btn
+          <base-button
             type="button"
             class="has-icon"
             :aria-label="$t('delete')"
             @click="deleteTracker(tracker.id)"
           >
-            <feather-icon
-              name="x"
-              class="is-danger"
-            />
-          </btn>
+            <icon name="x-icon" class="is-danger" />
+          </base-button>
         </article>
       </transition-group>
 
-      <transition name="fade">
-        <empty-message
-          v-if="trackers.length <= 0"
-          :message="$t('empty')"
-        />
-      </transition>
+      <p v-if="trackers.length <= 0" class="empty-message">
+        {{ $t('empty') }}
+      </p>
     </section>
   </section>
 </template>
 
 <script>
-import Btn from '../../atoms/btn'
-import SettingMenu from '../../organisms/setting-menu'
-import MainHeader from '../../molecules/main-header'
-import EmptyMessage from '../../atoms/empty-message'
-import ProjectName from '../../molecules/project-name'
-import FeatherIcon from '../../atoms/feather-icon'
-import { mapGetters } from 'vuex'
+import BaseButton from '../../atoms/base-button';
+import SettingMenu from '../../organisms/setting-menu';
+import MainHeader from '../../molecules/main-header';
+import ProjectName from '../../molecules/project-name';
+import Icon from '../../atoms/icon';
+import { mapGetters } from 'vuex';
 
 export default {
   components: {
-    Btn,
+    BaseButton,
     SettingMenu,
     MainHeader,
-    EmptyMessage,
     ProjectName,
-    FeatherIcon
+    Icon
   },
   computed: {
     ...mapGetters({
@@ -84,16 +68,16 @@ export default {
     })
   },
   methods: {
-    deleteTracker (id) {
-      if (!window.confirm(this.$t('confirms.delete'))) return
-      this.$store.dispatch('trackers/deleteTracker', { id })
-      this.$store.dispatch('toast/showSuccess', this.$t('deleted'))
+    deleteTracker(id) {
+      if (!window.confirm(this.$t('confirms.delete'))) return;
+      this.$store.dispatch('trackers/deleteTracker', { id });
+      this.$store.dispatch('toast/showSuccess', this.$t('deleted'));
     },
-    showEditor () {
-      this.$electron.ipcRenderer.send('showTrackerEditor')
+    showEditor() {
+      this.$electron.ipcRenderer.send('showTrackerEditor');
     }
   }
-}
+};
 </script>
 
 <style scoped lang="scss">
@@ -131,5 +115,13 @@ article {
     color: $text-light;
     padding-right: 20px;
   }
+}
+.empty-message {
+  display: flex;
+  flex: 1;
+  width: 100%;
+  padding: 10px 0;
+  justify-content: center;
+  color: $text-light;
 }
 </style>

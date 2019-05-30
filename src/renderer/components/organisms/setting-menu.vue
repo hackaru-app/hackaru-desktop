@@ -3,13 +3,10 @@
 <template>
   <nav class="side-bar">
     <ul>
-      <li
-        v-for="link in links"
-        :key="link.path"
-      >
+      <li v-for="link in links" :key="link.path">
         <router-link
           :to="link.path"
-          :class="{ selected: link.path === $route.path}"
+          :class="{ selected: link.path === $route.path }"
         >
           {{ link.name }}
         </router-link>
@@ -20,7 +17,7 @@
 
 <script>
 export default {
-  data () {
+  data() {
     return {
       links: [
         {
@@ -36,11 +33,10 @@ export default {
           name: this.$t('licenses')
         }
       ]
-    }
+    };
   }
-}
+};
 </script>
-
 
 <style scoped lang="scss">
 .side-bar {

@@ -6,10 +6,7 @@
     <form @submit.prevent="addTracker">
       <div class="item">
         <label>{{ $t('project') }}</label>
-        <project-select
-          v-model="projectId"
-          class="project-select"
-        />
+        <project-select v-model="projectId" class="project-select" />
       </div>
       <div class="item">
         <label>{{ $t('process') }}</label>
@@ -28,57 +25,52 @@
         </multiselect>
       </div>
       <footer>
-        <btn
-          class="is-rounded is-primary"
-          type="submit"
-        >{{ $t('add') }}</btn>
+        <base-button class="is-rounded is-primary" type="submit">{{
+          $t('add')
+        }}</base-button>
       </footer>
     </form>
   </section>
 </template>
 
 <script>
-import Multiselect from 'vue-multiselect'
-import MainHeader from '../../molecules/main-header'
-import Btn from '../../atoms/btn'
-import ProjectSelect from '../../molecules/project-select'
-import FeatherIcon from '../../atoms/feather-icon'
+import Multiselect from 'vue-multiselect';
+import MainHeader from '../../molecules/main-header';
+import BaseButton from '../../atoms/base-button';
+import ProjectSelect from '../../molecules/project-select';
 
 export default {
   components: {
-    Btn,
+    BaseButton,
     MainHeader,
     Multiselect,
-    FeatherIcon,
     ProjectSelect
   },
-  data () {
+  data() {
     return {
       projectId: null,
       process: ''
-    }
+    };
   },
   computed: {
-    options () {
-      return this.$store.getters['processes/getProcesses']
-        .map(name => ({ name }))
+    options() {
+      return this.$store.getters['processes/getProcesses'].map(name => ({
+        name
+      }));
     }
   },
   methods: {
-    addTracker () {
-      if (!this.process) return
-      this.$store.dispatch(
-        'trackers/addTracker',
-        {
-          projectId: this.projectId,
-          process: this.process.name
-        }
-      )
-      this.$store.dispatch('toast/showSuccess', this.$t('added'))
-      this.$electron.remote.getCurrentWindow().close()
+    addTracker() {
+      if (!this.process) return;
+      this.$store.dispatch('trackers/addTracker', {
+        projectId: this.projectId,
+        process: this.process.name
+      });
+      this.$store.dispatch('toast/showSuccess', this.$t('added'));
+      this.$electron.remote.getCurrentWindow().close();
     }
   }
-}
+};
 </script>
 
 <style scoped lang="scss">

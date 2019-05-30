@@ -1,8 +1,5 @@
 <template>
-  <span
-    :style="{ backgroundColor: color }"
-    class="dot"
-  />
+  <span :style="{ backgroundColor: color }" class="dot" />
 </template>
 
 <script>
@@ -10,10 +7,10 @@ export default {
   props: {
     color: {
       type: String,
-      default: '#ccc'
+      required: true
     }
   }
-}
+};
 </script>
 
 <style>

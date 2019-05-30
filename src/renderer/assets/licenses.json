@@ -119,6 +119,12 @@
         "licenseUrl": "https://github.com/SimulatedGREG/vue-electron/raw/master/LICENSE.md",
         "parents": "Hackaru"
     },
+    "vue-feather-icons@4.21.0": {
+        "licenses": "MIT",
+        "repository": "https://github.com/egoist/vue-feather-icons",
+        "licenseUrl": "https://github.com/egoist/vue-feather-icons/raw/master/LICENSE",
+        "parents": "Hackaru"
+    },
     "vue-i18n@8.10.0": {
         "licenses": "MIT",
         "repository": "https://github.com/kazupon/vue-i18n",

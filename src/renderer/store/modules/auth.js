@@ -1,11 +1,11 @@
-import queryString from 'query-string'
-import keytar from 'keytar'
+import queryString from 'query-string';
+import keytar from 'keytar';
 
-export const SET_APP_TOKEN = 'SET_APP_TOKEN'
-export const RESET_UID = 'RESET_UID'
-export const CLEAR_ACCESS_TOKEN = 'CLEAR_ACCESS_TOKEN'
-export const SET_API_URL = 'SET_API_URL'
-export const SET_ACCESS_TOKEN = 'SET_ACCESS_TOKEN'
+export const SET_APP_TOKEN = 'SET_APP_TOKEN';
+export const RESET_UID = 'RESET_UID';
+export const CLEAR_ACCESS_TOKEN = 'CLEAR_ACCESS_TOKEN';
+export const SET_API_URL = 'SET_API_URL';
+export const SET_ACCESS_TOKEN = 'SET_ACCESS_TOKEN';
 
 const state = {
   name: 'DesktopApp',
@@ -20,13 +20,13 @@ const state = {
   appTokens: {},
   accessToken: undefined,
   apiUrl: 'https://api.hackaru.app'
-}
+};
 
 const mutations = {
-  [SET_API_URL] (state, payload) {
-    state.apiUrl = payload
+  [SET_API_URL](state, payload) {
+    state.apiUrl = payload;
   },
-  [SET_APP_TOKEN] (state, payload) {
+  [SET_APP_TOKEN](state, payload) {
     state.appTokens = {
       ...state.appTokens,
       [payload.apiUrl]: {
@@ -34,22 +34,23 @@ const mutations = {
         uid: payload.uid,
         secret: payload.secret
       }
-    }
+    };
   },
-  [SET_ACCESS_TOKEN] (state, payload) {
-    state.accessToken = payload
+  [SET_ACCESS_TOKEN](state, payload) {
+    state.accessToken = payload;
   },
-  [CLEAR_ACCESS_TOKEN] (state, payload) {
-    state.accessToken = undefined
+  [CLEAR_ACCESS_TOKEN](state, payload) {
+    state.accessToken = undefined;
   }
-}
+};
 
 const actions = {
-  async fetchAppToken ({ state, commit, dispatch, getters }, apiUrl) {
-    commit(SET_API_URL, apiUrl)
+  async fetchAppToken({ state, commit, dispatch, getters }, apiUrl) {
+    commit(SET_API_URL, apiUrl);
     try {
-      if (getters.getCurrentAppToken) return
-      const res = await dispatch('api/request',
+      if (getters.getCurrentAppToken) return;
+      const res = await dispatch(
+        'api/request',
         {
           url: '/v1/oauth/applications',
           method: 'post',
@@ -60,97 +61,91 @@ const actions = {
           }
         },
         { root: true }
-      )
+      );
       commit(SET_APP_TOKEN, {
         apiUrl: apiUrl,
         webUrl: res.data.webUrl,
         uid: res.data.application.uid,
         secret: res.data.application.secret
-      })
+      });
     } catch (e) {
-      dispatch('toast/showError', e, { root: true })
+      dispatch('toast/showError', e, { root: true });
     }
   },
-  async logout ({ state, commit, dispatch, getters }) {
-    const clientId = getters.getCurrentAppToken.uid
-    const secret = getters.getCurrentAppToken.secret
-    await dispatch('api/request',
+  async logout({ state, commit, dispatch, getters }) {
+    const clientId = getters.getCurrentAppToken.uid;
+    const secret = getters.getCurrentAppToken.secret;
+    await dispatch(
+      'api/request',
       {
         url: '/v1/oauth/revoke',
         method: 'post',
         data: {
-          'client_id': clientId,
-          'client_secret': secret,
-          'token': state.accessToken
+          client_id: clientId,
+          client_secret: secret,
+          token: state.accessToken
         }
       },
       { root: true }
-    )
-    await keytar.deletePassword(
-      state.service,
-      clientId
-    )
-    commit(CLEAR_ACCESS_TOKEN)
+    );
+    await keytar.deletePassword(state.service, clientId);
+    commit(CLEAR_ACCESS_TOKEN);
   },
-  async restoreAccessToken ({ state, commit, getters }, url) {
-    if (state.accessToken) return state.accessToken
+  async restoreAccessToken({ state, commit, getters }, url) {
+    if (state.accessToken) return state.accessToken;
     try {
-      commit(SET_ACCESS_TOKEN,
-        await keytar.getPassword(
-          state.service,
-          getters.getCurrentAppToken.uid
-        )
-      )
-      return state.accessToken
+      commit(
+        SET_ACCESS_TOKEN,
+        await keytar.getPassword(state.service, getters.getCurrentAppToken.uid)
+      );
+      return state.accessToken;
     } catch (e) {
-      return null
+      return null;
     }
   },
-  async storeAccessTokenByUrl ({ state, commit, getters }, url) {
-    const regexp = `^${getters.getWebUrl}/.*?access_token=([^&]*)`
-    const matched = url.match(new RegExp(regexp))
-    if (!matched || !matched[1]) return false
-    commit(SET_ACCESS_TOKEN, matched[1])
+  async storeAccessTokenByUrl({ state, commit, getters }, url) {
+    const regexp = `^${getters.getWebUrl}/.*?access_token=([^&]*)`;
+    const matched = url.match(new RegExp(regexp));
+    if (!matched || !matched[1]) return false;
+    commit(SET_ACCESS_TOKEN, matched[1]);
     keytar.setPassword(
       state.service,
       getters.getCurrentAppToken.uid,
       matched[1]
-    )
-    return true
+    );
+    return true;
   }
-}
+};
 
 export const getters = {
   getApiUrl: state => {
-    return state.apiUrl
+    return state.apiUrl;
   },
   getAccessToken: state => {
-    return state.accessToken
+    return state.accessToken;
   },
   isLoggedIn: state => {
-    return state.accessToken
+    return state.accessToken;
   },
   getCurrentAppToken: state => {
-    return state.appTokens[state.apiUrl]
+    return state.appTokens[state.apiUrl];
   },
   getWebUrl: (state, getters) => {
-    return (getters.getCurrentAppToken || {}).webUrl
+    return (getters.getCurrentAppToken || {}).webUrl;
   },
   getAuthorizeUrl: (state, getters) => {
-    return `${getters.getWebUrl}/oauth/authorize?${
-      queryString.stringify({
-        client_id: getters.getCurrentAppToken.uid,
-        redirect_uri: state.redirectUri,
-        response_type: 'token',
-        scope: state.scopes.join(' ')
-      })
-    }`
+    return `${getters.getWebUrl}/oauth/authorize?${queryString.stringify({
+      client_id: getters.getCurrentAppToken.uid,
+      redirect_uri: state.redirectUri,
+      response_type: 'token',
+      scope: state.scopes.join(' ')
+    })}`;
   }
-}
+};
 
 export default {
   state,
   getters,
   mutations,
   actions
-}
+};

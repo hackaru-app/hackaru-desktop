@@ -1,9 +1,5 @@
 <template>
-  <notifications
-    class="notifications"
-    position="center bottom"
-    width="100%"
-  />
+  <notifications class="notifications" position="center bottom" width="100%" />
 </template>
 
 <style lang="scss">
@@ -24,13 +20,12 @@
 }
 </style>
 
-
 <script>
-import Vue from 'vue'
-import Notifications from 'vue-notification'
-import { mapGetters } from 'vuex'
+import Vue from 'vue';
+import Notifications from 'vue-notification';
+import { mapGetters } from 'vuex';
 
-Vue.use(Notifications)
+Vue.use(Notifications);
 
 export default {
   computed: {
@@ -39,14 +34,14 @@ export default {
     })
   },
   watch: {
-    message () {
+    message() {
       this.$notify({
         type: this.message.type,
         title: this.message.title
-      })
+      });
     }
   }
-}
+};
 </script>
 
 <style scoped lang="scss">

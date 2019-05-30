@@ -3,14 +3,12 @@
 </template>
 
 <script>
-import VueTimers from 'vue-timers/mixin'
-import { fromS } from 'hh-mm-ss'
-import { parse, differenceInSeconds } from 'date-fns'
+import { fromS } from 'hh-mm-ss';
+import { parse, differenceInSeconds } from 'date-fns';
 
 export default {
-  mixins: [VueTimers],
   timers: {
-    update: {
+    updateDuration: {
       time: 500,
       autostart: true,
       repeat: true
@@ -26,35 +24,32 @@ export default {
       default: undefined
     }
   },
-  data () {
+  data() {
     return {
       fromS,
       started: parse(this.startedAt),
-      stopped: parse(this.stoppedAt || new Date().toString())
-    }
+      stopped: parse(this.stoppedAt || `${new Date()}`)
+    };
   },
   computed: {
-    duration () {
-      return differenceInSeconds(
-        this.stopped,
-        this.started
-      ) || 0
+    duration() {
+      return differenceInSeconds(this.stopped, this.started) || 0;
     }
   },
   watch: {
-    startedAt: function (val) {
-      this.started = parse(val)
+    startedAt: function(val) {
+      this.started = parse(val);
     },
-    stoppedAt: function (val) {
-      this.stopped = parse(val)
+    stoppedAt: function(val) {
+      this.stopped = parse(val);
     }
   },
   methods: {
-    update () {
-      if (this.stoppedAt) this.$timer.stop('update')
-      this.started = parse(this.startedAt)
-      this.stopped = parse(this.stoppedAt || new Date().toString())
+    updateDuration() {
+      if (this.stoppedAt) this.$timer.stop('updateDuration');
+      this.started = parse(this.startedAt);
+      this.stopped = parse(this.stoppedAt || `${new Date()}`);
     }
   }
-}
+};
 </script>
