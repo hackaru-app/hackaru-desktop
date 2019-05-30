@@ -13,29 +13,27 @@
     </main-header>
 
     <div class="content">
-      <transition-group name="fade">
-        <list-item
-          v-for="activity in activities"
-          :key="activity.id"
-          class="list-item"
+      <article
+        v-for="activity in activities"
+        :key="activity.id"
+        class="list-item"
+      >
+        <div class="activity" @click="showEditor(activity)">
+          <project-name v-bind="activity.project" />
+          <ticker
+            :started-at="activity.startedAt"
+            :stopped-at="activity.stoppedAt"
+            class="duration"
+          />
+        </div>
+        <base-button
+          type="button"
+          class="has-icon"
+          @click="stopActivity(activity.id)"
         >
-          <div class="activity" @click="showEditor(activity)">
-            <project-name v-bind="activity.project" />
-            <ticker
-              :started-at="activity.startedAt"
-              :stopped-at="activity.stoppedAt"
-              class="duration"
-            />
-          </div>
-          <base-button
-            type="button"
-            class="has-icon"
-            @click="stopActivity(activity.id)"
-          >
-            <icon name="check-icon" class="is-primary" />
-          </base-button>
-        </list-item>
-      </transition-group>
+          <icon name="check-icon" class="is-primary" />
+        </base-button>
+      </article>
 
       <p v-if="activities.length <= 0" class="empty-message">
         {{ $t('empty') }}
@@ -77,7 +75,6 @@
 import BaseButton from '../atoms/base-button';
 import MainHeader from '../molecules/main-header';
 import ProjectName from '../molecules/project-name';
-import ListItem from '../molecules/list-item';
 import Icon from '../atoms/icon';
 import Ticker from '../atoms/ticker';
 import { mapGetters } from 'vuex';
@@ -87,7 +84,6 @@ export default {
     BaseButton,
     Icon,
     MainHeader,
-    ListItem,
     ProjectName,
     Ticker
   },
@@ -148,6 +144,13 @@ export default {
 }
 .list-item {
   padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px $border solid;
+  &:hover {
+    background: $grey-fdfdfd;
+  }
 }
 .activity {
   display: flex;

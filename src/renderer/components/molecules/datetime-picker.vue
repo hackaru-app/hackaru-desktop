@@ -5,6 +5,7 @@
       :value="date"
       type="date"
       step="1"
+      class="date"
       @input="update"
       @focus="setCurrent"
     />
@@ -13,6 +14,7 @@
       :value="time"
       type="time"
       step="1"
+      class="time"
       @input="update"
       @focus="setCurrent"
     />
