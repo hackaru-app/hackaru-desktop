@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import VueTimers from 'vue-timers';
+import Notifications from 'vue-notification';
 import axios from 'axios';
 import App from './App';
 import router from './router';
@@ -14,6 +15,7 @@ Vue.config.productionTip = false;
 // If you add an import, you also need to update whiteListedModules.
 // https://simulatedgreg.gitbooks.io/electron-vue/content/en/webpack-configurations.html#white-listing-externals
 Vue.use(VueTimers);
+Vue.use(Notifications);
 
 /* eslint-disable no-new */
 new Vue({

@@ -21,11 +21,7 @@
 </style>
 
 <script>
-import Vue from 'vue';
-import Notifications from 'vue-notification';
 import { mapGetters } from 'vuex';
-
-Vue.use(Notifications);
 
 export default {
   computed: {
