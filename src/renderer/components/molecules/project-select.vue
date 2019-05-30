@@ -1,7 +1,7 @@
 <template>
   <div class="project-select">
     <project-name v-bind="selected" class="project-name" />
-    <select @input="input">
+    <select @change="change">
       <option
         v-for="project in projects"
         :key="project.id"
@@ -30,7 +30,11 @@ export default {
   computed: {
     projects() {
       return [
-        { id: null, name: 'No Project', color: '#ccc' },
+        {
+          id: null,
+          name: 'No Project',
+          color: '#ccc'
+        },
         ...this.$store.getters['projects/getProjects']
       ];
     },
@@ -39,8 +43,9 @@ export default {
     }
   },
   methods: {
-    input(e) {
-      this.$emit('input', e.target.value ? Number(e.target.value) : null);
+    change(e) {
+      const id = e.target.value;
+      this.$emit('input', id ? Number(id) : null);
     }
   }
 };
