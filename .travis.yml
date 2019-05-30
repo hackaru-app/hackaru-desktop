@@ -13,7 +13,8 @@ cache:
     - $HOME/.cache/electron
     - $HOME/.cache/electron-builder
 before_script:
-  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - REPORTER_OS_NAME=$([ "$TRAVIS_OS_NAME" = "linux" ] && echo "linux" || echo "darwin")
+  - curl -L "https://codeclimate.com/downloads/test-reporter/test-reporter-latest-${REPORTER_OS_NAME}-amd64" > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
   - ./cc-test-reporter before-build
 script:
