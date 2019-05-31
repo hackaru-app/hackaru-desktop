@@ -93,9 +93,9 @@ export default {
       webUrl: 'auth/getWebUrl'
     })
   },
-  async mounted() {
-    await this.$store.dispatch('activities/getWorkingActivities');
-    await this.$store.dispatch('projects/getProjects');
+  mounted() {
+    this.$store.dispatch('activities/getWorkingActivities');
+    this.$store.dispatch('projects/getProjects');
   },
   methods: {
     openWebsite() {

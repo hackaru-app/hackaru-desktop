@@ -18,7 +18,6 @@ describe('Index', () => {
     }
   });
 
-  const dispatchPromise = jest.fn();
   const $electron = {
     shell: {
       openExternal: jest.fn()
@@ -28,10 +27,7 @@ describe('Index', () => {
   const factory = () =>
     shallowMount(Index, {
       mocks: {
-        $store: {
-          ...$store,
-          dispatchPromise
-        },
+        $store,
         $electron,
         $t: () => {}
       }
@@ -39,14 +35,14 @@ describe('Index', () => {
 
   it('dispatch activities/getWorkingActivities', () => {
     factory();
-    expect($store.dispatchPromise).toHaveBeenCalledWith(
+    expect($store.dispatch).toHaveBeenCalledWith(
       'activities/getWorkingActivities'
     );
   });
 
   it('dispatch activities/getProjects', () => {
     factory();
-    expect($store.dispatchPromise).toHaveBeenCalledWith('projects/getProjects');
+    expect($store.dispatch).toHaveBeenCalledWith('projects/getProjects');
   });
 
   describe('when click web-button', () => {
