@@ -41,7 +41,7 @@ export default {
   },
   methods: {
     async fetchAppToken() {
-      await this.$store.dispatchPromise('auth/fetchAppToken', this.apiUrl);
+      await this.$store.dispatch('auth/fetchAppToken', this.apiUrl);
     },
     clearLocalstorage() {
       return new Promise(resolve => {
@@ -61,7 +61,7 @@ export default {
       });
       browser.loadURL(this.$store.getters['auth/getAuthorizeUrl']);
       browser.webContents.on('did-navigate-in-page', async (event, url) => {
-        const success = await this.$store.dispatchPromise(
+        const success = await this.$store.dispatch(
           'auth/storeAccessTokenByUrl',
           url
         );

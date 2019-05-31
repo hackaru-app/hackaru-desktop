@@ -68,7 +68,7 @@ export default {
   },
   methods: {
     async saveActivity() {
-      const success = await this.$store.dispatchPromise(
+      const success = await this.$store.dispatch(
         `activities/${this.id ? 'updateActivity' : 'addActivity'}`,
         {
           id: this.id,
@@ -88,7 +88,7 @@ export default {
     },
     async deleteActivity() {
       if (!window.confirm(this.$t('confirms.delete'))) return;
-      const success = await this.$store.dispatchPromise(
+      const success = await this.$store.dispatch(
         'activities/deleteActivity',
         this.id
       );

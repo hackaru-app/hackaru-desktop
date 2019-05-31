@@ -49,7 +49,7 @@ const router = new Router({
 });
 
 router.beforeEach(async (to, from, next) => {
-  const accessToken = await store.dispatchPromise('auth/restoreAccessToken');
+  const accessToken = await store.dispatch('auth/restoreAccessToken');
   if (!accessToken && to.path !== '/auth') {
     next('/auth');
   } else {

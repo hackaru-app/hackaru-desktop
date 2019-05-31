@@ -51,7 +51,7 @@
           </base-button>
           <base-button
             type="button"
-            class="has-icon"
+            class="has-icon web-button"
             :aria-label="$t('ariaLabels.website')"
             @click="openWebsite"
           >
@@ -94,8 +94,8 @@ export default {
     })
   },
   async mounted() {
-    await this.$store.dispatchPromise('activities/getWorkingActivities');
-    await this.$store.dispatchPromise('projects/getProjects');
+    await this.$store.dispatch('activities/getWorkingActivities');
+    await this.$store.dispatch('projects/getProjects');
   },
   methods: {
     openWebsite() {
@@ -115,17 +115,16 @@ export default {
     },
     async logout() {
       if (!window.confirm(this.$t('confirms.logout'))) return;
-      await this.$store.dispatchPromise('auth/logout');
+      await this.$store.dispatch('auth/logout');
       if (process.env.NODE_ENV === 'production') {
         this.$electron.remote.app.relaunch();
       }
       this.$electron.remote.app.exit(0);
     },
     async stopActivity(id) {
-      const success = await this.$store.dispatchPromise(
-        'activities/stopActivity',
-        { id }
-      );
+      const success = await this.$store.dispatch('activities/stopActivity', {
+        id
+      });
       if (success) {
         this.$store.dispatch('toast/showSuccess', this.$t('stopped'));
       }
