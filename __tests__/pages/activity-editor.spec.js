@@ -21,21 +21,17 @@ describe('ActivityEditor', () => {
         $store,
         $electron,
         $route: { query: {} }
-      },
-      data() {
-        return {
-          id: 1,
-          projectId: 2,
-          description: 'Create a database.',
-          startedAt: '2019-01-01T00:12:34',
-          stoppedAt: '2019-01-02T00:12:34'
-        };
       }
     });
 
   describe('when click submit-button', () => {
     beforeEach(() => {
       wrapper = factory();
+      wrapper.setData({ id: 1 });
+      wrapper.find('.project-select').vm.$emit('input', 2);
+      wrapper.find('.description').setValue('Create a database.');
+      wrapper.find('.started-at').vm.$emit('input', '2019-01-01T00:12:34');
+      wrapper.find('.stopped-at').vm.$emit('input', '2019-01-02T00:12:34');
       wrapper.find('form').trigger('submit.prevent');
     });
 
@@ -58,6 +54,10 @@ describe('ActivityEditor', () => {
       $store.dispatch.mockReturnValue(true);
       wrapper = factory();
       wrapper.setData({ id: undefined });
+      wrapper.find('.project-select').vm.$emit('input', 2);
+      wrapper.find('.description').setValue('Create a database.');
+      wrapper.find('.started-at').vm.$emit('input', '2019-01-01T00:12:34');
+      wrapper.find('.stopped-at').vm.$emit('input', '2019-01-02T00:12:34');
       wrapper.find('form').trigger('submit.prevent');
     });
 
@@ -79,6 +79,7 @@ describe('ActivityEditor', () => {
     beforeEach(() => {
       global.confirm = () => true;
       wrapper = factory();
+      wrapper.setData({ id: 1 });
       wrapper.find('.delete-button').vm.$emit('click');
     });
 
@@ -94,6 +95,7 @@ describe('ActivityEditor', () => {
     beforeEach(() => {
       global.confirm = () => false;
       wrapper = factory();
+      wrapper.setData({ id: 1 });
       wrapper.find('.delete-button').vm.$emit('click');
     });
 

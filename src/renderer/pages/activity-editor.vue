@@ -14,15 +14,16 @@
           v-model="description"
           :placeholder="$t('description')"
           :aria-label="$t('description')"
+          class="description"
         />
       </div>
       <div class="item">
         <label>{{ $t('startedAt') }}</label>
-        <datetime-picker v-model="startedAt" />
+        <datetime-picker v-model="startedAt" class="started-at" />
       </div>
       <div class="item">
         <label>{{ $t('stoppedAt') }}</label>
-        <datetime-picker v-model="stoppedAt" />
+        <datetime-picker v-model="stoppedAt" class="stopped-at" />
       </div>
       <footer>
         <base-button class="is-rounded is-primary" type="submit">{{
