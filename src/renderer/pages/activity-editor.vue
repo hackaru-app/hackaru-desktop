@@ -31,7 +31,7 @@
         <base-button
           v-if="id"
           type="button"
-          class="has-icon"
+          class="has-icon delete-button"
           :aria-label="$t('delete')"
           @click="deleteActivity"
         >
@@ -62,7 +62,7 @@ export default {
       id: this.$route.query.id,
       projectId: this.$route.query.projectId,
       description: this.$route.query.description,
-      startedAt: this.$route.query.startedAt || new Date().toString(),
+      startedAt: this.$route.query.startedAt || `${new Date()}`,
       stoppedAt: this.$route.query.stoppedAt
     };
   },
@@ -96,9 +96,6 @@ export default {
         this.$store.dispatch('toast/showSuccess', this.$t('deleted'));
         this.$electron.remote.getCurrentWindow().close();
       }
-    },
-    back() {
-      this.$emit('pop', '/');
     }
   }
 };
