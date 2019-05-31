@@ -1,4 +1,4 @@
-<i18n src="@/locales/pages/settings/trackers.json" />
+<i18n src="@/assets/locales/pages/settings/trackers.json" />
 
 <template>
   <section>

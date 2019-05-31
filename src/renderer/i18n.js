@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import VueI18n from 'vue-i18n';
-import messages from './locales/store.json';
+import messages from '@/assets/locales/store.json';
 import { app } from 'electron';
 
 Vue.use(VueI18n);

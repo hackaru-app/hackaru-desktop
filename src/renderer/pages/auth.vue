@@ -1,4 +1,4 @@
-<i18n src="@/locales/pages/auth.json" />
+<i18n src="@/assets/locales/pages/auth.json" />
 
 <template>
   <section>

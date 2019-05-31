@@ -1,4 +1,4 @@
-<i18n src="@/locales/pages/settings/power-monitor.json" />
+<i18n src="@/assets/locales/pages/settings/power-monitor.json" />
 
 <template>
   <section>

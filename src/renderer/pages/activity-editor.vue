@@ -1,4 +1,4 @@
-<i18n src="@/locales/pages/activity-editor.json" />
+<i18n src="@/assets/locales/pages/activity-editor.json" />
 
 <template>
   <section>

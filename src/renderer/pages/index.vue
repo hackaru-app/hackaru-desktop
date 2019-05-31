@@ -1,4 +1,4 @@
-<i18n src="@/locales/pages/index.json" />
+<i18n src="@/assets/locales/pages/index.json" />
 
 <template>
   <section>
