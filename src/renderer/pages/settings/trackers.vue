@@ -10,7 +10,7 @@
         <h1><icon name="eye-icon" />{{ $t('title') }}</h1>
         <base-button
           type="button"
-          class="has-icon"
+          class="has-icon add-button"
           :aria-label="$t('add')"
           @click="showEditor"
         >
@@ -19,7 +19,7 @@
       </header>
 
       <transition-group name="fade">
-        <article v-for="tracker in trackers" :key="tracker.id">
+        <article v-for="tracker in trackers" :key="tracker.id" class="tracker">
           <project-name
             :name="tracker.project && tracker.project.name"
             :color="tracker.project && tracker.project.color"
@@ -30,7 +30,7 @@
           </span>
           <base-button
             type="button"
-            class="has-icon"
+            class="has-icon delete-button"
             :aria-label="$t('delete')"
             @click="deleteTracker(tracker.id)"
           >
