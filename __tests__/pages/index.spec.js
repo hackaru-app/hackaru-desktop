@@ -38,8 +38,7 @@ describe('Index', () => {
     shallowMount(Index, {
       mocks: {
         $store,
-        $electron,
-        $t: () => {}
+        $electron
       }
     });
 

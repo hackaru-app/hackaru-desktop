@@ -25,8 +25,7 @@ describe('Activity', () => {
       },
       mocks: {
         $store,
-        $electron,
-        $t: () => {}
+        $electron
       }
     });
 
