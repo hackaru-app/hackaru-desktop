@@ -3,7 +3,7 @@
 <template>
   <section>
     <main-header>
-      <button class="add-button" @click="showEditor()">
+      <button class="menu-button add-button" @click="showEditor()">
         <icon
           name="plus-icon"
           :aria-label="$t('ariaLabels.add')"
