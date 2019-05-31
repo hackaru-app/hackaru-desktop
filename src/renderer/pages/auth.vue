@@ -1,4 +1,4 @@
-<i18n src="../../locales/pages/auth.json" />
+<i18n src="@/locales/pages/auth.json" />
 
 <template>
   <section>
@@ -19,9 +19,9 @@
 </template>
 
 <script>
-import BaseButton from '../atoms/base-button';
-import MainHeader from '../molecules/main-header';
-import BaseInput from '../atoms/base-input';
+import BaseButton from '@/components/atoms/base-button';
+import MainHeader from '@/components/molecules/main-header';
+import BaseInput from '@/components/atoms/base-input';
 
 export default {
   components: {

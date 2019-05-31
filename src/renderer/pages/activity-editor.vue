@@ -1,4 +1,4 @@
-<i18n src="../../locales/pages/activity-editor.json" />
+<i18n src="@/locales/pages/activity-editor.json" />
 
 <template>
   <section>
@@ -43,11 +43,11 @@
 </template>
 
 <script>
-import BaseButton from '../atoms/base-button';
-import DatetimePicker from '../molecules/datetime-picker';
-import MainHeader from '../molecules/main-header';
-import ProjectSelect from '../molecules/project-select';
-import Icon from '../atoms/icon';
+import BaseButton from '@/components/atoms/base-button';
+import DatetimePicker from '@/components/molecules/datetime-picker';
+import MainHeader from '@/components/molecules/main-header';
+import ProjectSelect from '@/components/molecules/project-select';
+import Icon from '@/components/atoms/icon';
 
 export default {
   components: {

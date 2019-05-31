@@ -1,4 +1,4 @@
-<i18n src="../../../locales/pages/settings/tracker-editor.json" />
+<i18n src="@/locales/pages/settings/tracker-editor.json" />
 
 <template>
   <section>
@@ -35,9 +35,9 @@
 
 <script>
 import Multiselect from 'vue-multiselect';
-import MainHeader from '../../molecules/main-header';
-import BaseButton from '../../atoms/base-button';
-import ProjectSelect from '../../molecules/project-select';
+import MainHeader from '@/components/molecules/main-header';
+import BaseButton from '@/components/atoms/base-button';
+import ProjectSelect from '@/components/molecules/project-select';
 
 export default {
   components: {

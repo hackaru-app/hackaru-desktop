@@ -1,4 +1,4 @@
-<i18n src="../../locales/pages/index.json" />
+<i18n src="@/locales/pages/index.json" />
 
 <template>
   <section>
@@ -72,11 +72,11 @@
 </template>
 
 <script>
-import BaseButton from '../atoms/base-button';
-import MainHeader from '../molecules/main-header';
-import ProjectName from '../molecules/project-name';
-import Icon from '../atoms/icon';
-import Ticker from '../atoms/ticker';
+import BaseButton from '@/components/atoms/base-button';
+import MainHeader from '@/components/molecules/main-header';
+import ProjectName from '@/components/molecules/project-name';
+import Icon from '@/components/atoms/icon';
+import Ticker from '@/components/atoms/ticker';
 import { mapGetters } from 'vuex';
 
 export default {
