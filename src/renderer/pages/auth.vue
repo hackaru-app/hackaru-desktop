@@ -34,48 +34,15 @@ export default {
       apiUrl: this.$store.getters['auth/getApiUrl']
     };
   },
-  computed: {
-    accessToken() {
-      return this.$store.getters['auth/getAccessToken'];
-    }
-  },
   methods: {
-    async fetchAppToken() {
-      await this.$store.dispatch('auth/fetchAppToken', this.apiUrl);
-    },
-    clearLocalstorage() {
-      return new Promise(resolve => {
-        this.$electron.remote.session.defaultSession.clearStorageData(
-          {
-            storages: ['localstorage']
-          },
-          () => resolve()
-        );
-      });
-    },
-    async openBrowser() {
-      await this.clearLocalstorage();
-      const browser = new this.$electron.remote.BrowserWindow({
-        width: 400,
-        height: 550
-      });
-      browser.loadURL(this.$store.getters['auth/getAuthorizeUrl']);
-      browser.webContents.on('did-navigate-in-page', async (event, url) => {
-        const success = await this.$store.dispatch(
-          'auth/storeAccessTokenByUrl',
-          url
-        );
-        if (success) {
-          this.$store.dispatch('toast/showSuccess', this.$t('loggedIn'));
-          browser.close();
-          this.$router.push('/');
-        }
-      });
-    },
     async authenticate() {
       if (!this.apiUrl) return;
-      await this.fetchAppToken();
-      this.openBrowser();
+      await this.$store.dispatch('auth/fetchAppToken', this.apiUrl);
+      this.$electron.ipcRenderer.send('showAuthentication');
+      this.$electron.ipcRenderer.on('authenticated', () => {
+        this.$store.dispatch('toast/showSuccess', this.$t('loggedIn'));
+        this.$router.push('/');
+      });
     }
   }
 };
