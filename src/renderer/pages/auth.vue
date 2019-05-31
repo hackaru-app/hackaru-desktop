@@ -7,9 +7,10 @@
       <h1>{{ $t('title') }}</h1>
       <base-input
         v-model="apiUrl"
-        class="has-border"
+        class="has-border api-url"
         :placeholder="$t('apiUrl')"
         :aria-label="$t('apiUrl')"
+        required
       />
       <base-button type="submit" class="is-rounded is-primary">
         {{ $t('authenticate') }}
@@ -36,7 +37,6 @@ export default {
   },
   methods: {
     async authenticate() {
-      if (!this.apiUrl) return;
       await this.$store.dispatch('auth/fetchAppToken', this.apiUrl);
       this.$electron.ipcRenderer.send('showAuthentication');
       this.$electron.ipcRenderer.on('authenticated', () => {
