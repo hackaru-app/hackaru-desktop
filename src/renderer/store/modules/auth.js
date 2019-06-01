@@ -103,17 +103,13 @@ const actions = {
       return null;
     }
   },
-  async storeAccessTokenByUrl({ state, commit, getters }, url) {
-    const regexp = `^${getters.getWebUrl}/.*?access_token=([^&]*)`;
-    const matched = url.match(new RegExp(regexp));
-    if (!matched || !matched[1]) return false;
-    commit(SET_ACCESS_TOKEN, matched[1]);
+  storeAccessToken({ state, commit, getters }, accessToken) {
+    commit(SET_ACCESS_TOKEN, accessToken);
     keytar.setPassword(
       state.service,
       getters.getCurrentAppToken.uid,
-      matched[1]
+      accessToken
     );
-    return true;
   }
 };
 

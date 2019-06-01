@@ -3,8 +3,10 @@ import promiseIpc from 'electron-promise-ipc';
 const DISPATCH = 'promise-action-dispatch';
 
 export default (options = {}) => store => {
+  const originalDispatch = store.dispatch;
+
   function renderer() {
-    store.dispatchPromise = (type, payload) =>
+    store.dispatch = (type, payload) =>
       promiseIpc.send(DISPATCH, {
         type,
         payload
@@ -13,7 +15,7 @@ export default (options = {}) => store => {
 
   function main(store) {
     promiseIpc.on(DISPATCH, ({ type, payload }) => {
-      return store.dispatch(type, payload);
+      return originalDispatch(type, payload);
     });
   }
 

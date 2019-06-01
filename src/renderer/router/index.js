@@ -9,37 +9,37 @@ const router = new Router({
     {
       path: '/',
       name: 'index',
-      component: require('@/components/pages/index').default
+      component: require('@/pages/index').default
     },
     {
       path: '/auth',
       name: 'auth',
-      component: require('@/components/pages/auth').default
+      component: require('@/pages/auth').default
     },
     {
       path: '/activity-editor',
       name: 'activity-editor',
-      component: require('@/components/pages/activity-editor').default
+      component: require('@/pages/activity-editor').default
     },
     {
       path: '/settings/power-monitor',
       name: 'power-monitor',
-      component: require('@/components/pages/settings/power-monitor').default
+      component: require('@/pages/settings/power-monitor').default
     },
     {
       path: '/settings/trackers',
       name: 'trackers',
-      component: require('@/components/pages/settings/trackers').default
+      component: require('@/pages/settings/trackers').default
     },
     {
       path: '/settings/tracker-editor',
       name: 'tracker-editor',
-      component: require('@/components/pages/settings/tracker-editor').default
+      component: require('@/pages/settings/tracker-editor').default
     },
     {
       path: '/settings/licenses',
       name: 'licenses',
-      component: require('@/components/pages/settings/licenses').default
+      component: require('@/pages/settings/licenses').default
     },
     {
       path: '*',
@@ -49,7 +49,7 @@ const router = new Router({
 });
 
 router.beforeEach(async (to, from, next) => {
-  const accessToken = await store.dispatchPromise('auth/restoreAccessToken');
+  const accessToken = await store.dispatch('auth/restoreAccessToken');
   if (!accessToken && to.path !== '/auth') {
     next('/auth');
   } else {

@@ -1,4 +1,4 @@
-<i18n src="../../locales/pages/activity-editor.json" />
+<i18n src="@/assets/locales/pages/activity-editor.json" />
 
 <template>
   <section>
@@ -14,15 +14,16 @@
           v-model="description"
           :placeholder="$t('description')"
           :aria-label="$t('description')"
+          class="description"
         />
       </div>
       <div class="item">
         <label>{{ $t('startedAt') }}</label>
-        <datetime-picker v-model="startedAt" />
+        <datetime-picker v-model="startedAt" class="started-at" />
       </div>
       <div class="item">
         <label>{{ $t('stoppedAt') }}</label>
-        <datetime-picker v-model="stoppedAt" />
+        <datetime-picker v-model="stoppedAt" class="stopped-at" />
       </div>
       <footer>
         <base-button class="is-rounded is-primary" type="submit">{{
@@ -31,7 +32,7 @@
         <base-button
           v-if="id"
           type="button"
-          class="has-icon"
+          class="has-icon delete-button"
           :aria-label="$t('delete')"
           @click="deleteActivity"
         >
@@ -43,11 +44,11 @@
 </template>
 
 <script>
-import BaseButton from '../atoms/base-button';
-import DatetimePicker from '../molecules/datetime-picker';
-import MainHeader from '../molecules/main-header';
-import ProjectSelect from '../molecules/project-select';
-import Icon from '../atoms/icon';
+import BaseButton from '@/components/atoms/base-button';
+import DatetimePicker from '@/components/molecules/datetime-picker';
+import MainHeader from '@/components/molecules/main-header';
+import ProjectSelect from '@/components/molecules/project-select';
+import Icon from '@/components/atoms/icon';
 
 export default {
   components: {
@@ -62,13 +63,13 @@ export default {
       id: this.$route.query.id,
       projectId: this.$route.query.projectId,
       description: this.$route.query.description,
-      startedAt: this.$route.query.startedAt || new Date().toString(),
+      startedAt: this.$route.query.startedAt || `${new Date()}`,
       stoppedAt: this.$route.query.stoppedAt
     };
   },
   methods: {
     async saveActivity() {
-      const success = await this.$store.dispatchPromise(
+      const success = await this.$store.dispatch(
         `activities/${this.id ? 'updateActivity' : 'addActivity'}`,
         {
           id: this.id,
@@ -88,7 +89,7 @@ export default {
     },
     async deleteActivity() {
       if (!window.confirm(this.$t('confirms.delete'))) return;
-      const success = await this.$store.dispatchPromise(
+      const success = await this.$store.dispatch(
         'activities/deleteActivity',
         this.id
       );
@@ -96,9 +97,6 @@ export default {
         this.$store.dispatch('toast/showSuccess', this.$t('deleted'));
         this.$electron.remote.getCurrentWindow().close();
       }
-    },
-    back() {
-      this.$emit('pop', '/');
     }
   }
 };

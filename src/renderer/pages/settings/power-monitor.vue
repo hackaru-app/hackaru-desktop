@@ -1,4 +1,4 @@
-<i18n src="../../../locales/pages/settings/power-monitor.json" />
+<i18n src="@/assets/locales/pages/settings/power-monitor.json" />
 
 <template>
   <section>
@@ -23,9 +23,9 @@
 </template>
 
 <script>
-import SettingMenu from '../../organisms/setting-menu';
-import MainHeader from '../../molecules/main-header';
-import Icon from '../../atoms/icon';
+import SettingMenu from '@/components/organisms/setting-menu';
+import MainHeader from '@/components/molecules/main-header';
+import Icon from '@/components/atoms/icon';
 
 export default {
   components: {

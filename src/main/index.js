@@ -5,6 +5,7 @@ import './windows';
 import './trackers';
 import './dock-menu';
 import './tray';
+import './oauth-window';
 
 /**
  * Set `__static` path to static files in production

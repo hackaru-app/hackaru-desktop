@@ -1,4 +1,4 @@
-<i18n src="../../../locales/pages/settings/licenses.json" />
+<i18n src="@/assets/locales/pages/settings/licenses.json" />
 
 <template>
   <section>
@@ -23,10 +23,10 @@
 </template>
 
 <script>
-import licenses from '../../../assets/licenses';
-import SettingMenu from '../../organisms/setting-menu';
-import MainHeader from '../../molecules/main-header';
-import Icon from '../../atoms/icon';
+import licenses from '@/components/../assets/licenses';
+import SettingMenu from '@/components/organisms/setting-menu';
+import MainHeader from '@/components/molecules/main-header';
+import Icon from '@/components/atoms/icon';
 
 export default {
   components: {

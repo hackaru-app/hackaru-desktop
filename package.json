@@ -174,12 +174,16 @@
     "webpack-merge": "^4.1.3"
   },
   "jest": {
+    "setupFiles": [
+      "./__tests__/__setups__/config.js"
+    ],
     "moduleFileExtensions": [
       "js",
       "json",
       "vue"
     ],
     "testPathIgnorePatterns": [
+      "/__tests__/__setups__/",
       "/node_modules/"
     ],
     "moduleNameMapper": {
@@ -193,7 +197,8 @@
     "collectCoverageFrom": [
       "src/**/*.{js,vue}",
       "!coverage/**",
-      "!**/node_modules/**"
+      "!**/node_modules/**",
+      "!**/__tests__/__setups__/**"
     ],
     "clearMocks": true
   }

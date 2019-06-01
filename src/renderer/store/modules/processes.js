@@ -21,6 +21,9 @@ export const mutations = {
 export const getters = {
   getProcesses(state) {
     return state.items;
+  },
+  getProcessNames(state) {
+    return state.items.map(name => ({ name }));
   }
 };
 

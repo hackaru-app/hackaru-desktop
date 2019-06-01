@@ -1,4 +1,4 @@
-<i18n src="../../locales/components/organisms/setting-menu.json" />
+<i18n src="@/assets/locales/components/organisms/setting-menu.json" />
 
 <template>
   <nav class="side-bar">
