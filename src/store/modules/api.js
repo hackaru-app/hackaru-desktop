@@ -1,6 +1,6 @@
 import u from 'updeep';
 import axios from 'axios';
-import i18n from '../../i18n';
+import { app } from 'electron';
 import camelcaseKeys from 'camelcase-keys';
 import snakecaseKeys from 'snakecase-keys';
 
@@ -16,7 +16,7 @@ export const actions = {
     const res = await instance.request(
       u(config, {
         baseURL: rootGetters['auth/getApiUrl'],
-        headers: { 'Accept-Language': i18n.locale },
+        headers: { 'Accept-Language': app.getLocale() },
         data: config.data && snakecaseKeys(config.data)
       })
     );

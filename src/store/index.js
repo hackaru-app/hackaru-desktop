@@ -1,6 +1,5 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-
 import { createSharedMutations } from 'vuex-electron';
 import createSharedState from './plugins/shared-state';
 import createPromiseAction from './plugins/promise-action';

@@ -1,7 +1,7 @@
 'use strict';
 
 import { session, ipcMain, BrowserWindow } from 'electron';
-import store from '../renderer/store';
+import store from '../store';
 
 function clearLocalStorage() {
   return new Promise(resolve => {

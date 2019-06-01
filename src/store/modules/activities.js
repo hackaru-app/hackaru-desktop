@@ -1,7 +1,6 @@
 import { activity } from '../schemas';
 import notifier from 'node-notifier';
 import path from 'path';
-import i18n from '../../i18n';
 
 export const MERGE_ACTIVITIES = 'MERGE_ACTIVITIES';
 export const ADD_ACTIVITY = 'ADD_ACTIVITY';
@@ -93,7 +92,7 @@ export const actions = {
         { root: true }
       );
       notify({
-        title: i18n.t('notify.activity.stopped'),
+        title: 'Timer Stopped',
         message: res.data.project ? res.data.project.name : 'No Project'
       });
       return true;
@@ -124,7 +123,7 @@ export const actions = {
       );
       commit(ADD_ACTIVITY, data.result);
       notify({
-        title: i18n.t('notify.activity.started'),
+        title: 'Timer Started',
         message: res.data.project ? res.data.project.name : 'No Project'
       });
       return true;

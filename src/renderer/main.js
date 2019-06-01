@@ -1,27 +1,28 @@
 import Vue from 'vue';
+import VueI18n from 'vue-i18n';
 import VueTimers from 'vue-timers';
+import VueElectron from 'vue-electron';
 import Notifications from 'vue-notification';
-import axios from 'axios';
-import App from './App';
+import App from './app';
 import router from './router';
-import i18n from './i18n';
-import store from './store';
+import store from '../store';
 
-if (!process.env.IS_WEB) Vue.use(require('vue-electron'));
-
-Vue.http = Vue.prototype.$http = axios;
 Vue.config.productionTip = false;
 
 // If you add an import, you also need to update whiteListedModules.
 // https://simulatedgreg.gitbooks.io/electron-vue/content/en/webpack-configurations.html#white-listing-externals
+Vue.use(VueElectron);
 Vue.use(VueTimers);
 Vue.use(Notifications);
+Vue.use(VueI18n);
 
-/* eslint-disable no-new */
 new Vue({
   components: { App },
   router,
   store,
   template: '<app/>',
-  i18n
+  i18n: new VueI18n({
+    locale: navigator.language,
+    fallbackLocale: 'en'
+  })
 }).$mount('#app');
