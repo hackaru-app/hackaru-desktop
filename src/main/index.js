@@ -6,6 +6,7 @@ import './trackers';
 import './dock-menu';
 import './tray';
 import './oauth-window';
+import './persistor';
 
 /**
  * Set `__static` path to static files in production
