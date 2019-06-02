@@ -1,36 +1,40 @@
-import u from 'updeep';
+import merge from 'lodash.merge';
+import omit from 'lodash.omit';
 import { normalize, denormalize } from 'normalizr';
 
-export const MERGE_ENTITIES = 'MERGE_ENTITIES';
-export const DELETE_ENTITY = 'DELETE_ENTITY';
+const MERGE_ENTITIES = 'MERGE_ENTITIES';
+const DELETE_ENTITY = 'DELETE_ENTITY';
 
 export const state = () => ({
   data: {}
 });
 
 export const actions = {
-  async normalize({ commit }, { json, schema }) {
-    const data = normalize(json, schema);
-    commit(MERGE_ENTITIES, data.entities);
-    return data;
+  merge({ commit }, { json, schema }) {
+    const { entities } = normalize(json, schema);
+    commit(MERGE_ENTITIES, entities);
   },
-  deleteEntitiy({ commit }, { path }) {
-    commit(DELETE_ENTITY, { path });
+  delete({ commit }, { name, id }) {
+    commit(DELETE_ENTITY, { name, id });
   }
 };
 
 export const mutations = {
   [MERGE_ENTITIES](state, payload) {
-    state.data = u(payload, state.data);
+    state.data = { ...merge(state.data, payload) };
   },
-  [DELETE_ENTITY](state, payload) {
-    state.data = u.updateIn(`${payload.path}`, undefined, state.data);
+  [DELETE_ENTITY](state, { name, id }) {
+    state.data = {
+      ...state.data,
+      [name]: omit(state.data[name], id)
+    };
   }
 };
 
 export const getters = {
-  getDenormalized: (state, getter) => (result, schema) => {
-    return denormalize(result, schema, state.data);
+  getEntities: state => (name, schema) => {
+    const ids = Object.keys(state.data[name] || {});
+    return denormalize(ids, schema, state.data);
   }
 };
 
