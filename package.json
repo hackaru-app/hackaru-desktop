@@ -189,7 +189,7 @@
       "/node_modules/"
     ],
     "moduleNameMapper": {
-      "^@/(.*)$": "<rootDir>/src/$1"
+      "^@/(.*)$": "<rootDir>/src/renderer/$1"
     },
     "transform": {
       "^.+\\.js$": "babel-jest",

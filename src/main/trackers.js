@@ -2,7 +2,7 @@
 
 import { app, powerMonitor } from 'electron';
 import psList from 'ps-list';
-import store from '../store';
+import store from '../renderer/store';
 
 app.on('ready', () => {
   let processTimer;

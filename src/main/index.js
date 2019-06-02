@@ -1,6 +1,6 @@
 'use strict';
 
-import '../store';
+import '../renderer/store';
 import './windows';
 import './trackers';
 import './dock-menu';

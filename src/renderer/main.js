@@ -5,7 +5,7 @@ import VueElectron from 'vue-electron';
 import Notifications from 'vue-notification';
 import App from './app';
 import router from './router';
-import store from '../store';
+import store from './store';
 
 Vue.config.productionTip = false;
 

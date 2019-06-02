@@ -5,7 +5,7 @@ import { app, Menu, Tray } from 'electron';
 import { differenceInSeconds } from 'date-fns';
 import { fromS } from 'hh-mm-ss';
 import { showMain, showActivityEditor } from './windows';
-import store from '../store';
+import store from '../renderer/store';
 
 let tray;
 const menu = Menu.buildFromTemplate([

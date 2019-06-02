@@ -170,7 +170,7 @@ export const mutations = {
 
 export const getters = {
   getActivities(state, getters, rootState, rootGetters) {
-    return rootGetters['entities/getDenormalized'](state.items, [activity]);
+    return rootGetters['entities/getEntities']('activities', [activity]);
   },
   getWorkingActivities(state, getters) {
     return getters.getActivities.filter(({ stoppedAt }) => !stoppedAt);

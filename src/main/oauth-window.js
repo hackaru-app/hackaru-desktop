@@ -2,7 +2,7 @@
 
 import { session, ipcMain, BrowserWindow } from 'electron';
 import { persist } from './persistor';
-import store from '../store';
+import store from '../renderer/store';
 
 function clearLocalStorage() {
   return new Promise(resolve => {
