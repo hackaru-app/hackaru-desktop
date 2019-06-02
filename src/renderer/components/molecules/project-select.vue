@@ -35,7 +35,7 @@ export default {
           name: 'No Project',
           color: '#ccc'
         },
-        ...this.$store.getters['projects/getProjects']
+        ...this.$store.getters['projects/all']
       ];
     },
     selected() {

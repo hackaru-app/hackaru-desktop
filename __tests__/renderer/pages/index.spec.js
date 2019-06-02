@@ -47,9 +47,9 @@ describe('Index', () => {
     expect($store.dispatch).toHaveBeenCalledWith('activities/fetchWorkings');
   });
 
-  it('dispatch activities/getProjects', () => {
+  it('dispatch projects/fetch', () => {
     factory();
-    expect($store.dispatch).toHaveBeenCalledWith('projects/getProjects');
+    expect($store.dispatch).toHaveBeenCalledWith('projects/fetch');
   });
 
   describe('when click add-button', () => {
