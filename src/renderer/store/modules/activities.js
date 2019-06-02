@@ -125,8 +125,10 @@ export const actions = {
         },
         { root: true }
       );
+      return true;
     } catch (e) {
       dispatch('toast/error', e, { root: true });
+      return false;
     }
   }
 };
