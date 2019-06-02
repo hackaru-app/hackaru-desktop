@@ -70,7 +70,7 @@ export default {
   methods: {
     async saveActivity() {
       const success = await this.$store.dispatch(
-        `activities/${this.id ? 'updateActivity' : 'addActivity'}`,
+        `activities/${this.id ? 'update' : 'add'}`,
         {
           id: this.id,
           projectId: this.projectId,
@@ -89,10 +89,7 @@ export default {
     },
     async deleteActivity() {
       if (!window.confirm(this.$t('confirms.delete'))) return;
-      const success = await this.$store.dispatch(
-        'activities/deleteActivity',
-        this.id
-      );
+      const success = await this.$store.dispatch('activities/delete', this.id);
       if (success) {
         this.$store.dispatch('toast/showSuccess', this.$t('deleted'));
         this.$electron.remote.getCurrentWindow().close();

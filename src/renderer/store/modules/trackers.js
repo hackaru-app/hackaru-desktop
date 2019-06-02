@@ -37,7 +37,7 @@ export const actions = {
   startActivity({ dispatch, rootGetters }, projectId) {
     if (!rootGetters['activities/getActivityByProject'](projectId)) {
       dispatch(
-        'activities/addActivity',
+        'activities/add',
         {
           projectId,
           startedAt: `${new Date()}`
@@ -50,7 +50,7 @@ export const actions = {
     const activity = rootGetters['activities/getActivityByProject'](projectId);
     if (activity) {
       dispatch(
-        'activities/updateActivity',
+        'activities/update',
         {
           id: activity.id,
           stoppedAt: `${new Date()}`

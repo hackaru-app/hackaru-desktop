@@ -35,17 +35,14 @@ describe('ActivityEditor', () => {
       wrapper.find('form').trigger('submit.prevent');
     });
 
-    it('dispatch activities/updateActivity', () => {
-      expect($store.dispatch).toHaveBeenCalledWith(
-        'activities/updateActivity',
-        {
-          id: 1,
-          projectId: 2,
-          description: 'Create a database.',
-          startedAt: '2019-01-01T00:12:34',
-          stoppedAt: '2019-01-02T00:12:34'
-        }
-      );
+    it('dispatch activities/update', () => {
+      expect($store.dispatch).toHaveBeenCalledWith('activities/update', {
+        id: 1,
+        projectId: 2,
+        description: 'Create a database.',
+        startedAt: '2019-01-01T00:12:34',
+        stoppedAt: '2019-01-02T00:12:34'
+      });
     });
   });
 
@@ -61,8 +58,8 @@ describe('ActivityEditor', () => {
       wrapper.find('form').trigger('submit.prevent');
     });
 
-    it('dispatch activities/addActivity', () => {
-      expect($store.dispatch).toHaveBeenCalledWith('activities/addActivity', {
+    it('dispatch activities/add', () => {
+      expect($store.dispatch).toHaveBeenCalledWith('activities/add', {
         projectId: 2,
         description: 'Create a database.',
         startedAt: '2019-01-01T00:12:34',
@@ -83,11 +80,8 @@ describe('ActivityEditor', () => {
       wrapper.find('.delete-button').vm.$emit('click');
     });
 
-    it('dispatch activities/deleteActivity', () => {
-      expect($store.dispatch).toHaveBeenCalledWith(
-        'activities/deleteActivity',
-        1
-      );
+    it('dispatch activities/delete', () => {
+      expect($store.dispatch).toHaveBeenCalledWith('activities/delete', 1);
     });
   });
 

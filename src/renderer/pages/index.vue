@@ -71,12 +71,12 @@ export default {
   },
   computed: {
     ...mapGetters({
-      activities: 'activities/getWorkingActivities',
+      activities: 'activities/workings',
       webUrl: 'auth/getWebUrl'
     })
   },
   mounted() {
-    this.$store.dispatch('activities/getWorkingActivities');
+    this.$store.dispatch('activities/fetchWorkings');
     this.$store.dispatch('projects/getProjects');
   },
   methods: {
