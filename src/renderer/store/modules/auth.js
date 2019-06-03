@@ -17,11 +17,9 @@ export const state = {
     'projects:read',
     'projects:write'
   ],
-  appToken: {
-    uid: undefined,
-    secret: undefined,
-    webUrl: undefined
-  },
+  uid: undefined,
+  secret: undefined,
+  webUrl: undefined,
   apiUrl: 'https://api.hackaru.app'
 };
 
@@ -30,11 +28,9 @@ export const mutations = {
     state.apiUrl = payload;
   },
   [SET_APP_TOKEN](state, payload) {
-    state.appToken = {
-      uid: payload.uid,
-      webUrl: payload.webUrl,
-      secret: payload.secret
-    };
+    state.uid = payload.uid;
+    state.webUrl = payload.webUrl;
+    state.secret = payload.secret;
   },
   [SET_ACCESS_TOKEN](state, payload) {
     state.accessToken = payload;
@@ -108,18 +104,18 @@ export const getters = {
   apiUrl: state => {
     return state.apiUrl;
   },
+  webUrl: (state, getters) => {
+    return state.webUrl;
+  },
   accessToken: state => {
     return state.accessToken;
   },
   isLoggedIn: state => {
     return state.accessToken;
   },
-  webUrl: (state, getters) => {
-    return state.appToken.webUrl;
-  },
-  authorizeUrl: (state, getters) => {
-    return `${state.appToken.webUrl}/oauth/authorize?${queryString.stringify({
-      client_id: getters.getCurrentAppToken.uid,
+  authorizeUrl: state => {
+    return `${state.webUrl}/oauth/authorize?${queryString.stringify({
+      client_id: state.uid,
       redirect_uri: state.redirectUri,
       response_type: 'token',
       scope: state.scopes.join(' ')
