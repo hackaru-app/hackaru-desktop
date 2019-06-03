@@ -1,13 +1,12 @@
-import u from 'updeep';
+import merge from 'lodash.merge';
 
 export const actions = {
   async request({ dispatch, rootGetters }, config) {
-    const accessToken = rootGetters['auth/accessToken'];
     return dispatch(
       'api/request',
-      u(config, {
+      merge(config, {
         headers: {
-          Authorization: `Bearer ${accessToken}`
+          Authorization: `Bearer ${rootGetters['auth/accessToken']}`
         }
       }),
       { root: true }
