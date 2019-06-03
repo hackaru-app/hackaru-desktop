@@ -40,8 +40,8 @@ describe('Trackers', () => {
       wrapper.find('.tracker .delete-button').vm.$emit('click');
     });
 
-    it('dispatch trackers/deleteTracker', () => {
-      expect($store.dispatch).toHaveBeenCalledWith('trackers/deleteTracker', {
+    it('dispatch trackers/delete', () => {
+      expect($store.dispatch).toHaveBeenCalledWith('trackers/delete', {
         id: 1
       });
     });
@@ -54,7 +54,7 @@ describe('Trackers', () => {
       wrapper.find('.tracker .delete-button').vm.$emit('click');
     });
 
-    it('dispatch trackers/deleteTracker', () => {
+    it('dispatch trackers/delete', () => {
       expect($store.dispatch).not.toHaveBeenCalled();
     });
   });

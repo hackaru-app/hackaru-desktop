@@ -12,7 +12,7 @@ app.on('ready', () => {
     processTimer = setInterval(async () => {
       if (!store.getters['auth/isLoggedIn']) return;
       await store.dispatch('processes/updateProccesses', await psList());
-      await store.dispatch('trackers/updateTrackings');
+      await store.dispatch('trackers/update');
     }, 1000);
   }
 
@@ -20,7 +20,7 @@ app.on('ready', () => {
     clearInterval(processTimer);
     if (!store.getters['auth/isLoggedIn']) return;
     if (store.getters['config/getConfig'].powerMonitor.suspend) {
-      await store.dispatch('trackers/stopAllTrackings');
+      await store.dispatch('trackers/stopAll');
     }
   });
 
@@ -33,7 +33,7 @@ app.on('ready', () => {
     clearInterval(processTimer);
     if (!store.getters['auth/isLoggedIn']) return;
     if (store.getters['config/getConfig'].powerMonitor.shutdown) {
-      await store.dispatch('trackers/stopAllTrackings');
+      await store.dispatch('trackers/stopAll');
     }
     app.quit();
   });

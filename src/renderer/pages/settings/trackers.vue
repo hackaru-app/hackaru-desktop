@@ -70,7 +70,7 @@ export default {
   methods: {
     deleteTracker(id) {
       if (!window.confirm(this.$t('confirms.delete'))) return;
-      this.$store.dispatch('trackers/deleteTracker', { id });
+      this.$store.dispatch('trackers/delete', { id });
       this.$store.dispatch('toast/showSuccess', this.$t('deleted'));
     },
     showEditor() {

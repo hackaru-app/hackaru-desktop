@@ -142,7 +142,7 @@ export const getters = {
   },
   findByProject: (state, getters) => projectId => {
     return getters.workings.find(
-      ({ project }) => project && project.id === projectId
+      ({ project }) => (project ? project.id : null) === projectId
     );
   }
 };

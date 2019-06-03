@@ -12,28 +12,28 @@ export const state = () => ({
 
 export const actions = {
   update({ state, commit, dispatch, getters }) {
-    const started = difference(getters.workings, state.prevWorkings);
-    const stopped = difference(state.prevWorkings, getters.workings);
+    const started = difference(getters.workingProjects, state.prevWorkings);
+    const stopped = difference(state.prevWorkings, getters.workingProjects);
 
     started.forEach(tracker => dispatch('start', tracker));
     stopped.forEach(tracker => dispatch('stop', tracker));
 
-    commit(SET_PREV_WORKINGS, getters.workings);
+    commit(SET_PREV_WORKINGS, getters.workingProjects);
   },
-  start({ dispatch, rootGetters }, { project }) {
-    const activity = rootGetters['activities/findByProject'](project.id);
+  start({ dispatch, rootGetters }, projectId) {
+    const activity = rootGetters['activities/findByProject'](projectId);
     if (activity) return;
     dispatch(
       'activities/add',
       {
-        projectId: project && project.id,
+        projectId,
         startedAt: `${new Date()}`
       },
       { root: true }
     );
   },
-  stop({ dispatch, rootGetters }, { project }) {
-    const activity = rootGetters['activities/findByProject'](project.id);
+  stop({ dispatch, rootGetters }, projectId) {
+    const activity = rootGetters['activities/findByProject'](projectId);
     if (!activity) return;
     dispatch(
       'activities/update',
@@ -44,8 +44,8 @@ export const actions = {
       { root: true }
     );
   },
-  async add({ dispatch }, payload) {
-    await dispatch(
+  add({ dispatch }, payload) {
+    dispatch(
       'entities/normalize',
       {
         json: {
@@ -61,29 +61,31 @@ export const actions = {
   delete({ dispatch }, id) {
     dispatch('entities/delete', { name: 'trackers', id }, { root: true });
   },
-  stopAll({ dispatch, getters, commit }, projectId) {
-    getters.workings.forEach(tracker => dispatch('stop', tracker));
+  stopAll({ dispatch, getters, commit }) {
+    getters.workingProjects.forEach(id => dispatch('stop', id));
     commit(CLEAR_PREV_WORKINGS);
   }
 };
 
 export const mutations = {
   [SET_PREV_WORKINGS](state, payload) {
-    state.workings = payload;
+    state.prevWorkings = payload;
   },
   [CLEAR_PREV_WORKINGS](state, payload) {
-    state.workings = [];
+    state.prevWorkings = [];
   }
 };
 
 export const getters = {
-  trackers(state, getters, rootState, rootGetters) {
+  all(state, getters, rootState, rootGetters) {
     return rootGetters['entities/getEntities']('trackers', [tracker]);
   },
-  workings(state, getters, rootState, rootGetters) {
+  workingProjects(state, getters, rootState, rootGetters) {
     const processes = rootGetters['processes/all'];
     return uniq(
-      getters.trackers.filter(tracker => processes.includes(tracker.process))
+      getters.all
+        .filter(tracker => processes.includes(tracker.process))
+        .map(({ project }) => (project ? project.id : null))
     );
   }
 };

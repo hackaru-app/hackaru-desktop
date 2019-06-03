@@ -61,7 +61,7 @@ export default {
   methods: {
     addTracker() {
       if (!this.process) return;
-      this.$store.dispatch('trackers/addTracker', {
+      this.$store.dispatch('trackers/add', {
         projectId: this.projectId,
         process: this.process.name
       });
