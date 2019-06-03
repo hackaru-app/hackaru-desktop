@@ -19,7 +19,7 @@ export const mutations = {
 };
 
 export const getters = {
-  processes(state) {
+  all(state) {
     return state.data;
   }
 };

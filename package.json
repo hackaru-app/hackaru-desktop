@@ -78,6 +78,7 @@
     "feather-icons": "^4.10.0",
     "hh-mm-ss": "^1.2.0",
     "keytar": "^4.3.0",
+    "lodash.difference": "^4.5.0",
     "lodash.get": "^4.4.2",
     "lodash.merge": "^4.6.1",
     "lodash.omit": "^4.5.0",

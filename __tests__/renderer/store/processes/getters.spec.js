@@ -3,13 +3,13 @@ import { getters } from '@/store/modules/processes';
 describe('Getters', () => {
   let result;
 
-  describe('when call processes', () => {
+  describe('when call all', () => {
     const state = {
       data: ['Example']
     };
 
     beforeEach(() => {
-      result = getters.processes(state);
+      result = getters.all(state);
     });
 
     it('returns unstopped activites', () => {

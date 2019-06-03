@@ -140,8 +140,8 @@ export const getters = {
   workings(state, getters) {
     return getters.all.filter(({ stoppedAt }) => !stoppedAt);
   },
-  getActivityByProject: (state, getters) => projectId => {
-    return getters.getWorkingActivities.find(
+  findByProject: (state, getters) => projectId => {
+    return getters.workings.find(
       ({ project }) => project && project.id === projectId
     );
   }
