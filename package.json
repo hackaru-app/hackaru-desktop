@@ -111,6 +111,7 @@
     "@kazupon/vue-i18n-loader": "^0.3.0",
     "@vue/test-utils": "^1.0.0-beta.29",
     "ajv": "^6.5.0",
+    "axios-mock-adapter": "^1.16.0",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^8.2.3",
     "babel-jest": "^24.8.0",
