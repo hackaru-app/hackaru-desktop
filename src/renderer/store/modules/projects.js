@@ -5,9 +5,7 @@ export const actions = {
     try {
       const { data } = await dispatch(
         'auth-api/request',
-        {
-          url: '/v1/projects'
-        },
+        { url: '/v1/projects' },
         { root: true }
       );
       dispatch(
