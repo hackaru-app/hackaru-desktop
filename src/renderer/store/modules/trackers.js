@@ -65,7 +65,7 @@ export const actions = {
       {
         json: {
           id: uniqid(),
-          apiUrl: rootGetters['auth/getApiUrl'],
+          apiUrl: rootGetters['auth/apiUrl'],
           project: payload.projectId,
           process: payload.process
         },
@@ -110,7 +110,7 @@ export const getters = {
   getTrackers(state, getters, rootState, rootGetters) {
     return rootGetters['entities/getDenormalized'](state.items, [tracker])
       .filter(({ project }) => project !== undefined)
-      .filter(({ apiUrl }) => apiUrl === rootGetters['auth/getApiUrl']);
+      .filter(({ apiUrl }) => apiUrl === rootGetters['auth/apiUrl']);
   },
   getWorkingProjectIds(state, getters, rootState, rootGetters) {
     return uniq(

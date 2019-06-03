@@ -14,7 +14,7 @@ function clearLocalStorage() {
 }
 
 function findAccessTokenByUrl(url) {
-  const regexp = `^${store.getters['auth/getWebUrl']}/.*?access_token=([^&]*)`;
+  const regexp = `^${store.getters['auth/webUrl']}/.*?access_token=([^&]*)`;
   const matched = url.match(new RegExp(regexp));
   return matched && matched[1];
 }
@@ -27,12 +27,12 @@ export async function showAuthentication(event) {
   await clearLocalStorage();
 
   const browser = new BrowserWindow({ width: 400, height: 550 });
-  browser.loadURL(store.getters['auth/getAuthorizeUrl']);
+  browser.loadURL(store.getters['auth/authorizeUrl']);
 
   browser.webContents.on('did-navigate-in-page', (_, url) => {
     const accessToken = findAccessTokenByUrl(url);
     if (accessToken) {
-      persist(toBase64(store.getters['auth/getApiUrl']));
+      persist(toBase64(store.getters['auth/apiUrl']));
       store.dispatch('auth/storeAccessToken', accessToken);
       event.sender.send('authenticated');
       browser.close();

@@ -72,7 +72,7 @@ export default {
   computed: {
     ...mapGetters({
       activities: 'activities/workings',
-      webUrl: 'auth/getWebUrl'
+      webUrl: 'auth/webUrl'
     })
   },
   mounted() {

@@ -32,7 +32,7 @@ export default {
   },
   data() {
     return {
-      apiUrl: this.$store.getters['auth/getApiUrl']
+      apiUrl: this.$store.getters['auth/apiUrl']
     };
   },
   methods: {

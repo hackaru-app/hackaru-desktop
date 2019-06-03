@@ -15,7 +15,7 @@ export const actions = {
   async request({ state, rootGetters }, config) {
     const res = await instance.request(
       u(config, {
-        baseURL: rootGetters['auth/getApiUrl'],
+        baseURL: rootGetters['auth/apiUrl'],
         headers: { 'Accept-Language': app.getLocale() },
         data: config.data && snakecaseKeys(config.data)
       })

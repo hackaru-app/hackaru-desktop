@@ -2,38 +2,38 @@ import queryString from 'query-string';
 import keytar from 'keytar';
 
 export const SET_APP_TOKEN = 'SET_APP_TOKEN';
-export const RESET_UID = 'RESET_UID';
 export const CLEAR_ACCESS_TOKEN = 'CLEAR_ACCESS_TOKEN';
 export const SET_API_URL = 'SET_API_URL';
 export const SET_ACCESS_TOKEN = 'SET_ACCESS_TOKEN';
 
-const state = {
-  name: 'DesktopApp',
+export const state = {
+  name: 'Hackaru for Desktop',
   service: `hackaru-desktop-${process.env.NODE_ENV}`,
   redirectUri: 'urn:ietf:wg:oauth:2.0:oob',
+  accessToken: undefined,
   scopes: [
     'activities:read',
     'activities:write',
     'projects:read',
     'projects:write'
   ],
-  appTokens: {},
-  accessToken: undefined,
+  appToken: {
+    uid: undefined,
+    secret: undefined,
+    webUrl: undefined
+  },
   apiUrl: 'https://api.hackaru.app'
 };
 
-const mutations = {
+export const mutations = {
   [SET_API_URL](state, payload) {
     state.apiUrl = payload;
   },
   [SET_APP_TOKEN](state, payload) {
-    state.appTokens = {
-      ...state.appTokens,
-      [payload.apiUrl]: {
-        webUrl: payload.webUrl,
-        uid: payload.uid,
-        secret: payload.secret
-      }
+    state.appToken = {
+      uid: payload.uid,
+      webUrl: payload.webUrl,
+      secret: payload.secret
     };
   },
   [SET_ACCESS_TOKEN](state, payload) {
@@ -44,12 +44,11 @@ const mutations = {
   }
 };
 
-const actions = {
-  async fetchAppToken({ state, commit, dispatch, getters }, apiUrl) {
+export const actions = {
+  async fetchAppToken({ state, commit, dispatch }, apiUrl) {
     commit(SET_API_URL, apiUrl);
     try {
-      if (getters.getCurrentAppToken) return;
-      const res = await dispatch(
+      const { data } = await dispatch(
         'api/request',
         {
           url: '/v1/oauth/applications',
@@ -63,74 +62,63 @@ const actions = {
         { root: true }
       );
       commit(SET_APP_TOKEN, {
-        apiUrl: apiUrl,
-        webUrl: res.data.webUrl,
-        uid: res.data.application.uid,
-        secret: res.data.application.secret
+        webUrl: data.webUrl,
+        uid: data.application.uid,
+        secret: data.application.secret
       });
     } catch (e) {
       dispatch('toast/showError', e, { root: true });
     }
   },
-  async logout({ state, commit, dispatch, getters }) {
-    const clientId = getters.getCurrentAppToken.uid;
-    const secret = getters.getCurrentAppToken.secret;
+  async logout({ state, commit, dispatch }) {
     await dispatch(
       'api/request',
       {
         url: '/v1/oauth/revoke',
         method: 'post',
         data: {
-          client_id: clientId,
-          client_secret: secret,
+          client_id: state.uid,
+          client_secret: state.secret,
           token: state.accessToken
         }
       },
       { root: true }
     );
-    await keytar.deletePassword(state.service, clientId);
+    await keytar.deletePassword(state.service, state.uid);
     commit(CLEAR_ACCESS_TOKEN);
   },
-  async restoreAccessToken({ state, commit, getters }, url) {
+  async restoreAccessToken({ state, commit }, url) {
     if (state.accessToken) return state.accessToken;
     try {
-      commit(
-        SET_ACCESS_TOKEN,
-        await keytar.getPassword(state.service, getters.getCurrentAppToken.uid)
-      );
-      return state.accessToken;
+      const accessToken = await keytar.getPassword(state.service, state.uid);
+      commit(SET_ACCESS_TOKEN, accessToken);
+      return accessToken;
     } catch (e) {
+      console.log('OK');
       return null;
     }
   },
-  storeAccessToken({ state, commit, getters }, accessToken) {
+  storeAccessToken({ state, commit }, accessToken) {
     commit(SET_ACCESS_TOKEN, accessToken);
-    keytar.setPassword(
-      state.service,
-      getters.getCurrentAppToken.uid,
-      accessToken
-    );
+    keytar.setPassword(state.service, state.uid, accessToken);
   }
 };
 
 export const getters = {
-  getApiUrl: state => {
+  apiUrl: state => {
     return state.apiUrl;
   },
-  getAccessToken: state => {
+  accessToken: state => {
     return state.accessToken;
   },
   isLoggedIn: state => {
     return state.accessToken;
   },
-  getCurrentAppToken: state => {
-    return state.appTokens[state.apiUrl];
+  webUrl: (state, getters) => {
+    return state.appToken.webUrl;
   },
-  getWebUrl: (state, getters) => {
-    return (getters.getCurrentAppToken || {}).webUrl;
-  },
-  getAuthorizeUrl: (state, getters) => {
-    return `${getters.getWebUrl}/oauth/authorize?${queryString.stringify({
+  authorizeUrl: (state, getters) => {
+    return `${state.appToken.webUrl}/oauth/authorize?${queryString.stringify({
       client_id: getters.getCurrentAppToken.uid,
       redirect_uri: state.redirectUri,
       response_type: 'token',

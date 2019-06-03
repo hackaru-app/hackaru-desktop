@@ -15,7 +15,7 @@ describe('Index', () => {
           startedAt: '2019-01-01T01:23:45'
         }
       ],
-      'auth/getWebUrl': 'http://app.hackaru.app'
+      'auth/webUrl': 'http://app.hackaru.app'
     }
   });
 
