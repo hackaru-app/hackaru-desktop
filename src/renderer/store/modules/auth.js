@@ -90,7 +90,6 @@ export const actions = {
       commit(SET_ACCESS_TOKEN, accessToken);
       return accessToken;
     } catch (e) {
-      console.log('OK');
       return null;
     }
   },
