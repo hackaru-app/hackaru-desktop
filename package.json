@@ -92,7 +92,6 @@
     "query-string": "^6.2.0",
     "snakecase-keys": "^2.1.0",
     "uniqid": "^5.0.3",
-    "updeep": "^1.1.0",
     "vue": "^2.5.16",
     "vue-electron": "^1.0.6",
     "vue-feather-icons": "^4.21.0",
