@@ -7,7 +7,7 @@ describe('TrackerEditor', () => {
 
   const $store = new Store({
     getters: {
-      'processes/getProcessNames': []
+      'processes/all': []
     }
   });
 

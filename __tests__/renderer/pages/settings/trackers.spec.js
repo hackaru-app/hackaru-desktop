@@ -7,7 +7,7 @@ describe('Trackers', () => {
 
   const $store = new Store({
     getters: {
-      'trackers/getTrackers': [
+      'trackers/all': [
         {
           id: 1,
           process: 'Firefox',
@@ -41,9 +41,7 @@ describe('Trackers', () => {
     });
 
     it('dispatch trackers/delete', () => {
-      expect($store.dispatch).toHaveBeenCalledWith('trackers/delete', {
-        id: 1
-      });
+      expect($store.dispatch).toHaveBeenCalledWith('trackers/delete', 1);
     });
   });
 

@@ -138,9 +138,9 @@ describe('Actions', () => {
       );
     });
 
-    it('dispatch entities/normalize', () => {
+    it('dispatch entities/merge', () => {
       expect(dispatch).toHaveBeenCalledWith(
-        'entities/normalize',
+        'entities/merge',
         {
           json: {
             id: 'id',
