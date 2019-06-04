@@ -15,14 +15,37 @@ describe('ActivityEditor', () => {
     }
   };
 
+  const $route = { query: {} };
   const factory = () =>
     shallowMount(ActivityEditor, {
       mocks: {
         $store,
         $electron,
-        $route: { query: {} }
+        $route
       }
     });
+
+  describe('when query has project-id', () => {
+    beforeEach(() => {
+      $route.query = { projectId: '1' };
+      wrapper = factory();
+    });
+
+    it('convert project-id to number', () => {
+      expect(wrapper.vm.projectId).toBe(1);
+    });
+  });
+
+  describe('when query does not have project-id', () => {
+    beforeEach(() => {
+      $route.query = {};
+      wrapper = factory();
+    });
+
+    it('set project to undefined', () => {
+      expect(wrapper.vm.projectId).toBeUndefined();
+    });
+  });
 
   describe('when click submit-button', () => {
     beforeEach(() => {

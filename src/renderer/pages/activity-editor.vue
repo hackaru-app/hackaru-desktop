@@ -61,7 +61,7 @@ export default {
   data() {
     return {
       id: this.$route.query.id,
-      projectId: this.$route.query.projectId,
+      projectId: Number(this.$route.query.projectId) || undefined,
       description: this.$route.query.description,
       startedAt: this.$route.query.startedAt || `${new Date()}`,
       stoppedAt: this.$route.query.stoppedAt
