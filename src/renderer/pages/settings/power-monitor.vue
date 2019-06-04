@@ -12,10 +12,14 @@
 
       <div class="form">
         <label>
-          <input v-model="suspend" type="checkbox" />{{ $t('suspend') }}
+          <input v-model="stopAllOnSuspend" type="checkbox" />{{
+            $t('suspend')
+          }}
         </label>
         <label>
-          <input v-model="shutdown" type="checkbox" />{{ $t('shutdown') }}
+          <input v-model="stopAllOnShutdown" type="checkbox" />{{
+            $t('shutdown')
+          }}
         </label>
       </div>
     </section>
@@ -34,29 +38,21 @@ export default {
     Icon
   },
   computed: {
-    config() {
-      return this.$store.getters['config/getConfig'];
-    },
-    suspend: {
+    stopAllOnSuspend: {
       get() {
-        return this.config.powerMonitor.suspend;
+        return this.$store.getters['trackers/stopAllOnSuspend'];
       },
       set(value) {
-        this.setConfig('powerMonitor.suspend', value);
+        this.$store.dispatch('trackers/setStopAllOnSuspend', value);
       }
     },
-    shutdown: {
+    stopAllOnShutdown: {
       get() {
-        return this.config.powerMonitor.shutdown;
+        return this.$store.getters['trackers/stopAllOnShutdown'];
       },
       set(value) {
-        this.setConfig('powerMonitor.shutdown', value);
+        this.$store.dispatch('trackers/setStopAllOnShutdown', value);
       }
-    }
-  },
-  methods: {
-    setConfig(path, value) {
-      this.$store.dispatch('config/setConfig', { path, value });
     }
   }
 };

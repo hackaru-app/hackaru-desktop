@@ -10,11 +10,13 @@ export function persist(key) {
   createPersistedState({
     key,
     paths: [
-      'auth.appTokens',
+      'auth.uid',
+      'auth.secret',
+      'auth.webUrl',
       'auth.apiUrl',
-      'config',
       'entities.data.trackers',
-      'trackers'
+      'trackers.stopAllOnSuspend',
+      'trackers.stopAllOnShutdown'
     ],
     storage: {
       getItem: key => storage.get(key),

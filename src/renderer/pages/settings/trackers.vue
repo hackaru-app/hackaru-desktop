@@ -64,13 +64,13 @@ export default {
   },
   computed: {
     ...mapGetters({
-      trackers: 'trackers/getTrackers'
+      trackers: 'trackers/all'
     })
   },
   methods: {
     deleteTracker(id) {
       if (!window.confirm(this.$t('confirms.delete'))) return;
-      this.$store.dispatch('trackers/delete', { id });
+      this.$store.dispatch('trackers/delete', id);
       this.$store.dispatch('toast/showSuccess', this.$t('deleted'));
     },
     showEditor() {

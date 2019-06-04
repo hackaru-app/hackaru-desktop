@@ -5,9 +5,13 @@ import difference from 'lodash.difference';
 
 export const SET_PREV_WORKINGS = 'SET_PREV_WORKINGS';
 export const CLEAR_PREV_WORKINGS = 'CLEAR_PREV_WORKINGS';
+export const SET_STOP_ALL_ON_SUSPEND = 'SET_STOP_ALL_ON_SUSPEND';
+export const SET_STOP_ALL_ON_SHUTDOWN = 'SET_STOP_ALL_ON_SHUTDOWN';
 
 export const state = () => ({
-  prevWorkings: []
+  prevWorkings: [],
+  stopAllOnSuspend: true,
+  stopAllOnShutdown: true
 });
 
 export const actions = {
@@ -46,7 +50,7 @@ export const actions = {
   },
   add({ dispatch }, payload) {
     dispatch(
-      'entities/normalize',
+      'entities/merge',
       {
         json: {
           id: uniqid(),
@@ -64,6 +68,12 @@ export const actions = {
   stopAll({ dispatch, getters, commit }) {
     getters.workingProjects.forEach(id => dispatch('stop', id));
     commit(CLEAR_PREV_WORKINGS);
+  },
+  setStopAllOnSuspend({ commit }, value) {
+    commit(SET_STOP_ALL_ON_SUSPEND, value);
+  },
+  setStopAllOnShutdown({ commit }, value) {
+    commit(SET_STOP_ALL_ON_SHUTDOWN, value);
   }
 };
 
@@ -73,6 +83,12 @@ export const mutations = {
   },
   [CLEAR_PREV_WORKINGS](state, payload) {
     state.prevWorkings = [];
+  },
+  [SET_STOP_ALL_ON_SUSPEND](state, payload) {
+    state.stopAllOnSuspend = payload;
+  },
+  [SET_STOP_ALL_ON_SHUTDOWN](state, payload) {
+    state.stopAllOnShutdown = payload;
   }
 };
 
@@ -87,6 +103,12 @@ export const getters = {
         .filter(tracker => processes.includes(tracker.process))
         .map(({ project }) => (project ? project.id : null))
     );
+  },
+  stopTrackingOnSuspend(state) {
+    return state.stopTrackingOnSuspend;
+  },
+  stopTrackingOnShutdown(state) {
+    return state.stopTrackingOnShutdown;
   }
 };
 

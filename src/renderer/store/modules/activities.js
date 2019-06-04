@@ -81,7 +81,7 @@ export const actions = {
         { root: true }
       );
       notify({
-        title: 'Timer Stopped',
+        title: 'Timer Stopped.',
         message: data.project ? data.project.name : 'No Project'
       });
       return true;
@@ -108,6 +108,10 @@ export const actions = {
         { json: data, schema: activity },
         { root: true }
       );
+      notify({
+        title: 'Timer Started.',
+        message: data.project ? data.project.name : 'No Project'
+      });
       return true;
     } catch (e) {
       dispatch('toast/error', e, { root: true });
