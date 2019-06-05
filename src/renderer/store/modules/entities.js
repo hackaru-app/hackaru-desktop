@@ -6,7 +6,9 @@ const MERGE_ENTITIES = 'MERGE_ENTITIES';
 const DELETE_ENTITY = 'DELETE_ENTITY';
 
 export const state = () => ({
-  data: {}
+  data: {
+    projects: {}
+  }
 });
 
 export const actions = {
