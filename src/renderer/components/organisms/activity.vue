@@ -1,6 +1,6 @@
 <template>
   <article class="activity">
-    <div class="content" @click="showEditor(activity)">
+    <div class="content" @click="showEditor">
       <project-name v-bind="project" />
       <ticker
         :started-at="startedAt"
@@ -54,7 +54,7 @@ export default {
     }
   },
   methods: {
-    showEditor(activity = {}) {
+    showEditor() {
       this.$electron.ipcRenderer.send('showActivityEditor', {
         id: this.id,
         projectId: this.project && this.project.id,
@@ -63,11 +63,9 @@ export default {
       });
     },
     async stopActivity(id) {
-      const success = await this.$store.dispatch('activities/stopActivity', {
-        id
-      });
+      const success = await this.$store.dispatch('activities/stop', id);
       if (success) {
-        this.$store.dispatch('toast/showSuccess', this.$t('stopped'));
+        this.$store.dispatch('toast/success', this.$t('stopped'));
       }
     }
   }

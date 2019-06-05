@@ -7,7 +7,7 @@ describe('Index', () => {
 
   const $store = new Store({
     getters: {
-      'activities/getWorkingActivities': [
+      'activities/workings': [
         {
           id: 1,
           project: { id: 2 },
@@ -15,7 +15,7 @@ describe('Index', () => {
           startedAt: '2019-01-01T01:23:45'
         }
       ],
-      'auth/getWebUrl': 'http://app.hackaru.app'
+      'auth/webUrl': 'http://app.hackaru.app'
     }
   });
 
@@ -42,16 +42,14 @@ describe('Index', () => {
       }
     });
 
-  it('dispatch activities/getWorkingActivities', () => {
+  it('dispatch activities/fetchWorkings', () => {
     factory();
-    expect($store.dispatch).toHaveBeenCalledWith(
-      'activities/getWorkingActivities'
-    );
+    expect($store.dispatch).toHaveBeenCalledWith('activities/fetchWorkings');
   });
 
-  it('dispatch activities/getProjects', () => {
+  it('dispatch projects/fetch', () => {
     factory();
-    expect($store.dispatch).toHaveBeenCalledWith('projects/getProjects');
+    expect($store.dispatch).toHaveBeenCalledWith('projects/fetch');
   });
 
   describe('when click add-button', () => {

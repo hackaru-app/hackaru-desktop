@@ -41,8 +41,8 @@ export default {
 <style scoped lang="scss">
 .side-bar {
   position: fixed;
-  border-right: 1px $border solid;
-  background-color: $grey-fdfdfd;
+  border-right: 1px $grey-eee solid;
+  background-color: $grey-fafafa;
   height: 100vh;
   width: 150px;
   padding-top: 50px;

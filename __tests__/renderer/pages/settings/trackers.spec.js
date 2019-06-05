@@ -7,7 +7,7 @@ describe('Trackers', () => {
 
   const $store = new Store({
     getters: {
-      'trackers/getTrackers': [
+      'trackers/all': [
         {
           id: 1,
           process: 'Firefox',
@@ -40,10 +40,8 @@ describe('Trackers', () => {
       wrapper.find('.tracker .delete-button').vm.$emit('click');
     });
 
-    it('dispatch trackers/deleteTracker', () => {
-      expect($store.dispatch).toHaveBeenCalledWith('trackers/deleteTracker', {
-        id: 1
-      });
+    it('dispatch trackers/delete', () => {
+      expect($store.dispatch).toHaveBeenCalledWith('trackers/delete', 1);
     });
   });
 
@@ -54,7 +52,7 @@ describe('Trackers', () => {
       wrapper.find('.tracker .delete-button').vm.$emit('click');
     });
 
-    it('dispatch trackers/deleteTracker', () => {
+    it('dispatch trackers/delete', () => {
       expect($store.dispatch).not.toHaveBeenCalled();
     });
   });

@@ -1,27 +1,27 @@
-import u from 'updeep';
+import merge from 'lodash.merge';
 import axios from 'axios';
-import i18n from '../../i18n';
+import { app } from 'electron';
 import camelcaseKeys from 'camelcase-keys';
 import snakecaseKeys from 'snakecase-keys';
 
-const instance = axios.create({
-  timeout: 5000,
-  headers: {
-    crossDomain: true
-  }
-});
-
 export const actions = {
   async request({ state, rootGetters }, config) {
-    const res = await instance.request(
-      u(config, {
-        baseURL: rootGetters['auth/getApiUrl'],
-        headers: { 'Accept-Language': i18n.locale },
-        data: config.data && snakecaseKeys(config.data)
-      })
+    const res = await axios.request(
+      merge(
+        {
+          ...config,
+          data: snakecaseKeys(config.data || {}),
+          params: snakecaseKeys(config.params || {})
+        },
+        {
+          baseURL: rootGetters['auth/apiUrl'],
+          timeout: 10000,
+          headers: { 'Accept-Language': app.getLocale() }
+        }
+      )
     );
     return {
-      data: camelcaseKeys(res.data || {}),
+      data: camelcaseKeys(res.data || {}, { deep: true }),
       headers: res.headers
     };
   }

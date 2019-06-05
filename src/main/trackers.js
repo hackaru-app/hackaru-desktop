@@ -10,30 +10,28 @@ app.on('ready', () => {
   function startProcessTimer() {
     clearInterval(processTimer);
     processTimer = setInterval(async () => {
-      if (!store.getters['auth/isLoggedIn']) return;
-      await store.dispatch('processes/updateProccesses', await psList());
-      await store.dispatch('trackers/updateTrackings');
+      const processes = await psList();
+      store.dispatch('processes/update', processes);
+      store.dispatch('trackers/update');
     }, 1000);
   }
 
-  powerMonitor.on('suspend', async () => {
-    clearInterval(processTimer);
-    if (!store.getters['auth/isLoggedIn']) return;
-    if (store.getters['config/getConfig'].powerMonitor.suspend) {
-      await store.dispatch('trackers/stopAllTrackings');
-    }
-  });
-
-  powerMonitor.on('resume', async () => {
+  powerMonitor.on('resume', () => {
     startProcessTimer();
   });
 
-  powerMonitor.on('shutdown', async e => {
-    e.preventDefault();
+  powerMonitor.on('suspend', () => {
     clearInterval(processTimer);
-    if (!store.getters['auth/isLoggedIn']) return;
-    if (store.getters['config/getConfig'].powerMonitor.shutdown) {
-      await store.dispatch('trackers/stopAllTrackings');
+    if (store.getters['trackers/stopAllOnSuspend']) {
+      store.dispatch('trackers/stopAll');
+    }
+  });
+
+  powerMonitor.on('shutdown', e => {
+    clearInterval(processTimer);
+    e.preventDefault();
+    if (store.getters['trackers/stopAllOnShutdown']) {
+      store.dispatch('trackers/stopAll');
     }
     app.quit();
   });

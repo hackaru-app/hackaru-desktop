@@ -54,10 +54,8 @@ describe('Activity', () => {
       wrapper.find('.stop-button').vm.$emit('click');
     });
 
-    it('dispatch activities/stopActivity', () => {
-      expect($store.dispatch).toHaveBeenCalledWith('activities/stopActivity', {
-        id: 1
-      });
+    it('dispatch activities/stop', () => {
+      expect($store.dispatch).toHaveBeenCalledWith('activities/stop', 1);
     });
   });
 });

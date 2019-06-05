@@ -7,7 +7,7 @@ describe('ProjectSelect', () => {
 
   const $store = new Store({
     getters: {
-      'projects/getProjects': [
+      'projects/all': [
         {
           id: 1,
           name: 'Development',

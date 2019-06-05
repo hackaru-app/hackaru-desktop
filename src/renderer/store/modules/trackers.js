@@ -1,71 +1,59 @@
 import { tracker } from '../schemas';
 import uniq from 'lodash.uniq';
 import uniqid from 'uniqid';
+import difference from 'lodash.difference';
 
-export const ADD_TRACKER = 'ADD_TRACKER';
-export const REMOVE_TRACKER = 'REMOVE_TRACKER';
-export const SET_WORKINGS = 'SET_WORKINGS';
-export const CLEAR_WORKINGS = 'CLEAR_WORKINGS';
+export const SET_PREV_WORKINGS = 'SET_PREV_WORKINGS';
+export const CLEAR_PREV_WORKINGS = 'CLEAR_PREV_WORKINGS';
+export const SET_STOP_ALL_ON_SUSPEND = 'SET_STOP_ALL_ON_SUSPEND';
+export const SET_STOP_ALL_ON_SHUTDOWN = 'SET_STOP_ALL_ON_SHUTDOWN';
 
 export const state = () => ({
-  workings: [],
-  items: []
+  prevWorkings: [],
+  stopAllOnSuspend: true,
+  stopAllOnShutdown: true
 });
 
 export const actions = {
-  updateTrackings({ state, commit, dispatch, getters }) {
-    const prevs = state.workings;
-    const currents = getters.getWorkingProjectIds;
+  update({ state, commit, dispatch, getters }) {
+    const started = difference(getters.workingProjects, state.prevWorkings);
+    const stopped = difference(state.prevWorkings, getters.workingProjects);
 
-    // Stop activity when process was stopped.
-    prevs
-      .filter(id => !currents.includes(id))
-      .forEach(id => {
-        dispatch('stopActivity', id);
-      });
+    started.forEach(tracker => dispatch('start', tracker));
+    stopped.forEach(tracker => dispatch('stop', tracker));
 
-    // Start activity when process was started.
-    currents
-      .filter(id => !prevs.includes(id))
-      .forEach(id => {
-        dispatch('startActivity', id);
-      });
-
-    // Update working processes.
-    commit(SET_WORKINGS, currents);
+    commit(SET_PREV_WORKINGS, getters.workingProjects);
   },
-  startActivity({ dispatch, rootGetters }, projectId) {
-    if (!rootGetters['activities/getActivityByProject'](projectId)) {
-      dispatch(
-        'activities/addActivity',
-        {
-          projectId,
-          startedAt: `${new Date()}`
-        },
-        { root: true }
-      );
-    }
+  start({ dispatch, rootGetters }, projectId) {
+    const activity = rootGetters['activities/findByProject'](projectId);
+    if (activity) return;
+    dispatch(
+      'activities/add',
+      {
+        projectId,
+        startedAt: `${new Date()}`
+      },
+      { root: true }
+    );
   },
-  stopActivity({ dispatch, rootGetters }, projectId) {
-    const activity = rootGetters['activities/getActivityByProject'](projectId);
-    if (activity) {
-      dispatch(
-        'activities/updateActivity',
-        {
-          id: activity.id,
-          stoppedAt: `${new Date()}`
-        },
-        { root: true }
-      );
-    }
+  stop({ dispatch, rootGetters }, projectId) {
+    const activity = rootGetters['activities/findByProject'](projectId);
+    if (!activity) return;
+    dispatch(
+      'activities/update',
+      {
+        id: activity.id,
+        stoppedAt: `${new Date()}`
+      },
+      { root: true }
+    );
   },
-  async addTracker({ commit, dispatch, rootGetters }, payload) {
-    const data = await dispatch(
-      'entities/normalize',
+  add({ dispatch }, payload) {
+    dispatch(
+      'entities/merge',
       {
         json: {
           id: uniqid(),
-          apiUrl: rootGetters['auth/getApiUrl'],
           project: payload.projectId,
           process: payload.process
         },
@@ -73,53 +61,54 @@ export const actions = {
       },
       { root: true }
     );
-    commit(ADD_TRACKER, data.result);
   },
-  deleteTracker({ commit, dispatch }, payload) {
-    commit(REMOVE_TRACKER, { id: payload.id });
-    dispatch(
-      'entities/deleteEntitiy',
-      { path: `trackers.${payload.id}` },
-      { root: true }
-    );
+  delete({ dispatch }, id) {
+    dispatch('entities/delete', { name: 'trackers', id }, { root: true });
   },
-  async stopAllTrackings({ dispatch, getters, commit }, projectId) {
-    getters.getWorkingProjectIds.forEach(async projectId => {
-      await dispatch('stopActivity', projectId);
-    });
-    commit(CLEAR_WORKINGS);
+  stopAll({ dispatch, getters, commit }) {
+    getters.workingProjects.forEach(id => dispatch('stop', id));
+    commit(CLEAR_PREV_WORKINGS);
+  },
+  setStopAllOnSuspend({ commit }, value) {
+    commit(SET_STOP_ALL_ON_SUSPEND, value);
+  },
+  setStopAllOnShutdown({ commit }, value) {
+    commit(SET_STOP_ALL_ON_SHUTDOWN, value);
   }
 };
 
 export const mutations = {
-  [ADD_TRACKER](state, payload) {
-    state.items = [...state.items, payload];
+  [SET_PREV_WORKINGS](state, payload) {
+    state.prevWorkings = payload;
   },
-  [REMOVE_TRACKER](state, payload) {
-    state.items = state.items.filter(id => id !== payload.id);
+  [CLEAR_PREV_WORKINGS](state, payload) {
+    state.prevWorkings = [];
   },
-  [SET_WORKINGS](state, payload) {
-    state.workings = payload;
+  [SET_STOP_ALL_ON_SUSPEND](state, payload) {
+    state.stopAllOnSuspend = payload;
   },
-  [CLEAR_WORKINGS](state, payload) {
-    state.workings = [];
+  [SET_STOP_ALL_ON_SHUTDOWN](state, payload) {
+    state.stopAllOnShutdown = payload;
   }
 };
 
 export const getters = {
-  getTrackers(state, getters, rootState, rootGetters) {
-    return rootGetters['entities/getDenormalized'](state.items, [tracker])
-      .filter(({ project }) => project !== undefined)
-      .filter(({ apiUrl }) => apiUrl === rootGetters['auth/getApiUrl']);
+  all(state, getters, rootState, rootGetters) {
+    return rootGetters['entities/getEntities']('trackers', [tracker]);
   },
-  getWorkingProjectIds(state, getters, rootState, rootGetters) {
+  workingProjects(state, getters, rootState, rootGetters) {
+    const processes = rootGetters['processes/all'];
     return uniq(
-      getters.getTrackers
-        .filter(tracker =>
-          rootGetters['processes/getProcesses'].includes(tracker.process)
-        )
+      getters.all
+        .filter(tracker => processes.includes(tracker.process))
         .map(({ project }) => (project ? project.id : null))
     );
+  },
+  stopAllOnSuspend(state) {
+    return state.stopAllOnSuspend;
+  },
+  stopAllOnShutdown(state) {
+    return state.stopAllOnShutdown;
   }
 };
 

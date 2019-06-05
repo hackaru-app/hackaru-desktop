@@ -71,13 +71,13 @@ export default {
   },
   computed: {
     ...mapGetters({
-      activities: 'activities/getWorkingActivities',
-      webUrl: 'auth/getWebUrl'
+      activities: 'activities/workings',
+      webUrl: 'auth/webUrl'
     })
   },
   mounted() {
-    this.$store.dispatch('activities/getWorkingActivities');
-    this.$store.dispatch('projects/getProjects');
+    this.$store.dispatch('activities/fetchWorkings');
+    this.$store.dispatch('projects/fetch');
   },
   methods: {
     showEditor() {

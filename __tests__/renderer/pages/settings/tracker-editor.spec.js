@@ -7,7 +7,7 @@ describe('TrackerEditor', () => {
 
   const $store = new Store({
     getters: {
-      'processes/getProcessNames': []
+      'processes/all': []
     }
   });
 
@@ -37,8 +37,8 @@ describe('TrackerEditor', () => {
       wrapper.find('form').trigger('submit.prevent');
     });
 
-    it('dispatch trackers/addTracker', () => {
-      expect($store.dispatch).toHaveBeenCalledWith('trackers/addTracker', {
+    it('dispatch trackers/add', () => {
+      expect($store.dispatch).toHaveBeenCalledWith('trackers/add', {
         projectId: 1,
         process: 'Firefox'
       });

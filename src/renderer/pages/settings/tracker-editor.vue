@@ -38,7 +38,6 @@ import Multiselect from 'vue-multiselect';
 import MainHeader from '@/components/molecules/main-header';
 import BaseButton from '@/components/atoms/base-button';
 import ProjectSelect from '@/components/molecules/project-select';
-import { mapGetters } from 'vuex';
 
 export default {
   components: {
@@ -54,18 +53,17 @@ export default {
     };
   },
   computed: {
-    ...mapGetters({
-      options: 'processes/getProcessNames'
-    })
+    options() {
+      return this.$store.getters['processes/all'].map(name => ({ name }));
+    }
   },
   methods: {
     addTracker() {
-      if (!this.process) return;
-      this.$store.dispatch('trackers/addTracker', {
+      this.$store.dispatch('trackers/add', {
         projectId: this.projectId,
         process: this.process.name
       });
-      this.$store.dispatch('toast/showSuccess', this.$t('added'));
+      this.$store.dispatch('toast/success', this.$t('added'));
       this.$electron.remote.getCurrentWindow().close();
     }
   }

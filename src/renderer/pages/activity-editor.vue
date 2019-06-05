@@ -61,7 +61,7 @@ export default {
   data() {
     return {
       id: this.$route.query.id,
-      projectId: this.$route.query.projectId,
+      projectId: Number(this.$route.query.projectId) || undefined,
       description: this.$route.query.description,
       startedAt: this.$route.query.startedAt || `${new Date()}`,
       stoppedAt: this.$route.query.stoppedAt
@@ -70,7 +70,7 @@ export default {
   methods: {
     async saveActivity() {
       const success = await this.$store.dispatch(
-        `activities/${this.id ? 'updateActivity' : 'addActivity'}`,
+        `activities/${this.id ? 'update' : 'add'}`,
         {
           id: this.id,
           projectId: this.projectId,
@@ -81,7 +81,7 @@ export default {
       );
       if (success) {
         this.$store.dispatch(
-          'toast/showSuccess',
+          'toast/success',
           this.$t(this.id ? 'updated' : 'started')
         );
         this.$electron.remote.getCurrentWindow().close();
@@ -89,12 +89,9 @@ export default {
     },
     async deleteActivity() {
       if (!window.confirm(this.$t('confirms.delete'))) return;
-      const success = await this.$store.dispatch(
-        'activities/deleteActivity',
-        this.id
-      );
+      const success = await this.$store.dispatch('activities/delete', this.id);
       if (success) {
-        this.$store.dispatch('toast/showSuccess', this.$t('deleted'));
+        this.$store.dispatch('toast/success', this.$t('deleted'));
         this.$electron.remote.getCurrentWindow().close();
       }
     }
