@@ -104,11 +104,11 @@ export const getters = {
         .map(({ project }) => (project ? project.id : null))
     );
   },
-  stopTrackingOnSuspend(state) {
-    return state.stopTrackingOnSuspend;
+  stopAllOnSuspend(state) {
+    return state.stopAllOnSuspend;
   },
-  stopTrackingOnShutdown(state) {
-    return state.stopTrackingOnShutdown;
+  stopAllOnShutdown(state) {
+    return state.stopAllOnShutdown;
   }
 };
 

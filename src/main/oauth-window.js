@@ -19,10 +19,6 @@ function findAccessTokenByUrl(url) {
   return matched && matched[1];
 }
 
-function toBase64(value) {
-  return Buffer.from(value).toString('base64');
-}
-
 export async function showAuthentication(event) {
   await clearLocalStorage();
 
@@ -32,7 +28,7 @@ export async function showAuthentication(event) {
   browser.webContents.on('did-navigate-in-page', (_, url) => {
     const accessToken = findAccessTokenByUrl(url);
     if (accessToken) {
-      persist(toBase64(store.getters['auth/apiUrl']));
+      persist(store.getters['auth/persistKey']);
       store.dispatch('auth/storeAccessToken', accessToken);
       event.sender.send('authenticated');
       browser.close();

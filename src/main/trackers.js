@@ -22,7 +22,7 @@ app.on('ready', () => {
 
   powerMonitor.on('suspend', () => {
     clearInterval(processTimer);
-    if (store.getters['trackers/stopTrackingOnSuspend']) {
+    if (store.getters['trackers/stopAllOnSuspend']) {
       store.dispatch('trackers/stopAll');
     }
   });
@@ -30,7 +30,7 @@ app.on('ready', () => {
   powerMonitor.on('shutdown', e => {
     clearInterval(processTimer);
     e.preventDefault();
-    if (store.getters['trackers/stopTrackingOnShutdown']) {
+    if (store.getters['trackers/stopAllOnShutdown']) {
       store.dispatch('trackers/stopAll');
     }
     app.quit();
