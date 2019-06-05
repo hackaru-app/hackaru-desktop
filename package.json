@@ -200,6 +200,8 @@
     "collectCoverage": true,
     "collectCoverageFrom": [
       "src/**/*.{js,vue}",
+      "!src/renderer/store/plugins/**",
+      "!src/main/**",
       "!coverage/**",
       "!**/node_modules/**",
       "!**/__tests__/__setups__/**"
