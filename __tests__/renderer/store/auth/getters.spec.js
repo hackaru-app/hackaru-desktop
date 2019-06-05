@@ -65,4 +65,19 @@ describe('Getters', () => {
       expect(result).toBe('http://web.example.com');
     });
   });
+
+  describe('when call persistKey', () => {
+    const state = {
+      apiUrl: 'http://api.example.com',
+      uid: 'uid'
+    };
+
+    beforeEach(() => {
+      result = getters.persistKey(state);
+    });
+
+    it('returns key correctly', () => {
+      expect(result).toBe('aHR0cDovL2FwaS5leGFtcGxlLmNvbS11aWQ=');
+    });
+  });
 });
