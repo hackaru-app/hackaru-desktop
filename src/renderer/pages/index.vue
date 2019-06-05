@@ -4,11 +4,7 @@
   <section>
     <main-header>
       <button class="menu-button add-button" @click="showEditor()">
-        <icon
-          name="plus-icon"
-          :aria-label="$t('ariaLabels.add')"
-          class="icon is-small"
-        />
+        <icon name="plus-icon" class="icon is-small" />
       </button>
     </main-header>
 
@@ -28,7 +24,6 @@
           <base-button
             type="button"
             class="has-icon settings-button"
-            :aria-label="$t('ariaLabels.settings')"
             @click="showSettings"
           >
             <icon name="settings-icon" class="icon is-small" />
@@ -36,7 +31,6 @@
           <base-button
             type="button"
             class="has-icon web-button"
-            :aria-label="$t('ariaLabels.website')"
             @click="openWebsite"
           >
             <icon name="globe-icon" class="icon is-small" />
@@ -45,7 +39,6 @@
         <base-button
           type="button"
           class="has-icon logout-button"
-          :aria-label="$t('ariaLabels.logout')"
           @click="logout"
         >
           <icon name="log-out-icon" class="icon is-small" />

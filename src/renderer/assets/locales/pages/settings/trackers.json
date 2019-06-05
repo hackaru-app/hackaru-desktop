@@ -1,9 +1,7 @@
 {
   "en": {
     "title": "AutoTracking",
-    "add": "Add auto tracking",
     "empty": "No auto tracking.",
-    "delete": "Delete",
     "deleted": "Auto tracking deleted",
     "confirms": {
       "delete": "Are you sure you want to delete?"
@@ -11,9 +9,7 @@
   },
   "ja": {
     "title": "自動計測",
-    "add": "自動計測を追加",
     "empty": "自動計測はまだ作成していません。",
-    "delete": "削除",
     "deleted": "削除しました",
     "confirms": {
       "delete":  "削除しますか？"
