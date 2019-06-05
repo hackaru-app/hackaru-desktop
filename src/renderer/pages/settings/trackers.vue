@@ -11,7 +11,6 @@
         <base-button
           type="button"
           class="has-icon add-button"
-          :aria-label="$t('add')"
           @click="showEditor"
         >
           <icon name="plus-icon" class="is-primary" />
@@ -31,7 +30,6 @@
           <base-button
             type="button"
             class="has-icon delete-button"
-            :aria-label="$t('delete')"
             @click="deleteTracker(tracker.id)"
           >
             <icon name="x-icon" class="is-danger" />

@@ -9,7 +9,6 @@
         v-model="apiUrl"
         class="has-border api-url"
         :placeholder="$t('apiUrl')"
-        :aria-label="$t('apiUrl')"
         required
       />
       <base-button type="submit" class="is-rounded is-primary">

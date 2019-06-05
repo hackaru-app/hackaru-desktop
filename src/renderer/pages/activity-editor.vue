@@ -13,7 +13,6 @@
         <input
           v-model="description"
           :placeholder="$t('description')"
-          :aria-label="$t('description')"
           class="description"
         />
       </div>
@@ -33,7 +32,6 @@
           v-if="id"
           type="button"
           class="has-icon delete-button"
-          :aria-label="$t('delete')"
           @click="deleteActivity"
         >
           <icon name="trash-icon" class="is-danger" />

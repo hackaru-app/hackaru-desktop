@@ -6,7 +6,6 @@
     "stoppedAt": "Stopped",
     "update": "Update",
     "start": "Start",
-    "delete": "Delete",
     "confirms": {
       "delete": "Are you sure you want to delete?"
     },
@@ -21,7 +20,6 @@
     "stoppedAt": "終了",
     "update": "更新",
     "start": "開始",
-    "delete": "削除",
     "confirms": {
       "delete": "削除しますか？"
     },
