@@ -18,7 +18,7 @@
     "test": "jest",
     "unit": "karma start test/unit/karma.conf.js",
     "postinstall": "npm run license-third-party && electron-rebuild",
-    "license-third-party": "npm-license-crawler --onlyDirectDependencies --json src/renderer/assets/licenses.json"
+    "license-third-party": "npm-license-crawler --onlyDirectDependencies --omitVersion --json src/renderer/assets/licenses.json"
   },
   "lint-staged": {
     "*.{js,vue}": [
