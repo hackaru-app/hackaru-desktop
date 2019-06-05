@@ -113,9 +113,6 @@ export const getters = {
   accessToken: state => {
     return state.accessToken;
   },
-  isLoggedIn: state => {
-    return state.accessToken;
-  },
   authorizeUrl: state => {
     return `${state.webUrl}/oauth/authorize?${queryString.stringify({
       client_id: state.uid,
