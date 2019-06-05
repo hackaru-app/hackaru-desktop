@@ -5,7 +5,7 @@ describe('Getters', () => {
 
   describe('when call all', () => {
     const rootGetters = {
-      'entities/getEntities': jest.fn(() => ({}))
+      'entities/getEntities': jest.fn(() => [{ project: { id: 1 } }])
     };
 
     beforeEach(() => {
@@ -13,7 +13,24 @@ describe('Getters', () => {
     });
 
     it('returns result', () => {
-      expect(result).toEqual({});
+      expect(result).toEqual([{ project: { id: 1 } }]);
+    });
+  });
+
+  describe('when call all but project is undefined', () => {
+    const rootGetters = {
+      'entities/getEntities': jest.fn(() => [
+        { project: { id: 1 } },
+        { project: undefined }
+      ])
+    };
+
+    beforeEach(() => {
+      result = getters.all({}, {}, {}, rootGetters);
+    });
+
+    it('omit if project is missing', () => {
+      expect(result).toEqual([{ project: { id: 1 } }]);
     });
   });
 

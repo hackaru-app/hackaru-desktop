@@ -94,7 +94,9 @@ export const mutations = {
 
 export const getters = {
   all(state, getters, rootState, rootGetters) {
-    return rootGetters['entities/getEntities']('trackers', [tracker]);
+    return rootGetters['entities/getEntities']('trackers', [tracker]).filter(
+      tracker => tracker.project !== undefined
+    );
   },
   workingProjects(state, getters, rootState, rootGetters) {
     const processes = rootGetters['processes/all'];
