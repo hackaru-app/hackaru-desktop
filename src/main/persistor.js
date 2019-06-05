@@ -3,7 +3,7 @@ import Storage from 'electron-store';
 import store from '../renderer/store';
 
 const storage = new Storage({
-  name: 'vuex'
+  name: 'vuex-v1'
 });
 
 export function persist(key) {
