@@ -12,14 +12,16 @@
 
       <div class="form">
         <label>
-          <input v-model="stopAllOnSuspend" type="checkbox" />{{
+          <input v-model="stopAllOnSuspend" class="suspend" type="checkbox" />{{
             $t('suspend')
           }}
         </label>
         <label>
-          <input v-model="stopAllOnShutdown" type="checkbox" />{{
-            $t('shutdown')
-          }}
+          <input
+            v-model="stopAllOnShutdown"
+            class="shutdown"
+            type="checkbox"
+          />{{ $t('shutdown') }}
         </label>
       </div>
     </section>
