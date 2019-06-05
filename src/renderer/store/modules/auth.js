@@ -63,7 +63,7 @@ export const actions = {
         secret: data.application.secret
       });
     } catch (e) {
-      dispatch('toast/showError', e, { root: true });
+      dispatch('toast/error', e, { root: true });
     }
   },
   async logout({ state, commit, dispatch }) {

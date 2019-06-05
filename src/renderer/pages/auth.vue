@@ -40,7 +40,7 @@ export default {
       await this.$store.dispatch('auth/fetchAppToken', this.apiUrl);
       this.$electron.ipcRenderer.send('showAuthentication');
       this.$electron.ipcRenderer.on('authenticated', () => {
-        this.$store.dispatch('toast/showSuccess', this.$t('loggedIn'));
+        this.$store.dispatch('toast/success', this.$t('loggedIn'));
         this.$router.push('/');
       });
     }

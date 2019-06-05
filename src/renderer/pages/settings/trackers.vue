@@ -71,7 +71,7 @@ export default {
     deleteTracker(id) {
       if (!window.confirm(this.$t('confirms.delete'))) return;
       this.$store.dispatch('trackers/delete', id);
-      this.$store.dispatch('toast/showSuccess', this.$t('deleted'));
+      this.$store.dispatch('toast/success', this.$t('deleted'));
     },
     showEditor() {
       this.$electron.ipcRenderer.send('showTrackerEditor');

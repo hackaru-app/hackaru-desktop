@@ -63,7 +63,7 @@ export default {
         projectId: this.projectId,
         process: this.process.name
       });
-      this.$store.dispatch('toast/showSuccess', this.$t('added'));
+      this.$store.dispatch('toast/success', this.$t('added'));
       this.$electron.remote.getCurrentWindow().close();
     }
   }

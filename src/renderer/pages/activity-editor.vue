@@ -81,7 +81,7 @@ export default {
       );
       if (success) {
         this.$store.dispatch(
-          'toast/showSuccess',
+          'toast/success',
           this.$t(this.id ? 'updated' : 'started')
         );
         this.$electron.remote.getCurrentWindow().close();
@@ -91,7 +91,7 @@ export default {
       if (!window.confirm(this.$t('confirms.delete'))) return;
       const success = await this.$store.dispatch('activities/delete', this.id);
       if (success) {
-        this.$store.dispatch('toast/showSuccess', this.$t('deleted'));
+        this.$store.dispatch('toast/success', this.$t('deleted'));
         this.$electron.remote.getCurrentWindow().close();
       }
     }

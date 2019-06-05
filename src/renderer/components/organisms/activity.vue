@@ -65,7 +65,7 @@ export default {
     async stopActivity(id) {
       const success = await this.$store.dispatch('activities/stop', id);
       if (success) {
-        this.$store.dispatch('toast/showSuccess', this.$t('stopped'));
+        this.$store.dispatch('toast/success', this.$t('stopped'));
       }
     }
   }

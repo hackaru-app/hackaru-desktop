@@ -10,16 +10,14 @@ export const state = () => ({
 });
 
 export const actions = {
-  async showError({ commit, dispatch }, payload) {
+  async error({ commit }, payload) {
     const title =
-      get(payload, 'response.data.errors.full_messages[0]') ||
-      get(payload, 'response.data.errors[0]') ||
       get(payload, 'response.data.error_description') ||
       get(payload, 'response.data.message') ||
       get(payload, 'message');
     commit(SHOW_ERROR, title);
   },
-  async showSuccess({ commit, dispatch }, payload) {
+  async success({ commit }, payload) {
     commit(SHOW_SUCCESS, payload);
   }
 };
