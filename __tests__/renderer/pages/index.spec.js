@@ -100,6 +100,10 @@ describe('Index', () => {
       expect($store.dispatch).toHaveBeenCalledWith('auth/logout');
     });
 
+    it('send logout', () => {
+      expect($electron.ipcRenderer.send).toHaveBeenCalledWith('logout');
+    });
+
     it('relaunch app', () => {
       expect($electron.remote.app.relaunch).toHaveBeenCalled();
       expect($electron.remote.app.exit).toHaveBeenCalledWith(0);

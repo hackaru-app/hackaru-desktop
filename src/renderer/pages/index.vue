@@ -85,6 +85,7 @@ export default {
     async logout() {
       if (!window.confirm(this.$t('confirms.logout'))) return;
       await this.$store.dispatch('auth/logout');
+      this.$electron.ipcRenderer.send('logout');
       this.$electron.remote.app.relaunch();
       this.$electron.remote.app.exit(0);
     }
