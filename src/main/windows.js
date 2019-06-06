@@ -1,5 +1,3 @@
-'use strict';
-
 import path from 'path';
 import { app, ipcMain, BrowserWindow } from 'electron';
 import queryString from 'query-string';

@@ -1,5 +1,3 @@
-'use strict';
-
 import path from 'path';
 import { app, Menu, Tray } from 'electron';
 import { differenceInSeconds } from 'date-fns';

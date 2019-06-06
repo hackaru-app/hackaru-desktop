@@ -1,5 +1,3 @@
-'use strict';
-
 import '../renderer/store';
 import './windows';
 import './trackers';

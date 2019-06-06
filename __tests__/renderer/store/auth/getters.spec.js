@@ -77,7 +77,7 @@ describe('Getters', () => {
     });
 
     it('returns key correctly', () => {
-      expect(result).toBe('aHR0cDovL2FwaS5leGFtcGxlLmNvbS11aWQ=');
+      expect(result).toBe('aHR0cDovL2FwaS5leGFtcGxlLmNvbX0=');
     });
   });
 });

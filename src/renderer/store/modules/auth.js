@@ -108,7 +108,7 @@ export const getters = {
   },
   persistKey: (state, getters) => {
     const toBase64 = value => Buffer.from(value).toString('base64');
-    return toBase64(`${state.apiUrl}-${state.uid}`);
+    return toBase64(`${state.apiUrl}}`);
   },
   accessToken: state => {
     return state.accessToken;

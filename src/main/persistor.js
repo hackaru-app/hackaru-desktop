@@ -1,4 +1,5 @@
 import createPersistedState from 'vuex-persistedstate';
+import { ipcMain } from 'electron';
 import Storage from 'electron-store';
 import store from '../renderer/store';
 
@@ -27,11 +28,16 @@ export function persist(key) {
   storage.set('current', key);
 }
 
+export function logout() {
+  storage.delete('current');
+}
+
 function restoreState() {
   const key = storage.get('current');
   if (!key) return;
   persist(key);
-  store.dispatch('auth/restoreAccessToken');
 }
 
 restoreState();
+
+ipcMain.on('logout', () => logout());
