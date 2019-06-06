@@ -1,5 +1,3 @@
-'use strict';
-
 import { session, ipcMain, BrowserWindow } from 'electron';
 import { persist } from './persistor';
 import store from '../renderer/store';

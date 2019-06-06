@@ -1,5 +1,3 @@
-'use strict';
-
 import { app, powerMonitor } from 'electron';
 import psList from 'ps-list';
 import store from '../renderer/store';
