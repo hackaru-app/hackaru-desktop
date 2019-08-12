@@ -17,12 +17,6 @@
         "licenseUrl": "https://github.com/date-fns/date-fns/raw/master/LICENSE.md",
         "parents": "Hackaru"
     },
-    "electron-log": {
-        "licenses": "MIT",
-        "repository": "https://github.com/megahertz/electron-log",
-        "licenseUrl": "https://github.com/megahertz/electron-log/raw/master/LICENSE",
-        "parents": "Hackaru"
-    },
     "electron-promise-ipc": {
         "licenses": "MIT",
         "repository": "https://github.com/sibnerian/electron-promise-ipc",

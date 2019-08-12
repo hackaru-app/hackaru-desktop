@@ -1,5 +1,4 @@
 import '../renderer/store';
-import './error-logger';
 import './windows';
 import './trackers';
 import './dock-menu';
