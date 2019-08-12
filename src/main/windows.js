@@ -17,6 +17,9 @@ function createWindow(data) {
   };
 
   const win = new BrowserWindow({
+    webPreferences: {
+      nodeIntegration: true
+    },
     width: data.width,
     height: data.height,
     fullscreenable: false,
