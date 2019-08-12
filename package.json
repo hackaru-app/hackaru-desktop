@@ -17,7 +17,7 @@
     "pack:renderer": "cross-env NODE_ENV=production webpack --progress --colors --config .electron-vue/webpack.renderer.config.js",
     "test": "jest",
     "unit": "karma start test/unit/karma.conf.js",
-    "postinstall": "npm run license-third-party && electron-rebuild",
+    "postinstall": "npm run license-third-party && electron-builder install-app-deps",
     "license-third-party": "npm-license-crawler --onlyDirectDependencies --omitVersion --json src/renderer/assets/licenses.json"
   },
   "lint-staged": {
@@ -70,7 +70,7 @@
     }
   },
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.18.1",
     "camelcase-keys": "^5.0.0",
     "date-fns": "^1.30.1",
     "electron-log": "^3.0.7",
@@ -81,7 +81,7 @@
     "keytar": "^5.0.0-beta.0",
     "lodash.difference": "^4.5.0",
     "lodash.get": "^4.4.2",
-    "lodash.merge": "^4.6.1",
+    "lodash.merge": "^4.6.2",
     "lodash.omit": "^4.5.0",
     "lodash.union": "^4.6.0",
     "lodash.uniq": "^4.5.0",
@@ -132,10 +132,9 @@
     "del": "^3.0.0",
     "devtron": "^1.4.0",
     "electron": "^6.0.1",
-    "electron-builder": "^20.19.2",
+    "electron-builder": "^21.2.0",
     "electron-debug": "^1.5.0",
     "electron-devtools-installer": "^2.2.4",
-    "electron-rebuild": "^1.8.5",
     "eslint": "^4.19.1",
     "eslint-config-prettier": "^4.3.0",
     "eslint-config-standard": "^11.0.0",
