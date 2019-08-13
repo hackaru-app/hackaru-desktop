@@ -20,7 +20,7 @@ function findAccessTokenByUrl(url) {
 export async function showAuthentication(event) {
   await clearLocalStorage();
 
-  const browser = new BrowserWindow({ width: 400, height: 550 });
+  const browser = new BrowserWindow({ width: 400, height: 650 });
   browser.loadURL(store.getters['auth/authorizeUrl']);
 
   browser.webContents.on('did-navigate-in-page', (_, url) => {
