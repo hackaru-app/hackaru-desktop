@@ -1,48 +1,40 @@
 import { tracker } from '../schemas';
-import uniq from 'lodash.uniq';
 import uniqid from 'uniqid';
-import difference from 'lodash.difference';
 
-export const SET_PREV_WORKINGS = 'SET_PREV_WORKINGS';
-export const CLEAR_PREV_WORKINGS = 'CLEAR_PREV_WORKINGS';
+export const SET_WATCHING = 'SET_WATCHING';
 export const SET_STOP_ALL_ON_SUSPEND = 'SET_STOP_ALL_ON_SUSPEND';
 export const SET_STOP_ALL_ON_SHUTDOWN = 'SET_STOP_ALL_ON_SHUTDOWN';
 
 export const state = () => ({
-  prevWorkings: [],
+  watching: undefined,
   stopAllOnSuspend: true,
   stopAllOnShutdown: true
 });
 
 export const actions = {
-  update({ state, commit, dispatch, getters }) {
-    const started = difference(getters.workingProjects, state.prevWorkings);
-    const stopped = difference(state.prevWorkings, getters.workingProjects);
-
-    started.forEach(tracker => dispatch('start', tracker));
-    stopped.forEach(tracker => dispatch('stop', tracker));
-
-    commit(SET_PREV_WORKINGS, getters.workingProjects);
+  update({ state, commit, dispatch, getters, rootGetters }) {
+    dispatch('start');
+    dispatch('stop');
+    commit(SET_WATCHING, rootGetters['activities/working']);
   },
-  start({ dispatch, rootGetters }, projectId) {
-    const activity = rootGetters['activities/findByProject'](projectId);
-    if (activity) return;
+  start({ commit, dispatch, getters, rootGetters }) {
+    if (!getters.working || rootGetters['activities/working']) return;
     dispatch(
       'activities/add',
       {
-        projectId,
+        projectId: getters.working.project.id,
+        description: getters.working.description,
         startedAt: `${new Date()}`
       },
       { root: true }
     );
   },
-  stop({ dispatch, rootGetters }, projectId) {
-    const activity = rootGetters['activities/findByProject'](projectId);
-    if (!activity) return;
+  stop({ state, commit, dispatch, getters, rootGetters }) {
+    if (getters.working || !getters.watchingActivityWorking) return;
     dispatch(
       'activities/update',
       {
-        id: activity.id,
+        id: rootGetters['activities/working'].id,
         stoppedAt: `${new Date()}`
       },
       { root: true }
@@ -55,6 +47,7 @@ export const actions = {
         json: {
           id: uniqid(),
           project: payload.projectId,
+          description: payload.description,
           process: payload.process
         },
         schema: tracker
@@ -64,25 +57,12 @@ export const actions = {
   },
   delete({ dispatch }, id) {
     dispatch('entities/delete', { name: 'trackers', id }, { root: true });
-  },
-  stopAll({ dispatch, getters, commit }) {
-    getters.workingProjects.forEach(id => dispatch('stop', id));
-    commit(CLEAR_PREV_WORKINGS);
-  },
-  setStopAllOnSuspend({ commit }, value) {
-    commit(SET_STOP_ALL_ON_SUSPEND, value);
-  },
-  setStopAllOnShutdown({ commit }, value) {
-    commit(SET_STOP_ALL_ON_SHUTDOWN, value);
   }
 };
 
 export const mutations = {
-  [SET_PREV_WORKINGS](state, payload) {
-    state.prevWorkings = payload;
-  },
-  [CLEAR_PREV_WORKINGS](state, payload) {
-    state.prevWorkings = [];
+  [SET_WATCHING](state, activity) {
+    state.watching = activity;
   },
   [SET_STOP_ALL_ON_SUSPEND](state, payload) {
     state.stopAllOnSuspend = payload;
@@ -98,13 +78,13 @@ export const getters = {
       tracker => tracker.project !== undefined
     );
   },
-  workingProjects(state, getters, rootState, rootGetters) {
+  working(state, getters, rootState, rootGetters) {
     const processes = rootGetters['processes/all'];
-    return uniq(
-      getters.all
-        .filter(tracker => processes.includes(tracker.process))
-        .map(({ project }) => (project ? project.id : null))
-    );
+    return getters.all.find(tracker => processes.includes(tracker.process));
+  },
+  watchingActivityWorking(state, getters, rootState, rootGetters) {
+    const activity = rootGetters['activities/working'];
+    return activity && state.watching && activity.id === state.watching.id;
   },
   stopAllOnSuspend(state) {
     return state.stopAllOnSuspend;

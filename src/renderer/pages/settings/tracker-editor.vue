@@ -9,6 +9,14 @@
         <project-select v-model="projectId" class="project-select" />
       </div>
       <div class="item">
+        <label>{{ $t('description') }}</label>
+        <input
+          v-model="description"
+          :placeholder="$t('descriptionPlaceholder')"
+          class="description"
+        />
+      </div>
+      <div class="item">
         <label>{{ $t('process') }}</label>
         <multiselect
           v-model="process"
@@ -49,7 +57,8 @@ export default {
   data() {
     return {
       projectId: null,
-      process: ''
+      process: '',
+      description: ''
     };
   },
   computed: {
@@ -61,6 +70,7 @@ export default {
     addTracker() {
       this.$store.dispatch('trackers/add', {
         projectId: this.projectId,
+        description: this.description,
         process: this.process.name
       });
       this.$store.dispatch('toast/success', this.$t('added'));
