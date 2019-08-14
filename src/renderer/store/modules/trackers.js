@@ -1,36 +1,34 @@
 import { tracker } from '../schemas';
 import uniqid from 'uniqid';
 
-export const SET_WATCHING = 'SET_WATCHING';
+export const SET_ACTIVED = 'SET_ACTIVED';
 export const SET_STOP_ALL_ON_SUSPEND = 'SET_STOP_ALL_ON_SUSPEND';
 export const SET_STOP_ALL_ON_SHUTDOWN = 'SET_STOP_ALL_ON_SHUTDOWN';
 
 export const state = () => ({
-  watching: undefined,
+  actived: undefined,
   stopAllOnSuspend: true,
   stopAllOnShutdown: true
 });
 
 export const actions = {
   update({ state, commit, dispatch, getters, rootGetters }) {
-    dispatch('start');
-    dispatch('stop');
-    commit(SET_WATCHING, rootGetters['activities/working']);
+    if (getters.active && !state.actived) dispatch('start');
+    if (!getters.active && state.actived) dispatch('stop');
+    commit(SET_ACTIVED, !!getters.active);
   },
-  start({ commit, dispatch, getters, rootGetters }) {
-    if (!getters.working || rootGetters['activities/working']) return;
+  start({ dispatch, getters }) {
     dispatch(
       'activities/add',
       {
-        projectId: getters.working.project.id,
-        description: getters.working.description,
+        projectId: getters.active.project.id,
+        description: getters.active.description,
         startedAt: `${new Date()}`
       },
       { root: true }
     );
   },
   stop({ state, commit, dispatch, getters, rootGetters }) {
-    if (getters.working || !getters.watchingActivityWorking) return;
     dispatch(
       'activities/update',
       {
@@ -61,8 +59,8 @@ export const actions = {
 };
 
 export const mutations = {
-  [SET_WATCHING](state, activity) {
-    state.watching = activity;
+  [SET_ACTIVED](state, tracker) {
+    state.actived = tracker;
   },
   [SET_STOP_ALL_ON_SUSPEND](state, payload) {
     state.stopAllOnSuspend = payload;
@@ -78,13 +76,9 @@ export const getters = {
       tracker => tracker.project !== undefined
     );
   },
-  working(state, getters, rootState, rootGetters) {
+  active(state, getters, rootState, rootGetters) {
     const processes = rootGetters['processes/all'];
     return getters.all.find(tracker => processes.includes(tracker.process));
-  },
-  watchingActivityWorking(state, getters, rootState, rootGetters) {
-    const activity = rootGetters['activities/working'];
-    return activity && state.watching && activity.id === state.watching.id;
   },
   stopAllOnSuspend(state) {
     return state.stopAllOnSuspend;
