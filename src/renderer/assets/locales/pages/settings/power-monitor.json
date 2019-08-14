@@ -1,12 +1,12 @@
 {
   "en": {
     "title": "PowerMonitor",
-    "suspend": "Stop auto tracking when suspend.",
-    "shutdown": "Stop auto tracking when shutdown."
+    "suspend": "Stop timer when suspend.",
+    "shutdown": "Stop timer when shutdown."
   },
   "ja": {
     "title": "電源監視",
-    "suspend": "スリープ時に自動計測を停止",
-    "shutdown": "シャットダウン時に自動計測を停止"
+    "suspend": "スリープ時に計測を停止",
+    "shutdown": "シャットダウン時に計測を停止"
   }
 }

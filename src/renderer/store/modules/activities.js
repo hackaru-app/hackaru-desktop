@@ -2,6 +2,14 @@ import { activity } from '../schemas';
 import notifier from 'node-notifier';
 import path from 'path';
 
+export const SET_STOP_ON_SUSPEND = 'SET_STOP_ON_SUSPEND';
+export const SET_STOP_ON_SHUTDOWN = 'SET_STOP_ON_SHUTDOWN';
+
+export const state = () => ({
+  stopOnSuspend: true,
+  stopOnShutdown: true
+});
+
 function notify({ title, message }) {
   notifier.notify({
     title,
@@ -59,7 +67,9 @@ export const actions = {
       return false;
     }
   },
-  async stop({ commit, dispatch }, id) {
+  async stop({ commit, getters, dispatch }) {
+    if (!getters.working) return;
+    const id = getters.working.id;
     try {
       const { data } = await dispatch(
         'auth-api/request',
@@ -134,6 +144,21 @@ export const actions = {
       dispatch('toast/error', e, { root: true });
       return false;
     }
+  },
+  setStopOnSuspend({ commit }, stopOnSuspend) {
+    commit(SET_STOP_ON_SUSPEND, stopOnSuspend);
+  },
+  setStopOnShutdown({ commit }, stopOnShutdown) {
+    commit(SET_STOP_ON_SHUTDOWN, stopOnShutdown);
+  }
+};
+
+export const mutations = {
+  [SET_STOP_ON_SUSPEND](state, stopOnSuspend) {
+    state.stopOnSuspend = stopOnSuspend;
+  },
+  [SET_STOP_ON_SHUTDOWN](state, stopOnShutdown) {
+    state.stopOnShutdown = stopOnShutdown;
   }
 };
 
@@ -151,10 +176,18 @@ export const getters = {
     return getters.workings.find(
       ({ project }) => (project ? project.id : null) === projectId
     );
+  },
+  stopOnSuspend(state) {
+    return state.stopOnSuspend;
+  },
+  stopOnShutdown(state) {
+    return state.stopOnShutdown;
   }
 };
 
 export default {
+  state,
+  actions,
   getters,
-  actions
+  mutations
 };

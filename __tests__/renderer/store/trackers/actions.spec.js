@@ -71,7 +71,9 @@ describe('Actions', () => {
       });
 
       it('dispatch stop', () => {
-        expect(dispatch).toHaveBeenCalledWith('stop');
+        expect(dispatch).toHaveBeenCalledWith('activities/stop', undefined, {
+          root: true
+        });
       });
 
       it('commit SET_STARTED', () => {
@@ -122,30 +124,6 @@ describe('Actions', () => {
           projectId: 1,
           description: 'Review',
           startedAt: `${new Date()}`
-        },
-        { root: true }
-      );
-    });
-  });
-
-  describe('when dispatch stop', () => {
-    const dispatch = jest.fn();
-    const rootGetters = {
-      'activities/working': {
-        id: 1
-      }
-    };
-
-    beforeEach(() => {
-      actions.stop({ rootGetters, dispatch });
-    });
-
-    it('dispatch activities/update', () => {
-      expect(dispatch).toHaveBeenCalledWith(
-        'activities/update',
-        {
-          id: 1,
-          stoppedAt: `${new Date()}`
         },
         { root: true }
       );

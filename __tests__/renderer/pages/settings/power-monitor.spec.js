@@ -7,8 +7,8 @@ describe('PowerMonitor', () => {
 
   const $store = new Store({
     getters: {
-      'trackers/stopAllOnShutdown': false,
-      'trackers/stopAllOnSuspend': false
+      'activities/stopOnShutdown': false,
+      'activities/stopOnSuspend': false
     }
   });
 
@@ -25,9 +25,9 @@ describe('PowerMonitor', () => {
       wrapper.find('.suspend').setChecked();
     });
 
-    it('dispatch trackers/setStopAllOnSuspend', () => {
+    it('dispatch activities/setStopOnSuspend', () => {
       expect($store.dispatch).toHaveBeenCalledWith(
-        'trackers/setStopAllOnSuspend',
+        'activities/setStopOnSuspend',
         true
       );
     });
@@ -39,9 +39,9 @@ describe('PowerMonitor', () => {
       wrapper.find('.shutdown').setChecked();
     });
 
-    it('dispatch trackers/setStopAllOnShutdown', () => {
+    it('dispatch activities/setStopOnShutdown', () => {
       expect($store.dispatch).toHaveBeenCalledWith(
-        'trackers/setStopAllOnShutdown',
+        'activities/setStopOnShutdown',
         true
       );
     });

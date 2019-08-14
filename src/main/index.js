@@ -4,6 +4,7 @@ import './trackers';
 import './dock-menu';
 import './tray';
 import './oauth-window';
+import './power-monitor';
 import './persistor';
 
 /**

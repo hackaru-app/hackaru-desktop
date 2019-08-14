@@ -2,19 +2,19 @@ import { tracker } from '../schemas';
 import uniqid from 'uniqid';
 
 export const SET_STARTED = 'SET_STARTED';
-export const SET_STOP_ALL_ON_SUSPEND = 'SET_STOP_ALL_ON_SUSPEND';
-export const SET_STOP_ALL_ON_SHUTDOWN = 'SET_STOP_ALL_ON_SHUTDOWN';
 
 export const state = () => ({
-  started: undefined,
-  stopAllOnSuspend: true,
-  stopAllOnShutdown: true
+  started: undefined
 });
 
 export const actions = {
   update({ state, commit, dispatch, getters, rootGetters }) {
-    if (getters.tracking && !state.started) dispatch('start');
-    if (!getters.tracking && state.started) dispatch('stop');
+    if (getters.tracking && !state.started) {
+      dispatch('start');
+    }
+    if (!getters.tracking && state.started) {
+      dispatch('activities/stop', undefined, { root: true });
+    }
     commit(SET_STARTED, !!getters.tracking);
   },
   start({ dispatch, getters }) {
@@ -24,16 +24,6 @@ export const actions = {
         projectId: getters.tracking.project.id,
         description: getters.tracking.description,
         startedAt: `${new Date()}`
-      },
-      { root: true }
-    );
-  },
-  stop({ state, commit, dispatch, getters, rootGetters }) {
-    dispatch(
-      'activities/update',
-      {
-        id: rootGetters['activities/working'].id,
-        stoppedAt: `${new Date()}`
       },
       { root: true }
     );
@@ -61,12 +51,6 @@ export const actions = {
 export const mutations = {
   [SET_STARTED](state, started) {
     state.started = started;
-  },
-  [SET_STOP_ALL_ON_SUSPEND](state, payload) {
-    state.stopAllOnSuspend = payload;
-  },
-  [SET_STOP_ALL_ON_SHUTDOWN](state, payload) {
-    state.stopAllOnShutdown = payload;
   }
 };
 
@@ -79,12 +63,6 @@ export const getters = {
   tracking(state, getters, rootState, rootGetters) {
     const processes = rootGetters['processes/all'];
     return getters.all.find(tracker => processes.includes(tracker.process));
-  },
-  stopAllOnSuspend(state) {
-    return state.stopAllOnSuspend;
-  },
-  stopAllOnShutdown(state) {
-    return state.stopAllOnShutdown;
   }
 };
 
