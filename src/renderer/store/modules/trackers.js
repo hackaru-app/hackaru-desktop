@@ -1,49 +1,29 @@
 import { tracker } from '../schemas';
-import uniq from 'lodash.uniq';
 import uniqid from 'uniqid';
-import difference from 'lodash.difference';
 
-export const SET_PREV_WORKINGS = 'SET_PREV_WORKINGS';
-export const CLEAR_PREV_WORKINGS = 'CLEAR_PREV_WORKINGS';
-export const SET_STOP_ALL_ON_SUSPEND = 'SET_STOP_ALL_ON_SUSPEND';
-export const SET_STOP_ALL_ON_SHUTDOWN = 'SET_STOP_ALL_ON_SHUTDOWN';
+export const SET_STARTED = 'SET_STARTED';
 
 export const state = () => ({
-  prevWorkings: [],
-  stopAllOnSuspend: true,
-  stopAllOnShutdown: true
+  started: undefined
 });
 
 export const actions = {
-  update({ state, commit, dispatch, getters }) {
-    const started = difference(getters.workingProjects, state.prevWorkings);
-    const stopped = difference(state.prevWorkings, getters.workingProjects);
-
-    started.forEach(tracker => dispatch('start', tracker));
-    stopped.forEach(tracker => dispatch('stop', tracker));
-
-    commit(SET_PREV_WORKINGS, getters.workingProjects);
+  update({ state, commit, dispatch, getters, rootGetters }) {
+    if (getters.tracking && !state.started) {
+      dispatch('start');
+    }
+    if (!getters.tracking && state.started) {
+      dispatch('activities/stop', undefined, { root: true });
+    }
+    commit(SET_STARTED, !!getters.tracking);
   },
-  start({ dispatch, rootGetters }, projectId) {
-    const activity = rootGetters['activities/findByProject'](projectId);
-    if (activity) return;
+  start({ dispatch, getters }) {
     dispatch(
       'activities/add',
       {
-        projectId,
+        projectId: getters.tracking.project.id,
+        description: getters.tracking.description,
         startedAt: `${new Date()}`
-      },
-      { root: true }
-    );
-  },
-  stop({ dispatch, rootGetters }, projectId) {
-    const activity = rootGetters['activities/findByProject'](projectId);
-    if (!activity) return;
-    dispatch(
-      'activities/update',
-      {
-        id: activity.id,
-        stoppedAt: `${new Date()}`
       },
       { root: true }
     );
@@ -55,6 +35,7 @@ export const actions = {
         json: {
           id: uniqid(),
           project: payload.projectId,
+          description: payload.description,
           process: payload.process
         },
         schema: tracker
@@ -64,31 +45,12 @@ export const actions = {
   },
   delete({ dispatch }, id) {
     dispatch('entities/delete', { name: 'trackers', id }, { root: true });
-  },
-  stopAll({ dispatch, getters, commit }) {
-    getters.workingProjects.forEach(id => dispatch('stop', id));
-    commit(CLEAR_PREV_WORKINGS);
-  },
-  setStopAllOnSuspend({ commit }, value) {
-    commit(SET_STOP_ALL_ON_SUSPEND, value);
-  },
-  setStopAllOnShutdown({ commit }, value) {
-    commit(SET_STOP_ALL_ON_SHUTDOWN, value);
   }
 };
 
 export const mutations = {
-  [SET_PREV_WORKINGS](state, payload) {
-    state.prevWorkings = payload;
-  },
-  [CLEAR_PREV_WORKINGS](state, payload) {
-    state.prevWorkings = [];
-  },
-  [SET_STOP_ALL_ON_SUSPEND](state, payload) {
-    state.stopAllOnSuspend = payload;
-  },
-  [SET_STOP_ALL_ON_SHUTDOWN](state, payload) {
-    state.stopAllOnShutdown = payload;
+  [SET_STARTED](state, started) {
+    state.started = started;
   }
 };
 
@@ -98,19 +60,9 @@ export const getters = {
       tracker => tracker.project !== undefined
     );
   },
-  workingProjects(state, getters, rootState, rootGetters) {
+  tracking(state, getters, rootState, rootGetters) {
     const processes = rootGetters['processes/all'];
-    return uniq(
-      getters.all
-        .filter(tracker => processes.includes(tracker.process))
-        .map(({ project }) => (project ? project.id : null))
-    );
-  },
-  stopAllOnSuspend(state) {
-    return state.stopAllOnSuspend;
-  },
-  stopAllOnShutdown(state) {
-    return state.stopAllOnShutdown;
+    return getters.all.find(tracker => processes.includes(tracker.process));
   }
 };
 

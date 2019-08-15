@@ -34,7 +34,7 @@ describe('Getters', () => {
     });
   });
 
-  describe('when call workingProjects', () => {
+  describe('when call tracking', () => {
     const mockGetters = {
       all: [
         { project: { id: 1 }, process: 'Firefox' },
@@ -48,29 +48,11 @@ describe('Getters', () => {
     };
 
     beforeEach(() => {
-      result = getters.workingProjects({}, mockGetters, {}, rootGetters);
+      result = getters.tracking({}, mockGetters, {}, rootGetters);
     });
 
-    it('unique project-id', () => {
-      expect(result).toEqual([1]);
-    });
-  });
-
-  describe('when call workingProjects but project is undefined', () => {
-    const mockGetters = {
-      all: [{ project: undefined, process: 'Firefox' }]
-    };
-
-    const rootGetters = {
-      'processes/all': ['Firefox']
-    };
-
-    beforeEach(() => {
-      result = getters.workingProjects({}, mockGetters, {}, rootGetters);
-    });
-
-    it('returns null', () => {
-      expect(result).toEqual([null]);
+    it('returns the first tracker found', () => {
+      expect(result).toEqual({ project: { id: 1 }, process: 'Firefox' });
     });
   });
 });

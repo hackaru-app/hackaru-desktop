@@ -34,13 +34,15 @@ describe('TrackerEditor', () => {
       wrapper = factory();
       wrapper.find('.project-select').vm.$emit('input', 1);
       wrapper.find('.process-select').vm.$emit('input', { name: 'Firefox' });
+      wrapper.find('.description').setValue('Review my task.');
       wrapper.find('form').trigger('submit.prevent');
     });
 
     it('dispatch trackers/add', () => {
       expect($store.dispatch).toHaveBeenCalledWith('trackers/add', {
         projectId: 1,
-        process: 'Firefox'
+        process: 'Firefox',
+        description: 'Review my task.'
       });
     });
 

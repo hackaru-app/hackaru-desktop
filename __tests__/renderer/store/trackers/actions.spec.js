@@ -8,119 +8,125 @@ describe('Actions', () => {
   MockDate.set('2019-01-31T01:23:45');
 
   describe('when dispatch update', () => {
-    const state = {
-      prevWorkings: [
-        { process: 'Firefox' },
-        { process: 'Chrome' },
-        { process: 'Opera' }
-      ]
-    };
-
-    const getters = {
-      workingProjects: [
-        { process: 'Firefox' },
-        { process: 'Safari' },
-        { process: 'Edge' }
-      ]
-    };
-
     const commit = jest.fn();
     const dispatch = jest.fn();
 
-    beforeEach(() => {
-      actions.update({ state, commit, getters, dispatch });
+    describe('when start tracking', () => {
+      const state = {
+        started: false
+      };
+
+      const getters = {
+        tracking: {
+          project: { id: 1 },
+          description: 'Review'
+        }
+      };
+
+      beforeEach(() => {
+        actions.update({ state, commit, getters, dispatch });
+      });
+
+      it('dispatch start', () => {
+        expect(dispatch).toHaveBeenCalledWith('start');
+      });
+
+      it('commit SET_STARTED', () => {
+        expect(commit).toHaveBeenCalledWith('SET_STARTED', true);
+      });
     });
 
-    it('dispatch start', () => {
-      expect(dispatch).toHaveBeenCalledWith('start', { process: 'Safari' });
-      expect(dispatch).toHaveBeenCalledWith('start', { process: 'Edge' });
+    describe('when start tracking but already started', () => {
+      const state = {
+        started: true
+      };
+
+      const getters = {
+        tracking: {
+          project: { id: 1 },
+          description: 'Review'
+        }
+      };
+
+      beforeEach(() => {
+        actions.update({ state, commit, getters, dispatch });
+      });
+
+      it('does not dispatcth', () => {
+        expect(dispatch).not.toHaveBeenCalled();
+      });
     });
 
-    it('dispatch stop', () => {
-      expect(dispatch).toHaveBeenCalledWith('stop', { process: 'Chrome' });
-      expect(dispatch).toHaveBeenCalledWith('stop', { process: 'Opera' });
+    describe('when exit tracking', () => {
+      const state = {
+        started: true
+      };
+
+      const getters = {
+        active: undefined
+      };
+
+      beforeEach(() => {
+        actions.update({ state, commit, getters, dispatch });
+      });
+
+      it('dispatch stop', () => {
+        expect(dispatch).toHaveBeenCalledWith('activities/stop', undefined, {
+          root: true
+        });
+      });
+
+      it('commit SET_STARTED', () => {
+        expect(commit).toHaveBeenCalledWith('SET_STARTED', false);
+      });
     });
 
-    it('commit SET_PREV_WORKINGS', () => {
-      expect(commit).toHaveBeenCalledWith('SET_PREV_WORKINGS', [
-        { process: 'Firefox' },
-        { process: 'Safari' },
-        { process: 'Edge' }
-      ]);
+    describe('when exit tracking but already stopped', () => {
+      const state = {
+        started: false
+      };
+
+      const getters = {
+        active: undefined
+      };
+
+      beforeEach(() => {
+        actions.update({ state, commit, getters, dispatch });
+      });
+
+      it('does not dispatcth', () => {
+        expect(dispatch).not.toHaveBeenCalled();
+      });
+
+      it('commit SET_STARTED', () => {
+        expect(commit).toHaveBeenCalledWith('SET_STARTED', false);
+      });
     });
   });
 
   describe('when dispatch start', () => {
     const dispatch = jest.fn();
-    const rootGetters = {
-      'activities/findByProject': () => undefined
+    const getters = {
+      tracking: {
+        project: { id: 1 },
+        description: 'Review'
+      }
     };
 
     beforeEach(() => {
-      actions.start({ rootGetters, dispatch }, 2);
+      actions.start({ getters, dispatch });
     });
 
     it('dispatch activities/add', () => {
       expect(dispatch).toHaveBeenCalledWith(
         'activities/add',
         {
-          projectId: 2,
+          projectId: 1,
+          description: 'Review',
           startedAt: `${new Date()}`
         },
         { root: true }
       );
-    });
-  });
-
-  describe('when dispatch stop', () => {
-    const dispatch = jest.fn();
-    const rootGetters = {
-      'activities/findByProject': () => ({ id: 1 })
-    };
-
-    beforeEach(() => {
-      actions.start({ rootGetters, dispatch }, 2);
-    });
-
-    it('does not dispatch', () => {
-      expect(dispatch).not.toHaveBeenCalled();
-    });
-  });
-
-  describe('when dispatch stop', () => {
-    const dispatch = jest.fn();
-    const rootGetters = {
-      'activities/findByProject': () => ({ id: 1 })
-    };
-
-    beforeEach(() => {
-      actions.stop({ rootGetters, dispatch }, 2);
-    });
-
-    it('dispatch activities/update', () => {
-      expect(dispatch).toHaveBeenCalledWith(
-        'activities/update',
-        {
-          id: 1,
-          stoppedAt: `${new Date()}`
-        },
-        { root: true }
-      );
-    });
-  });
-
-  describe('when dispatch stop but project is already stopped', () => {
-    const dispatch = jest.fn();
-    const rootGetters = {
-      'activities/findByProject': () => undefined
-    };
-
-    beforeEach(() => {
-      actions.stop({ rootGetters, dispatch }, 2);
-    });
-
-    it('does not dispatch', () => {
-      expect(dispatch).not.toHaveBeenCalled();
     });
   });
 
@@ -133,6 +139,7 @@ describe('Actions', () => {
         {
           projectId: 2,
           process: { name: 'Firefox' },
+          description: 'Review',
           schema: tracker
         }
       );
@@ -145,7 +152,8 @@ describe('Actions', () => {
           json: {
             id: 'id',
             project: 2,
-            process: { name: 'Firefox' }
+            process: { name: 'Firefox' },
+            description: 'Review'
           },
           schema: tracker
         },
@@ -167,27 +175,6 @@ describe('Actions', () => {
         { name: 'trackers', id: 'id' },
         { root: true }
       );
-    });
-  });
-
-  describe('when dispatch stopAll', () => {
-    const dispatch = jest.fn();
-    const commit = jest.fn();
-    const getters = {
-      workingProjects: [1, 2]
-    };
-
-    beforeEach(() => {
-      actions.stopAll({ commit, getters, dispatch }, 'id');
-    });
-
-    it('dispatch stop all', () => {
-      expect(dispatch).toHaveBeenCalledWith('stop', 1);
-      expect(dispatch).toHaveBeenCalledWith('stop', 2);
-    });
-
-    it('commit CLEAR_PREV_WORKINGS', () => {
-      expect(commit).toHaveBeenCalledWith('CLEAR_PREV_WORKINGS');
     });
   });
 });

@@ -72,9 +72,10 @@ describe('Actions', () => {
 
   describe('when dispatch stop', () => {
     const dispatch = jest.fn(() => ({ data: {} }));
+    const getters = { working: { id: 1 } };
 
     beforeEach(() => {
-      actions.stop({ dispatch }, 1);
+      actions.stop({ dispatch, getters });
     });
 
     it('dispatch auth-api/request', () => {
@@ -103,6 +104,19 @@ describe('Actions', () => {
         },
         { root: true }
       );
+    });
+  });
+
+  describe('when dispatch stop but activity is not working', () => {
+    const dispatch = jest.fn(() => ({ data: {} }));
+    const getters = { working: undefined };
+
+    beforeEach(() => {
+      actions.stop({ dispatch, getters });
+    });
+
+    it('does not dispatch auth-api/request', () => {
+      expect(dispatch).not.toHaveBeenCalled();
     });
   });
 

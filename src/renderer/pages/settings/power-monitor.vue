@@ -12,16 +12,14 @@
 
       <div class="form">
         <label>
-          <input v-model="stopAllOnSuspend" class="suspend" type="checkbox" />{{
+          <input v-model="stopOnSuspend" class="suspend" type="checkbox" />{{
             $t('suspend')
           }}
         </label>
         <label>
-          <input
-            v-model="stopAllOnShutdown"
-            class="shutdown"
-            type="checkbox"
-          />{{ $t('shutdown') }}
+          <input v-model="stopOnShutdown" class="shutdown" type="checkbox" />{{
+            $t('shutdown')
+          }}
         </label>
       </div>
     </section>
@@ -40,20 +38,20 @@ export default {
     Icon
   },
   computed: {
-    stopAllOnSuspend: {
+    stopOnSuspend: {
       get() {
-        return this.$store.getters['trackers/stopAllOnSuspend'];
+        return this.$store.getters['activities/stopOnSuspend'];
       },
       set(value) {
-        this.$store.dispatch('trackers/setStopAllOnSuspend', value);
+        this.$store.dispatch('activities/setStopOnSuspend', value);
       }
     },
-    stopAllOnShutdown: {
+    stopOnShutdown: {
       get() {
-        return this.$store.getters['trackers/stopAllOnShutdown'];
+        return this.$store.getters['activities/stopOnShutdown'];
       },
       set(value) {
-        this.$store.dispatch('trackers/setStopAllOnShutdown', value);
+        this.$store.dispatch('activities/setStopOnShutdown', value);
       }
     }
   }

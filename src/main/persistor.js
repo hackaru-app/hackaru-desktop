@@ -16,8 +16,8 @@ export function persist(key) {
       'auth.webUrl',
       'auth.apiUrl',
       'entities.data.trackers',
-      'trackers.stopAllOnSuspend',
-      'trackers.stopAllOnShutdown'
+      'activites.stopOnSuspend',
+      'activites.stopOnShutdown'
     ],
     storage: {
       getItem: key => storage.get(key),
