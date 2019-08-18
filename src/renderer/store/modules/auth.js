@@ -67,19 +67,23 @@ export const actions = {
     }
   },
   async logout({ state, commit, dispatch }) {
-    await dispatch(
-      'api/request',
-      {
-        url: '/v1/oauth/revoke',
-        method: 'post',
-        data: {
-          client_id: state.uid,
-          client_secret: state.secret,
-          token: state.accessToken
-        }
-      },
-      { root: true }
-    );
+    try {
+      await dispatch(
+        'api/request',
+        {
+          url: '/v1/oauth/revoke',
+          method: 'post',
+          data: {
+            client_id: state.uid,
+            client_secret: state.secret,
+            token: state.accessToken
+          }
+        },
+        { root: true }
+      );
+    } catch (e) {
+      dispatch('toast/error', e, { root: true });
+    }
     await keytar.deletePassword(state.service, state.uid);
     commit(CLEAR_ACCESS_TOKEN);
   },
