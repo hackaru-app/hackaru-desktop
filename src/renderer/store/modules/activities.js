@@ -167,11 +167,6 @@ export const getters = {
   working(state, getters) {
     return getters.all.find(({ stoppedAt }) => !stoppedAt);
   },
-  findByProject: (state, getters) => projectId => {
-    return getters.workings.find(
-      ({ project }) => (project ? project.id : null) === projectId
-    );
-  },
   stopOnSuspend(state) {
     return state.stopOnSuspend;
   },

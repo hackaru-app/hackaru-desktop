@@ -33,32 +33,4 @@ describe('Getters', () => {
       expect(result.id).toBe(2);
     });
   });
-
-  describe('when call findByProject', () => {
-    const mockGetters = {
-      workings: [{ project: { id: 2 } }]
-    };
-
-    beforeEach(() => {
-      result = getters.findByProject({}, mockGetters, {}, {})(2);
-    });
-
-    it('returns activity', () => {
-      expect(result).toEqual({ project: { id: 2 } });
-    });
-  });
-
-  describe('when call findByProject but id is null', () => {
-    const mockGetters = {
-      workings: [{ project: null }]
-    };
-
-    beforeEach(() => {
-      result = getters.findByProject({}, mockGetters, {}, {})(null);
-    });
-
-    it('returns activity', () => {
-      expect(result).toEqual({ project: null });
-    });
-  });
 });
