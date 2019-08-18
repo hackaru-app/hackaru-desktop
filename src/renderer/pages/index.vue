@@ -135,7 +135,7 @@ export default {
 .timer {
   display: flex;
   position: absolute;
-  top: 0;
+  top: 5px;
   width: 100%;
   height: 100vh;
   justify-content: center;
