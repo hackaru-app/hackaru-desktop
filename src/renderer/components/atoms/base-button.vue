@@ -13,7 +13,7 @@
   justify-content: center;
   align-items: center;
   display: flex;
-  line-height: 1.5em;
+  line-height: 1;
   border-radius: 5px;
   background: none;
   border: 0;
