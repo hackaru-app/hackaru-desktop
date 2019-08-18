@@ -42,4 +42,17 @@ describe('Auth', () => {
       );
     });
   });
+
+  describe('when click submit-button but fetch app token failed', () => {
+    beforeEach(() => {
+      $store.dispatch.mockReturnValue(false);
+      wrapper = factory();
+      wrapper.find('.api-url').vm.$emit('input', 'https://www.example.com');
+      wrapper.find('form').trigger('submit.prevent');
+    });
+
+    it('does not send showAuthentication', () => {
+      expect($electron.ipcRenderer.send).not.toHaveBeenCalled();
+    });
+  });
 });

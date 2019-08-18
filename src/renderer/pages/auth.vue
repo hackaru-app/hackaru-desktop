@@ -36,7 +36,8 @@ export default {
   },
   methods: {
     async authenticate() {
-      await this.$store.dispatch('auth/fetchAppToken', this.apiUrl);
+      if (!(await this.$store.dispatch('auth/fetchAppToken', this.apiUrl)))
+        return;
       this.$electron.ipcRenderer.send('showAuthentication');
       this.$electron.ipcRenderer.on('authenticated', () => {
         this.$store.dispatch('toast/success', this.$t('loggedIn'));
