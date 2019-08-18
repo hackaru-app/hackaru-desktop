@@ -151,7 +151,7 @@ export default {
 }
 .timer {
   display: flex;
-  padding-top: 70px;
+  padding-top: 60px;
   justify-content: center;
   flex-direction: column;
   align-items: center;
