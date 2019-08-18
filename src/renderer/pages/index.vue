@@ -33,6 +33,10 @@
         </base-button> -->
       </div>
 
+      <base-button class="trash-button">
+        <icon name="trash-icon" />
+      </base-button>
+
       <footer class="footer">
         <div class="left">
           <base-button
@@ -131,6 +135,12 @@ export default {
   width: 100%;
   padding: 0 30px;
   border: 0;
+}
+.trash-button {
+  position: absolute;
+  bottom: 60px;
+  right: 10px;
+  color: $red;
 }
 .timer {
   display: flex;
