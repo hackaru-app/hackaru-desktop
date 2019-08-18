@@ -73,7 +73,7 @@ export default {
       const props = this.working || {};
       this.id = props.id;
       this.startedAt = props.startedAt;
-      this.project = props.project && props.project.id;
+      this.projectId = props.project && props.project.id;
       this.description = props.description;
     }
   }
