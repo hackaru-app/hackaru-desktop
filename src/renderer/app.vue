@@ -7,6 +7,7 @@
 
 <script>
 import Toast from './components/organisms/toast';
+import 'typeface-roboto/index.css';
 
 export default {
   name: 'Hackaru',

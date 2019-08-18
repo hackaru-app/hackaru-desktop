@@ -122,7 +122,7 @@ export default {
 .timer-form-item {
   border-bottom: 1px $border solid;
   padding: 0 0;
-  height: 58px;
+  height: 60px;
   align-items: center;
   display: flex;
 }
@@ -146,6 +146,7 @@ export default {
   time {
     font-size: 46px;
     font-family: Roboto, sans-serif;
+    font-weight: 300;
     margin-bottom: 10px;
   }
 }

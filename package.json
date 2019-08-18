@@ -90,6 +90,7 @@
     "ps-list": "^6.0.0",
     "query-string": "^6.2.0",
     "snakecase-keys": "^2.1.0",
+    "typeface-roboto": "0.0.75",
     "uniqid": "^5.0.3",
     "vue": "^2.5.16",
     "vue-electron": "^1.0.6",
