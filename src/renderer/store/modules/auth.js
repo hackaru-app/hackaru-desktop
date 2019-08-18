@@ -62,8 +62,10 @@ export const actions = {
         uid: data.application.uid,
         secret: data.application.secret
       });
+      return true;
     } catch (e) {
       dispatch('toast/error', e, { root: true });
+      return false;
     }
   },
   async logout({ state, commit, dispatch }) {
