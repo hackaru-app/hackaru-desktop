@@ -1,23 +1,27 @@
-<i18n src="@/assets/locales/pages/index.json" />
+<i18n src="@/assets/locales/components/organisms/big-timer.json" />
 
 <template>
-  <section class="big-timer">
+  <form class="big-timer" @submit.prevent="submit">
     <div class="form">
       <div class="form-item">
-        <project-select v-model="projectId" class="project-select" />
+        <project-select
+          :value="projectId"
+          class="project-select"
+          @input="selectProject"
+        />
       </div>
       <div class="form-item">
         <input
           v-model="description"
           placeholder="作業内容や備考など"
           class="description"
+          @keypress.enter.prevent="enterDescription"
         />
       </div>
     </div>
 
     <div class="timer">
-      <ticker :started-at="startedAt" />
-
+      <ticker :started-at="startedAt" :class="['ticker', { stopped: !id }]" />
       <base-button
         v-if="!id"
         type="submit"
@@ -33,7 +37,7 @@
     <base-button class="trash-button">
       <icon name="trash-icon" class="is-danger" />
     </base-button>
-  </section>
+  </form>
 </template>
 
 <script>
@@ -75,6 +79,46 @@ export default {
       this.startedAt = props.startedAt;
       this.projectId = props.project && props.project.id;
       this.description = props.description;
+    },
+    submit() {
+      (this.id ? this.stopActivity : this.startActivity)();
+    },
+    enterDescription() {
+      (this.id ? this.updateActivity : this.startActivity)();
+    },
+    selectProject(projectId) {
+      this.projectId = projectId;
+      if (this.id) this.updateActivity();
+    },
+    async updateActivity() {
+      const success = await this.$store.dispatch('activities/update', {
+        id: this.id,
+        description: this.description,
+        projectId: this.projectId
+      });
+      if (success) {
+        this.setWorkingProps();
+        this.$store.dispatch('toast/success', this.$t('updated'));
+      }
+    },
+    async stopActivity() {
+      this.$store.dispatch('toast/success', this.$t('stopped'));
+      await this.$store.dispatch('activities/update', {
+        id: this.id,
+        stoppedAt: `${new Date()}`
+      });
+      this.setWorkingProps();
+    },
+    async startActivity() {
+      const success = await this.$store.dispatch('activities/add', {
+        description: this.description,
+        projectId: this.projectId,
+        startedAt: `${new Date()}`
+      });
+      if (success) {
+        this.setWorkingProps();
+        this.$store.dispatch('toast/success', this.$t('started'));
+      }
     }
   }
 };

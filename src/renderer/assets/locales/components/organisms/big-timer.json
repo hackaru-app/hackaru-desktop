@@ -1,0 +1,12 @@
+{
+  "en": {
+    "started": "Timer started!",
+    "stopped": "Timer stopped!",
+    "updated": "Timer updated."
+  },
+  "ja": {
+    "started": "タイマーを開始しました！",
+    "stopped": "タイマーを停止しました！",
+    "updated": "計測中のタイマーを更新しました"
+  }
+}
