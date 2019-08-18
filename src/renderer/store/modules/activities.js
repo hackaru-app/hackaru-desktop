@@ -10,14 +10,17 @@ export const state = () => ({
   stopOnShutdown: true
 });
 
-function notify({ title, message }) {
+function notify({ title, activity }) {
   notifier.notify({
     title,
     icon: path.join(
       process.env.NODE_ENV !== 'development' ? process.resourcesPath : '',
       './extra-resources/icon-notification.png'
     ),
-    message
+    message: [
+      activity.project ? activity.project.name : 'No Project',
+      activity.description ? ` - ${activity.description}` : ''
+    ].join('')
   });
 }
 
@@ -92,7 +95,7 @@ export const actions = {
       );
       notify({
         title: 'Timer Stopped.',
-        message: data.project ? data.project.name : 'No Project'
+        activity: data
       });
       return true;
     } catch (e) {
@@ -120,7 +123,7 @@ export const actions = {
       );
       notify({
         title: 'Timer Started.',
-        message: data.project ? data.project.name : 'No Project'
+        activity: data
       });
       return true;
     } catch (e) {
