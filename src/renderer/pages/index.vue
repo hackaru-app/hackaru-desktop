@@ -49,13 +49,10 @@ export default {
     MainHeader
   },
   computed: {
-    ...mapGetters({
-      activities: 'activities/workings',
-      webUrl: 'auth/webUrl'
-    })
+    ...mapGetters({ webUrl: 'auth/webUrl' })
   },
   mounted() {
-    this.$store.dispatch('activities/fetchWorkings');
+    this.$store.dispatch('activities/fetchWorking');
     this.$store.dispatch('projects/fetch');
   },
   methods: {

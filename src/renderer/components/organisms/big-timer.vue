@@ -46,7 +46,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      activities: 'activities/workings'
+      activity: 'activities/working'
     })
   }
 };

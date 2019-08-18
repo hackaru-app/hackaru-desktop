@@ -5,22 +5,17 @@ import { activity } from '@/store/schemas';
 describe('Actions', () => {
   MockDate.set('2019-01-31T01:23:45');
 
-  describe('when dispatch fetchWorkings', () => {
+  describe('when dispatch fetchWorking', () => {
     const dispatch = jest.fn(() => ({ data: {} }));
 
     beforeEach(() => {
-      actions.fetchWorkings({ dispatch });
+      actions.fetchWorking({ dispatch });
     });
 
     it('dispatch auth-api/request', () => {
       expect(dispatch).toHaveBeenCalledWith(
         'auth-api/request',
-        {
-          url: '/v1/activities',
-          params: {
-            working: true
-          }
-        },
+        { url: '/v1/activities/working' },
         { root: true }
       );
     });
@@ -30,7 +25,7 @@ describe('Actions', () => {
         'entities/merge',
         {
           json: {},
-          schema: [activity]
+          schema: activity
         },
         { root: true }
       );

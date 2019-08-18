@@ -14,10 +14,8 @@ const menu = Menu.buildFromTemplate([
 ]);
 
 function getTitle() {
-  const activity = store.getters['activities/workings'];
-  return activity.length > 0
-    ? fromS(differenceInSeconds(new Date(), activity[0].startedAt))
-    : '';
+  const startedAt = (store.getters['activities/working'] || {}).startedAt;
+  return startedAt ? fromS(differenceInSeconds(new Date(), startedAt)) : '';
 }
 
 function getDefaultTrayIcon() {

@@ -42,27 +42,14 @@ describe('Index', () => {
       }
     });
 
-  it('dispatch activities/fetchWorkings', () => {
+  it('dispatch activities/fetchWorking', () => {
     factory();
-    expect($store.dispatch).toHaveBeenCalledWith('activities/fetchWorkings');
+    expect($store.dispatch).toHaveBeenCalledWith('activities/fetchWorking');
   });
 
   it('dispatch projects/fetch', () => {
     factory();
     expect($store.dispatch).toHaveBeenCalledWith('projects/fetch');
-  });
-
-  describe('when click add-button', () => {
-    beforeEach(() => {
-      wrapper = factory();
-      wrapper.find('.add-button').trigger('click');
-    });
-
-    it('show activity-editor', () => {
-      expect($electron.ipcRenderer.send).toHaveBeenCalledWith(
-        'showActivityEditor'
-      );
-    });
   });
 
   describe('when click web-button', () => {

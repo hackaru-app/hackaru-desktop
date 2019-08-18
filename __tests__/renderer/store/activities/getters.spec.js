@@ -17,7 +17,7 @@ describe('Getters', () => {
     });
   });
 
-  describe('when call workings', () => {
+  describe('when call working', () => {
     const mockGetters = {
       all: [
         { id: 1, stoppedAt: '2019-01-01T01:23:45' },
@@ -26,11 +26,11 @@ describe('Getters', () => {
     };
 
     beforeEach(() => {
-      result = getters.workings({}, mockGetters, {}, {});
+      result = getters.working({}, mockGetters, {}, {});
     });
 
-    it('returns unstopped activites', () => {
-      expect(result.length).toBe(1);
+    it('returns unstopped activity', () => {
+      expect(result.id).toBe(2);
     });
   });
 
