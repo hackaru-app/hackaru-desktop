@@ -7,7 +7,11 @@
         <project-select v-model="projectId" class="project-select" />
       </div>
       <div class="form-item">
-        <input placeholder="作業内容や備考など" class="description" />
+        <input
+          v-model="description"
+          placeholder="作業内容や備考など"
+          class="description"
+        />
       </div>
     </div>
 
@@ -44,10 +48,32 @@ export default {
     ProjectSelect,
     Icon
   },
+  data() {
+    return {
+      id: undefined,
+      description: '',
+      project: undefined,
+      startedAt: undefined
+    };
+  },
   computed: {
     ...mapGetters({
-      activity: 'activities/working'
+      working: 'activities/working'
     })
+  },
+  watch: {
+    working() {
+      this.setWorkingProps();
+    }
+  },
+  props: {
+    setWorkingProps() {
+      const props = this.working || {};
+      this.id = props.id;
+      this.startedAt = props.startedAt;
+      this.project = props.project;
+      this.description = props.description;
+    }
   }
 };
 </script>
