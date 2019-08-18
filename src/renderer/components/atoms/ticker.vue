@@ -17,7 +17,7 @@ export default {
   props: {
     startedAt: {
       type: String,
-      required: true
+      default: undefined
     },
     stoppedAt: {
       type: String,

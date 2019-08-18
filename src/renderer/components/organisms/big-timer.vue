@@ -16,18 +16,18 @@
     </div>
 
     <div class="timer">
-      <time>01:23:45</time>
+      <ticker :started-at="startedAt" />
 
-      <base-button type="submit" class="is-primary control-button start">
+      <base-button
+        v-if="!id"
+        type="submit"
+        class="is-primary control-button start"
+      >
         <icon name="play-icon" />
       </base-button>
-      <!-- <base-button
-        v-else
-        type="submit"
-        class="is-danger control-button stop"
-      >
+      <base-button v-else type="submit" class="is-danger control-button stop">
         <icon name="square-icon" />
-      </base-button> -->
+      </base-button>
     </div>
 
     <base-button class="trash-button">
@@ -40,10 +40,12 @@
 import BaseButton from '@/components/atoms/base-button';
 import Icon from '@/components/atoms/icon';
 import ProjectSelect from '@/components/molecules/project-select';
+import Ticker from '@/components/atoms/ticker';
 import { mapGetters } from 'vuex';
 
 export default {
   components: {
+    Ticker,
     BaseButton,
     ProjectSelect,
     Icon
@@ -52,7 +54,7 @@ export default {
     return {
       id: undefined,
       description: '',
-      project: undefined,
+      projectId: undefined,
       startedAt: undefined
     };
   },
@@ -66,12 +68,12 @@ export default {
       this.setWorkingProps();
     }
   },
-  props: {
+  methods: {
     setWorkingProps() {
       const props = this.working || {};
       this.id = props.id;
       this.startedAt = props.startedAt;
-      this.project = props.project;
+      this.project = props.project && props.project.id;
       this.description = props.description;
     }
   }
@@ -106,15 +108,10 @@ export default {
 }
 .timer {
   display: flex;
-  position: absolute;
-  top: 5px;
-  width: 100%;
-  height: 100vh;
+  padding-top: 70px;
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  margin-top: 40px;
-  z-index: -1;
   time {
     font-size: 46px;
     font-family: Roboto, sans-serif;

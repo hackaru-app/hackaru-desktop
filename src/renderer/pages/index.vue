@@ -79,6 +79,7 @@ export default {
 <style scoped lang="scss">
 .content {
   padding-top: 30px;
+  overflow: hidden;
 }
 .footer {
   width: 100vw;
