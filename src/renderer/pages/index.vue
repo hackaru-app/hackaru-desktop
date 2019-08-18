@@ -2,22 +2,36 @@
 
 <template>
   <section>
-    <main-header>
-      <button class="menu-button add-button" @click="showEditor()">
-        <icon name="plus-icon" class="icon is-small" />
-      </button>
-    </main-header>
-
+    <main-header class="is-small" />
     <div class="content">
+      <div class="timer-form">
+        <div class="timer-form-item">
+          <project-select v-model="projectId" class="project-select" />
+        </div>
+        <div class="timer-form-item">
+          <input placeholder="作業内容や備考など" class="description" />
+        </div>
+      </div>
       <activity
         v-for="activity in activities"
         :key="activity.id"
         v-bind="activity"
       />
 
-      <p v-if="activities.length <= 0" class="empty-message">
-        {{ $t('empty') }}
-      </p>
+      <div class="timer">
+        <time>01:23:45</time>
+
+        <base-button type="submit" class="is-primary control-button start">
+          <icon name="play-icon" />
+        </base-button>
+        <!-- <base-button
+          v-else
+          type="submit"
+          class="is-danger control-button stop"
+        >
+          <icon name="square-icon" />
+        </base-button> -->
+      </div>
 
       <footer class="footer">
         <div class="left">
@@ -53,11 +67,13 @@ import BaseButton from '@/components/atoms/base-button';
 import MainHeader from '@/components/molecules/main-header';
 import Icon from '@/components/atoms/icon';
 import Activity from '@/components/organisms/activity';
+import ProjectSelect from '@/components/molecules/project-select';
 import { mapGetters } from 'vuex';
 
 export default {
   components: {
     BaseButton,
+    ProjectSelect,
     Icon,
     MainHeader,
     Activity
@@ -95,7 +111,61 @@ export default {
 
 <style scoped lang="scss">
 .content {
-  padding-top: 45px;
+  padding-top: 30px;
+}
+.timer-form {
+  box-shadow: 0 3px 5px #00000008;
+}
+.project-select {
+  padding: 0 30px;
+}
+.timer-form-item {
+  border-bottom: 1px $border solid;
+  padding: 0 0;
+  height: 58px;
+  align-items: center;
+  display: flex;
+}
+.description {
+  height: 100%;
+  width: 100%;
+  padding: 0 30px;
+  border: 0;
+}
+.timer {
+  display: flex;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 40px;
+  z-index: -1;
+  time {
+    font-size: 46px;
+    font-family: Roboto, sans-serif;
+    margin-bottom: 10px;
+  }
+}
+.control-button {
+  display: flex;
+  align-self: center;
+  flex-shrink: 0;
+  padding: 0;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  pointer-events: auto;
+  box-shadow: 0 3px 3px #00000010;
+}
+.control-button .icon {
+  width: 22px;
+  height: 22px;
+}
+.control-button.start .icon {
+  padding-left: 3px;
 }
 .footer {
   width: 100vw;

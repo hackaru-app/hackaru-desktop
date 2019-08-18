@@ -47,7 +47,7 @@ export function showMain() {
   if (mainWindow === null) {
     mainWindow = createWindow({
       width: 290,
-      height: 450
+      height: 480
     });
     mainWindow.on('closed', () => {
       mainWindow = null;
