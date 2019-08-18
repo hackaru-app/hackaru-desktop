@@ -31,7 +31,7 @@
     </div>
 
     <base-button class="trash-button">
-      <icon name="trash-icon" />
+      <icon name="trash-icon" class="is-danger" />
     </base-button>
   </section>
 </template>
@@ -104,7 +104,6 @@ export default {
   position: absolute;
   bottom: 60px;
   right: 10px;
-  color: $red;
 }
 .timer {
   display: flex;

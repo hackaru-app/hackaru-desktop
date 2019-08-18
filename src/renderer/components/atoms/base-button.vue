@@ -7,7 +7,6 @@
 <style scoped lang="scss">
 .base-button {
   cursor: pointer;
-  transition: all 0.3s ease;
   padding: 0 15px;
   height: 39px;
   justify-content: center;
@@ -17,9 +16,6 @@
   border-radius: 5px;
   background: none;
   border: 0;
-  &:active {
-    transform: scale(0.9);
-  }
 }
 .base-button.is-primary {
   background-color: $cyan;
