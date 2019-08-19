@@ -177,6 +177,7 @@ export default {
     },
     focus() {
       this.focused = true;
+      this.search();
     },
     blur() {
       this.focused = false;
@@ -230,7 +231,7 @@ export default {
 }
 .suggest-list-wrapper {
   position: absolute;
-  animation-duration: 300ms;
+  animation-duration: 150ms;
   width: 100%;
   background-color: #00000050;
   height: 100vh;

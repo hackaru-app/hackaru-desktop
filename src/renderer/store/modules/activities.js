@@ -186,11 +186,9 @@ export const getters = {
     return rootGetters['entities/getEntities']('activities', [activity]);
   },
   search: (state, getters, rootState, rootGetters) => text => {
-    if (!text) return [];
-
     const matched = getters.all
       .filter(({ description }) => description)
-      .filter(({ description }) => description.indexOf(text) >= 0)
+      .filter(({ description }) => description.indexOf(text || '') >= 0)
       .sort((a, b) => compareDesc(a.startedAt, b.startedAt))
       .slice(0, 3);
 

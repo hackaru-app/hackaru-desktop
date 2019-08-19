@@ -74,8 +74,8 @@ describe('Getters', () => {
         result = getters.search({}, mockGetters, {}, {})('');
       });
 
-      it('returns empty', () => {
-        expect(result).toEqual([]);
+      it('returns all', () => {
+        expect(result.length).toBe(3);
       });
     });
 
@@ -84,8 +84,8 @@ describe('Getters', () => {
         result = getters.search({}, mockGetters, {}, {})();
       });
 
-      it('returns empty', () => {
-        expect(result).toEqual([]);
+      it('returns all', () => {
+        expect(result.length).toBe(3);
       });
     });
   });
