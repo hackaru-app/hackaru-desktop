@@ -52,9 +52,6 @@ export default {
     this.$store.dispatch('projects/fetch');
   },
   methods: {
-    showEditor() {
-      this.$electron.ipcRenderer.send('showActivityEditor');
-    },
     openWebsite() {
       this.$electron.shell.openExternal(this.webUrl);
     },

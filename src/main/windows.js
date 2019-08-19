@@ -56,15 +56,6 @@ export function showMain() {
   mainWindow.show();
 }
 
-export function showActivityEditor(query) {
-  createWindow({
-    path: 'activity-editor',
-    width: 370,
-    height: 420,
-    query
-  });
-}
-
 export function showTrackerEditor(query) {
   createWindow({
     path: 'settings/tracker-editor',
@@ -80,8 +71,6 @@ export function showSettings() {
     height: 480
   });
 }
-
-ipcMain.on('showActivityEditor', (e, data) => showActivityEditor(data));
 
 ipcMain.on('showTrackerEditor', (e, data) => showTrackerEditor(data));
 

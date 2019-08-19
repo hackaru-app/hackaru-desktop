@@ -17,11 +17,6 @@ const router = new Router({
       component: require('@/pages/auth').default
     },
     {
-      path: '/activity-editor',
-      name: 'activity-editor',
-      component: require('@/pages/activity-editor').default
-    },
-    {
       path: '/settings/power-monitor',
       name: 'power-monitor',
       component: require('@/pages/settings/power-monitor').default
