@@ -149,7 +149,7 @@ form {
   min-height: 60px;
   transition: all 0.3s ease;
   label {
-    color: $text-light;
+    color: $text;
     margin-right: 20px;
     min-width: 90px;
   }
