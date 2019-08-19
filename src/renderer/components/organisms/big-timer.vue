@@ -20,23 +20,38 @@
       </div>
     </div>
 
-    <div class="timer">
-      <ticker :started-at="startedAt" :class="['ticker', { stopped: !id }]" />
-      <base-button
-        v-if="!id"
-        type="submit"
-        class="is-primary control-button start"
-      >
-        <icon name="play-icon" />
-      </base-button>
-      <base-button v-else type="submit" class="is-danger control-button stop">
-        <icon name="square-icon" />
-      </base-button>
+    <div class="content">
+      <div v-if="false" class="suggest-wrapper">
+        <ul class="suggest-list">
+          <li>
+            <project-name color="#f00" name="老人と海を読む" />
+          </li>
+          <li>
+            <project-name color="#f00" name="老人と海を読む" />
+          </li>
+          <li>
+            <project-name color="#f00" name="老人と海を読む" />
+          </li>
+        </ul>
+      </div>
+      <div class="timer">
+        <ticker :started-at="startedAt" :class="['ticker', { stopped: !id }]" />
+        <base-button
+          v-if="!id"
+          type="submit"
+          class="is-primary control-button start"
+        >
+          <icon name="play-icon" />
+        </base-button>
+        <base-button v-else type="submit" class="is-danger control-button stop">
+          <icon name="square-icon" />
+        </base-button>
+      </div>
     </div>
 
-    <base-button class="trash-button">
+    <!-- <base-button class="trash-button">
       <icon name="trash-icon" class="is-danger" />
-    </base-button>
+    </base-button> -->
   </form>
 </template>
 
@@ -44,6 +59,7 @@
 import BaseButton from '@/components/atoms/base-button';
 import Icon from '@/components/atoms/icon';
 import ProjectSelect from '@/components/molecules/project-select';
+import ProjectName from '@/components/molecules/project-name';
 import Ticker from '@/components/atoms/ticker';
 import { mapGetters } from 'vuex';
 
@@ -52,6 +68,7 @@ export default {
     Ticker,
     BaseButton,
     ProjectSelect,
+    ProjectName,
     Icon
   },
   data() {
@@ -125,16 +142,26 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.form {
-  box-shadow: 0 3px 5px #00000008;
+.big-timer {
+  display: flex;
+  flex-direction: column;
+  position: relative;
 }
 .project-select {
   padding: 0 30px;
 }
+.form {
+  position: fixed;
+  top: 30px;
+  width: 100%;
+  background: #fff;
+  box-shadow: 0 3px 5px #00000005;
+}
 .form-item {
   border-bottom: 1px $border solid;
+  box-sizing: border-box;
   padding: 0 0;
-  height: 60px;
+  height: 65px;
   align-items: center;
   display: flex;
 }
@@ -143,6 +170,39 @@ export default {
   width: 100%;
   padding: 0 30px;
   border: 0;
+}
+.content {
+  margin-top: 160px;
+  position: relative;
+}
+.suggest-wrapper {
+  position: absolute;
+  width: 100%;
+  background-color: #00000050;
+  height: 100vh;
+}
+.suggest-list {
+  list-style-type: none;
+  list-style-position: inside;
+  padding: 0;
+  background-color: #fffffffe;
+  box-shadow: 0 3px 5px #00000010;
+  margin: 0;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+.suggest-list li {
+  display: flex;
+  align-items: center;
+  height: 60px;
+  padding: 0 30px;
+  border-bottom: 1px $border solid;
+  &:last-child {
+    border: 0;
+  }
+  &:hover {
+    background-color: lighten($grey-f5f5f5, 2%);
+  }
 }
 .trash-button {
   position: absolute;

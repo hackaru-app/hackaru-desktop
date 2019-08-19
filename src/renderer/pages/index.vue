@@ -1,36 +1,32 @@
 <i18n src="@/assets/locales/pages/index.json" />
 
 <template>
-  <section>
+  <section class="index">
     <main-header class="is-small" />
     <div class="content">
       <big-timer />
-      <footer class="footer">
-        <div class="left">
-          <base-button
-            type="button"
-            class="has-icon settings-button"
-            @click="showSettings"
-          >
-            <icon name="settings-icon" class="icon is-small" />
-          </base-button>
-          <base-button
-            type="button"
-            class="has-icon web-button"
-            @click="openWebsite"
-          >
-            <icon name="globe-icon" class="icon is-small" />
-          </base-button>
-        </div>
+    </div>
+    <footer class="footer">
+      <div class="left">
         <base-button
           type="button"
-          class="has-icon logout-button"
-          @click="logout"
+          class="has-icon settings-button"
+          @click="showSettings"
         >
-          <icon name="log-out-icon" class="icon is-small" />
+          <icon name="settings-icon" class="icon is-small" />
         </base-button>
-      </footer>
-    </div>
+        <base-button
+          type="button"
+          class="has-icon web-button"
+          @click="openWebsite"
+        >
+          <icon name="globe-icon" class="icon is-small" />
+        </base-button>
+      </div>
+      <base-button type="button" class="has-icon logout-button" @click="logout">
+        <icon name="log-out-icon" class="icon is-small" />
+      </base-button>
+    </footer>
   </section>
 </template>
 
@@ -77,20 +73,24 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.index {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
 .content {
-  padding-top: 30px;
-  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 .footer {
-  width: 100vw;
   overflow: hidden;
-  position: absolute;
   display: flex;
   justify-content: space-between;
-  bottom: 0;
   background-color: $grey-fafafa;
   border-top: 1px $grey-eee solid;
-  padding: 13px 20px;
+  height: 50px;
+  padding: 0 20px;
   box-sizing: border-box;
   .icon {
     color: $grey-666;

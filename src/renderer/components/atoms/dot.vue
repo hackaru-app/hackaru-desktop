@@ -17,8 +17,8 @@ export default {
 .dot {
   display: inline;
   border-radius: 50%;
-  width: 9px;
-  height: 9px;
+  width: 8px;
+  height: 8px;
 }
 .dot.is-large {
   width: 14px;
