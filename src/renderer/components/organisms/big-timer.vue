@@ -28,12 +28,13 @@
       <transition>
         <div
           v-if="focused && !id && suggests.length > 0"
-          class="suggest-wrapper"
+          class="suggest-list-wrapper"
         >
           <ul class="suggest-list">
             <li
               v-for="activity in suggests"
               :key="activity.id"
+              class="suggest-item"
               @click="clickSuggest(activity)"
             >
               <project-name
@@ -215,7 +216,7 @@ export default {
   margin-top: 160px;
   position: relative;
 }
-.suggest-wrapper {
+.suggest-list-wrapper {
   position: absolute;
   animation-duration: 300ms;
   width: 100%;
@@ -232,7 +233,7 @@ export default {
   overflow: hidden;
   overflow-y: scroll;
 }
-.suggest-list li {
+.suggest-item {
   display: flex;
   align-items: center;
   height: 60px;
