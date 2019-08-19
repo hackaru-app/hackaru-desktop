@@ -217,7 +217,7 @@ export default {
 }
 .suggest-wrapper {
   position: absolute;
-  animation-duration: 100ms;
+  animation-duration: 300ms;
   width: 100%;
   background-color: #00000050;
   height: 100vh;
