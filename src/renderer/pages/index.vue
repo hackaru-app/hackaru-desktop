@@ -93,7 +93,7 @@ export default {
   padding: 0 20px;
   box-sizing: border-box;
   .icon {
-    color: $grey-666;
+    color: $text;
   }
 }
 .left {
