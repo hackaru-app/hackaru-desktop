@@ -60,9 +60,14 @@
       </div>
     </div>
 
-    <!-- <base-button class="trash-button">
+    <base-button
+      v-if="id"
+      type="button"
+      class="delete-button"
+      @click="deleteActivity"
+    >
       <icon name="trash-icon" class="is-danger" />
-    </base-button> -->
+    </base-button>
   </form>
 </template>
 
@@ -144,6 +149,12 @@ export default {
       });
       this.setWorkingProps();
     },
+    async deleteActivity() {
+      if (!window.confirm(this.$t('confirms.delete'))) return;
+      await this.$store.dispatch('activities/delete', this.id);
+      this.$store.dispatch('toast/success', this.$t('deleted'));
+      this.setWorkingProps();
+    },
     async startActivity() {
       const success = await this.$store.dispatch('activities/add', {
         description: this.description,
@@ -187,6 +198,7 @@ export default {
   display: flex;
   flex-direction: column;
   position: relative;
+  height: 100%;
 }
 .project-select {
   padding: 0 30px;
@@ -246,9 +258,9 @@ export default {
     background-color: lighten($grey-f5f5f5, 2%);
   }
 }
-.trash-button {
+.delete-button {
   position: absolute;
-  bottom: 60px;
+  bottom: 15px;
   right: 10px;
 }
 .timer {

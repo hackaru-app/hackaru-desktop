@@ -2,11 +2,19 @@
   "en": {
     "started": "Timer started!",
     "stopped": "Timer stopped!",
-    "updated": "Timer updated."
+    "updated": "Timer updated.",
+    "deleted": "Timer deleted.",
+    "confirms": {
+      "delete":  "Are you sure you want to delete without saving?"
+    }
   },
   "ja": {
     "started": "タイマーを開始しました！",
     "stopped": "タイマーを停止しました！",
-    "updated": "計測中のタイマーを更新しました"
+    "updated": "計測中のタイマーを更新しました",
+    "deleted": "タイマーを削除しました",
+    "confirms": {
+      "delete":  "保存せずに削除しますか？"
+    }
   }
 }

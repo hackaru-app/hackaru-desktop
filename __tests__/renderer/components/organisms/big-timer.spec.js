@@ -206,4 +206,30 @@ describe('BigTimer', () => {
       });
     });
   });
+
+  describe('when click delete-button', () => {
+    beforeEach(() => {
+      global.confirm = () => true;
+      wrapper = factory();
+      wrapper.setData({ id: 1 });
+      wrapper.find('.delete-button').vm.$emit('click');
+    });
+
+    it('dispatch activities/delete', () => {
+      expect($store.dispatch).toHaveBeenCalledWith('activities/delete', 1);
+    });
+  });
+
+  describe('when click delete-button but confirm is false', () => {
+    beforeEach(() => {
+      global.confirm = () => false;
+      wrapper = factory();
+      wrapper.setData({ id: 1 });
+      wrapper.find('.delete-button').vm.$emit('click');
+    });
+
+    it('does not dispatch activities/delete', () => {
+      expect($store.dispatch).not.toHaveBeenCalled();
+    });
+  });
 });
