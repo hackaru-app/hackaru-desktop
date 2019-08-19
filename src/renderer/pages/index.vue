@@ -74,6 +74,7 @@ export default {
   display: flex;
   flex-direction: column;
   height: 100vh;
+  overflow: hidden;
 }
 .content {
   display: flex;

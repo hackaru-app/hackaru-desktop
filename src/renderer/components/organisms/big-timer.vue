@@ -15,25 +15,35 @@
           v-model="description"
           placeholder="作業内容や備考など"
           class="description"
+          @focus="focus"
+          @blur="blur"
+          @input="input"
+          @change="change"
           @keypress.enter.prevent="enterDescription"
         />
       </div>
     </div>
 
     <div class="content">
-      <div v-if="false" class="suggest-wrapper">
-        <ul class="suggest-list">
-          <li>
-            <project-name color="#f00" name="老人と海を読む" />
-          </li>
-          <li>
-            <project-name color="#f00" name="老人と海を読む" />
-          </li>
-          <li>
-            <project-name color="#f00" name="老人と海を読む" />
-          </li>
-        </ul>
-      </div>
+      <transition>
+        <div
+          v-if="focused && !id && suggests.length > 0"
+          class="suggest-wrapper"
+        >
+          <ul class="suggest-list">
+            <li
+              v-for="activity in suggests"
+              :key="activity.id"
+              @click="clickSuggest(activity)"
+            >
+              <project-name
+                v-bind="activity.project"
+                :name="activity.description"
+              />
+            </li>
+          </ul>
+        </div>
+      </transition>
       <div class="timer">
         <ticker :started-at="startedAt" :class="['ticker', { stopped: !id }]" />
         <base-button
@@ -62,6 +72,7 @@ import ProjectSelect from '@/components/molecules/project-select';
 import ProjectName from '@/components/molecules/project-name';
 import Ticker from '@/components/atoms/ticker';
 import { mapGetters } from 'vuex';
+import debounce from 'lodash.debounce';
 
 export default {
   components: {
@@ -76,17 +87,23 @@ export default {
       id: undefined,
       description: '',
       projectId: undefined,
-      startedAt: undefined
+      startedAt: undefined,
+      focused: false
     };
   },
   computed: {
     ...mapGetters({
       working: 'activities/working'
-    })
+    }),
+    suggests() {
+      return this.$store.getters['activities/search'](this.description);
+    }
   },
   watch: {
     working() {
-      this.setWorkingProps();
+      if (this.working.id) {
+        this.setWorkingProps();
+      }
     }
   },
   methods: {
@@ -136,6 +153,29 @@ export default {
         this.setWorkingProps();
         this.$store.dispatch('toast/success', this.$t('started'));
       }
+    },
+    search: debounce(function() {
+      if (!this.id) {
+        this.$store.dispatch('activities/search', this.description);
+      }
+    }, 1000),
+    input(e) {
+      this.description = e.target.value;
+      this.search();
+    },
+    focus() {
+      this.focused = true;
+    },
+    blur() {
+      this.focused = false;
+    },
+    change() {
+      if (this.id) this.updateActivity();
+    },
+    clickSuggest(activity) {
+      this.description = activity.description;
+      this.projectId = activity.project && activity.project.id;
+      this.startActivity();
     }
   }
 };
@@ -177,6 +217,7 @@ export default {
 }
 .suggest-wrapper {
   position: absolute;
+  animation-duration: 100ms;
   width: 100%;
   background-color: #00000050;
   height: 100vh;
