@@ -59,7 +59,7 @@ export function showMain() {
 export function showTrackerEditor(query) {
   createWindow({
     path: 'settings/tracker-editor',
-    width: 360,
+    width: 460,
     height: 380
   });
 }
