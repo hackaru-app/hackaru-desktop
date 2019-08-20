@@ -272,7 +272,7 @@ export default {
   align-items: center;
   time {
     font-size: 46px;
-    font-family: Roboto, sans-serif;
+    font-family: $font-family-duration;
     font-weight: 300;
     margin-bottom: 10px;
   }

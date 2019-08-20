@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import Toast from './components/organisms/toast';
+import Toast from './components/molecules/toast';
 import 'typeface-roboto/index.css';
 
 export default {

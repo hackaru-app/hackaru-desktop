@@ -3,22 +3,24 @@ import { getters } from '@/store/modules/toast';
 describe('Getters', () => {
   let result;
 
-  describe('when call getMessage', () => {
+  describe('when call message', () => {
     const state = {
-      title: 'title',
+      text: 'text',
       type: 'success',
-      rand: 123
+      rand: 123,
+      duration: 3000
     };
 
     beforeEach(() => {
-      result = getters.getMessage(state);
+      result = getters.message(state);
     });
 
     it('returns correctly', () => {
       expect(result).toEqual({
-        title: 'title',
+        text: 'text',
         type: 'success',
-        rand: 123
+        rand: 123,
+        duration: 3000
       });
     });
   });

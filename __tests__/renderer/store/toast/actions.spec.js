@@ -1,21 +1,19 @@
 import { actions } from '@/store/modules/toast';
 
 describe('Actions', () => {
-  describe('when dispatch success', () => {
-    const commit = jest.fn();
+  const commit = jest.fn();
 
+  describe('when dispatch success', () => {
     beforeEach(() => {
       actions.success({ commit }, 'message');
     });
 
-    it('commit SHOW_SUCCESS', () => {
+    it('show toast', () => {
       expect(commit).toHaveBeenCalledWith('SHOW_SUCCESS', 'message');
     });
   });
 
-  describe('when dispatch error and message is in error_description', () => {
-    const commit = jest.fn();
-
+  describe('when error has message in error_description', () => {
     beforeEach(() => {
       actions.error(
         { commit },
@@ -29,14 +27,12 @@ describe('Actions', () => {
       );
     });
 
-    it('commit SHOW_ERROR', () => {
+    it('show response.data.error-description', () => {
       expect(commit).toHaveBeenCalledWith('SHOW_ERROR', 'message');
     });
   });
 
-  describe('when dispatch error and message is in data.message', () => {
-    const commit = jest.fn();
-
+  describe('when error has message in data.message', () => {
     beforeEach(() => {
       actions.error(
         { commit },
@@ -50,25 +46,28 @@ describe('Actions', () => {
       );
     });
 
-    it('commit SHOW_ERROR', () => {
+    it('show response.data.message', () => {
       expect(commit).toHaveBeenCalledWith('SHOW_ERROR', 'message');
     });
   });
 
-  describe('when dispatch error and message is in message', () => {
-    const commit = jest.fn();
-
+  describe('when error has message', () => {
     beforeEach(() => {
-      actions.error(
-        { commit },
-        {
-          message: 'message'
-        }
-      );
+      actions.error({ commit }, { message: 'message' });
     });
 
-    it('commit SHOW_ERROR', () => {
+    it('show message', () => {
       expect(commit).toHaveBeenCalledWith('SHOW_ERROR', 'message');
+    });
+  });
+
+  describe('when error does not have message', () => {
+    beforeEach(() => {
+      actions.error({ commit }, undefined);
+    });
+
+    it('does not show toast', () => {
+      expect(commit).not.toHaveBeenCalled();
     });
   });
 });
