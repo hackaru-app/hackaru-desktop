@@ -4,6 +4,7 @@
     "stopped": "Timer stopped!",
     "updated": "Timer updated.",
     "deleted": "Timer deleted.",
+    "delete": "Delete",
     "confirms": {
       "delete":  "Are you sure you want to delete without saving?"
     }
@@ -13,6 +14,7 @@
     "stopped": "タイマーを停止しました！",
     "updated": "計測中のタイマーを更新しました",
     "deleted": "タイマーを削除しました",
+    "delete": "削除",
     "confirms": {
       "delete":  "保存せずに削除しますか？"
     }

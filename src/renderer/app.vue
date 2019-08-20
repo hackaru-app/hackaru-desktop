@@ -23,4 +23,5 @@ export default {
 
 <style lang="scss">
 @import './src/renderer/assets/sass/main';
+@import './src/renderer/assets/sass/v-tooltip';
 </style>

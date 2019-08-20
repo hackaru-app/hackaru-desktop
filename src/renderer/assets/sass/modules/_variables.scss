@@ -39,3 +39,9 @@ $animation-duration: .4s;
 $breakpoints: (
   'small': 640px
 );
+
+// ZIndex
+$z:
+  tooltip,
+  toast, // high
+;

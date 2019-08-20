@@ -62,6 +62,7 @@
 
     <base-button
       v-if="id"
+      v-tooltip="$t('delete')"
       type="button"
       class="delete-button"
       @click="deleteActivity"

@@ -2,12 +2,18 @@
   "en": {
     "empty": "No Working Timers.",
     "stopped": "Activity stopped.",
+    "settings": "Settings",
+    "website": "Open website in browser",
+    "logout": "Logout",
     "confirms": {
       "logout": "Logout?"
     }
   },
   "ja": {
     "empty": "稼働中のタイマーはありません。",
+    "settings": "設定",
+    "website": "Web版をブラウザで開く",
+    "logout": "ログアウト",
     "stopped": "記録しました",
     "confirms": {
       "logout": "ログアウトしますか？"

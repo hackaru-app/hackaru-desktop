@@ -41,6 +41,7 @@ export default {
   display: flex;
   justify-content: center;
   position: absolute;
+  z-index: index($z, toast);
 }
 .content {
   animation-duration: 0.5s;

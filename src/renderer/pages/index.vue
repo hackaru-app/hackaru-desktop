@@ -13,18 +13,30 @@
           class="has-icon settings-button"
           @click="showSettings"
         >
-          <icon name="settings-icon" class="icon is-small" />
+          <icon
+            v-tooltip="{ content: $t('settings'), offset: 10 }"
+            name="settings-icon"
+            class="icon is-small"
+          />
         </base-button>
         <base-button
           type="button"
           class="has-icon web-button"
           @click="openWebsite"
         >
-          <icon name="globe-icon" class="icon is-small" />
+          <icon
+            v-tooltip="{ content: $t('website'), offset: 10 }"
+            name="globe-icon"
+            class="icon is-small"
+          />
         </base-button>
       </div>
       <base-button type="button" class="has-icon logout-button" @click="logout">
-        <icon name="log-out-icon" class="icon is-small" />
+        <icon
+          v-tooltip="{ content: $t('logout'), offset: 10 }"
+          name="log-out-icon"
+          class="icon is-small"
+        />
       </base-button>
     </footer>
   </section>
