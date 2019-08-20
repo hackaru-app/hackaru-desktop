@@ -1,5 +1,5 @@
 // Import
-@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400');
 @import "~normalize.css/normalize.css";
 @import "./src/renderer/assets/sass/modules/variables";
 
@@ -41,4 +41,4 @@ $animationDuration: $animation-duration;
 @import "~vue2-animate/src/sass/vue2-animate.scss";
 
 // Multiselect
-@import "~vue-multiselect/dist/vue-multiselect.min.css"
+@import "~vue-multiselect/dist/vue-multiselect.min.css";
