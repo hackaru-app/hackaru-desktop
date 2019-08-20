@@ -47,7 +47,7 @@
         "licenseUrl": "https://github.com/atom/node-keytar/raw/master/LICENSE.md",
         "parents": "Hackaru"
     },
-    "lodash.difference": {
+    "lodash.debounce": {
         "licenses": "MIT",
         "repository": "https://github.com/lodash/lodash",
         "licenseUrl": "https://github.com/lodash/lodash/raw/master/LICENSE",
@@ -78,6 +78,12 @@
         "parents": "Hackaru"
     },
     "lodash.uniq": {
+        "licenses": "MIT",
+        "repository": "https://github.com/lodash/lodash",
+        "licenseUrl": "https://github.com/lodash/lodash/raw/master/LICENSE",
+        "parents": "Hackaru"
+    },
+    "lodash.uniqby": {
         "licenses": "MIT",
         "repository": "https://github.com/lodash/lodash",
         "licenseUrl": "https://github.com/lodash/lodash/raw/master/LICENSE",
@@ -153,12 +159,6 @@
         "licenses": "MIT",
         "repository": "https://github.com/shentao/vue-multiselect",
         "licenseUrl": "https://github.com/shentao/vue-multiselect/raw/master/LICENSE",
-        "parents": "Hackaru"
-    },
-    "vue-notification": {
-        "licenses": "MIT",
-        "repository": "https://github.com/euvl/vue-notification",
-        "licenseUrl": "https://github.com/euvl/vue-notification/raw/master/LICENSE",
         "parents": "Hackaru"
     },
     "vue-router": {

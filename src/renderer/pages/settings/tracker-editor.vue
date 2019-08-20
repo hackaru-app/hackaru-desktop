@@ -106,7 +106,7 @@ export default {
   margin: 0;
 }
 /deep/ .multiselect__input::placeholder {
-  color: $grey-999;
+  color: $grey-ccc;
 }
 /deep/ .multiselect__element {
   font-size: $font-size;

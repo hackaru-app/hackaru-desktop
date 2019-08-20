@@ -43,6 +43,7 @@ export default {
   position: absolute;
 }
 .content {
+  animation-duration: 0.5s;
   display: flex;
   position: fixed;
   align-self: center;

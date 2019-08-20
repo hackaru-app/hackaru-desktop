@@ -60,7 +60,7 @@ export default {
   justify-content: space-between;
   border-bottom: 1px $border solid;
   h1 {
-    font-size: 16px;
+    font-size: 18px;
     display: flex;
     align-items: center;
     font-weight: normal;
