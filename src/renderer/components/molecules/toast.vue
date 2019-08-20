@@ -51,7 +51,7 @@ export default {
   bottom: 0;
   left: 0;
   justify-content: center;
-  padding: 20px 30px;
+  padding: 15px 30px;
   box-sizing: border-box;
   color: $white;
   text-align: center;
