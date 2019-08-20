@@ -14,6 +14,9 @@
       <base-button type="submit" class="is-rounded is-primary">
         {{ $t('authenticate') }}
       </base-button>
+      <p class="guide">
+        {{ $t('guide') }}
+      </p>
     </form>
   </section>
 </template>
@@ -50,7 +53,7 @@ export default {
 
 <style scoped lang="scss">
 h1 {
-  font-size: 16px;
+  font-size: 20px;
   padding: 0;
   margin: 0;
   margin-bottom: 30px;
@@ -62,5 +65,9 @@ form {
   margin-top: 50px;
   display: flex;
   flex-direction: column;
+}
+.guide {
+  color: $text-lighter;
+  margin-top: 30px;
 }
 </style>

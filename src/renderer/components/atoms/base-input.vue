@@ -23,23 +23,20 @@ export default {
   display: flex;
   align-items: center;
   border-radius: 3px;
-  padding: 0 15px;
-  height: 45px;
+  padding: 0 20px;
+  height: 50px;
   font-size: $font-size;
   line-height: 1;
   border: 1px $grey-eee solid;
-  transition: border-color 0.3s;
-  box-shadow: 0 3px 3px #00000005 inset;
+  transition: border-color 0.2s;
   margin-bottom: 15px;
+  box-shadow: none;
   &::placeholder {
     color: $grey-999;
     opacity: 1;
   }
   &:focus {
     border-color: $yellow;
-  }
-  &:invalid {
-    box-shadow: 0 3px 3px #00000005 inset;
   }
   &:placeholder-shown {
     border-color: $grey-eee;
