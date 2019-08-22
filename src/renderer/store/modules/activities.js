@@ -89,7 +89,7 @@ export const actions = {
         { root: true }
       );
       notify({
-        title: 'Timer Stopped.',
+        title: 'Timer Stopped',
         activity: data
       });
       return true;
@@ -117,7 +117,7 @@ export const actions = {
         { root: true }
       );
       notify({
-        title: 'Timer Started.',
+        title: 'Timer Started',
         activity: data
       });
       return true;
