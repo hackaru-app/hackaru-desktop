@@ -1,9 +1,12 @@
 import { Store } from 'vuex-mock-store';
-import { shallowMount } from '@vue/test-utils';
+import { shallowMount, createLocalVue } from '@vue/test-utils';
 import Index from '@/pages/index';
 
 describe('Index', () => {
   let wrapper;
+
+  const localVue = createLocalVue();
+  localVue.directive('tooltip', () => {});
 
   const $store = new Store({
     getters: {
@@ -36,6 +39,7 @@ describe('Index', () => {
 
   const factory = () =>
     shallowMount(Index, {
+      localVue,
       mocks: {
         $store,
         $electron

@@ -1,9 +1,12 @@
 import { Store } from 'vuex-mock-store';
-import { shallowMount } from '@vue/test-utils';
+import { shallowMount, createLocalVue } from '@vue/test-utils';
 import Trackers from '@/pages/settings/trackers';
 
 describe('Trackers', () => {
   let wrapper;
+
+  const localVue = createLocalVue();
+  localVue.directive('tooltip', () => {});
 
   const $store = new Store({
     getters: {
@@ -27,6 +30,7 @@ describe('Trackers', () => {
 
   const factory = () =>
     shallowMount(Trackers, {
+      localVue,
       mocks: {
         $store,
         $electron

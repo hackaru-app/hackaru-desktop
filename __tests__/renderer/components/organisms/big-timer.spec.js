@@ -1,12 +1,15 @@
 import MockDate from 'mockdate';
 import { Store } from 'vuex-mock-store';
-import { shallowMount } from '@vue/test-utils';
+import { shallowMount, createLocalVue } from '@vue/test-utils';
 import BigTimer from '@/components/organisms/big-timer';
 
 describe('BigTimer', () => {
   let wrapper;
 
   MockDate.set('2019-01-31T01:23:45');
+
+  const localVue = createLocalVue();
+  localVue.directive('tooltip', () => {});
 
   const $store = new Store({
     getters: {
@@ -26,6 +29,7 @@ describe('BigTimer', () => {
 
   const factory = () =>
     shallowMount(BigTimer, {
+      localVue,
       mocks: { $store }
     });
 
