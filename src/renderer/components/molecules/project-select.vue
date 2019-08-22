@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import ProjectName from '../molecules/project-name';
+import ProjectName from '@/components/molecules/project-name';
 
 export default {
   components: {

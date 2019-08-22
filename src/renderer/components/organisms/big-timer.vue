@@ -37,10 +37,7 @@
               class="suggestion"
               @click="clickSuggestion(suggestion)"
             >
-              <project-name
-                v-bind="suggestion.project"
-                :name="suggestion.description"
-              />
+              <activity-name v-bind="suggestion" />
             </li>
           </ul>
         </div>
@@ -76,7 +73,7 @@
 import BaseButton from '@/components/atoms/base-button';
 import Icon from '@/components/atoms/icon';
 import ProjectSelect from '@/components/molecules/project-select';
-import ProjectName from '@/components/molecules/project-name';
+import ActivityName from '@/components/molecules/activity-name';
 import Ticker from '@/components/atoms/ticker';
 import { mapGetters } from 'vuex';
 import debounce from 'lodash.debounce';
@@ -86,7 +83,7 @@ export default {
     Ticker,
     BaseButton,
     ProjectSelect,
-    ProjectName,
+    ActivityName,
     Icon
   },
   data() {
