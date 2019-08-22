@@ -13,7 +13,7 @@ export const actions = {
           url: '/v1/suggestions',
           params: {
             q,
-            limit: 6
+            limit: 4
           }
         },
         { root: true }

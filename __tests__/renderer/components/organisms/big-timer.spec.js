@@ -14,7 +14,7 @@ describe('BigTimer', () => {
   const $store = new Store({
     getters: {
       'activities/working': [],
-      'activities/search': () => [
+      'suggestions/all': [
         {
           project: {
             id: 2,
@@ -145,8 +145,8 @@ describe('BigTimer', () => {
       wrapper.find('.description').trigger('focus');
     });
 
-    it('show suggest-list', () => {
-      expect(wrapper.find('.suggest-list-wrapper').exists()).toBe(true);
+    it('show suggestion-list', () => {
+      expect(wrapper.find('.suggestion-list-wrapper').exists()).toBe(true);
     });
   });
 
@@ -157,8 +157,8 @@ describe('BigTimer', () => {
       wrapper.find('.description').trigger('blur');
     });
 
-    it('hide suggest-list', () => {
-      expect(wrapper.find('.suggest-list-wrapper').exists()).toBe(false);
+    it('hide suggestion-list', () => {
+      expect(wrapper.find('.suggestion-list-wrapper').exists()).toBe(false);
     });
   });
 
@@ -195,11 +195,11 @@ describe('BigTimer', () => {
     });
   });
 
-  describe('when click suggest-item', () => {
+  describe('when click suggestion', () => {
     beforeEach(() => {
       wrapper = factory();
       wrapper.find('.description').trigger('focus');
-      wrapper.find('.suggest-item').trigger('click');
+      wrapper.find('.suggestion').trigger('click');
     });
 
     it('dispatch activities/add', () => {

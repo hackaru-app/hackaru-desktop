@@ -27,19 +27,19 @@
     <div class="content">
       <transition>
         <div
-          v-if="focused && !id && suggests.length > 0"
-          class="suggest-list-wrapper"
+          v-if="focused && !id && suggestions.length > 0"
+          class="suggestion-list-wrapper"
         >
-          <ul class="suggest-list">
+          <ul class="suggestion-list">
             <li
-              v-for="activity in suggests"
-              :key="activity.id"
-              class="suggest-item"
-              @click="clickSuggest(activity)"
+              v-for="suggestion in suggestions"
+              :key="suggestion.id"
+              class="suggestion"
+              @click="clickSuggestion(suggestion)"
             >
               <project-name
-                v-bind="activity.project"
-                :name="activity.description"
+                v-bind="suggestion.project"
+                :name="suggestion.description"
               />
             </li>
           </ul>
@@ -100,11 +100,9 @@ export default {
   },
   computed: {
     ...mapGetters({
-      working: 'activities/working'
-    }),
-    suggests() {
-      return this.$store.getters['activities/search'](this.description);
-    }
+      working: 'activities/working',
+      suggestions: 'suggestions/all'
+    })
   },
   watch: {
     working() {
@@ -167,18 +165,18 @@ export default {
         this.$store.dispatch('toast/success', this.$t('started'));
       }
     },
-    search: debounce(function() {
+    fetchSuggestions: debounce(function() {
       if (!this.id) {
-        this.$store.dispatch('activities/search', this.description);
+        this.$store.dispatch('suggestions/fetch', this.description);
       }
     }, 1000),
     input(e) {
       this.description = e.target.value;
-      this.search();
+      this.fetchSuggestions();
     },
     focus() {
       this.focused = true;
-      this.search();
+      this.fetchSuggestions();
     },
     blur() {
       this.focused = false;
@@ -186,7 +184,7 @@ export default {
     change() {
       if (this.id) this.updateActivity();
     },
-    clickSuggest(activity) {
+    clickSuggestion(activity) {
       this.description = activity.description;
       this.projectId = activity.project && activity.project.id;
       this.startActivity();
@@ -230,14 +228,14 @@ export default {
   margin-top: 160px;
   position: relative;
 }
-.suggest-list-wrapper {
+.suggestion-list-wrapper {
   position: absolute;
   animation-duration: 150ms;
   width: 100%;
   background-color: #00000050;
   height: 100vh;
 }
-.suggest-list {
+.suggestion-list {
   list-style-type: none;
   list-style-position: inside;
   padding: 0;
@@ -247,7 +245,7 @@ export default {
   overflow: hidden;
   overflow-y: scroll;
 }
-.suggest-item {
+.suggestion {
   display: flex;
   align-items: center;
   height: 60px;
@@ -255,6 +253,7 @@ export default {
   border-bottom: 1px $border solid;
   &:last-child {
     border: 0;
+    padding-bottom: 2px;
   }
   &:hover {
     background-color: lighten($grey-f5f5f5, 2%);
