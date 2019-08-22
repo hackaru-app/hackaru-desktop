@@ -17,7 +17,7 @@
   width: 100%;
   box-sizing: border-box;
   padding: 0 15px;
-  z-index: 1;
+  z-index: index($z, main-header);
 }
 .is-small {
   height: 30px;
