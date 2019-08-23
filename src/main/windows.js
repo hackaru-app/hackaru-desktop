@@ -8,7 +8,7 @@ export function generateUrl(path, query) {
     : `file://${__dirname}/index.html#${path}?${query}`;
 }
 
-function getNextInitialWindowPosition() {
+function getOffsetedWindowPosition() {
   const focused = BrowserWindow.getFocusedWindow();
   const offset = 40;
   return focused
@@ -19,18 +19,16 @@ function getNextInitialWindowPosition() {
     : {};
 }
 
-function createWindow(data) {
+function createWindow(data, options) {
   const win = new BrowserWindow({
     webPreferences: {
       nodeIntegration: true
     },
-    width: data.width,
-    height: data.height,
     fullscreenable: false,
     titleBarStyle: 'hidden',
     resizable: true,
     icon: path.join(__dirname, '/icons/512x512.png'),
-    ...getNextInitialWindowPosition()
+    ...options
   });
 
   const query = queryString.stringify(data.query);
@@ -39,20 +37,15 @@ function createWindow(data) {
   return win;
 }
 
-export function showTrackerEditor(query) {
-  createWindow({
-    path: 'settings/tracker-editor',
-    width: 460,
-    height: 380
-  });
+export function showTrackerEditor() {
+  createWindow(
+    { path: 'settings/tracker-editor' },
+    { width: 460, height: 380, ...getOffsetedWindowPosition() }
+  );
 }
 
 export function showSettings() {
-  createWindow({
-    path: 'settings/trackers',
-    width: 600,
-    height: 480
-  });
+  createWindow({ path: 'settings/trackers' }, { width: 600, height: 480 });
 }
 
 app.on('ready', () => {
