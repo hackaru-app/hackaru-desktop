@@ -17,7 +17,7 @@ describe('Getters', () => {
     });
   });
 
-  describe('when call workings', () => {
+  describe('when call working', () => {
     const mockGetters = {
       all: [
         { id: 1, stoppedAt: '2019-01-01T01:23:45' },
@@ -26,39 +26,11 @@ describe('Getters', () => {
     };
 
     beforeEach(() => {
-      result = getters.workings({}, mockGetters, {}, {});
+      result = getters.working({}, mockGetters, {}, {});
     });
 
-    it('returns unstopped activites', () => {
-      expect(result.length).toBe(1);
-    });
-  });
-
-  describe('when call findByProject', () => {
-    const mockGetters = {
-      workings: [{ project: { id: 2 } }]
-    };
-
-    beforeEach(() => {
-      result = getters.findByProject({}, mockGetters, {}, {})(2);
-    });
-
-    it('returns activity', () => {
-      expect(result).toEqual({ project: { id: 2 } });
-    });
-  });
-
-  describe('when call findByProject but id is null', () => {
-    const mockGetters = {
-      workings: [{ project: null }]
-    };
-
-    beforeEach(() => {
-      result = getters.findByProject({}, mockGetters, {}, {})(null);
-    });
-
-    it('returns activity', () => {
-      expect(result).toEqual({ project: null });
+    it('returns unstopped activity', () => {
+      expect(result.id).toBe(2);
     });
   });
 });

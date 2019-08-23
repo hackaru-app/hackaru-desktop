@@ -1,7 +1,7 @@
 // Import
-@import url('https://fonts.googleapis.com/css?family=Roboto');
-@import "~normalize.css/normalize.css";
-@import "./src/renderer/assets/sass/modules/variables";
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400');
+@import '~normalize.css/normalize.css';
+@import './src/renderer/assets/sass/modules/variables';
 
 // Reset
 html {
@@ -9,7 +9,10 @@ html {
   -webkit-user-select: none;
   background: $background;
 }
-body, select, input, button {
+body,
+select,
+input,
+button {
   color: $text;
 }
 body {
@@ -18,11 +21,11 @@ body {
   font-size: $font-size;
   line-height: $line-height;
 }
-input[type="text"],
-input[type="time"],
-input[type="date"],
-input[type="email"],
-input[type="password"] {
+input[type='text'],
+input[type='time'],
+input[type='date'],
+input[type='email'],
+input[type='password'] {
   -webkit-appearance: none;
   box-sizing: border-box;
 }
@@ -38,7 +41,7 @@ button:focus {
 
 // Animation
 $animationDuration: $animation-duration;
-@import "~vue2-animate/src/sass/vue2-animate.scss";
+@import '~vue2-animate/src/sass/vue2-animate.scss';
 
 // Multiselect
-@import "~vue-multiselect/dist/vue-multiselect.min.css"
+@import '~vue-multiselect/dist/vue-multiselect.min.css';

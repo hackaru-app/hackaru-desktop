@@ -4,18 +4,19 @@ export const SHOW_ERROR = 'SHOW_ERROR';
 export const SHOW_SUCCESS = 'SHOW_SUCCESS';
 
 export const state = () => ({
-  title: '',
+  text: '',
   type: '',
-  rand: 0
+  rand: 0,
+  duration: undefined
 });
 
 export const actions = {
   async error({ commit }, payload) {
-    const title =
+    const text =
       get(payload, 'response.data.error_description') ||
       get(payload, 'response.data.message') ||
       get(payload, 'message');
-    commit(SHOW_ERROR, title);
+    if (text) commit(SHOW_ERROR, text);
   },
   async success({ commit }, payload) {
     commit(SHOW_SUCCESS, payload);
@@ -24,23 +25,26 @@ export const actions = {
 
 export const mutations = {
   [SHOW_ERROR](state, payload) {
-    state.title = payload;
+    state.text = payload;
     state.type = 'error';
+    state.duration = 5000;
     state.rand = Math.random();
   },
   [SHOW_SUCCESS](state, payload) {
-    state.title = payload;
+    state.text = payload;
     state.type = 'success';
+    state.duration = 3000;
     state.rand = Math.random();
   }
 };
 
 export const getters = {
-  getMessage(state, getters, rootState, rootGetters) {
+  message(state, getters, rootState, rootGetters) {
     return {
-      title: state.title,
+      text: state.text,
       type: state.type,
-      rand: state.rand
+      rand: state.rand,
+      duration: state.duration
     };
   }
 };

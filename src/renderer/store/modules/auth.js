@@ -15,7 +15,8 @@ export const state = {
     'activities:read',
     'activities:write',
     'projects:read',
-    'projects:write'
+    'projects:write',
+    'suggestions:read'
   ],
   uid: undefined,
   secret: undefined,

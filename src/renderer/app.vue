@@ -2,11 +2,12 @@
   <div id="app">
     <router-view></router-view>
     <toast />
+    <v-dialog width="80%" />
   </div>
 </template>
 
 <script>
-import Toast from './components/organisms/toast';
+import Toast from './components/molecules/toast';
 
 export default {
   name: 'Hackaru',
@@ -20,3 +21,8 @@ export default {
   }
 };
 </script>
+
+<style lang="scss">
+@import './src/renderer/assets/sass/main';
+@import './src/renderer/assets/sass/v-tooltip';
+</style>

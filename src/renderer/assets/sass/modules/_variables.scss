@@ -1,9 +1,10 @@
 // Color
-$grey-333: #3f4961;
+$grey-333: #333C4F;
 $grey-666: #68757d;
 $grey-999: #9aa5ab;
 $grey-ccc: #cdd0d1;
 $grey-eee: #eeeeee;
+$grey-f0f0f0: #f0f1f2;
 $grey-f5f5f5: #f5f6f7;
 $grey-fafafa: #fafafc;
 $grey-fdfdfd: #fdfdfd;
@@ -18,12 +19,13 @@ $text-light: $grey-666;
 $text-lighter: $grey-999;
 
 // Font
-$font-size: 14px;
-$font-family: 'Roboto', sans-serif;
+$font-size: 15px;
+$font-family: system-ui, -apple-system, sans-serif;
+$font-family-duration: 'Roboto', sans-serif;
 $line-height: 1.5;
 
 // Border
-$border: $grey-f5f5f5;
+$border: $grey-f0f0f0;
 $border-light: $grey-fafafa;
 
 // background
@@ -37,3 +39,10 @@ $animation-duration: .4s;
 $breakpoints: (
   'small': 640px
 );
+
+// ZIndex
+$z:
+  tooltip,
+  main-header,
+  toast, // high
+;

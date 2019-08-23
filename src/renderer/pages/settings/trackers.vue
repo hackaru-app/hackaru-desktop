@@ -13,7 +13,7 @@
           class="has-icon add-button"
           @click="showEditor"
         >
-          <icon name="plus-icon" class="is-primary" />
+          <icon v-tooltip="$t('add')" name="plus-icon" class="is-primary" />
         </base-button>
       </header>
 
@@ -32,7 +32,7 @@
             class="has-icon delete-button"
             @click="deleteTracker(tracker.id)"
           >
-            <icon name="x-icon" class="is-danger" />
+            <icon v-tooltip="$t('delete')" name="x-icon" class="is-danger" />
           </base-button>
         </article>
       </transition-group>
@@ -91,7 +91,7 @@ export default {
   justify-content: space-between;
   border-bottom: 1px $border solid;
   h1 {
-    font-size: 16px;
+    font-size: 18px;
     display: flex;
     align-items: center;
     font-weight: normal;

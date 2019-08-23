@@ -1,8 +1,9 @@
 import Vue from 'vue';
+import VModal from 'vue-js-modal';
 import VueI18n from 'vue-i18n';
 import VueTimers from 'vue-timers';
 import VueElectron from 'vue-electron';
-import Notifications from 'vue-notification';
+import VTooltip from 'v-tooltip';
 import App from './app';
 import router from './router';
 import store from './store';
@@ -13,8 +14,9 @@ Vue.config.productionTip = false;
 // https://simulatedgreg.gitbooks.io/electron-vue/content/en/webpack-configurations.html#white-listing-externals
 Vue.use(VueElectron);
 Vue.use(VueTimers);
-Vue.use(Notifications);
 Vue.use(VueI18n);
+Vue.use(VTooltip);
+Vue.use(VModal, { dialog: true });
 
 new Vue({
   components: { App },

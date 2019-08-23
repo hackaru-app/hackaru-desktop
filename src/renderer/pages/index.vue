@@ -1,50 +1,58 @@
 <i18n src="@/assets/locales/pages/index.json" />
 
 <template>
-  <section>
-    <main-header>
-      <button class="menu-button add-button" @click="showEditor()">
-        <icon name="plus-icon" class="icon is-small" />
-      </button>
-    </main-header>
-
+  <section class="index">
+    <main-header class="is-small" />
     <div class="content">
-      <activity
-        v-for="activity in activities"
-        :key="activity.id"
-        v-bind="activity"
-      />
+      <big-timer />
+    </div>
+    <footer class="footer">
+      <div class="left">
+        <base-button
+          type="button"
+          class="has-icon settings-button"
+          @click="showSettings"
+        >
+          <icon
+            v-tooltip="{ content: $t('settings'), offset: 10 }"
+            name="settings-icon"
+            class="icon is-small"
+          />
+        </base-button>
+        <base-button
+          type="button"
+          class="has-icon web-button"
+          @click="openWebsite"
+        >
+          <icon
+            v-tooltip="{ content: $t('website'), offset: 10 }"
+            name="globe-icon"
+            class="icon is-small"
+          />
+        </base-button>
+      </div>
 
-      <p v-if="activities.length <= 0" class="empty-message">
-        {{ $t('empty') }}
-      </p>
-
-      <footer class="footer">
-        <div class="left">
-          <base-button
-            type="button"
-            class="has-icon settings-button"
-            @click="showSettings"
-          >
-            <icon name="settings-icon" class="icon is-small" />
-          </base-button>
-          <base-button
-            type="button"
-            class="has-icon web-button"
-            @click="openWebsite"
-          >
-            <icon name="globe-icon" class="icon is-small" />
-          </base-button>
-        </div>
+      <div class="right">
+        <base-button type="button" class="has-icon quit-button" @click="quit">
+          <icon
+            v-tooltip="{ content: $t('quit'), offset: 10 }"
+            name="x-circle-icon"
+            class="icon is-small"
+          />
+        </base-button>
         <base-button
           type="button"
           class="has-icon logout-button"
-          @click="logout"
+          @click="confirmLogout"
         >
-          <icon name="log-out-icon" class="icon is-small" />
+          <icon
+            v-tooltip="{ content: $t('logout'), offset: 10 }"
+            name="log-out-icon"
+            class="icon is-small"
+          />
         </base-button>
-      </footer>
-    </div>
+      </div>
+    </footer>
   </section>
 </template>
 
@@ -52,70 +60,87 @@
 import BaseButton from '@/components/atoms/base-button';
 import MainHeader from '@/components/molecules/main-header';
 import Icon from '@/components/atoms/icon';
-import Activity from '@/components/organisms/activity';
+import BigTimer from '@/components/organisms/big-timer';
 import { mapGetters } from 'vuex';
 
 export default {
   components: {
+    BigTimer,
     BaseButton,
     Icon,
-    MainHeader,
-    Activity
+    MainHeader
   },
   computed: {
-    ...mapGetters({
-      activities: 'activities/workings',
-      webUrl: 'auth/webUrl'
-    })
+    ...mapGetters({ webUrl: 'auth/webUrl' })
   },
   mounted() {
-    this.$store.dispatch('activities/fetchWorkings');
+    this.$store.dispatch('activities/fetchWorking');
     this.$store.dispatch('projects/fetch');
   },
   methods: {
-    showEditor() {
-      this.$electron.ipcRenderer.send('showActivityEditor');
-    },
     openWebsite() {
       this.$electron.shell.openExternal(this.webUrl);
     },
     showSettings() {
       this.$electron.ipcRenderer.send('showSettings');
     },
+    confirmLogout() {
+      this.$modal.show('dialog', {
+        text: this.$t('confirms.logout'),
+        buttons: [{ title: 'Cancel' }, { title: 'OK', handler: this.logout }]
+      });
+    },
     async logout() {
-      if (!window.confirm(this.$t('confirms.logout'))) return;
       await this.$store.dispatch('auth/logout');
       this.$electron.ipcRenderer.send('logout');
       this.$electron.remote.app.relaunch();
       this.$electron.remote.app.exit(0);
+    },
+    quit() {
+      this.$electron.remote.app.quit();
     }
   }
 };
 </script>
 
 <style scoped lang="scss">
+.index {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
 .content {
-  padding-top: 45px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 .footer {
-  width: 100vw;
   overflow: hidden;
-  position: absolute;
   display: flex;
   justify-content: space-between;
-  bottom: 0;
   background-color: $grey-fafafa;
   border-top: 1px $grey-eee solid;
-  padding: 13px 20px;
+  height: 50px;
+  padding: 0 20px;
   box-sizing: border-box;
   .icon {
-    color: $grey-666;
+    color: $text;
   }
 }
 .left {
   display: flex;
   .icon {
     margin-right: 20px;
+  }
+}
+.right {
+  display: flex;
+  .quit-button {
+    z-index: 1;
+  }
+  .icon {
+    margin-left: 20px;
   }
 }
 .empty-message {

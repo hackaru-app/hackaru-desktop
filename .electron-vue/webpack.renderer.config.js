@@ -19,7 +19,10 @@ const { VueLoaderPlugin } = require('vue-loader')
  * that provide pure *.vue files that need compiling
  * https://simulatedgreg.gitbooks.io/electron-vue/content/en/webpack-configurations.html#white-listing-externals
  */
-let whiteListedModules = ['vue', 'vue-timers', 'vue-notification']
+let whiteListedModules = [
+  'vue',
+  'vue-timers'
+]
 
 let rendererConfig = {
   devtool: '#cheap-module-eval-source-map',
@@ -44,7 +47,7 @@ let rendererConfig = {
         use: ['vue-style-loader', 'css-loader', {
           loader: 'sass-loader',
           options: {
-            data: '@import "./src/renderer/assets/sass/main";'
+            data: '@import "./src/renderer/assets/sass/modules/variables";'
           }
         }]
       },

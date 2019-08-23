@@ -106,7 +106,7 @@ export default {
   margin: 0;
 }
 /deep/ .multiselect__input::placeholder {
-  color: $grey-999;
+  color: $grey-ccc;
 }
 /deep/ .multiselect__element {
   font-size: $font-size;
@@ -149,7 +149,7 @@ form {
   min-height: 60px;
   transition: all 0.3s ease;
   label {
-    color: $text-light;
+    color: $text;
     margin-right: 20px;
     min-width: 90px;
   }

@@ -25,21 +25,16 @@ function notify({ title, activity }) {
 }
 
 export const actions = {
-  async fetchWorkings({ dispatch }) {
+  async fetchWorking({ dispatch }) {
     try {
       const { data } = await dispatch(
         'auth-api/request',
-        {
-          url: '/v1/activities',
-          params: {
-            working: true
-          }
-        },
+        { url: '/v1/activities/working' },
         { root: true }
       );
       dispatch(
         'entities/merge',
-        { json: data, schema: [activity] },
+        { json: data, schema: activity },
         { root: true }
       );
     } catch (e) {
@@ -94,7 +89,7 @@ export const actions = {
         { root: true }
       );
       notify({
-        title: 'Timer Stopped.',
+        title: 'Timer Stopped',
         activity: data
       });
       return true;
@@ -122,7 +117,7 @@ export const actions = {
         { root: true }
       );
       notify({
-        title: 'Timer Started.',
+        title: 'Timer Started',
         activity: data
       });
       return true;
@@ -169,16 +164,8 @@ export const getters = {
   all(state, getters, rootState, rootGetters) {
     return rootGetters['entities/getEntities']('activities', [activity]);
   },
-  workings(state, getters) {
-    return getters.all.filter(({ stoppedAt }) => !stoppedAt);
-  },
   working(state, getters) {
     return getters.all.find(({ stoppedAt }) => !stoppedAt);
-  },
-  findByProject: (state, getters) => projectId => {
-    return getters.workings.find(
-      ({ project }) => (project ? project.id : null) === projectId
-    );
   },
   stopOnSuspend(state) {
     return state.stopOnSuspend;

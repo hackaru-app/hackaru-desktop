@@ -47,7 +47,7 @@
         "licenseUrl": "https://github.com/atom/node-keytar/raw/master/LICENSE.md",
         "parents": "Hackaru"
     },
-    "lodash.difference": {
+    "lodash.debounce": {
         "licenses": "MIT",
         "repository": "https://github.com/lodash/lodash",
         "licenseUrl": "https://github.com/lodash/lodash/raw/master/LICENSE",
@@ -81,6 +81,18 @@
         "licenses": "MIT",
         "repository": "https://github.com/lodash/lodash",
         "licenseUrl": "https://github.com/lodash/lodash/raw/master/LICENSE",
+        "parents": "Hackaru"
+    },
+    "lodash.uniqby": {
+        "licenses": "MIT",
+        "repository": "https://github.com/lodash/lodash",
+        "licenseUrl": "https://github.com/lodash/lodash/raw/master/LICENSE",
+        "parents": "Hackaru"
+    },
+    "menubar": {
+        "licenses": "BSD-2-Clause",
+        "repository": "https://github.com/maxogden/menubar",
+        "licenseUrl": "https://github.com/maxogden/menubar/raw/master/LICENSE",
         "parents": "Hackaru"
     },
     "node-notifier": {
@@ -131,6 +143,12 @@
         "licenseUrl": "https://github.com/adamhalasz/uniqid",
         "parents": "Hackaru"
     },
+    "v-tooltip": {
+        "licenses": "ISC",
+        "repository": "https://github.com/Akryum/vue-tooltip",
+        "licenseUrl": "https://github.com/Akryum/vue-tooltip/raw/master/LICENSE",
+        "parents": "Hackaru"
+    },
     "vue-electron": {
         "licenses": "ISC",
         "repository": "https://github.com/SimulatedGREG/vue-electron",
@@ -149,16 +167,16 @@
         "licenseUrl": "https://github.com/kazupon/vue-i18n/raw/master/LICENSE",
         "parents": "Hackaru"
     },
+    "vue-js-modal": {
+        "licenses": "MIT",
+        "repository": "https://github.com/euvl/vue-js-modal",
+        "licenseUrl": "https://github.com/euvl/vue-js-modal/raw/master/LICENSE.md",
+        "parents": "Hackaru"
+    },
     "vue-multiselect": {
         "licenses": "MIT",
         "repository": "https://github.com/shentao/vue-multiselect",
         "licenseUrl": "https://github.com/shentao/vue-multiselect/raw/master/LICENSE",
-        "parents": "Hackaru"
-    },
-    "vue-notification": {
-        "licenses": "MIT",
-        "repository": "https://github.com/euvl/vue-notification",
-        "licenseUrl": "https://github.com/euvl/vue-notification/raw/master/LICENSE",
         "parents": "Hackaru"
     },
     "vue-router": {

@@ -1,5 +1,6 @@
 import { session, ipcMain, BrowserWindow } from 'electron';
 import { persist } from './persistor';
+import menubar from './menubar';
 import store from '../renderer/store';
 
 function clearLocalStorage() {
@@ -29,6 +30,7 @@ export async function showAuthentication(event) {
       persist(store.getters['auth/persistKey']);
       store.dispatch('auth/storeAccessToken', accessToken);
       event.sender.send('authenticated');
+      menubar.showWindow();
       browser.close();
     }
   });

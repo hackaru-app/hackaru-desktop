@@ -1,7 +1,5 @@
 import { mutations } from '@/store/modules/toast';
 
-jest.mock('keytar', () => {});
-
 describe('Mutations', () => {
   describe('when commit SHOW_ERROR', () => {
     const state = { rand: 0 };
@@ -10,8 +8,8 @@ describe('Mutations', () => {
       mutations['SHOW_ERROR'](state, 'description');
     });
 
-    it('set title', () => {
-      expect(state.title).toBe('description');
+    it('set text', () => {
+      expect(state.text).toBe('description');
     });
 
     it('set type', () => {
@@ -20,6 +18,10 @@ describe('Mutations', () => {
 
     it('set rand', () => {
       expect(state.rand).not.toBe(0);
+    });
+
+    it('set duration', () => {
+      expect(state.duration).toBe(5000);
     });
   });
 
@@ -30,8 +32,8 @@ describe('Mutations', () => {
       mutations['SHOW_SUCCESS'](state, 'description');
     });
 
-    it('set title', () => {
-      expect(state.title).toBe('description');
+    it('set text', () => {
+      expect(state.text).toBe('description');
     });
 
     it('set type', () => {
@@ -40,6 +42,10 @@ describe('Mutations', () => {
 
     it('set rand', () => {
       expect(state.rand).not.toBe(0);
+    });
+
+    it('set duration', () => {
+      expect(state.duration).toBe(3000);
     });
   });
 });

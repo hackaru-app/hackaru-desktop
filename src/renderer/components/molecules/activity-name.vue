@@ -1,5 +1,8 @@
 <template>
-  <dot-text :color="color || '#cccfd9'" :text="name || 'No Project'" />
+  <dot-text
+    :color="project ? project.color : '#cccfd9'"
+    :text="description || (project ? project.name : 'No Project')"
+  />
 </template>
 
 <script>
@@ -10,11 +13,11 @@ export default {
     DotText
   },
   props: {
-    name: {
-      type: String,
+    project: {
+      type: Object,
       default: null
     },
-    color: {
+    description: {
       type: String,
       default: null
     }

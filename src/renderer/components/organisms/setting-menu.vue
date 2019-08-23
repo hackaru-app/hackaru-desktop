@@ -61,12 +61,8 @@ export default {
   margin: 4px 0;
   border-left: 4px transparent solid;
   cursor: pointer;
-  transition: all 0.3s ease;
-  &:active {
-    transform: scale(0.97);
-  }
   &:hover {
-    border-left-color: $grey-999;
+    border-left-color: $grey-eee;
   }
   &.selected {
     border-left-color: $cyan;
