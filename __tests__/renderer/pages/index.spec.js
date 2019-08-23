@@ -29,7 +29,8 @@ describe('Index', () => {
     remote: {
       app: {
         relaunch: jest.fn(),
-        exit: jest.fn()
+        exit: jest.fn(),
+        quit: jest.fn()
       }
     },
     shell: {
@@ -115,6 +116,18 @@ describe('Index', () => {
     it('does not relaunch app', () => {
       expect($electron.remote.app.relaunch).not.toHaveBeenCalled();
       expect($electron.remote.app.exit).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('when click quit-button', () => {
+    beforeEach(() => {
+      global.confirm = () => true;
+      wrapper = factory();
+      wrapper.find('.quit-button').vm.$emit('click');
+    });
+
+    it('quit app', () => {
+      expect($electron.remote.app.quit).toHaveBeenCalled();
     });
   });
 });

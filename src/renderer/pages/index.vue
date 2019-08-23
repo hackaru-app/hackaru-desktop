@@ -31,13 +31,27 @@
           />
         </base-button>
       </div>
-      <base-button type="button" class="has-icon logout-button" @click="logout">
-        <icon
-          v-tooltip="{ content: $t('logout'), offset: 10 }"
-          name="log-out-icon"
-          class="icon is-small"
-        />
-      </base-button>
+
+      <div class="right">
+        <base-button type="button" class="has-icon quit-button" @click="quit">
+          <icon
+            v-tooltip="{ content: $t('quit'), offset: 10 }"
+            name="x-circle-icon"
+            class="icon is-small"
+          />
+        </base-button>
+        <base-button
+          type="button"
+          class="has-icon logout-button"
+          @click="logout"
+        >
+          <icon
+            v-tooltip="{ content: $t('logout'), offset: 10 }"
+            name="log-out-icon"
+            class="icon is-small"
+          />
+        </base-button>
+      </div>
     </footer>
   </section>
 </template>
@@ -76,6 +90,9 @@ export default {
       this.$electron.ipcRenderer.send('logout');
       this.$electron.remote.app.relaunch();
       this.$electron.remote.app.exit(0);
+    },
+    quit() {
+      this.$electron.remote.app.quit();
     }
   }
 };
@@ -110,6 +127,15 @@ export default {
   display: flex;
   .icon {
     margin-right: 20px;
+  }
+}
+.right {
+  display: flex;
+  .quit-button {
+    z-index: 1;
+  }
+  .icon {
+    margin-left: 20px;
   }
 }
 .empty-message {

@@ -5,6 +5,7 @@
     "settings": "Settings",
     "website": "Open website in browser",
     "logout": "Logout",
+    "quit": "Quit App",
     "confirms": {
       "logout": "Logout?"
     }
@@ -15,6 +16,7 @@
     "website": "Web版をブラウザで開く",
     "logout": "ログアウト",
     "stopped": "記録しました",
+    "quit": "アプリを終了",
     "confirms": {
       "logout": "ログアウトしますか？"
     }
