@@ -1,21 +1,29 @@
 import path from 'path';
+import { Menubar } from 'menubar';
 import { app, ipcMain, BrowserWindow } from 'electron';
 import queryString from 'query-string';
+import { differenceInSeconds } from 'date-fns';
+import { fromS } from 'hh-mm-ss';
+import store from '../renderer/store';
 
-let mainWindow = null;
+function generateUrl(path, query) {
+  return process.env.NODE_ENV === 'development'
+    ? `http://localhost:9080/#/${path}?${query}`
+    : `file://${__dirname}/index.html#${path}?${query}`;
+}
+
+function getNextInitialWindowPosition() {
+  const focused = BrowserWindow.getFocusedWindow();
+  const offset = 40;
+  return focused
+    ? {
+        x: focused.getPosition()[0] + offset,
+        y: focused.getPosition()[1] + offset
+      }
+    : {};
+}
 
 function createWindow(data) {
-  const getPosition = () => {
-    const focused = BrowserWindow.getFocusedWindow();
-    const offset = 40;
-    return focused
-      ? {
-          x: focused.getPosition()[0] + offset,
-          y: focused.getPosition()[1] + offset
-        }
-      : {};
-  };
-
   const win = new BrowserWindow({
     webPreferences: {
       nodeIntegration: true
@@ -26,34 +34,14 @@ function createWindow(data) {
     titleBarStyle: 'hidden',
     resizable: true,
     icon: path.join(__dirname, '/icons/512x512.png'),
-    ...getPosition()
+    ...getNextInitialWindowPosition()
   });
 
-  // Disable window menu.
+  const query = queryString.stringify(data.query);
+  win.loadURL(generateUrl(data.path, query));
   win.setMenu(null);
 
-  const query = queryString.stringify(data.query);
-  const url =
-    process.env.NODE_ENV === 'development'
-      ? `http://localhost:9080/#/${data.path}?${query}`
-      : `file://${__dirname}/index.html#${data.path}?${query}`;
-
-  win.loadURL(url);
-
   return win;
-}
-
-export function showMain() {
-  if (mainWindow === null) {
-    mainWindow = createWindow({
-      width: 285,
-      height: 480
-    });
-    mainWindow.on('closed', () => {
-      mainWindow = null;
-    });
-  }
-  mainWindow.show();
 }
 
 export function showTrackerEditor(query) {
@@ -73,19 +61,25 @@ export function showSettings() {
 }
 
 ipcMain.on('showTrackerEditor', (e, data) => showTrackerEditor(data));
-
 ipcMain.on('showSettings', () => showSettings());
 
-app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') {
-    app.quit();
+const menubar = new Menubar(app, {
+  index: generateUrl(),
+  icon: path.join(__static, '/IconTemplate.png'),
+  browserWindow: {
+    width: 285,
+    height: 480,
+    webPreferences: {
+      nodeIntegration: true
+    }
   }
 });
 
-app.on('activate', () => {
-  showMain();
-});
+function getTrayTitle() {
+  const startedAt = (store.getters['activities/working'] || {}).startedAt;
+  return startedAt ? fromS(differenceInSeconds(new Date(), startedAt)) : '';
+}
 
-app.on('ready', () => {
-  showMain();
+menubar.on('ready', () => {
+  setInterval(() => menubar.tray.setTitle(getTrayTitle()), 500);
 });
