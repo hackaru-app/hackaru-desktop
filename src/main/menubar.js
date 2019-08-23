@@ -6,9 +6,20 @@ import { fromS } from 'hh-mm-ss';
 import { generateUrl } from './windows';
 import store from '../renderer/store';
 
+function getTrayIcon() {
+  switch (process.platform) {
+    case 'darwin':
+      return '/IconTemplate.png';
+    case 'win32':
+      return '/icon-tray.ico';
+    default:
+      return '/icon-tray-light.png';
+  }
+}
+
 const menubar = new Menubar(app, {
   index: generateUrl(),
-  icon: path.join(__static, '/IconTemplate.png'),
+  icon: path.join(__static, getTrayIcon()),
   preloadWindow: true,
   browserWindow: {
     width: 285,
