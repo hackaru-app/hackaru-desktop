@@ -20,6 +20,7 @@ function getTrayIcon() {
 const menubar = new Menubar(app, {
   index: generateUrl(),
   icon: path.join(__static, getTrayIcon()),
+  tooltip: 'Open App',
   preloadWindow: true,
   browserWindow: {
     width: 285,
