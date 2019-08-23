@@ -10,7 +10,7 @@ const menu = Menu.buildFromTemplate([
   { label: 'Show App', click: () => showMain() },
   { label: 'New Activity', click: () => showActivityEditor() },
   { type: 'separator' },
-  { label: 'Quit', click: () => app.quit() }
+  { role: 'quit', label: 'Quit' }
 ]);
 
 function getTitle() {
