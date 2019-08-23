@@ -239,6 +239,7 @@ export default {
   background-color: #fffffffe;
   box-shadow: 0 3px 5px #00000010;
   margin: 0;
+  max-height: calc(60px * 4);
   overflow: hidden;
   overflow-y: scroll;
 }
@@ -246,6 +247,7 @@ export default {
   display: flex;
   align-items: center;
   height: 60px;
+  box-sizing: border-box;
   padding: 0 30px;
   border-bottom: 1px $border solid;
   &:last-child {

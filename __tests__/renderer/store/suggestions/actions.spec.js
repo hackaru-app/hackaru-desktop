@@ -16,7 +16,7 @@ describe('Actions', () => {
           url: '/v1/suggestions',
           params: {
             q: 'query',
-            limit: 4
+            limit: 15
           }
         },
         { root: true }
