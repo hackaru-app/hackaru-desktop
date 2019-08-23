@@ -2,6 +2,7 @@
   <div id="app">
     <router-view></router-view>
     <toast />
+    <v-dialog width="80%" />
   </div>
 </template>
 

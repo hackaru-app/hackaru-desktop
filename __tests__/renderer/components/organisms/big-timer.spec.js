@@ -30,7 +30,12 @@ describe('BigTimer', () => {
   const factory = () =>
     shallowMount(BigTimer, {
       localVue,
-      mocks: { $store }
+      mocks: {
+        $store,
+        $modal: {
+          hide: () => {}
+        }
+      }
     });
 
   beforeEach(() => {
@@ -211,29 +216,15 @@ describe('BigTimer', () => {
     });
   });
 
-  describe('when click delete-button', () => {
+  describe('when call deleteActivity', () => {
     beforeEach(() => {
-      global.confirm = () => true;
       wrapper = factory();
       wrapper.setData({ id: 1 });
-      wrapper.find('.delete-button').vm.$emit('click');
+      wrapper.vm.deleteActivity();
     });
 
     it('dispatch activities/delete', () => {
       expect($store.dispatch).toHaveBeenCalledWith('activities/delete', 1);
-    });
-  });
-
-  describe('when click delete-button but confirm is false', () => {
-    beforeEach(() => {
-      global.confirm = () => false;
-      wrapper = factory();
-      wrapper.setData({ id: 1 });
-      wrapper.find('.delete-button').vm.$emit('click');
-    });
-
-    it('does not dispatch activities/delete', () => {
-      expect($store.dispatch).not.toHaveBeenCalled();
     });
   });
 });

@@ -43,7 +43,7 @@
         <base-button
           type="button"
           class="has-icon logout-button"
-          @click="logout"
+          @click="confirmLogout"
         >
           <icon
             v-tooltip="{ content: $t('logout'), offset: 10 }"
@@ -84,8 +84,13 @@ export default {
     showSettings() {
       this.$electron.ipcRenderer.send('showSettings');
     },
+    confirmLogout() {
+      this.$modal.show('dialog', {
+        text: this.$t('confirms.logout'),
+        buttons: [{ title: 'Cancel' }, { title: 'OK', handler: this.logout }]
+      });
+    },
     async logout() {
-      if (!window.confirm(this.$t('confirms.logout'))) return;
       await this.$store.dispatch('auth/logout');
       this.$electron.ipcRenderer.send('logout');
       this.$electron.remote.app.relaunch();

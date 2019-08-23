@@ -167,6 +167,12 @@
         "licenseUrl": "https://github.com/kazupon/vue-i18n/raw/master/LICENSE",
         "parents": "Hackaru"
     },
+    "vue-js-modal": {
+        "licenses": "MIT",
+        "repository": "https://github.com/euvl/vue-js-modal",
+        "licenseUrl": "https://github.com/euvl/vue-js-modal/raw/master/LICENSE.md",
+        "parents": "Hackaru"
+    },
     "vue-multiselect": {
         "licenses": "MIT",
         "repository": "https://github.com/shentao/vue-multiselect",

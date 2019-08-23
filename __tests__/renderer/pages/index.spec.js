@@ -81,11 +81,10 @@ describe('Index', () => {
     });
   });
 
-  describe('when click logout-button', () => {
+  describe('when call logout', () => {
     beforeEach(() => {
-      global.confirm = () => true;
       wrapper = factory();
-      wrapper.find('.logout-button').vm.$emit('click');
+      wrapper.vm.logout();
     });
 
     it('dispatch auth/logout', () => {
@@ -99,23 +98,6 @@ describe('Index', () => {
     it('relaunch app', () => {
       expect($electron.remote.app.relaunch).toHaveBeenCalled();
       expect($electron.remote.app.exit).toHaveBeenCalledWith(0);
-    });
-  });
-
-  describe('when click logout-button but confirm is false', () => {
-    beforeEach(() => {
-      global.confirm = () => false;
-      wrapper = factory();
-      wrapper.find('.logout-button').vm.$emit('click');
-    });
-
-    it('does not dispatch', () => {
-      expect($store.dispatch).not.toHaveBeenCalledWith('auth/logout');
-    });
-
-    it('does not relaunch app', () => {
-      expect($electron.remote.app.relaunch).not.toHaveBeenCalled();
-      expect($electron.remote.app.exit).not.toHaveBeenCalled();
     });
   });
 

@@ -62,7 +62,7 @@
       v-tooltip="$t('delete')"
       type="button"
       class="delete-button"
-      @click="deleteActivity"
+      @click="confirmDeleteActivity"
     >
       <icon name="trash-icon" class="is-danger" />
     </base-button>
@@ -145,11 +145,20 @@ export default {
       });
       this.setWorkingProps();
     },
+    confirmDeleteActivity() {
+      this.$modal.show('dialog', {
+        text: this.$t('confirms.delete'),
+        buttons: [
+          { title: 'Cancel' },
+          { title: 'OK', handler: this.deleteActivity }
+        ]
+      });
+    },
     async deleteActivity() {
-      if (!window.confirm(this.$t('confirms.delete'))) return;
       await this.$store.dispatch('activities/delete', this.id);
       this.$store.dispatch('toast/success', this.$t('deleted'));
       this.setWorkingProps();
+      this.$modal.hide('dialog');
     },
     async startActivity() {
       const success = await this.$store.dispatch('activities/add', {
