@@ -89,6 +89,12 @@
         "licenseUrl": "https://github.com/lodash/lodash/raw/master/LICENSE",
         "parents": "Hackaru"
     },
+    "menubar": {
+        "licenses": "BSD-2-Clause",
+        "repository": "https://github.com/maxogden/menubar",
+        "licenseUrl": "https://github.com/maxogden/menubar/raw/master/LICENSE",
+        "parents": "Hackaru"
+    },
     "node-notifier": {
         "licenses": "MIT",
         "repository": "https://github.com/mikaelbr/node-notifier",
@@ -135,6 +141,12 @@
         "licenses": "MIT",
         "repository": "https://github.com/adamhalasz/uniqid",
         "licenseUrl": "https://github.com/adamhalasz/uniqid",
+        "parents": "Hackaru"
+    },
+    "v-tooltip": {
+        "licenses": "ISC",
+        "repository": "https://github.com/Akryum/vue-tooltip",
+        "licenseUrl": "https://github.com/Akryum/vue-tooltip/raw/master/LICENSE",
         "parents": "Hackaru"
     },
     "vue-electron": {
