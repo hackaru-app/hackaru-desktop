@@ -5,6 +5,7 @@ import './dock-menu';
 import './oauth-window';
 import './power-monitor';
 import './persistor';
+import './menubar';
 
 /**
  * Set `__static` path to static files in production

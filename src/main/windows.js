@@ -1,12 +1,8 @@
 import path from 'path';
-import { Menubar } from 'menubar';
-import { app, ipcMain, BrowserWindow } from 'electron';
+import { ipcMain, BrowserWindow } from 'electron';
 import queryString from 'query-string';
-import { differenceInSeconds } from 'date-fns';
-import { fromS } from 'hh-mm-ss';
-import store from '../renderer/store';
 
-function generateUrl(path, query) {
+export function generateUrl(path, query) {
   return process.env.NODE_ENV === 'development'
     ? `http://localhost:9080/#/${path}?${query}`
     : `file://${__dirname}/index.html#${path}?${query}`;
@@ -62,25 +58,3 @@ export function showSettings() {
 
 ipcMain.on('showTrackerEditor', (e, data) => showTrackerEditor(data));
 ipcMain.on('showSettings', () => showSettings());
-
-const menubar = new Menubar(app, {
-  index: generateUrl(),
-  icon: path.join(__static, '/IconTemplate.png'),
-  preloadWindow: true,
-  browserWindow: {
-    width: 285,
-    height: 480,
-    webPreferences: {
-      nodeIntegration: true
-    }
-  }
-});
-
-function getTrayTitle() {
-  const startedAt = (store.getters['activities/working'] || {}).startedAt;
-  return startedAt ? fromS(differenceInSeconds(new Date(), startedAt)) : '';
-}
-
-menubar.on('ready', () => {
-  setInterval(() => menubar.tray.setTitle(getTrayTitle()), 500);
-});
