@@ -2,7 +2,6 @@ import './envs';
 import '../renderer/store';
 import './windows';
 import './trackers';
-import './dock-menu';
 import './oauth-window';
 import './power-monitor';
 import './persistor';
