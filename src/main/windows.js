@@ -1,5 +1,5 @@
 import path from 'path';
-import { ipcMain, BrowserWindow } from 'electron';
+import { ipcMain, Menu, app, BrowserWindow } from 'electron';
 import queryString from 'query-string';
 
 export function generateUrl(path, query) {
@@ -35,7 +35,6 @@ function createWindow(data) {
 
   const query = queryString.stringify(data.query);
   win.loadURL(generateUrl(data.path, query));
-  win.setMenu(null);
 
   return win;
 }
@@ -55,6 +54,10 @@ export function showSettings() {
     height: 480
   });
 }
+
+app.on('ready', () => {
+  Menu.setApplicationMenu(null);
+});
 
 ipcMain.on('showTrackerEditor', (e, data) => showTrackerEditor(data));
 ipcMain.on('showSettings', () => showSettings());
