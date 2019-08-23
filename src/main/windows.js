@@ -66,6 +66,7 @@ ipcMain.on('showSettings', () => showSettings());
 const menubar = new Menubar(app, {
   index: generateUrl(),
   icon: path.join(__static, '/IconTemplate.png'),
+  preloadWindow: true,
   browserWindow: {
     width: 285,
     height: 480,
