@@ -109,7 +109,7 @@
     "vuex-persistedstate": "^2.5.4"
   },
   "devDependencies": {
-    "@babel/core": "^7.4.5",
+    "@babel/core": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
     "@kazupon/vue-i18n-loader": "^0.3.0",
     "@vue/test-utils": "^1.0.0-beta.29",
