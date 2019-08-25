@@ -10,6 +10,7 @@
     "build:dir": "node .electron-vue/build.js && electron-builder --dir",
     "build:clean": "cross-env BUILD_TARGET=clean node .electron-vue/build.js",
     "build:web": "cross-env BUILD_TARGET=web node .electron-vue/build.js",
+    "rebuild": "electron-rebuild",
     "dev": "node .electron-vue/dev-runner.js",
     "lint": "eslint --ext .js,.vue src test",
     "pack": "npm run pack:main && npm run pack:renderer",
@@ -17,7 +18,7 @@
     "pack:renderer": "cross-env NODE_ENV=production webpack --progress --colors --config .electron-vue/webpack.renderer.config.js",
     "test": "jest",
     "unit": "karma start test/unit/karma.conf.js",
-    "postinstall": "npm run license-third-party && electron-builder install-app-deps",
+    "postinstall": "npm run license-third-party && electron-builder install-app-deps && npm run rebuild",
     "license-third-party": "npm-license-crawler --onlyDirectDependencies --omitVersion --json src/renderer/assets/licenses.json"
   },
   "lint-staged": {
@@ -137,6 +138,7 @@
     "electron-builder": "^21.2.0",
     "electron-debug": "^1.5.0",
     "electron-devtools-installer": "^2.2.4",
+    "electron-rebuild": "^1.8.6",
     "eslint": "^4.19.1",
     "eslint-config-prettier": "^4.3.0",
     "eslint-config-standard": "^11.0.0",
