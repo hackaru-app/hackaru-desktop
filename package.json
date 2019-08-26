@@ -172,7 +172,7 @@
     "vue-style-loader": "^4.1.0",
     "vue-template-compiler": "^2.5.16",
     "vuex-mock-store": "0.0.7",
-    "webpack": "^4.15.1",
+    "webpack": "^4.39.2",
     "webpack-cli": "^3.0.8",
     "webpack-dev-server": "^3.8.0",
     "webpack-hot-middleware": "^2.22.2",
