@@ -141,7 +141,7 @@
     "eslint-config-prettier": "^4.3.0",
     "eslint-config-standard": "^11.0.0",
     "eslint-config-vue": "^2.0.2",
-    "eslint-loader": "^2.0.0",
+    "eslint-loader": "^3.0.0",
     "eslint-plugin-html": "^4.0.3",
     "eslint-plugin-import": "^2.12.0",
     "eslint-plugin-node": "^6.0.1",
