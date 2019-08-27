@@ -176,7 +176,7 @@
     "webpack-cli": "^3.0.8",
     "webpack-dev-server": "^3.8.0",
     "webpack-hot-middleware": "^2.22.2",
-    "webpack-merge": "^4.1.3"
+    "webpack-merge": "^4.2.2"
   },
   "jest": {
     "setupFiles": [
