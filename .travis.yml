@@ -31,7 +31,7 @@ script:
         /bin/bash -c "\
           npm install && \
           npm run test && \
-          npm run build -- --linux --win
+          npm run build -- --linux --win -p onTagOrDraft
         "
     else
       npm run test && \
