@@ -71,6 +71,11 @@
     },
     "win": {
       "icon": "build/icons/icon.ico"
+    },
+    "publish": {
+      "provider": "github",
+      "releaseType": "draft",
+      "publishAutoUpdate": true
     }
   },
   "dependencies": {
