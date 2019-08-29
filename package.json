@@ -67,10 +67,15 @@
       ]
     },
     "mac": {
-      "icon": "build/icons/icon.icns"
+      "icon": "build/icons/icon.icns",
+      "publish": "github"
     },
     "win": {
-      "icon": "build/icons/icon.ico"
+      "icon": "build/icons/icon.ico",
+      "publish": "github"
+    },
+    "linux": {
+      "publish": "github"
     },
     "publish": {
       "provider": "github",
