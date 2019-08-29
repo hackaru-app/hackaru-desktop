@@ -3,8 +3,12 @@
   "version": "1.0.0",
   "author": "ktmouk <ktmouk@gmail.com>",
   "description": "An electron-vue project",
-  "license": null,
+  "license": "MIT",
   "main": "./dist/electron/main.js",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/ktmouk/hackaru-desktop"
+  },
   "scripts": {
     "build": "node .electron-vue/build.js && electron-builder",
     "build:dir": "node .electron-vue/build.js && electron-builder --dir",
@@ -67,6 +71,11 @@
     },
     "win": {
       "icon": "build/icons/icon.ico"
+    },
+    "publish": {
+      "provider": "github",
+      "releaseType": "draft",
+      "publishAutoUpdate": true
     }
   },
   "dependencies": {

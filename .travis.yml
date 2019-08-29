@@ -23,6 +23,7 @@ script:
       docker run --rm \
         -e ELECTRON_CACHE=$HOME/.cache/electron \
         -e ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder \
+        -e GH_TOKEN=$GH_TOKEN \
         -v ${PWD}:/project \
         -v ~/.cache/electron:/root/.cache/electron \
         -v ~/.cache/electron-builder:/root/.cache/electron-builder \
@@ -30,7 +31,7 @@ script:
         /bin/bash -c "\
           npm install && \
           npm run test && \
-          npm run build -- --linux --win
+          npm run build -- --linux --win -p onTagOrDraft
         "
     else
       npm run test && \
@@ -41,26 +42,3 @@ before_cache:
 after_script:
   - sudo sed -i -e "s|^SF:/project|SF:$(pwd)|" coverage/lcov.info
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
-deploy:
-  - provider: releases
-    name: "${TRAVIS_TAG}"
-    api_key:
-      secure: $GH_TOKEN
-    file:
-      - build/Hackaru-*.dmg
-    skip_cleanup: true
-    on:
-      tags: true
-      condition: $TRAVIS_OS_NAME = osx
-  - provider: releases
-    name: "${TRAVIS_TAG}"
-    api_key:
-      secure: $GH_TOKEN
-    file_glob: true
-    file:
-      - build/Hackaru-*.AppImage
-      - build/Hackaru-*.exe
-    skip_cleanup: true
-    on:
-      tags: true
-      condition: $TRAVIS_OS_NAME = linux
