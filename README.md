@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/ktmouk/hackaru-desktop.svg?branch=master)](https://travis-ci.org/ktmouk/hackaru-desktop)
 [![Maintainability](https://api.codeclimate.com/v1/badges/5b7af3e22e611188ea0d/maintainability)](https://codeclimate.com/github/ktmouk/hackaru-desktop/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/5b7af3e22e611188ea0d/test_coverage)](https://codeclimate.com/github/ktmouk/hackaru-desktop/test_coverage)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
 <p align="center">
   <p align="center"><img src="./docs/images/screenshot.png" width="500" /></p>
