@@ -13,7 +13,7 @@ cache:
     - $HOME/.cache/electron
     - $HOME/.cache/electron-builder
 before_script:
-  - PUBLISH_FOR_PULL_REQUEST=false
+  - PUBLISH=$([ "$TRAVIS_BRANCH" = "master" ] && echo "onTagOrDraft" || echo "never")
   - REPORTER_OS_NAME=$([ "$TRAVIS_OS_NAME" = "linux" ] && echo "linux" || echo "darwin")
   - curl -L "https://codeclimate.com/downloads/test-reporter/test-reporter-latest-${REPORTER_OS_NAME}-amd64" > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
@@ -25,7 +25,6 @@ script:
         -e ELECTRON_CACHE=$HOME/.cache/electron \
         -e ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder \
         -e GH_TOKEN=$GH_TOKEN \
-        -e PUBLISH_FOR_PULL_REQUEST=$PUBLISH_FOR_PULL_REQUEST
         -v ${PWD}:/project \
         -v ~/.cache/electron:/root/.cache/electron \
         -v ~/.cache/electron-builder:/root/.cache/electron-builder \
@@ -33,11 +32,11 @@ script:
         /bin/bash -c "\
           npm install && \
           npm run test && \
-          npm run build -- --linux --win -p onTagOrDraft
+          npm run build -- --linux --win -p ${PUBLISH}
         "
     else
       npm run test && \
-      npm run build
+      npm run build -- --mac -p ${PUBLISH}
     fi
 before_cache:
   - rm -rf $HOME/.cache/electron-builder/wine
