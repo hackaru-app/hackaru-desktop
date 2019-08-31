@@ -6,8 +6,8 @@
   "license": "MIT",
   "main": "./dist/electron/main.js",
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/ktmouk/hackaru-desktop"
+    "type": "git",
+    "url": "https://github.com/ktmouk/hackaru-desktop"
   },
   "scripts": {
     "build": "node .electron-vue/build.js && electron-builder",
@@ -15,7 +15,7 @@
     "build:clean": "cross-env BUILD_TARGET=clean node .electron-vue/build.js",
     "build:web": "cross-env BUILD_TARGET=web node .electron-vue/build.js",
     "dev": "node .electron-vue/dev-runner.js",
-    "lint": "eslint --ext .js,.vue src test",
+    "lint": "eslint --ext .js,.vue src __tests__",
     "pack": "npm run pack:main && npm run pack:renderer",
     "pack:main": "cross-env NODE_ENV=production webpack --progress --colors --config .electron-vue/webpack.main.config.js",
     "pack:renderer": "cross-env NODE_ENV=production webpack --progress --colors --config .electron-vue/webpack.renderer.config.js",
@@ -82,8 +82,10 @@
     "axios": "^0.18.1",
     "camelcase-keys": "^5.0.0",
     "date-fns": "^1.30.1",
+    "electron-log": "^3.0.7",
     "electron-promise-ipc": "^1.0.0",
     "electron-store": "^4.0.0",
+    "electron-updater": "^4.1.2",
     "feather-icons": "^4.10.0",
     "hh-mm-ss": "^1.2.0",
     "keytar": "^4.13.0",

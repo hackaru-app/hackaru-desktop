@@ -6,6 +6,7 @@ import './oauth-window';
 import './power-monitor';
 import './persistor';
 import './menubar';
+import './auto-updater';
 
 /**
  * Auto Updater
