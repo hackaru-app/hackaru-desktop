@@ -1,6 +1,5 @@
 import { activity } from '../schemas';
-import notifier from 'node-notifier';
-import path from 'path';
+import { notify } from '../../../main/notifier';
 
 export const SET_STOP_ON_SUSPEND = 'SET_STOP_ON_SUSPEND';
 export const SET_STOP_ON_SHUTDOWN = 'SET_STOP_ON_SHUTDOWN';
@@ -10,13 +9,9 @@ export const state = () => ({
   stopOnShutdown: true
 });
 
-function notify({ title, activity }) {
-  notifier.notify({
+function notifyActivity({ title, activity }) {
+  notify({
     title,
-    icon: path.join(
-      process.env.NODE_ENV !== 'development' ? process.resourcesPath : '',
-      './extra-resources/icon-notification.png'
-    ),
     message: [
       activity.project ? activity.project.name : 'No Project',
       activity.description ? ` - ${activity.description}` : ''
@@ -88,7 +83,7 @@ export const actions = {
         { json: data, schema: activity },
         { root: true }
       );
-      notify({
+      notifyActivity({
         title: 'Timer Stopped',
         activity: data
       });
@@ -116,7 +111,7 @@ export const actions = {
         { json: data, schema: activity },
         { root: true }
       );
-      notify({
+      notifyActivity({
         title: 'Timer Started',
         activity: data
       });

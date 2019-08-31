@@ -13,7 +13,7 @@
       <div class="form-item">
         <input
           v-model="description"
-          placeholder="作業内容や備考など"
+          :placeholder="$t('descriptionPlaceholder')"
           class="description"
           @focus="focus"
           @blur="blur"
