@@ -1,8 +1,8 @@
 {
-  "name": "Hackaru",
+  "name": "hackaru-desktop",
   "version": "1.0.0",
   "author": "ktmouk <ktmouk@gmail.com>",
-  "description": "An electron-vue project",
+  "description": "Hackaru for desktop",
   "license": "MIT",
   "main": "./dist/electron/main.js",
   "repository": {
