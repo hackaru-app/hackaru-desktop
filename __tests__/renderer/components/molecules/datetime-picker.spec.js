@@ -1,7 +1,7 @@
 import MockDate from 'mockdate';
 import { shallowMount } from '@vue/test-utils';
-import { parse } from 'date-fns';
 import DatetimePicker from '@/components/molecules/datetime-picker';
+import { parseISO, format } from 'date-fns';
 
 describe('DatetimePicker', () => {
   let wrapper;
@@ -17,20 +17,22 @@ describe('DatetimePicker', () => {
     });
 
     it('emit input with current date', () => {
-      expect(wrapper.emitted('input')[0]).toEqual([`${new Date()}`]);
+      expect(wrapper.emitted('input')[0]).toEqual([
+        format(parseISO('2019-01-31 01:23:45'), 'yyyy-MM-dd HH:mm:ss XXX')
+      ]);
     });
   });
 
   describe('when focus date and date already inputted', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper.setProps({ value: `${parse('2018-03-03T01:23:45')}` });
+      wrapper.setProps({ value: '2018-03-03T01:23:45' });
       wrapper.find('.date').trigger('focus');
     });
 
     it('emit input with inputted date', () => {
       expect(wrapper.emitted('input')[0]).toEqual([
-        `${parse('2018-03-03T01:23:45')}`
+        format(parseISO('2018-03-03 01:23:45'), 'yyyy-MM-dd HH:mm:ss XXX')
       ]);
     });
   });
@@ -42,20 +44,22 @@ describe('DatetimePicker', () => {
     });
 
     it('emit input with current date', () => {
-      expect(wrapper.emitted('input')[0]).toEqual([`${new Date()}`]);
+      expect(wrapper.emitted('input')[0]).toEqual([
+        format(parseISO('2019-01-31 01:23:45'), 'yyyy-MM-dd HH:mm:ss XXX')
+      ]);
     });
   });
 
   describe('when focus time but time already inputted', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper.setProps({ value: `${parse('2018-03-03T01:23:45')}` });
+      wrapper.setProps({ value: '2018-03-03T01:23:45' });
       wrapper.find('.time').trigger('focus');
     });
 
     it('emit input with inputted date', () => {
       expect(wrapper.emitted('input')[0]).toEqual([
-        `${parse('2018-03-03T01:23:45')}`
+        format(parseISO('2018-03-03 01:23:45'), 'yyyy-MM-dd HH:mm:ss XXX')
       ]);
     });
   });
