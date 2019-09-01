@@ -1,7 +1,7 @@
 import path from 'path';
 import { app } from 'electron';
 import { Menubar } from 'menubar';
-import { differenceInSeconds } from 'date-fns';
+import { differenceInSeconds, parseISO } from 'date-fns';
 import { fromS } from 'hh-mm-ss';
 import { generateUrl } from './windows';
 import store from '../renderer/store';
@@ -33,7 +33,9 @@ const menubar = new Menubar(app, {
 
 function getTrayTitle() {
   const startedAt = (store.getters['activities/working'] || {}).startedAt;
-  return startedAt ? fromS(differenceInSeconds(new Date(), startedAt)) : '';
+  return startedAt
+    ? fromS(differenceInSeconds(new Date(), parseISO(startedAt)))
+    : '';
 }
 
 menubar.on('ready', () => {
