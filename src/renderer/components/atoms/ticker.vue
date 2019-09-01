@@ -4,7 +4,7 @@
 
 <script>
 import { fromS } from 'hh-mm-ss';
-import { parse, differenceInSeconds } from 'date-fns';
+import { parseISO, differenceInSeconds } from 'date-fns';
 
 export default {
   timers: {
@@ -27,8 +27,8 @@ export default {
   data() {
     return {
       fromS,
-      started: parse(this.startedAt),
-      stopped: parse(this.stoppedAt || `${new Date()}`)
+      started: parseISO(this.startedAt),
+      stopped: this.stoppedAt ? parseISO(this.stoppedAt) : new Date()
     };
   },
   computed: {
@@ -38,17 +38,17 @@ export default {
   },
   watch: {
     startedAt: function(val) {
-      this.started = parse(val);
+      this.started = parseISO(val);
     },
     stoppedAt: function(val) {
-      this.stopped = parse(val);
+      this.stopped = parseISO(val);
     }
   },
   methods: {
     updateDuration() {
       if (this.stoppedAt) this.$timer.stop('updateDuration');
-      this.started = parse(this.startedAt);
-      this.stopped = parse(this.stoppedAt || `${new Date()}`);
+      this.started = parseISO(this.startedAt);
+      this.stopped = this.stoppedAt ? parseISO(this.stoppedAt) : new Date();
     }
   }
 };
