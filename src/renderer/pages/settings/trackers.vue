@@ -17,25 +17,23 @@
         </base-button>
       </header>
 
-      <transition-group name="fade">
-        <article v-for="tracker in trackers" :key="tracker.id" class="tracker">
-          <project-name
-            :name="tracker.project && tracker.project.name"
-            :color="tracker.project && tracker.project.color"
-            class="project-name"
-          />
-          <span class="process">
-            {{ tracker.process }}
-          </span>
-          <base-button
-            type="button"
-            class="has-icon delete-button"
-            @click="deleteTracker(tracker.id)"
-          >
-            <icon v-tooltip="$t('delete')" name="x-icon" class="is-danger" />
-          </base-button>
-        </article>
-      </transition-group>
+      <article v-for="tracker in trackers" :key="tracker.id" class="tracker">
+        <project-name
+          :name="tracker.project && tracker.project.name"
+          :color="tracker.project && tracker.project.color"
+          class="project-name"
+        />
+        <span class="process">
+          {{ tracker.process }}
+        </span>
+        <base-button
+          type="button"
+          class="has-icon delete-button"
+          @click="deleteTracker(tracker.id)"
+        >
+          <icon v-tooltip="$t('delete')" name="x-icon" class="is-danger" />
+        </base-button>
+      </article>
 
       <p v-if="trackers.length <= 0" class="empty-message">
         {{ $t('empty') }}
