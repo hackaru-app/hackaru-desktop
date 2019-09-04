@@ -1,5 +1,5 @@
 <template>
-  <div class="toast">
+  <div v-show="visible" class="toast">
     <transition enter-active-class="fadeInUp" leave-active-class="fadeOutDown">
       <div v-if="opened" :class="['content', message.type]">
         {{ message.text }}
@@ -15,6 +15,7 @@ export default {
   data() {
     return {
       opened: false,
+      visible: false,
       hideTimer: undefined
     };
   },
@@ -25,6 +26,7 @@ export default {
   },
   watch: {
     message() {
+      this.visible = this.$electron.remote.getCurrentWindow().isVisible();
       this.opened = true;
       clearInterval(this.hideTimer);
       this.hideTimer = setTimeout(
