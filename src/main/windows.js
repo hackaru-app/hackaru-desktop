@@ -8,17 +8,6 @@ export function generateUrl(path, query) {
     : `file://${__dirname}/index.html#${path}?${query}`;
 }
 
-function getOffsetedWindowPosition() {
-  const focused = BrowserWindow.getFocusedWindow();
-  const offset = 40;
-  return focused
-    ? {
-        x: focused.getPosition()[0] + offset,
-        y: focused.getPosition()[1] + offset
-      }
-    : {};
-}
-
 function createWindow(data, options) {
   const win = new BrowserWindow({
     webPreferences: {
@@ -40,7 +29,7 @@ function createWindow(data, options) {
 export function showTrackerEditor() {
   createWindow(
     { path: 'settings/tracker-editor' },
-    { width: 460, height: 380, ...getOffsetedWindowPosition() }
+    { width: 460, height: 380 }
   );
 }
 
