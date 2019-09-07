@@ -7,9 +7,6 @@ matrix:
     - os: linux
       services: docker
       language: generic
-env:
-  - PUBLISH=$([ "$TRAVIS_TAG" == "" ] && echo "onTag" || echo "never")
-    NOTARIZE=$([ "$TRAVIS_TAG" == "" ] && echo "true" || echo "")
 cache:
   directories:
     - node_modules
@@ -22,12 +19,9 @@ before_script:
   - ./cc-test-reporter before-build
 script:
   - |
-    echo "PUBLISH"
-    echo $PUBLISH
-    echo "NOTARIZE"
-    echo $NOTARIZE
-    echo "TRAVIS_TAG"
-    echo $TRAVIS_TAG
+    export PUBLISH=$([ "$TRAVIS_TAG" == "" ] && echo "onTag" || echo "never")
+    export NOTARIZE=$([ "$TRAVIS_TAG" == "" ] && echo "onTag" || echo "never")
+
     if [ "$TRAVIS_OS_NAME" == "linux" ]; then
       docker run --rm \
         -e ELECTRON_CACHE=$HOME/.cache/electron \
