@@ -7,6 +7,9 @@ matrix:
     - os: linux
       services: docker
       language: generic
+env:
+  - PUBLISH=$([ "$TRAVIS_TAG" == "" ] && echo "onTag" || echo "never")
+  - NOTARIZE=$([ "$TRAVIS_TAG" == "" ] && echo "true" || echo "")
 cache:
   directories:
     - node_modules
@@ -19,8 +22,6 @@ before_script:
   - ./cc-test-reporter before-build
 script:
   - |
-    PUBLISH=$([ "$TRAVIS_TAG" == "" ] && echo "onTag" || echo "never")
-    NOTARIZE=$([ "$TRAVIS_TAG" == "" ] && echo "true" || echo "")
     echo "PUBLISH"
     echo $PUBLISH
     echo "NOTARIZE"
