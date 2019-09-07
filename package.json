@@ -22,7 +22,8 @@
     "test": "jest",
     "unit": "karma start test/unit/karma.conf.js",
     "postinstall": "npm run license-third-party && electron-builder install-app-deps",
-    "license-third-party": "npm-license-crawler --onlyDirectDependencies --omitVersion --json src/renderer/assets/licenses.json"
+    "license-third-party": "npm-license-crawler --onlyDirectDependencies --omitVersion --json src/renderer/assets/licenses.json",
+    "notarize": "DEBUG=electron-notarize node .electron-vue/notarize.js"
   },
   "lint-staged": {
     "*.{js,vue}": [
@@ -33,6 +34,7 @@
   "build": {
     "productName": "Hackaru",
     "appId": "app.hackaru",
+    "afterSign": ".electron-vue/notarize",
     "asarUnpack": [
       "./node_modules/node-notifier/vendor/**"
     ],
@@ -148,6 +150,7 @@
     "electron-builder": "^21.2.0",
     "electron-debug": "^1.5.0",
     "electron-devtools-installer": "^2.2.4",
+    "electron-notarize": "^0.1.1",
     "eslint": "^5.16.0",
     "eslint-config-prettier": "^4.3.0",
     "eslint-config-standard": "^11.0.0",
