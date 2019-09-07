@@ -13,7 +13,8 @@ cache:
     - $HOME/.cache/electron
     - $HOME/.cache/electron-builder
 before_script:
-  - PUBLISH=$([ "$TRAVIS_BRANCH" = "master" ] && echo "onTagOrDraft" || echo "never")
+  - PUBLISH=$([ "$TRAVIS_TAG" != "" ] && echo "onTag" || echo "never")
+  - NOTARIZE=$([ "$TRAVIS_TAG" != "" ] && echo "true" || echo "")
   - REPORTER_OS_NAME=$([ "$TRAVIS_OS_NAME" = "linux" ] && echo "linux" || echo "darwin")
   - curl -L "https://codeclimate.com/downloads/test-reporter/test-reporter-latest-${REPORTER_OS_NAME}-amd64" > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
@@ -32,11 +33,11 @@ script:
         /bin/bash -c "\
           npm install && \
           npm run test && \
-          npm run build -- --linux --win -p ${PUBLISH}
+          npm run build -- -p ${PUBLISH} --linux --win
         "
     else
       npm run test && \
-      npm run build -- --mac -p ${PUBLISH}
+      npm run build -- -p ${PUBLISH} --mac
     fi
 before_cache:
   - rm -rf $HOME/.cache/electron-builder/wine
