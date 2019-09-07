@@ -14,6 +14,7 @@ cache:
     - $HOME/.cache/electron-builder
 before_script:
   - PUBLISH=$([ "$TRAVIS_TAG" != "" ] && echo "onTag" || echo "never")
+  - NOTARIZE=$([ "$TRAVIS_TAG" != "" ] && echo "true" || echo "")
   - REPORTER_OS_NAME=$([ "$TRAVIS_OS_NAME" = "linux" ] && echo "linux" || echo "darwin")
   - curl -L "https://codeclimate.com/downloads/test-reporter/test-reporter-latest-${REPORTER_OS_NAME}-amd64" > ./cc-test-reporter
   - chmod +x ./cc-test-reporter

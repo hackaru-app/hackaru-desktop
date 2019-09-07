@@ -10,8 +10,8 @@ const config = require(configPath)
 const appBundleId = config.build.appId
 
 exports.default = async () => {
-  if (!appleId || !appleIdPassword) {
-    console.warn('notarize skipped because APPLE_ID or APPLE_PASSWORD is not exists.');
+  if (!appleId || !appleIdPassword || !process.env.NOTARIZE) {
+    console.warn('notarize skipped');
     return;
   }
   await notarize({
