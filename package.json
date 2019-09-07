@@ -22,8 +22,7 @@
     "test": "jest",
     "unit": "karma start test/unit/karma.conf.js",
     "postinstall": "npm run license-third-party && electron-builder install-app-deps",
-    "license-third-party": "npm-license-crawler --onlyDirectDependencies --omitVersion --json src/renderer/assets/licenses.json",
-    "notarize": "DEBUG=electron-notarize node .electron-vue/notarize.js"
+    "license-third-party": "npm-license-crawler --onlyDirectDependencies --omitVersion --json src/renderer/assets/licenses.json"
   },
   "lint-staged": {
     "*.{js,vue}": [
