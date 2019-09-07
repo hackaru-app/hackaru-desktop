@@ -9,7 +9,7 @@ matrix:
       language: generic
 env:
   - PUBLISH=$([ "$TRAVIS_TAG" == "" ] && echo "onTag" || echo "never")
-  - NOTARIZE=$([ "$TRAVIS_TAG" == "" ] && echo "true" || echo "")
+    NOTARIZE=$([ "$TRAVIS_TAG" == "" ] && echo "true" || echo "")
 cache:
   directories:
     - node_modules
