@@ -19,8 +19,14 @@ before_script:
   - ./cc-test-reporter before-build
 script:
   - |
-    PUBLISH=$([ "$TRAVIS_TAG" = "" ] && echo "onTag" || echo "never")
-    NOTARIZE=$([ "$TRAVIS_TAG" = "" ] && echo "true" || echo "")
+    PUBLISH=$([ "$TRAVIS_TAG" == "" ] && echo "onTag" || echo "never")
+    NOTARIZE=$([ "$TRAVIS_TAG" == "" ] && echo "true" || echo "")
+    echo "TRAVIS_TAG"
+    echo $TRAVIS_TAG
+    echo "NOTARIZE"
+    echo $NOTARIZE
+    echo "TRAVIS_TAG"
+    echo $TRAVIS_TAG
     if [ "$TRAVIS_OS_NAME" == "linux" ]; then
       docker run --rm \
         -e ELECTRON_CACHE=$HOME/.cache/electron \
