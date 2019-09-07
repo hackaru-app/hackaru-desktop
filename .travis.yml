@@ -21,8 +21,8 @@ script:
   - |
     PUBLISH=$([ "$TRAVIS_TAG" == "" ] && echo "onTag" || echo "never")
     NOTARIZE=$([ "$TRAVIS_TAG" == "" ] && echo "true" || echo "")
-    echo "TRAVIS_TAG"
-    echo $TRAVIS_TAG
+    echo "PUBLISH"
+    echo $PUBLISH
     echo "NOTARIZE"
     echo $NOTARIZE
     echo "TRAVIS_TAG"
@@ -39,11 +39,11 @@ script:
         /bin/bash -c "\
           npm install && \
           npm run test && \
-          npm run build -- -p ${PUBLISH} --linux --win
+          npm run build -- --linux --win -p ${PUBLISH}
         "
     else
       npm run test && \
-      npm run build -- -p ${PUBLISH} --mac
+      npm run build -- --mac -p ${PUBLISH}
     fi
 before_cache:
   - rm -rf $HOME/.cache/electron-builder/wine
