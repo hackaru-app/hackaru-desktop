@@ -1,15 +1,15 @@
 import MockDate from 'mockdate';
 import { actions } from '@/store/modules/activities';
-import { activity } from '@/store/schemas';
 
 describe('Actions', () => {
   MockDate.set('2019-01-31T01:23:45');
 
   describe('when dispatch fetchWorking', () => {
+    const commit = jest.fn();
     const dispatch = jest.fn(() => ({ data: {} }));
 
     beforeEach(() => {
-      actions.fetchWorking({ dispatch });
+      actions.fetchWorking({ commit, dispatch });
     });
 
     it('dispatch auth-api/request', () => {
@@ -20,23 +20,17 @@ describe('Actions', () => {
       );
     });
 
-    it('dispatch entities/merge', () => {
-      expect(dispatch).toHaveBeenCalledWith(
-        'entities/merge',
-        {
-          json: {},
-          schema: activity
-        },
-        { root: true }
-      );
+    it('commit SET_WORKING', () => {
+      expect(commit).toHaveBeenCalledWith('SET_WORKING', {});
     });
   });
 
   describe('when dispatch add', () => {
+    const commit = jest.fn();
     const dispatch = jest.fn(() => ({ data: {} }));
 
     beforeEach(() => {
-      actions.add({ dispatch }, {});
+      actions.add({ commit, dispatch }, {});
     });
 
     it('dispatch auth-api/request', () => {
@@ -53,24 +47,18 @@ describe('Actions', () => {
       );
     });
 
-    it('dispatch entities/merge', () => {
-      expect(dispatch).toHaveBeenCalledWith(
-        'entities/merge',
-        {
-          json: {},
-          schema: activity
-        },
-        { root: true }
-      );
+    it('commit SET_WORKING', () => {
+      expect(commit).toHaveBeenCalledWith('SET_WORKING', {});
     });
   });
 
   describe('when dispatch stop', () => {
+    const commit = jest.fn();
     const dispatch = jest.fn(() => ({ data: {} }));
-    const getters = { working: { id: 1 } };
+    const state = { working: { id: 1 } };
 
     beforeEach(() => {
-      actions.stop({ dispatch, getters });
+      actions.stop({ state, commit, dispatch });
     });
 
     it('dispatch auth-api/request', () => {
@@ -90,24 +78,17 @@ describe('Actions', () => {
       );
     });
 
-    it('dispatch entities/merge', () => {
-      expect(dispatch).toHaveBeenCalledWith(
-        'entities/merge',
-        {
-          json: {},
-          schema: activity
-        },
-        { root: true }
-      );
+    it('commit DELETE_WORKING', () => {
+      expect(commit).toHaveBeenCalledWith('DELETE_WORKING');
     });
   });
 
   describe('when dispatch stop but activity is not working', () => {
     const dispatch = jest.fn(() => ({ data: {} }));
-    const getters = { working: undefined };
+    const state = { working: {} };
 
     beforeEach(() => {
-      actions.stop({ dispatch, getters });
+      actions.stop({ dispatch, state });
     });
 
     it('does not dispatch auth-api/request', () => {
@@ -120,14 +101,6 @@ describe('Actions', () => {
 
     beforeEach(() => {
       actions.delete({ dispatch }, 1);
-    });
-
-    it('dispatch entities/delete', () => {
-      expect(dispatch).toHaveBeenCalledWith(
-        'entities/delete',
-        { name: 'activities', id: 1 },
-        { root: true }
-      );
     });
 
     it('dispatch auth-api/request', () => {
@@ -143,10 +116,11 @@ describe('Actions', () => {
   });
 
   describe('when dispatch update', () => {
+    const commit = jest.fn();
     const dispatch = jest.fn(() => ({ data: {} }));
 
     beforeEach(() => {
-      actions.update({ dispatch }, { id: 1 });
+      actions.update({ commit, dispatch }, { id: 1 });
     });
 
     it('dispatch auth-api/request', () => {
@@ -163,15 +137,8 @@ describe('Actions', () => {
       );
     });
 
-    it('dispatch entities/merge', () => {
-      expect(dispatch).toHaveBeenCalledWith(
-        'entities/merge',
-        {
-          json: {},
-          schema: activity
-        },
-        { root: true }
-      );
+    it('commit SET_WORKING', () => {
+      expect(commit).toHaveBeenCalledWith('SET_WORKING', {});
     });
   });
 });

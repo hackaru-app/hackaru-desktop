@@ -55,8 +55,8 @@ export const actions = {
       return false;
     }
   },
-  async stop({ commit, getters, dispatch }) {
-    const id = getters.working.id;
+  async stop({ state, commit, dispatch }) {
+    const id = state.working.id;
     if (!id) return;
     try {
       const { data } = await dispatch(
