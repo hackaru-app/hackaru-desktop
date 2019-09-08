@@ -57,6 +57,28 @@ describe('Actions', () => {
       });
     });
 
+    describe('when start tracking but other timer already started', () => {
+      const state = {
+        started: false
+      };
+
+      const getters = {
+        working: true,
+        tracking: {
+          project: { id: 1 },
+          description: 'Review'
+        }
+      };
+
+      beforeEach(() => {
+        actions.update({ state, commit, getters, dispatch });
+      });
+
+      it('does not dispatcth', () => {
+        expect(dispatch).not.toHaveBeenCalled();
+      });
+    });
+
     describe('when exit tracking', () => {
       const state = {
         started: true
