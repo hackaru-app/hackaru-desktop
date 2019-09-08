@@ -47,16 +47,6 @@ describe('Index', () => {
       }
     });
 
-  it('dispatch activities/fetchWorking', () => {
-    factory();
-    expect($store.dispatch).toHaveBeenCalledWith('activities/fetchWorking');
-  });
-
-  it('dispatch projects/fetch', () => {
-    factory();
-    expect($store.dispatch).toHaveBeenCalledWith('projects/fetch');
-  });
-
   describe('when click web-button', () => {
     beforeEach(() => {
       wrapper = factory();

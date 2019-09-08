@@ -3,34 +3,31 @@ import { getters } from '@/store/modules/activities';
 describe('Getters', () => {
   let result;
 
-  describe('when call all', () => {
-    const rootGetters = {
-      'entities/getEntities': jest.fn(() => ({}))
+  describe('when call working', () => {
+    const state = {
+      working: {}
     };
 
     beforeEach(() => {
-      result = getters.all({}, {}, {}, rootGetters);
+      result = getters.working(state);
     });
 
-    it('returns result', () => {
+    it('returns unstopped activity', () => {
       expect(result).toEqual({});
     });
   });
 
-  describe('when call working', () => {
-    const mockGetters = {
-      all: [
-        { id: 1, stoppedAt: '2019-01-01T01:23:45' },
-        { id: 2, stoppedAt: null }
-      ]
+  describe('when call initialized', () => {
+    const state = {
+      initialized: true
     };
 
     beforeEach(() => {
-      result = getters.working({}, mockGetters, {}, {});
+      result = getters.initialized(state);
     });
 
-    it('returns unstopped activity', () => {
-      expect(result.id).toBe(2);
+    it('returns initialized', () => {
+      expect(result).toBe(true);
     });
   });
 });

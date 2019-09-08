@@ -55,6 +55,36 @@ describe('Actions', () => {
       it('does not dispatcth', () => {
         expect(dispatch).not.toHaveBeenCalled();
       });
+
+      it('commit SET_STARTED', () => {
+        expect(commit).toHaveBeenCalledWith('SET_STARTED', true);
+      });
+    });
+
+    describe('when start tracking but other timer already started', () => {
+      const state = {
+        started: false
+      };
+
+      const getters = {
+        working: true,
+        tracking: {
+          project: { id: 1 },
+          description: 'Review'
+        }
+      };
+
+      beforeEach(() => {
+        actions.update({ state, commit, getters, dispatch });
+      });
+
+      it('does not dispatcth', () => {
+        expect(dispatch).not.toHaveBeenCalled();
+      });
+
+      it('commit SET_STARTED', () => {
+        expect(commit).toHaveBeenCalledWith('SET_STARTED', true);
+      });
     });
 
     describe('when exit tracking', () => {
@@ -96,10 +126,6 @@ describe('Actions', () => {
 
       it('does not dispatcth', () => {
         expect(dispatch).not.toHaveBeenCalled();
-      });
-
-      it('commit SET_STARTED', () => {
-        expect(commit).toHaveBeenCalledWith('SET_STARTED', false);
       });
     });
   });

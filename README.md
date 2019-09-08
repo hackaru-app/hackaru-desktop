@@ -11,9 +11,9 @@
 </p>
 
 ## Downloads
-- [MacOS](https://github.com/ktmouk/hackaru-desktop/releases/download/v1.0.1/Hackaru-1.0.1.dmg)
-- [Windows](https://github.com/ktmouk/hackaru-desktop/releases/download/v1.0.1/hackaru-desktop-1.0.1.exe)
-- [Linux](https://github.com/ktmouk/hackaru-desktop/releases/download/v1.0.1/hackaru-desktop-1.0.1.AppImage)
+- [MacOS](https://github.com/ktmouk/hackaru-desktop/releases/download/v1.0.2/Hackaru-1.0.2.dmg)
+- [Windows](https://github.com/ktmouk/hackaru-desktop/releases/download/v1.0.2/hackaru-desktop-1.0.2.exe)
+- [Linux](https://github.com/ktmouk/hackaru-desktop/releases/download/v1.0.2/hackaru-desktop-1.0.2.AppImage)
 
 
 ## Contributing

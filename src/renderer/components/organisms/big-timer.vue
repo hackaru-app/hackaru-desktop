@@ -103,9 +103,7 @@ export default {
   },
   watch: {
     working() {
-      if (this.working.id) {
-        this.setWorkingProps();
-      }
+      this.setWorkingProps();
     }
   },
   methods: {
@@ -138,11 +136,8 @@ export default {
       }
     },
     async stopActivity() {
+      await this.$store.dispatch('activities/stop');
       this.$store.dispatch('toast/success', this.$t('stopped'));
-      await this.$store.dispatch('activities/update', {
-        id: this.id,
-        stoppedAt: `${new Date()}`
-      });
       this.setWorkingProps();
     },
     confirmDeleteActivity() {

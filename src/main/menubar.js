@@ -38,8 +38,23 @@ function getTrayTitle() {
     : '';
 }
 
+async function fetchStatus() {
+  if (store.getters['auth/accessToken']) {
+    await store.dispatch('activities/fetchWorking');
+    await store.dispatch('projects/fetch');
+  }
+}
+
 menubar.on('ready', () => {
   setInterval(() => menubar.tray.setTitle(getTrayTitle()), 500);
+});
+
+menubar.on('after-create-window', async () => {
+  await fetchStatus();
+});
+
+menubar.on('show', async () => {
+  await fetchStatus();
 });
 
 export default menubar;
