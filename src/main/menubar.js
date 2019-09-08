@@ -39,8 +39,10 @@ function getTrayTitle() {
 }
 
 async function fetchStatus() {
-  await store.dispatch('activities/fetchWorking');
-  await store.dispatch('projects/fetch');
+  if (store.getters['auth/accessToken']) {
+    await store.dispatch('activities/fetchWorking');
+    await store.dispatch('projects/fetch');
+  }
 }
 
 menubar.on('ready', () => {
