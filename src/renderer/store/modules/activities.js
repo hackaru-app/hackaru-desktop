@@ -8,7 +8,7 @@ export const SET_STOP_ON_SHUTDOWN = 'SET_STOP_ON_SHUTDOWN';
 export const state = () => ({
   stopOnSuspend: true,
   stopOnShutdown: true,
-  workingLoaded: false,
+  initialized: false,
   working: {}
 });
 
@@ -135,7 +135,7 @@ export const actions = {
 
 export const mutations = {
   [SET_WORKING](state, data) {
-    state.workingLoaded = true;
+    state.initialized = true;
     state.working = data;
   },
   [DELETE_WORKING](state) {
@@ -150,8 +150,8 @@ export const mutations = {
 };
 
 export const getters = {
-  workingLoaded(state) {
-    return state.workingLoaded;
+  initialized(state) {
+    return state.initialized;
   },
   working(state) {
     return state.working;
