@@ -9,10 +9,9 @@ app.on('ready', () => {
     clearInterval(processTimer);
     processTimer = setInterval(async () => {
       const processes = await psList();
-      if (store.getters['activities/initialized']) {
-        store.dispatch('processes/update', processes);
-        store.dispatch('trackers/update');
-      }
+      if (!store.getters['activities/initialized']) return;
+      store.dispatch('processes/update', processes);
+      store.dispatch('trackers/update');
     }, 1000);
   }
 
