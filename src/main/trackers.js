@@ -26,5 +26,6 @@ app.on('ready', () => {
     clearInterval(processTimer);
   });
 
-  startProcessTimer();
+  // TODO: Temporary fix. Wait for the activity to finish loading.
+  setTimeout(() => startProcessTimer(), 5 * 1000);
 });

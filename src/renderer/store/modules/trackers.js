@@ -9,13 +9,14 @@ export const state = () => ({
 
 export const actions = {
   update({ state, commit, dispatch, getters, rootGetters }) {
-    if (getters.tracking && !state.started) {
+    if (getters.tracking && !state.started && !getters.working) {
       dispatch('start');
+      commit(SET_STARTED, true);
     }
     if (!getters.tracking && state.started) {
       dispatch('activities/stop', undefined, { root: true });
+      commit(SET_STARTED, false);
     }
-    commit(SET_STARTED, !!getters.tracking);
   },
   start({ dispatch, getters }) {
     dispatch(
@@ -55,6 +56,9 @@ export const mutations = {
 };
 
 export const getters = {
+  working(state, getters, rootState, rootGetters) {
+    return !!Object.keys(rootGetters['activities/working'] || {}).length;
+  },
   all(state, getters, rootState, rootGetters) {
     return rootGetters['entities/getEntities']('trackers', [tracker]).filter(
       tracker => tracker.project !== undefined
