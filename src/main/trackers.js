@@ -9,8 +9,10 @@ app.on('ready', () => {
     clearInterval(processTimer);
     processTimer = setInterval(async () => {
       const processes = await psList();
-      store.dispatch('processes/update', processes);
-      store.dispatch('trackers/update');
+      if (store.getters['activities/workingLoaded']) {
+        store.dispatch('processes/update', processes);
+        store.dispatch('trackers/update');
+      }
     }, 1000);
   }
 
@@ -26,6 +28,5 @@ app.on('ready', () => {
     clearInterval(processTimer);
   });
 
-  // TODO: Temporary fix. Wait for the activity to finish loading.
-  setTimeout(() => startProcessTimer(), 5 * 1000);
+  startProcessTimer();
 });

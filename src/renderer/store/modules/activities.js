@@ -1,12 +1,15 @@
-import { activity } from '../schemas';
 import { notify } from '../../../main/notifier';
 
+export const SET_WORKING = 'SET_WORKING';
+export const DELETE_WORKING = 'DELETE_WORKING';
 export const SET_STOP_ON_SUSPEND = 'SET_STOP_ON_SUSPEND';
 export const SET_STOP_ON_SHUTDOWN = 'SET_STOP_ON_SHUTDOWN';
 
 export const state = () => ({
   stopOnSuspend: true,
-  stopOnShutdown: true
+  stopOnShutdown: true,
+  workingLoaded: false,
+  working: {}
 });
 
 function notifyActivity({ title, activity }) {
@@ -20,23 +23,19 @@ function notifyActivity({ title, activity }) {
 }
 
 export const actions = {
-  async fetchWorking({ dispatch }) {
+  async fetchWorking({ commit, dispatch }) {
     try {
       const { data } = await dispatch(
         'auth-api/request',
         { url: '/v1/activities/working' },
         { root: true }
       );
-      dispatch(
-        'entities/merge',
-        { json: data, schema: activity },
-        { root: true }
-      );
+      commit(SET_WORKING, data);
     } catch (e) {
       dispatch('toast/error', e, { root: true });
     }
   },
-  async update({ dispatch }, payload) {
+  async update({ commit, dispatch }, payload) {
     try {
       const { data } = await dispatch(
         'auth-api/request',
@@ -49,11 +48,7 @@ export const actions = {
         },
         { root: true }
       );
-      dispatch(
-        'entities/merge',
-        { json: data, schema: activity },
-        { root: true }
-      );
+      commit(SET_WORKING, data);
       return true;
     } catch (e) {
       dispatch('toast/error', e, { root: true });
@@ -61,8 +56,8 @@ export const actions = {
     }
   },
   async stop({ commit, getters, dispatch }) {
-    if (!getters.working) return;
     const id = getters.working.id;
+    if (!id) return;
     try {
       const { data } = await dispatch(
         'auth-api/request',
@@ -78,11 +73,7 @@ export const actions = {
         },
         { root: true }
       );
-      dispatch(
-        'entities/merge',
-        { json: data, schema: activity },
-        { root: true }
-      );
+      commit(DELETE_WORKING);
       notifyActivity({
         title: 'Timer Stopped',
         activity: data
@@ -93,7 +84,7 @@ export const actions = {
       return false;
     }
   },
-  async add({ dispatch }, payload) {
+  async add({ commit, dispatch }, payload) {
     try {
       const { data } = await dispatch(
         'auth-api/request',
@@ -106,11 +97,7 @@ export const actions = {
         },
         { root: true }
       );
-      dispatch(
-        'entities/merge',
-        { json: data, schema: activity },
-        { root: true }
-      );
+      commit(SET_WORKING, data);
       notifyActivity({
         title: 'Timer Started',
         activity: data
@@ -121,9 +108,8 @@ export const actions = {
       return false;
     }
   },
-  async delete({ dispatch }, id) {
+  async delete({ commit, dispatch }, id) {
     try {
-      dispatch('entities/delete', { name: 'activities', id }, { root: true });
       await dispatch(
         'auth-api/request',
         {
@@ -132,6 +118,7 @@ export const actions = {
         },
         { root: true }
       );
+      commit(DELETE_WORKING);
       return true;
     } catch (e) {
       dispatch('toast/error', e, { root: true });
@@ -147,6 +134,13 @@ export const actions = {
 };
 
 export const mutations = {
+  [SET_WORKING](state, data) {
+    state.workingLoaded = true;
+    state.working = data;
+  },
+  [DELETE_WORKING](state) {
+    state.working = {};
+  },
   [SET_STOP_ON_SUSPEND](state, stopOnSuspend) {
     state.stopOnSuspend = stopOnSuspend;
   },
@@ -156,11 +150,11 @@ export const mutations = {
 };
 
 export const getters = {
-  all(state, getters, rootState, rootGetters) {
-    return rootGetters['entities/getEntities']('activities', [activity]);
+  workingLoaded(state) {
+    return state.workingLoaded;
   },
-  working(state, getters) {
-    return getters.all.find(({ stoppedAt }) => !stoppedAt);
+  working(state) {
+    return state.working;
   },
   stopOnSuspend(state) {
     return state.stopOnSuspend;

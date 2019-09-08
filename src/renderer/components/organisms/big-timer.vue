@@ -139,10 +139,7 @@ export default {
     },
     async stopActivity() {
       this.$store.dispatch('toast/success', this.$t('stopped'));
-      await this.$store.dispatch('activities/update', {
-        id: this.id,
-        stoppedAt: `${new Date()}`
-      });
+      await this.$store.dispatch('activities/stop');
       this.setWorkingProps();
     },
     confirmDeleteActivity() {
