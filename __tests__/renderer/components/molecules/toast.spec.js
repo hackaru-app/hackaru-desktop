@@ -18,10 +18,19 @@ describe('Toast', () => {
     }
   });
 
+  const $electron = {
+    remote: {
+      getCurrentWindow: () => ({
+        isVisible: () => true
+      })
+    }
+  };
+
   const factory = () =>
     shallowMount(Toast, {
       mocks: {
-        $store
+        $store,
+        $electron
       }
     });
 
@@ -36,16 +45,37 @@ describe('Toast', () => {
       };
     });
 
-    it('show new message', () => {
-      wrapper.vm.$nextTick(() => {
-        expect(wrapper.find('.content').text()).toBe('new message');
-        expect(wrapper.find('.content').exists()).toBe(true);
-      });
+    it('show new message', async () => {
+      await wrapper.vm.$nextTick();
+      expect(wrapper.find('.content').text()).toBe('new message');
+      expect(wrapper.find('.content').exists()).toBe(true);
     });
 
     it('hide toast delayed', () => {
       jest.runOnlyPendingTimers();
       expect(wrapper.find('.content').exists()).toBe(false);
+    });
+  });
+
+  describe('when window is not visible', () => {
+    beforeEach(() => {
+      wrapper = factory();
+      $electron.remote = {
+        getCurrentWindow: () => ({
+          isVisible: () => false
+        })
+      };
+      $store.getters['toast/message'] = {
+        text: 'new message',
+        type: 'success',
+        rand: 456789,
+        duration: 500
+      };
+    });
+
+    it('does not show new message', async () => {
+      await wrapper.vm.$nextTick();
+      expect(wrapper.find('.toast').isVisible()).toBe(false);
     });
   });
 });
