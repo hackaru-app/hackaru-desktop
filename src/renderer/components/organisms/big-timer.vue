@@ -138,8 +138,8 @@ export default {
       }
     },
     async stopActivity() {
-      this.$store.dispatch('toast/success', this.$t('stopped'));
       await this.$store.dispatch('activities/stop');
+      this.$store.dispatch('toast/success', this.$t('stopped'));
       this.setWorkingProps();
     },
     confirmDeleteActivity() {

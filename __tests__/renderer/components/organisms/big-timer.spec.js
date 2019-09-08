@@ -101,11 +101,8 @@ describe('BigTimer', () => {
       wrapper.find('.form').trigger('submit');
     });
 
-    it('dispatch activities/update', () => {
-      expect($store.dispatch).toHaveBeenCalledWith('activities/update', {
-        id: 1,
-        stoppedAt: `${new Date()}`
-      });
+    it('dispatch activities/stop', () => {
+      expect($store.dispatch).toHaveBeenCalledWith('activities/stop');
     });
   });
 
