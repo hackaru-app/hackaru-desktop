@@ -73,10 +73,6 @@ export default {
   computed: {
     ...mapGetters({ webUrl: 'auth/webUrl' })
   },
-  mounted() {
-    this.$store.dispatch('activities/fetchWorking');
-    this.$store.dispatch('projects/fetch');
-  },
   methods: {
     openWebsite() {
       this.$electron.shell.openExternal(this.webUrl);
