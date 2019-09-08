@@ -3,7 +3,7 @@ matrix:
     - os: osx
       osx_image: xcode11
       language: node_js
-      node_js: "10"
+      node_js: 10
     - os: linux
       services: docker
       language: generic
@@ -19,9 +19,6 @@ before_script:
   - ./cc-test-reporter before-build
 script:
   - |
-    export PUBLISH=$([ "$TRAVIS_TAG" == "" ] && echo "onTag" || echo "never")
-    export NOTARIZE=$([ "$TRAVIS_TAG" == "" ] && echo "onTag" || echo "never")
-
     if [ "$TRAVIS_OS_NAME" == "linux" ]; then
       docker run --rm \
         -e ELECTRON_CACHE=$HOME/.cache/electron \
@@ -34,11 +31,11 @@ script:
         /bin/bash -c "\
           npm install && \
           npm run test && \
-          npm run build -- --linux --win -p ${PUBLISH}
+          npm run build -- --linux --win
         "
     else
       npm run test && \
-      npm run build -- --mac -p ${PUBLISH}
+      npm run build -- --mac
     fi
 before_cache:
   - rm -rf $HOME/.cache/electron-builder/wine
