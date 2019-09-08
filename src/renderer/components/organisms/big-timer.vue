@@ -103,9 +103,7 @@ export default {
   },
   watch: {
     working() {
-      if (this.working.id) {
-        this.setWorkingProps();
-      }
+      this.setWorkingProps();
     }
   },
   methods: {
