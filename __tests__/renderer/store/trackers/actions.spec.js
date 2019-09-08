@@ -55,6 +55,10 @@ describe('Actions', () => {
       it('does not dispatcth', () => {
         expect(dispatch).not.toHaveBeenCalled();
       });
+
+      it('commit SET_STARTED', () => {
+        expect(commit).toHaveBeenCalledWith('SET_STARTED', true);
+      });
     });
 
     describe('when start tracking but other timer already started', () => {
@@ -76,6 +80,10 @@ describe('Actions', () => {
 
       it('does not dispatcth', () => {
         expect(dispatch).not.toHaveBeenCalled();
+      });
+
+      it('commit SET_STARTED', () => {
+        expect(commit).toHaveBeenCalledWith('SET_STARTED', true);
       });
     });
 
