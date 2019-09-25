@@ -22,3 +22,7 @@ npm-debug.log*
 # Yarn
 yarn.lock
 yarn-error.log
+
+# Dotenv
+.env
+!.env.sample

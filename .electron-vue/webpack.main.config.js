@@ -5,6 +5,7 @@ process.env.BABEL_ENV = 'main'
 const path = require('path')
 const { dependencies } = require('../package.json')
 const webpack = require('webpack')
+const Dotenv = require('dotenv-webpack')
 
 const MinifyPlugin = require("babel-minify-webpack-plugin")
 
@@ -44,6 +45,7 @@ let mainConfig = {
     path: path.join(__dirname, '../dist/electron')
   },
   plugins: [
+    new Dotenv(),
     new webpack.NoEmitOnErrorsPlugin()
   ],
   resolve: {
