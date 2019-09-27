@@ -38,7 +38,6 @@ script:
         "
     else
       npm run test && \
-      sudo xcodebuild -license accept && \
       npm run build -- --mac
     fi
 before_cache:
