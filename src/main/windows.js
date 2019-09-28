@@ -2,7 +2,7 @@ import path from 'path';
 import { ipcMain, Menu, app, BrowserWindow } from 'electron';
 import queryString from 'query-string';
 
-export function generateUrl(path, query) {
+export function generateUrl(path = '', query = '') {
   return process.env.NODE_ENV === 'development'
     ? `http://localhost:9080/#/${path}?${query}`
     : `file://${__dirname}/index.html#${path}?${query}`;
