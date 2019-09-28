@@ -5,6 +5,7 @@ import { differenceInSeconds, parseISO } from 'date-fns';
 import { fromS } from 'hh-mm-ss';
 import { generateUrl } from './windows';
 import store from '../renderer/store';
+import pageView from '../renderer/ua';
 
 function getTrayIcon() {
   switch (process.platform) {
@@ -55,6 +56,7 @@ menubar.on('after-create-window', async () => {
 
 menubar.on('show', async () => {
   await fetchStatus();
+  pageView({ path: '/', name: 'Index' });
 });
 
 export default menubar;

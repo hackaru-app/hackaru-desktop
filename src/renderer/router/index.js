@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import visitor from '../ua';
+import pageView from '../ua';
 import store from '../store';
 
 Vue.use(Router);
@@ -50,7 +50,7 @@ router.beforeEach(async (to, from, next) => {
 });
 
 router.afterEach((to, from) => {
-  visitor.pageview(to.path, 'http://localhost', to.name).send();
+  pageView(to);
 });
 
 export default router;
