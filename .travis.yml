@@ -17,6 +17,7 @@ before_script:
   - curl -L "https://codeclimate.com/downloads/test-reporter/test-reporter-latest-${REPORTER_OS_NAME}-amd64" > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
   - echo "SENTRY_DSN=$SENTRY_DSN" >> .env
+  - echo "GOOGLE_ANALYTICS_ID=$GOOGLE_ANALYTICS_ID" >> .env
   - ./cc-test-reporter before-build
 script:
   - |
