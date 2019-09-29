@@ -67,13 +67,14 @@ export default {
     }
   },
   methods: {
-    addTracker() {
+    async addTracker() {
       this.$store.dispatch('trackers/add', {
         projectId: this.projectId,
         description: this.description,
         process: this.process.name
       });
       this.$store.dispatch('toast/success', this.$t('added'));
+      await this.$ga.event('Tracker', 'add');
       this.$electron.remote.getCurrentWindow().close();
     }
   }

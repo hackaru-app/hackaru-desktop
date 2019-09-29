@@ -1,8 +1,20 @@
 {
+    "@sentry/browser": {
+        "licenses": "BSD-3-Clause",
+        "repository": "https://github.com/getsentry/sentry-javascript",
+        "licenseUrl": "https://github.com/getsentry/sentry-javascript/raw/master/LICENSE",
+        "parents": "hackaru-desktop"
+    },
     "@sentry/electron": {
         "licenses": "MIT",
         "repository": "https://github.com/getsentry/sentry-electron",
         "licenseUrl": "https://github.com/getsentry/sentry-electron/raw/master/LICENSE",
+        "parents": "hackaru-desktop"
+    },
+    "@sentry/integrations": {
+        "licenses": "BSD-3-Clause",
+        "repository": "https://github.com/getsentry/sentry-javascript",
+        "licenseUrl": "https://github.com/getsentry/sentry-javascript/raw/master/LICENSE",
         "parents": "hackaru-desktop"
     },
     "axios": {
@@ -21,12 +33,6 @@
         "licenses": "MIT",
         "repository": "https://github.com/date-fns/date-fns",
         "licenseUrl": "https://github.com/date-fns/date-fns/raw/master/LICENSE.md",
-        "parents": "hackaru-desktop"
-    },
-    "dotenv": {
-        "licenses": "BSD-2-Clause",
-        "repository": "https://github.com/motdotla/dotenv",
-        "licenseUrl": "https://github.com/motdotla/dotenv/raw/master/LICENSE",
         "parents": "hackaru-desktop"
     },
     "electron-log": {
@@ -119,6 +125,12 @@
         "licenseUrl": "https://github.com/maxogden/menubar/raw/master/LICENSE",
         "parents": "hackaru-desktop"
     },
+    "node-machine-id": {
+        "licenses": "MIT",
+        "repository": "https://github.com/automation-stack/node-machine-id",
+        "licenseUrl": "https://github.com/automation-stack/node-machine-id/raw/master/LICENSE",
+        "parents": "hackaru-desktop"
+    },
     "node-notifier": {
         "licenses": "MIT",
         "repository": "https://github.com/mikaelbr/node-notifier",
@@ -165,6 +177,12 @@
         "licenses": "MIT",
         "repository": "https://github.com/adamhalasz/uniqid",
         "licenseUrl": "https://github.com/adamhalasz/uniqid",
+        "parents": "hackaru-desktop"
+    },
+    "universal-analytics": {
+        "licenses": "MIT",
+        "repository": "https://github.com/peaksandpies/universal-analytics",
+        "licenseUrl": "https://github.com/peaksandpies/universal-analytics",
         "parents": "hackaru-desktop"
     },
     "v-tooltip": {

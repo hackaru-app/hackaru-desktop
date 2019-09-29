@@ -66,6 +66,7 @@ export default {
   methods: {
     deleteTracker(id) {
       if (!window.confirm(this.$t('confirms.delete'))) return;
+      this.$ga.event('Tracker', 'delete');
       this.$store.dispatch('trackers/delete', id);
       this.$store.dispatch('toast/success', this.$t('deleted'));
     },

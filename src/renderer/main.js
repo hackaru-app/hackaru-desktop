@@ -1,7 +1,6 @@
 import Vue from 'vue';
-import './sentry';
-import './plugins';
 import App from './app';
+import './plugins';
 import VueI18n from 'vue-i18n';
 import router from './router';
 import store from './store';

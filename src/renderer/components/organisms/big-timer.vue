@@ -133,11 +133,14 @@ export default {
       if (success) {
         this.setWorkingProps();
         this.$store.dispatch('toast/success', this.$t('updated'));
+        console.log(this.$ga);
+        this.$ga.event('Activity', 'update');
       }
     },
     async stopActivity() {
       await this.$store.dispatch('activities/stop');
       this.$store.dispatch('toast/success', this.$t('stopped'));
+      this.$ga.event('Activity', 'stop');
       this.setWorkingProps();
     },
     confirmDeleteActivity() {
@@ -152,6 +155,7 @@ export default {
     async deleteActivity() {
       await this.$store.dispatch('activities/delete', this.id);
       this.$store.dispatch('toast/success', this.$t('deleted'));
+      this.$ga.event('Activity', 'delete');
       this.setWorkingProps();
       this.$modal.hide('dialog');
     },
@@ -164,15 +168,18 @@ export default {
       if (success) {
         this.setWorkingProps();
         this.$store.dispatch('toast/success', this.$t('started'));
+        this.$ga.event('Activity', 'start');
       }
     },
     fetchSuggestions: debounce(function() {
       if (!this.id) {
         this.$store.dispatch('suggestions/fetch', this.description);
+        this.$ga.event('Suggestion', 'fetch');
       }
     }, 1000),
     input(e) {
       this.description = e.target.value;
+      this.$ga.event('Suggestion', 'input');
       this.fetchSuggestions();
     },
     focus() {
