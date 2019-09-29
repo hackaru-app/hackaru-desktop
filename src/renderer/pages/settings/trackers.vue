@@ -49,6 +49,7 @@ import MainHeader from '@/components/molecules/main-header';
 import ActivityName from '@/components/molecules/activity-name';
 import Icon from '@/components/atoms/icon';
 import { mapGetters } from 'vuex';
+import { event } from '../../ua';
 
 export default {
   components: {
@@ -66,6 +67,7 @@ export default {
   methods: {
     deleteTracker(id) {
       if (!window.confirm(this.$t('confirms.delete'))) return;
+      event('Tracker', 'delete');
       this.$store.dispatch('trackers/delete', id);
       this.$store.dispatch('toast/success', this.$t('deleted'));
     },

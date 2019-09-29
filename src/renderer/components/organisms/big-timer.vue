@@ -77,6 +77,7 @@ import ActivityName from '@/components/molecules/activity-name';
 import Ticker from '@/components/atoms/ticker';
 import { mapGetters } from 'vuex';
 import debounce from 'lodash.debounce';
+import { event } from '../../ua';
 
 export default {
   components: {
@@ -133,11 +134,13 @@ export default {
       if (success) {
         this.setWorkingProps();
         this.$store.dispatch('toast/success', this.$t('updated'));
+        event('Activity', 'update');
       }
     },
     async stopActivity() {
       await this.$store.dispatch('activities/stop');
       this.$store.dispatch('toast/success', this.$t('stopped'));
+      event('Activity', 'stop');
       this.setWorkingProps();
     },
     confirmDeleteActivity() {
@@ -152,6 +155,7 @@ export default {
     async deleteActivity() {
       await this.$store.dispatch('activities/delete', this.id);
       this.$store.dispatch('toast/success', this.$t('deleted'));
+      event('Activity', 'delete');
       this.setWorkingProps();
       this.$modal.hide('dialog');
     },
@@ -164,15 +168,18 @@ export default {
       if (success) {
         this.setWorkingProps();
         this.$store.dispatch('toast/success', this.$t('started'));
+        event('Activity', 'start');
       }
     },
     fetchSuggestions: debounce(function() {
       if (!this.id) {
         this.$store.dispatch('suggestions/fetch', this.description);
+        event('Suggestion', 'fetch');
       }
     }, 1000),
     input(e) {
       this.description = e.target.value;
+      event('Suggestion', 'input');
       this.fetchSuggestions();
     },
     focus() {

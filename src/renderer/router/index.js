@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import pageView from '../ua';
+import { pageView } from '../ua';
 import store from '../store';
 
 Vue.use(Router);

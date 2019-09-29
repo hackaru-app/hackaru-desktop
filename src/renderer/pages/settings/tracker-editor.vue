@@ -46,6 +46,7 @@ import Multiselect from 'vue-multiselect';
 import MainHeader from '@/components/molecules/main-header';
 import BaseButton from '@/components/atoms/base-button';
 import ProjectSelect from '@/components/molecules/project-select';
+import { event } from '../../ua';
 
 export default {
   components: {
@@ -67,13 +68,14 @@ export default {
     }
   },
   methods: {
-    addTracker() {
+    async addTracker() {
       this.$store.dispatch('trackers/add', {
         projectId: this.projectId,
         description: this.description,
         process: this.process.name
       });
       this.$store.dispatch('toast/success', this.$t('added'));
+      await event('Tracker', 'add');
       this.$electron.remote.getCurrentWindow().close();
     }
   }
