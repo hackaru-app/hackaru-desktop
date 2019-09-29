@@ -49,7 +49,7 @@ router.beforeEach(async (to, from, next) => {
 });
 
 router.afterEach((to, from) => {
-  Vue.$ga.pageView(to);
+  router.app.$ga.pageView(to);
 });
 
 export default router;
