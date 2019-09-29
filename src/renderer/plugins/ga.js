@@ -1,3 +1,4 @@
+import Vue from 'vue';
 import ua from 'universal-analytics';
 import { machineIdSync } from 'node-machine-id';
 
@@ -17,3 +18,11 @@ export function event(category, action) {
     });
   });
 }
+
+const plugin = {
+  install(Vue) {
+    Vue.prototype.$ga = { event, pageView };
+  }
+};
+
+Vue.use(plugin);

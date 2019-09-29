@@ -1,6 +1,5 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import { pageView } from '../ua';
 import store from '../store';
 
 Vue.use(Router);
@@ -50,7 +49,7 @@ router.beforeEach(async (to, from, next) => {
 });
 
 router.afterEach((to, from) => {
-  pageView(to);
+  Vue.$ga.pageView(to);
 });
 
 export default router;
