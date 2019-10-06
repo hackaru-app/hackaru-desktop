@@ -8,16 +8,15 @@ export const state = () => ({
 });
 
 export const actions = {
-  update({ state, commit, dispatch, getters, rootGetters }) {
+  update({ state, dispatch, getters }) {
     if (getters.tracking && !state.started && !getters.working) {
-      dispatch('start');
+      return dispatch('start');
     }
     if (!getters.tracking && state.started) {
-      dispatch('activities/stop', undefined, { root: true });
+      return dispatch('stop');
     }
-    commit(SET_STARTED, !!getters.tracking);
   },
-  start({ dispatch, getters }) {
+  start({ dispatch, getters, commit }) {
     dispatch(
       'activities/add',
       {
@@ -27,6 +26,11 @@ export const actions = {
       },
       { root: true }
     );
+    commit(SET_STARTED, true);
+  },
+  stop({ dispatch, commit }) {
+    dispatch('activities/stop', undefined, { root: true });
+    commit(SET_STARTED, false);
   },
   add({ dispatch }, payload) {
     dispatch(

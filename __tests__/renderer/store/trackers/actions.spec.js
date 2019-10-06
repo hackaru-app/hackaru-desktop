@@ -30,10 +30,6 @@ describe('Actions', () => {
       it('dispatch start', () => {
         expect(dispatch).toHaveBeenCalledWith('start');
       });
-
-      it('commit SET_STARTED', () => {
-        expect(commit).toHaveBeenCalledWith('SET_STARTED', true);
-      });
     });
 
     describe('when start tracking but already started', () => {
@@ -54,10 +50,6 @@ describe('Actions', () => {
 
       it('does not dispatcth', () => {
         expect(dispatch).not.toHaveBeenCalled();
-      });
-
-      it('commit SET_STARTED', () => {
-        expect(commit).toHaveBeenCalledWith('SET_STARTED', true);
       });
     });
 
@@ -81,13 +73,9 @@ describe('Actions', () => {
       it('does not dispatcth', () => {
         expect(dispatch).not.toHaveBeenCalled();
       });
-
-      it('commit SET_STARTED', () => {
-        expect(commit).toHaveBeenCalledWith('SET_STARTED', true);
-      });
     });
 
-    describe('when exit tracking', () => {
+    describe('when exit tracking app', () => {
       const state = {
         started: true
       };
@@ -101,17 +89,11 @@ describe('Actions', () => {
       });
 
       it('dispatch stop', () => {
-        expect(dispatch).toHaveBeenCalledWith('activities/stop', undefined, {
-          root: true
-        });
-      });
-
-      it('commit SET_STARTED', () => {
-        expect(commit).toHaveBeenCalledWith('SET_STARTED', false);
+        expect(dispatch).toHaveBeenCalledWith('stop');
       });
     });
 
-    describe('when exit tracking but already stopped', () => {
+    describe('when exit tracking app but already stopped', () => {
       const state = {
         started: false
       };
@@ -132,6 +114,7 @@ describe('Actions', () => {
 
   describe('when dispatch start', () => {
     const dispatch = jest.fn();
+    const commit = jest.fn();
     const getters = {
       tracking: {
         project: { id: 1 },
@@ -140,7 +123,7 @@ describe('Actions', () => {
     };
 
     beforeEach(() => {
-      actions.start({ getters, dispatch });
+      actions.start({ getters, dispatch, commit });
     });
 
     it('dispatch activities/add', () => {
@@ -153,6 +136,35 @@ describe('Actions', () => {
         },
         { root: true }
       );
+    });
+
+    it('commit SET_STARTED', () => {
+      expect(commit).toHaveBeenCalledWith('SET_STARTED', true);
+    });
+  });
+
+  describe('when dispatch stop', () => {
+    const dispatch = jest.fn();
+    const commit = jest.fn();
+    const getters = {
+      tracking: {
+        project: { id: 1 },
+        description: 'Review'
+      }
+    };
+
+    beforeEach(() => {
+      actions.stop({ getters, dispatch, commit });
+    });
+
+    it('dispatch activities/stop', () => {
+      expect(dispatch).toHaveBeenCalledWith('activities/stop', undefined, {
+        root: true
+      });
+    });
+
+    it('commit SET_STARTED', () => {
+      expect(commit).toHaveBeenCalledWith('SET_STARTED', false);
     });
   });
 
