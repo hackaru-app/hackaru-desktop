@@ -11,7 +11,6 @@ const config = require(configPath)
 const appBundleId = config.build.appId
 
 exports.default = async () => {
-  console.warn(`debug: ${process.env.CURRENT_BRANCH}`);
   if (!appleId || !appleIdPassword || !master) {
     console.warn('notarize skipped');
     return;
