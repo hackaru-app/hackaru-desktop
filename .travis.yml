@@ -26,7 +26,7 @@ script:
         -e ELECTRON_CACHE=$HOME/.cache/electron \
         -e ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder \
         -e CI=$CI \
-        -e TRAVIS_PULL_REQUEST=$TRAVIS_PULL_REQUEST \
+        -e TRAVIS_CURRENT_BRANCH=$TRAVIS_CURRENT_BRANCH \
         -e GH_TOKEN=$GH_TOKEN \
         -v ${PWD}:/project \
         -v ~/.cache/electron:/root/.cache/electron \
