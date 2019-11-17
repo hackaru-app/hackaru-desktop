@@ -3,7 +3,7 @@ const { notarize } = require('electron-notarize')
 
 const appleId = process.env.APPLE_ID
 const appleIdPassword = process.env.APPLE_PASSWORD
-const isReleaseTag = /v[0-9]+\.[0-9]+\.[0-9]+/.test(process.env.TRAVIS_TAG)
+const isReleaseTag = /^v[0-9]+\.[0-9]+\.[0-9]+$/.test(process.env.TRAVIS_TAG)
 
 const configPath = path.resolve(__dirname, '../package.json')
 const appPath = path.resolve(__dirname, '../build/mac/Hackaru.app')
