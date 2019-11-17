@@ -38,7 +38,7 @@ script:
           npm run build -- --linux --win
         "
     else
-      BRANCH=$([ "$TRAVIS_PULL_REQUEST" == "false" ] && echo "$TRAVIS_BRANCH" || echo "$TRAVIS_PULL_REQUEST_BRANCH")
+      export BRANCH=$([ "$TRAVIS_PULL_REQUEST" == "false" ] && echo "$TRAVIS_BRANCH" || echo "$TRAVIS_PULL_REQUEST_BRANCH")
       npm run test && \
       npm run build -- --mac
     fi
