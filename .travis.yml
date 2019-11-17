@@ -26,7 +26,6 @@ script:
         -e ELECTRON_CACHE=$HOME/.cache/electron \
         -e ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder \
         -e CI=$CI \
-        -e TRAVIS_PULL_REQUEST=$TRAVIS_PULL_REQUEST \
         -e GH_TOKEN=$GH_TOKEN \
         -v ${PWD}:/project \
         -v ~/.cache/electron:/root/.cache/electron \
@@ -38,6 +37,7 @@ script:
           npm run build -- --linux --win
         "
     else
+      export BRANCH=$([ "$TRAVIS_PULL_REQUEST" == "false" ] && echo "$TRAVIS_BRANCH" || echo "$TRAVIS_PULL_REQUEST_BRANCH")
       npm run test && \
       npm run build -- --mac
     fi
