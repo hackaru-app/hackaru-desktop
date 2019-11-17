@@ -194,7 +194,7 @@
     "webpack": "^4.39.3",
     "webpack-cli": "^3.0.8",
     "webpack-dev-server": "^3.8.0",
-    "webpack-hot-middleware": "^2.22.2",
+    "webpack-hot-middleware": "^2.25.0",
     "webpack-merge": "^4.2.2"
   },
   "jest": {
