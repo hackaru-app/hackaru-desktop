@@ -4,9 +4,6 @@ cache:
     - $HOME/.cache/electron
     - $HOME/.cache/electron-builder
 
-before_cache:
-  - rm -rf $HOME/.cache/electron-builder/wine
-
 before_script:
   - echo "SENTRY_DSN=$SENTRY_DSN" >> .env
   - echo "GOOGLE_ANALYTICS_ID=$GOOGLE_ANALYTICS_ID" >> .env
@@ -26,22 +23,8 @@ jobs:
       after_script:
         - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
 
-    - stage: build-test-mac
-      os: osx
-      osx_image: xcode11
-      language: node_js
-      node_js: 10
-      if: branch = pull_request
-      script: npm run build -- --mac -p never
-
-    - stage: build-test-linux-win
-      os: linux
-      services: docker
-      language: generic
-      if: branch = pull_request
-      script: ./scripts/build-linux-win.sh -p never
-
-    - stage: build-mac
+    - &build-mac
+      stage: build-mac
       os: osx
       osx_image: xcode11
       language: node_js
@@ -49,10 +32,23 @@ jobs:
       if: branch = master AND type = push
       script: npm run build -- --mac
 
-    - stage: build-linux-win
+    - &build-linux-win
+      stage: build-linux-win
       os: osx
       osx_image: xcode11
       language: node_js
       node_js: 10
+      before_cache:
+        - rm -rf $HOME/.cache/electron-builder/wine
       if: branch = master AND type = push
       script: ./scripts/build-linux-win.sh
+
+    - stage: build-test-mac
+      <<: *build-mac
+      if: type = pull_request
+      script: npm run build -- --mac -p never
+
+    - stage: build-test-linux-win
+      <<: *build-linux-win
+      if: type = pull_request
+      script: ./scripts/build-linux-win.sh -p never
