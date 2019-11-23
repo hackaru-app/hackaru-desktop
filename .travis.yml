@@ -23,7 +23,7 @@ jobs:
         - curl -L "https://codeclimate.com/downloads/test-reporter/test-reporter-latest-${REPORTER_OS_NAME}-amd64" > ./cc-test-reporter
         - chmod +x ./cc-test-reporter
         - ./cc-test-reporter before-build
-      script: npm run build -- --mac
+      script: npm run test
       after_script:
         - sudo sed -i -e "s|^SF:/project|SF:$(pwd)|" coverage/lcov.info
         - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
