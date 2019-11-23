@@ -45,6 +45,7 @@ jobs:
             -e ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder \
             -e CI=$CI \
             -e GH_TOKEN=$GH_TOKEN \
+            -e TRAVIS_PULL_REQUEST=$TRAVIS_PULL_REQUEST \
             -v ${PWD}:/project \
             -v ~/.cache/electron:/root/.cache/electron \
             -v ~/.cache/electron-builder:/root/.cache/electron-builder \
