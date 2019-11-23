@@ -10,7 +10,7 @@ const config = require(configPath)
 const appBundleId = config.build.appId
 
 exports.default = async () => {
-  if (!appleId || !appleIdPassword || process.env.BRANCH !== 'master') {
+  if (!appleId || !appleIdPassword || process.env.TRAVIS_PULL_REQUEST !== 'false') {
     console.warn('notarize skipped');
     return;
   }
