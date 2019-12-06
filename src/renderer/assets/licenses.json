@@ -44,7 +44,7 @@
     "electron-promise-ipc": {
         "licenses": "MIT",
         "repository": "https://github.com/sibnerian/electron-promise-ipc",
-        "licenseUrl": "https://github.com/sibnerian/electron-promise-ipc",
+        "licenseUrl": "https://github.com/sibnerian/electron-promise-ipc/raw/master/LICENSE",
         "parents": "hackaru-desktop"
     },
     "electron-store": {
