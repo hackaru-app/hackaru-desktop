@@ -107,7 +107,7 @@
     "normalizr": "^3.3.0",
     "npm-license-crawler": "git+https://github.com/mwittig/npm-license-crawler.git#master",
     "ps-list": "^6.0.0",
-    "query-string": "^6.2.0",
+    "query-string": "^6.9.0",
     "snakecase-keys": "^3.1.0",
     "uniqid": "^5.0.3",
     "universal-analytics": "^0.4.20",
