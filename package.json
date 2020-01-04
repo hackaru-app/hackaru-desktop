@@ -119,7 +119,7 @@
     "vue-js-modal": "^1.3.31",
     "vue-multiselect": "^2.1.6",
     "vue-router": "^3.1.3",
-    "vue-timers": "^1.10.0",
+    "vue-timers": "^2.0.4",
     "vue2-animate": "^2.1.3",
     "vuex": "^3.0.1",
     "vuex-electron": "^1.0.0",
