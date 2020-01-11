@@ -157,7 +157,7 @@
     "electron-devtools-installer": "^2.2.4",
     "electron-notarize": "^0.1.1",
     "eslint": "^5.16.0",
-    "eslint-config-prettier": "^4.3.0",
+    "eslint-config-prettier": "^6.9.0",
     "eslint-config-standard": "^11.0.0",
     "eslint-config-vue": "^2.0.2",
     "eslint-loader": "^3.0.0",
