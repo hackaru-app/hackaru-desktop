@@ -174,7 +174,7 @@
     "inject-loader": "^4.0.1",
     "jest": "^24.9.0",
     "karma-coverage": "^1.1.2",
-    "lint-staged": "^9.2.5",
+    "lint-staged": "^10.0.7",
     "mini-css-extract-plugin": "0.4.0",
     "mockdate": "^2.0.2",
     "multispinner": "^0.2.1",
