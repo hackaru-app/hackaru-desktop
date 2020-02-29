@@ -129,7 +129,7 @@
     "@babel/core": "^7.7.7",
     "@babel/preset-env": "^7.8.4",
     "@kazupon/vue-i18n-loader": "^0.3.0",
-    "@vue/test-utils": "^1.0.0-beta.29",
+    "@vue/test-utils": "^1.0.0-beta.31",
     "ajv": "^6.10.2",
     "axios-mock-adapter": "^1.17.0",
     "babel-core": "^7.0.0-bridge.0",
