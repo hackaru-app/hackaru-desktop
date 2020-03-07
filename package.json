@@ -160,7 +160,7 @@
     "eslint-config-prettier": "^6.9.0",
     "eslint-config-standard": "^11.0.0",
     "eslint-config-vue": "^2.0.2",
-    "eslint-loader": "^3.0.0",
+    "eslint-loader": "^3.0.3",
     "eslint-plugin-html": "^6.0.0",
     "eslint-plugin-import": "^2.20.1",
     "eslint-plugin-node": "^9.2.0",
