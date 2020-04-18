@@ -14,7 +14,7 @@ jobs:
       os: osx
       osx_image: xcode11
       language: node_js
-      node_js: 10
+      node_js: 12
       before_script:
         - curl -L "https://codeclimate.com/downloads/test-reporter/test-reporter-latest-darwin-amd64" > ./cc-test-reporter
         - chmod +x ./cc-test-reporter
@@ -27,14 +27,14 @@ jobs:
       os: osx
       osx_image: xcode11
       language: node_js
-      node_js: 10
+      node_js: 12
       if: (branch = master AND type = push) OR type = pull_request
       script: npm run build -- --mac
     -
       os: linux
       services: docker
       language: generic
-      node_js: 10
+      node_js: 12
       before_cache:
         - rm -rf $HOME/.cache/electron-builder/wine
       if: (branch = master AND type = push) OR type = pull_request
