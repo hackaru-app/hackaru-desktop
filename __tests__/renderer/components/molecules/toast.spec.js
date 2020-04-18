@@ -51,8 +51,9 @@ describe('Toast', () => {
       expect(wrapper.find('.content').exists()).toBe(true);
     });
 
-    it('hide toast delayed', () => {
+    it('hide toast delayed', async () => {
       jest.runOnlyPendingTimers();
+      await wrapper.vm.$nextTick();
       expect(wrapper.find('.content').exists()).toBe(false);
     });
   });
