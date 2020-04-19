@@ -48,7 +48,7 @@ let rendererConfig = {
         use: ['vue-style-loader', 'css-loader', {
           loader: 'sass-loader',
           options: {
-            data: '@import "./src/renderer/assets/sass/modules/variables";'
+            prependData: '@import "./src/renderer/assets/sass/modules/variables";'
           }
         }]
       },
