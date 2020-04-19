@@ -7,7 +7,7 @@
   "main": "./dist/electron/main.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ktmouk/hackaru-desktop"
+    "url": "https://github.com/hackaru-app/hackaru-desktop"
   },
   "scripts": {
     "build": "node .electron-vue/build.js && electron-builder",
