@@ -198,9 +198,10 @@ describe('BigTimer', () => {
   });
 
   describe('when click suggestion', () => {
-    beforeEach(() => {
+    beforeEach(async () => {
       wrapper = factory();
       wrapper.find('.description').trigger('focus');
+      await wrapper.vm.$nextTick();
       wrapper.find('.suggestion').trigger('click');
     });
 
