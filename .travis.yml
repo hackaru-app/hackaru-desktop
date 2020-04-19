@@ -41,12 +41,13 @@ jobs:
       script:
         - |
           docker run --rm \
-            -e ELECTRON_CACHE=$HOME/.cache/electron \
-            -e ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder \
+            -e ELECTRON_CACHE="/root/.cache/electron" \
+            -e ELECTRON_BUILDER_CACHE="/root/.cache/electron-builder" \
             -e CI=$CI \
             -e GH_TOKEN=$GH_TOKEN \
             -e TRAVIS_PULL_REQUEST=$TRAVIS_PULL_REQUEST \
             -v ${PWD}:/project \
+            -v ${PWD##*/}-node-modules:/project/node_modules \
             -v ~/.cache/electron:/root/.cache/electron \
             -v ~/.cache/electron-builder:/root/.cache/electron-builder \
             electronuserland/builder:wine \
