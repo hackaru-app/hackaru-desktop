@@ -10,6 +10,14 @@ before_script:
 
 jobs:
   include:
+    - stage: lint
+      language: node_js
+      node_js:
+        - 12
+      script:
+        - npm run lint
+        - curl -L https://git.io/misspell | bash && git ls-files | xargs bin/misspell --error
+
     - stage: test
       os: osx
       osx_image: xcode11
