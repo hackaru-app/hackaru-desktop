@@ -1,3 +1,5 @@
 import { init } from '@sentry/electron';
 
-init({ dsn: process.env.SENTRY_DSN });
+if (process.env.SENTRY_DSN) {
+  init({ dsn: process.env.SENTRY_DSN });
+}
