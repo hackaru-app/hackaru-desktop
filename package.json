@@ -158,7 +158,7 @@
     "electron-notarize": "^0.2.1",
     "eslint": "^5.16.0",
     "eslint-config-prettier": "^6.10.1",
-    "eslint-config-standard": "^11.0.0",
+    "eslint-config-standard": "^12.0.0",
     "eslint-config-vue": "^2.0.2",
     "eslint-loader": "^3.0.4",
     "eslint-plugin-html": "^6.0.2",
