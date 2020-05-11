@@ -15,9 +15,11 @@ jobs:
       osx_image: xcode11
       language: node_js
       node_js: 12
+      services:
+        - docker
       script:
         - npm run lint
-        - curl -L https://git.io/misspell | bash && git ls-files | xargs bin/misspell --error
+        - docker run -v $(pwd):/src -w /src nickg/misspell /bin/sh -c 'git ls-files | xargs misspell -error'
 
     - stage: test
       os: osx
