@@ -11,13 +11,18 @@ before_script:
 jobs:
   include:
     - stage: lint
-      os: linux
+      os: osx
+      osx_image: xcode11
       language: node_js
       node_js: 12
+      script:
+        - npm run lint
+    -
+      os: linux
+      language: minimal
       services:
         - docker
       script:
-        - npm run lint
         - docker run -v $(pwd):/src -w /src nickg/misspell /bin/sh -c 'git ls-files | xargs misspell -error'
 
     - stage: test
