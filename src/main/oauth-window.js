@@ -4,11 +4,8 @@ import menubar from './menubar';
 import store from '../renderer/store';
 
 function clearLocalStorage() {
-  return new Promise(resolve => {
-    session.defaultSession.clearStorageData(
-      { storages: ['localstorage'] },
-      () => resolve()
-    );
+  return session.defaultSession.clearStorageData({
+    storages: ['localstorage']
   });
 }
 
