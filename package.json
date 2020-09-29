@@ -144,7 +144,7 @@
     "babel-preset-stage-0": "^6.24.1",
     "babel-register": "^6.26.0",
     "cfonts": "^2.8.5",
-    "chalk": "^4.0.0",
+    "chalk": "^4.1.0",
     "copy-webpack-plugin": "^5.1.1",
     "cross-env": "^5.2.1",
     "css-loader": "3.5.2",
