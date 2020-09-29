@@ -100,7 +100,7 @@
     "lodash.union": "^4.6.0",
     "lodash.uniq": "^4.5.0",
     "lodash.uniqby": "^4.7.0",
-    "menubar": "^6.0.8",
+    "menubar": "^9.0.1",
     "node-machine-id": "^1.1.12",
     "node-notifier": "^6.0.0",
     "normalize.css": "^8.0.1",
