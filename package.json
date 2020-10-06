@@ -182,7 +182,7 @@
     "node-loader": "^0.6.0",
     "node-sass": "^4.14.1",
     "require-dir": "^1.0.0",
-    "sass-loader": "^8.0.2",
+    "sass-loader": "^10.0.2",
     "spectron": "^9.0.0",
     "style-loader": "^1.2.1",
     "url-loader": "^4.1.0",
