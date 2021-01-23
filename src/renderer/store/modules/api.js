@@ -16,7 +16,10 @@ export const actions = {
         {
           baseURL: rootGetters['auth/apiUrl'],
           timeout: 10000,
-          headers: { 'Accept-Language': app.getLocale() }
+          headers: {
+            'Accept-Language': app.getLocale(),
+            'X-Requested-With': 'XMLHttpRequest'
+          }
         }
       )
     );
