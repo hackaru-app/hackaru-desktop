@@ -32,11 +32,6 @@ const router = new Router({
       component: require('@/pages/settings/tracker-editor').default
     },
     {
-      path: '/settings/licenses',
-      name: 'Licenses',
-      component: require('@/pages/settings/licenses').default
-    },
-    {
       path: '*',
       redirect: '/'
     }
