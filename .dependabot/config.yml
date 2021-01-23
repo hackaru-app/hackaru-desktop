@@ -3,6 +3,8 @@ update_configs:
   - package_manager: javascript
     directory: /
     update_schedule: weekly
+    default_labels:
+      - 'type: dependencies'
     allowed_updates:
       - match:
           update_type: all
