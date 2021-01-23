@@ -27,10 +27,6 @@ export default {
         {
           path: '/settings/power-monitor',
           name: this.$t('powerMonitor')
-        },
-        {
-          path: '/settings/licenses',
-          name: this.$t('licenses')
         }
       ]
     };

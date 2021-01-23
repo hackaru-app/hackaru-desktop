@@ -1,12 +1,10 @@
 {
   "en": {
     "trackers": "AutoTracking",
-    "powerMonitor": "PowerMonitor",
-    "licenses": "Licenses"
+    "powerMonitor": "PowerMonitor"
   },
   "ja": {
     "trackers": "自動計測",
-    "powerMonitor": "電源監視",
-    "licenses": "ライセンス"
+    "powerMonitor": "電源監視"
   }
 }
