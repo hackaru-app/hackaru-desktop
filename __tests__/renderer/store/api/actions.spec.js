@@ -47,11 +47,17 @@ describe('Actions', () => {
     });
 
     it('send headers', () => {
-      expect(mock.history.post[0].headers['X-Foo']).toEqual('bar');
+      expect(mock.history.post[0].headers['X-Foo']).toBe('bar');
     });
 
     it('send Accept-Language headers', () => {
-      expect(mock.history.post[0].headers['Accept-Language']).toEqual('en');
+      expect(mock.history.post[0].headers['Accept-Language']).toBe('en');
+    });
+
+    it('send Accept-Language headers', () => {
+      expect(mock.history.post[0].headers['X-Requested-With']).toBe(
+        'XMLHttpRequest'
+      );
     });
   });
 
