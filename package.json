@@ -178,7 +178,7 @@
     "multispinner": "^0.2.1",
     "node-abi": "^2.16.0",
     "node-loader": "^0.6.0",
-    "node-sass": "^4.14.1",
+    "node-sass": "^5.0.0",
     "require-dir": "^1.0.0",
     "sass-loader": "^8.0.2",
     "spectron": "^9.0.0",
