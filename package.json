@@ -112,7 +112,7 @@
     "mockdate": "^3.0.5",
     "node-loader": "^1.0.2",
     "npm-run-all": "^4.1.5",
-    "prettier": "^2.2.1",
+    "prettier": "^2.3.0",
     "sass": "^1.32.5",
     "sass-loader": "^10.1.1",
     "vue-jest": "^3.0.4",
