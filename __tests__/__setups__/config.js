@@ -1,4 +1,4 @@
-import { config } from '@vue/test-utils';
+import { config } from '@vue/test-utils'
 
-config.mocks['$t'] = () => {};
-config.mocks['$ga'] = { event: () => Promise.resolve() };
+config.mocks.$t = () => {}
+config.mocks.localePath = (path) => `/en/${path}`

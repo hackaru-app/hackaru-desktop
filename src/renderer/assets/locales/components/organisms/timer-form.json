@@ -1,0 +1,24 @@
+{
+  "en": {
+    "description": "What are you working on?",
+    "delete": "Delete the timer",
+    "updated": "Timer updated",
+    "started": "Timer started!",
+    "stopped": "Timer stopped! 🎉",
+    "deleted": "Timer deleted",
+    "confirms": {
+      "delete":  "Are you sure you want to delete the timer?"
+    }
+  },
+  "ja": {
+    "description": "作業内容や補足を入力",
+    "delete": "計測を削除",
+    "updated": "計測中の情報を更新しました",
+    "started": "計測を開始しました！",
+    "stopped": "計測を完了しました！🎉",
+    "deleted": "計測を削除しました",
+    "confirms": {
+      "delete":  "計測を削除しますか？"
+    }
+  }
+}

@@ -1,10 +1,22 @@
-import Vue from 'vue';
-import * as Sentry from '@sentry/browser';
-import * as Integrations from '@sentry/integrations';
+import Vue from 'vue'
+import * as Sentry from '@sentry/electron/dist/renderer'
+import { Vue as VueIntegration } from '@sentry/integrations'
 
-if (process.env.SENTRY_DSN) {
+export default ({ $config }, inject) => {
   Sentry.init({
-    dsn: process.env.SENTRY_DSN,
-    integrations: [new Integrations.Vue({ Vue, attachProps: true })]
-  });
+    dsn: $config.sentryDsn,
+    release: $config.sentryRelease,
+    debug: process.env.NODE_ENV !== 'production',
+    integrations: [
+      new VueIntegration({
+        Vue,
+        attachProps: true,
+        tracingOptions: {
+          trackComponents: true,
+        },
+      }),
+    ],
+  })
+
+  inject('sentry', Sentry)
 }

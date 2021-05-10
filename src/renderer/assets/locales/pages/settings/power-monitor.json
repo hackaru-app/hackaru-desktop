@@ -1,8 +1,8 @@
 {
   "en": {
     "title": "PowerMonitor",
-    "suspend": "Stop timer when suspend.",
-    "shutdown": "Stop timer when shutdown."
+    "suspend": "Stop a timer when paused",
+    "shutdown": "Stop a timer on shutdown"
   },
   "ja": {
     "title": "電源監視",

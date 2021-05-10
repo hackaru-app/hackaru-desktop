@@ -19,17 +19,11 @@
 }
 .base-button.is-primary {
   background-color: $cyan;
-  color: #fff;
-}
-.base-button.is-circle {
-  width: 34px;
-  height: 34px;
-  padding: 0;
-  border-radius: 50%;
+  color: $white;
 }
 .base-button.is-danger {
   background-color: $red;
-  color: #fff;
+  color: $white;
 }
 .base-button.is-rounded {
   border-radius: 99px;

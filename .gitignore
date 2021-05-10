@@ -1,28 +1,30 @@
+# Dependencies
+node_modules
+
+# Logs
+npm-debug.log
+
+# Nuxt build
+.nuxt
+
+# Nuxt generate
+dist
+
+# Dotenv
+/.env*
+!.env.sample
+
+# Yarn
+yarn-error.log
+
+# Jest
+coverage
+
 # MacOS
 .DS_Store
 
-# Windows
-thumbs.db
+# ESLint
+.eslintcache
 
 # Electron
-dist/electron/*
-dist/web/*
-build/*
-!build/icons
-
-# Test
-coverage
-
-# Dependencies
-node_modules/
-
-# Logs
-npm-debug.log*
-
-# Yarn
-yarn.lock
-yarn-error.log
-
-# Dotenv
-.env
-!.env.sample
+/build

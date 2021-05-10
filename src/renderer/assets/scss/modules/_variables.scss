@@ -1,0 +1,128 @@
+// Color
+$grey-333: #333c4f;
+$grey-666: #68757d;
+$grey-999: #9aa5ab;
+$grey-ccc: #cdd0d1;
+$grey-eee: #eeeeee;
+$grey-f0f0f0: #f0f1f2;
+$grey-f5f5f5: #f5f6f7;
+$grey-fafafa: #fafafc;
+$grey-fdfdfd: #fdfdfd;
+$cyan: #1aa7ba;
+$green: #7da87b;
+$yellow: #ffd96a;
+$red: #eb4f34;
+$white: #fff;
+$white-light: #fffffff5;
+$white-lighter: #fffffff0;
+
+// Light
+:root {
+  // Background
+  --background-translucent: #fffffff5;
+  --background-light: #{$white};
+  --background: #{$white};
+  --background-hover: #{$grey-fafafa};
+  --background-dark: #3f4961;
+  --background-dark-hover: #353d52;
+
+  // Backdrop
+  --backdrop-color: #00000030;
+
+  // Highlight
+  --highlight-background: #{$grey-fafafa};
+
+  // Text
+  --text: #{$grey-333};
+  --text-light: #{$grey-666};
+  --text-lighter: #{$grey-999};
+  --text-primary: #{$cyan};
+
+  // Input
+  --placeholder: #{$grey-999};
+
+  // Border
+  --border: #{$grey-f0f0f0};
+  --border-dark: #{$grey-f0f0f0};
+}
+
+// Dark
+:root {
+  @media (prefers-color-scheme: dark) {
+    // Background
+    --background-translucent: #303748;
+    --background-light: #303748;
+    --background: #2c3241;
+    --background-hover: #2a303e;
+    --background-dark: #262b38;
+    --background-dark-hover: #1c1f29;
+
+    // Highlight
+    --highlight-background: #303748;
+
+    // Backdrop
+    --backdrop-color: #00000050;
+
+    // Text
+    --text: #{$grey-eee};
+    --text-light: #{$grey-ccc};
+    --text-lighter: #{$grey-999};
+    --text-primary: #{$cyan};
+
+    // Input
+    --placeholder: #{$grey-666};
+
+    // Border
+    --border: #3a4357;
+    --border-dark: #262b38;
+  }
+}
+
+// Backdrop
+$backdrop-color: var(--backdrop-color);
+
+// Text
+$text: var(--text);
+$text-light: var(--text-light);
+$text-lighter: var(--text-lighter);
+$text-primary: var(--text-primary);
+
+// Shadow
+$shadow: #00000005;
+$shadow-dark: #00000008;
+$shadow-darker: #00000030;
+
+// Font
+$font-size: 15px;
+$font-family: system-ui, -apple-system, sans-serif;
+$font-family-duration: 'Roboto', sans-serif;
+$line-height: 1.5;
+
+// Input
+$placeholder: var(--placeholder);
+
+// Border
+$border: var(--border);
+$border-dark: var(--border-dark);
+
+// Highlight
+$highlight-background: var(--highlight-background);
+
+// Background
+$background-translucent: var(--background-translucent);
+$background-light: var(--background-light);
+$background: var(--background);
+$background-hover: var(--background-hover);
+$background-dark: var(--background-dark);
+$background-dark-hover: var(--background-dark-hover);
+
+// Animation
+$animation-duration: .25s;
+
+// ZIndex
+$z:
+  tooltip, // low
+  backdrop,
+  toast,
+  window-header, // high
+;
