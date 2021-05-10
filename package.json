@@ -65,7 +65,6 @@
     "axios-case-converter": "^0.7.0",
     "core-js": "^3.8.2",
     "date-fns": "^2.16.1",
-    "dotenv": "^8.2.0",
     "electron-store": "^7.0.2",
     "electron-updater": "^4.3.8",
     "hh-mm-ss": "^1.2.0",
