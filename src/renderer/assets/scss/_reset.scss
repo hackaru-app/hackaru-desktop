@@ -1,0 +1,44 @@
+html {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  user-select: none;
+}
+body, select, input, button {
+  color: $text;
+}
+option {
+  background-color: $background;
+}
+body {
+  background-color: $background;
+  outline: none;
+  font-display: auto;
+  font-family: $font-family;
+  font-size: $font-size;
+  line-height: $line-height;
+  &::before {
+    position: fixed;
+    content: '';
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    background: $background;
+  }
+}
+input[type="text"],
+input[type="time"],
+input[type="date"],
+input[type="email"],
+input[type="password"] {
+  -webkit-appearance: none;
+  box-sizing: border-box;
+}
+input::placeholder {
+  color: $grey-ccc;
+  opacity: 1;
+  padding-top: 2px;
+}
+input:focus,
+button:focus {
+  outline: none;
+}

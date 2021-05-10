@@ -1,71 +1,65 @@
-<i18n src="@/assets/locales/pages/settings/power-monitor.json" />
+<i18n src="~/assets/locales/pages/settings/power-monitor.json"></i18n>
 
 <template>
   <section>
-    <main-header class="is-small" />
-    <setting-menu />
-
-    <section class="content">
-      <header class="content-header">
-        <h1><icon name="power-icon" />{{ $t('title') }}</h1>
-      </header>
-
-      <div class="form">
-        <label>
-          <input v-model="stopOnSuspend" class="suspend" type="checkbox" />{{
-            $t('suspend')
-          }}
-        </label>
-        <label>
-          <input v-model="stopOnShutdown" class="shutdown" type="checkbox" />{{
-            $t('shutdown')
-          }}
-        </label>
-      </div>
-    </section>
+    <header class="header">
+      <h1><icon name="power-icon" />{{ $t('title') }}</h1>
+    </header>
+    <div class="form">
+      <label>
+        <input
+          class="suspend"
+          :checked="suspendEnabled"
+          type="checkbox"
+          data-test-id="suspend"
+          @click="toggleSuspend"
+        />{{ $t('suspend') }}
+      </label>
+      <label>
+        <input
+          class="shutdown"
+          :checked="shutdownEnabled"
+          data-test-id="shutdown"
+          type="checkbox"
+          @click="toggleShutdown"
+        />{{ $t('shutdown') }}
+      </label>
+    </div>
   </section>
 </template>
 
 <script>
-import SettingMenu from '@/components/organisms/setting-menu';
-import MainHeader from '@/components/molecules/main-header';
-import Icon from '@/components/atoms/icon';
+import Icon from '~/components/atoms/icon'
 
 export default {
   components: {
-    SettingMenu,
-    MainHeader,
-    Icon
+    Icon,
   },
-  computed: {
-    stopOnSuspend: {
-      get() {
-        return this.$store.getters['activities/stopOnSuspend'];
-      },
-      set(value) {
-        this.$store.dispatch('activities/setStopOnSuspend', value);
-      }
-    },
-    stopOnShutdown: {
-      get() {
-        return this.$store.getters['activities/stopOnShutdown'];
-      },
-      set(value) {
-        this.$store.dispatch('activities/setStopOnShutdown', value);
-      }
+  data() {
+    return {
+      suspendEnabled: false,
+      shutdownEnabled: false,
     }
-  }
-};
+  },
+  async mounted() {
+    this.suspendEnabled = await electron.getSuspend()
+    this.shutdownEnabled = await electron.getShutdown()
+  },
+  methods: {
+    toggleSuspend() {
+      this.suspendEnabled = !this.suspendEnabled
+      electron.setSuspend(this.suspendEnabled)
+    },
+    toggleShutdown() {
+      this.shutdownEnabled = !this.shutdownEnabled
+      electron.setShutdown(this.shutdownEnabled)
+    },
+  },
+}
 </script>
 
 <style scoped lang="scss">
-.content {
-  flex: 1;
-  margin-left: 150px;
-  padding: 50px 40px;
-  padding-top: 50px;
-}
-.content-header {
+.header {
   display: flex;
   padding-bottom: 20px;
   justify-content: space-between;
@@ -81,11 +75,11 @@ export default {
   }
 }
 .form {
-  margin-top: 30px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
   label {
-    display: flex;
-    align-items: baseline;
-    margin: 3px 0;
+    margin: 5px 0;
   }
   input {
     margin-right: 10px;

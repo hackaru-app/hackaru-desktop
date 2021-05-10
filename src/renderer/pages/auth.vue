@@ -1,73 +1,54 @@
-<i18n src="@/assets/locales/pages/auth.json" />
+<i18n src="~/assets/locales/pages/auth.json"></i18n>
 
 <template>
   <section>
-    <main-header />
-    <form @submit.prevent="authenticate">
-      <h1>{{ $t('title') }}</h1>
-      <base-input
-        v-model="apiUrl"
-        class="has-border api-url"
-        :placeholder="$t('apiUrl')"
-        required
-      />
-      <base-button type="submit" class="is-rounded is-primary">
-        {{ $t('authenticate') }}
+    <div class="content">
+      <img src="~/assets/images/logo.svg" class="logo-icon" />
+      <base-button
+        class="is-primary auth-button"
+        data-test-id="auth-button"
+        @click="authorize"
+      >
+        {{ $t('login') }}
       </base-button>
-      <p class="guide">
-        {{ $t('guide') }}
-      </p>
-    </form>
+    </div>
   </section>
 </template>
 
 <script>
-import BaseButton from '@/components/atoms/base-button';
-import MainHeader from '@/components/molecules/main-header';
-import BaseInput from '@/components/atoms/base-input';
+import BaseButton from '~/components/atoms/base-button'
 
 export default {
   components: {
     BaseButton,
-    BaseInput,
-    MainHeader
-  },
-  data() {
-    return {
-      apiUrl: this.$store.getters['auth/apiUrl']
-    };
   },
   methods: {
-    async authenticate() {
-      if (!(await this.$store.dispatch('auth/fetchAppToken', this.apiUrl)))
-        return;
-      this.$electron.ipcRenderer.send('showAuthentication');
-      this.$electron.ipcRenderer.on('authenticated', () => {
-        this.$store.dispatch('toast/success', this.$t('loggedIn'));
-        this.$router.push('/');
-      });
-    }
-  }
-};
+    async authorize() {
+      await electron.authorize()
+      electron.sendGaEvent('Accounts', 'login')
+      this.$store.dispatch('toast/success', this.$t('loggedIn'))
+      this.$router.replace(this.localePath('index'))
+      electron.showMenubar()
+    },
+  },
+}
 </script>
 
 <style scoped lang="scss">
-h1 {
-  font-size: 20px;
-  padding: 0;
-  margin: 0;
-  margin-bottom: 30px;
-  text-align: center;
-  font-weight: normal;
-}
-form {
-  padding: 30px;
-  margin-top: 50px;
+.content {
   display: flex;
   flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+  background-color: $background-dark;
+  align-items: center;
 }
-.guide {
-  color: $text-lighter;
-  margin-top: 30px;
+.logo-icon {
+  width: 25px;
+  height: 25px;
+  margin-bottom: 40px;
+}
+.auth-button {
+  width: 140px;
 }
 </style>

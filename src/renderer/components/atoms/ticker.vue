@@ -3,53 +3,53 @@
 </template>
 
 <script>
-import { fromS } from 'hh-mm-ss';
-import { parseISO, differenceInSeconds } from 'date-fns';
+import { fromS } from 'hh-mm-ss'
+import { parseISO, differenceInSeconds } from 'date-fns'
 
 export default {
   timers: {
     updateDuration: {
       time: 500,
       autostart: true,
-      repeat: true
-    }
+      repeat: true,
+    },
   },
   props: {
     startedAt: {
       type: String,
-      default: undefined
+      default: undefined,
     },
     stoppedAt: {
       type: String,
-      default: undefined
-    }
+      default: undefined,
+    },
   },
   data() {
     return {
       fromS,
       started: parseISO(this.startedAt),
-      stopped: this.stoppedAt ? parseISO(this.stoppedAt) : new Date()
-    };
+      stopped: this.stoppedAt ? parseISO(this.stoppedAt) : new Date(),
+    }
   },
   computed: {
     duration() {
-      return differenceInSeconds(this.stopped, this.started) || 0;
-    }
+      return differenceInSeconds(this.stopped, this.started) || 0
+    },
   },
   watch: {
-    startedAt: function(val) {
-      this.started = parseISO(val);
+    startedAt(val) {
+      this.started = val ? parseISO(val) : new Date()
     },
-    stoppedAt: function(val) {
-      this.stopped = parseISO(val);
-    }
+    stoppedAt(val) {
+      this.stopped = val ? parseISO(val) : new Date()
+    },
   },
   methods: {
     updateDuration() {
-      if (this.stoppedAt) this.$timer.stop('updateDuration');
-      this.started = parseISO(this.startedAt);
-      this.stopped = this.stoppedAt ? parseISO(this.stoppedAt) : new Date();
-    }
-  }
-};
+      if (this.stoppedAt) this.$timer.stop('updateDuration')
+      this.started = this.startedAt ? parseISO(this.startedAt) : new Date()
+      this.stopped = this.stoppedAt ? parseISO(this.stoppedAt) : new Date()
+    },
+  },
+}
 </script>

@@ -1,24 +1,20 @@
 {
   "en": {
-    "empty": "No Working Timers.",
-    "stopped": "Activity stopped.",
     "settings": "Settings",
-    "website": "Open website in browser",
+    "web": "Open website in a browser",
     "logout": "Logout",
-    "quit": "Quit App",
+    "quit": "Quit the app",
     "confirms": {
-      "logout": "Logout?"
+      "logout":  "Are you sure you want to logout?"
     }
   },
   "ja": {
-    "empty": "稼働中のタイマーはありません。",
     "settings": "設定",
-    "website": "Web版をブラウザで開く",
+    "web": "Web版をブラウザで開く",
     "logout": "ログアウト",
-    "stopped": "記録しました",
     "quit": "アプリを終了",
     "confirms": {
-      "logout": "ログアウトしますか？"
+      "logout":  "ログアウトしますか？"
     }
   }
 }

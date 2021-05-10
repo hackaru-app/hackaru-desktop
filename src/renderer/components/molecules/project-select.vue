@@ -1,7 +1,7 @@
 <template>
   <div class="project-select">
     <project-name v-bind="selected" class="project-name" />
-    <select @change="change">
+    <select data-test-id="select" @change="change">
       <option
         v-for="project in projects"
         :key="project.id"
@@ -15,45 +15,39 @@
 </template>
 
 <script>
-import ProjectName from '@/components/molecules/project-name';
+import ProjectName from '~/components/molecules/project-name'
 
 export default {
   components: {
-    ProjectName
+    ProjectName,
   },
   props: {
     value: {
       type: Number,
-      default: () => null
-    }
+      default: null,
+    },
+    projects: {
+      type: Array,
+      required: true,
+    },
   },
   computed: {
-    projects() {
-      return [
-        {
-          id: null,
-          name: 'No Project',
-          color: '#ccc'
-        },
-        ...this.$store.getters['projects/all']
-      ];
-    },
     selected() {
-      return this.projects.find(project => project.id === this.value);
-    }
+      return this.projects.find(({ id }) => id === this.value)
+    },
   },
   methods: {
     change(e) {
-      const id = e.target.value;
-      this.$emit('input', id ? Number(id) : null);
-    }
-  }
-};
+      this.$emit('input', Number(e.target.value))
+    },
+  },
+}
 </script>
 
 <style scoped lang="scss">
 .project-select {
   position: relative;
+  height: 100%;
   flex: 1;
 }
 select {
@@ -61,5 +55,6 @@ select {
   width: 100%;
   position: absolute;
   opacity: 0;
+  height: 100%;
 }
 </style>

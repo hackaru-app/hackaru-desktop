@@ -1,150 +1,152 @@
-<i18n src="@/assets/locales/pages/index.json" />
+<i18n src="~/assets/locales/pages/index.json"></i18n>
 
 <template>
-  <section class="index">
-    <main-header class="is-small" />
-    <div class="content">
-      <big-timer />
-    </div>
+  <section>
+    <window-header class="is-small" />
+    <timer-form class="timer-form" />
     <footer class="footer">
-      <div class="left">
-        <base-button
+      <div class="footer-icons">
+        <icon-button
+          v-tooltip="$t('settings')"
           type="button"
-          class="has-icon settings-button"
-          @click="showSettings"
+          data-test-id="settings-button"
+          @click="openSettings"
         >
-          <icon
-            v-tooltip="{ content: $t('settings'), offset: 10 }"
-            name="settings-icon"
-            class="icon is-small"
-          />
-        </base-button>
-        <base-button
+          <icon name="settings-icon" class="icon is-small" />
+        </icon-button>
+        <icon-button
+          v-tooltip="$t('web')"
+          data-test-id="web-button"
           type="button"
-          class="has-icon web-button"
-          @click="openWebsite"
+          @click="openWeb"
         >
-          <icon
-            v-tooltip="{ content: $t('website'), offset: 10 }"
-            name="globe-icon"
-            class="icon is-small"
-          />
-        </base-button>
+          <icon name="globe-icon" class="icon is-small" />
+        </icon-button>
       </div>
 
-      <div class="right">
-        <base-button type="button" class="has-icon quit-button" @click="quit">
-          <icon
-            v-tooltip="{ content: $t('quit'), offset: 10 }"
-            name="x-circle-icon"
-            class="icon is-small"
-          />
-        </base-button>
-        <base-button
+      <div class="footer-icons">
+        <icon-button
+          v-tooltip="$t('quit')"
+          data-test-id="quit-button"
           type="button"
-          class="has-icon logout-button"
+          @click="quit"
+        >
+          <icon name="x-circle-icon" class="icon is-small" />
+        </icon-button>
+        <icon-button
+          v-tooltip="$t('logout')"
+          data-test-id="logout-button"
+          type="button"
           @click="confirmLogout"
         >
-          <icon
-            v-tooltip="{ content: $t('logout'), offset: 10 }"
-            name="log-out-icon"
-            class="icon is-small"
-          />
-        </base-button>
+          <icon name="log-out-icon" class="icon is-small" />
+        </icon-button>
       </div>
     </footer>
   </section>
 </template>
 
 <script>
-import BaseButton from '@/components/atoms/base-button';
-import MainHeader from '@/components/molecules/main-header';
-import Icon from '@/components/atoms/icon';
-import BigTimer from '@/components/organisms/big-timer';
-import { mapGetters } from 'vuex';
+import { mapGetters } from 'vuex'
+import WindowHeader from '~/components/atoms/window-header'
+import TimerForm from '~/components/organisms/timer-form'
+import Icon from '~/components/atoms/icon'
+import IconButton from '~/components/atoms/icon-button'
 
 export default {
   components: {
-    BigTimer,
-    BaseButton,
+    WindowHeader,
+    TimerForm,
     Icon,
-    MainHeader
+    IconButton,
+  },
+  middleware: 'authenticated',
+  fetch() {
+    this.$store.dispatch('projects/fetch')
+    this.$store.dispatch('activities/fetchWorking')
   },
   computed: {
-    ...mapGetters({ webUrl: 'auth/webUrl' })
+    ...mapGetters({
+      working: 'activities/working',
+    }),
+  },
+  watch: {
+    working() {
+      if (this.working) {
+        electron.startTrayTimer(this.working.startedAt)
+      } else {
+        electron.stopTrayTimer()
+      }
+    },
+  },
+  mounted() {
+    electron.onSuspend(() => this.stopWorking())
+    electron.onShutdown(() => this.stopWorking())
+  },
+  destroyed() {
+    electron.stopTrayTimer()
   },
   methods: {
-    openWebsite() {
-      this.$electron.shell.openExternal(this.webUrl);
+    openSettings() {
+      electron.openSettings()
     },
-    showSettings() {
-      this.$electron.ipcRenderer.send('showSettings');
+    openWeb() {
+      electron.openWeb()
+    },
+    quit() {
+      electron.quit()
+    },
+    stopWorking() {
+      if (this.working) {
+        electron.sendGaEvent('Activities', 'stop')
+        this.$store.dispatch('activities/update', {
+          id: this.working.id,
+          stoppedAt: new Date(),
+        })
+      }
     },
     confirmLogout() {
       this.$modal.show('dialog', {
         text: this.$t('confirms.logout'),
-        buttons: [{ title: 'Cancel' }, { title: 'OK', handler: this.logout }]
-      });
+        buttons: [{ title: 'Cancel' }, { title: 'OK', handler: this.logout }],
+      })
     },
     async logout() {
-      await this.$store.dispatch('auth/logout');
-      this.$electron.ipcRenderer.send('logout');
-      this.$electron.remote.app.relaunch();
-      this.$electron.remote.app.exit(0);
+      this.$modal.hide('dialog')
+      electron.removeUserId()
+      electron.sendGaEvent('Accounts', 'logout')
+      this.$store.dispatch('auth/logout')
+      await this.$router.replace(this.localePath('auth'))
+      window.location.reload()
     },
-    quit() {
-      this.$electron.remote.app.quit();
-    }
-  }
-};
+  },
+}
 </script>
 
 <style scoped lang="scss">
-.index {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  overflow: hidden;
-}
-.content {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
+.timer-form {
+  margin-top: 30px;
 }
 .footer {
+  width: 100%;
   overflow: hidden;
   display: flex;
+  position: absolute;
+  bottom: 0;
   justify-content: space-between;
-  background-color: $grey-fafafa;
-  border-top: 1px $grey-eee solid;
+  background-color: $background-light;
+  border-top: 1px $border solid;
   height: 50px;
   padding: 0 20px;
   box-sizing: border-box;
-  .icon {
-    color: $text;
-  }
 }
-.left {
+.footer .icon {
   display: flex;
-  .icon {
-    margin-right: 20px;
-  }
+  align-items: center;
+  color: $text;
+  margin: 0 10px;
 }
-.right {
+.footer-icons {
   display: flex;
-  .quit-button {
-    z-index: 1;
-  }
-  .icon {
-    margin-left: 20px;
-  }
-}
-.empty-message {
-  display: flex;
-  flex: 1;
-  width: 100%;
-  padding: 10px 0;
-  justify-content: center;
-  color: $text-light;
 }
 </style>

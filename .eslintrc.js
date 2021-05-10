@@ -1,32 +1,32 @@
 module.exports = {
   root: true,
-  parserOptions: {
-    parser: 'babel-eslint',
-    sourceType: 'module'
-  },
   env: {
     browser: true,
     node: true,
-    jest: true
+  },
+  parserOptions: {
+    parser: 'babel-eslint',
+  },
+  globals: {
+    electron: true,
   },
   extends: [
-    'vue',
-    'plugin:vue/essential',
-    'plugin:vue/strongly-recommended',
-    'plugin:vue/recommended',
+    '@nuxtjs',
+    'prettier',
+    'prettier/vue',
     'plugin:prettier/recommended',
-    'prettier/babel',
-    'prettier/standard',
-    'prettier/vue'
+    'plugin:nuxt/recommended',
   ],
-  globals: {
-    __static: true
+  plugins: ['prettier'],
+  // add your custom rules here
+  rules: {
+    'no-unused-vars': [
+      'error',
+      {
+        args: 'all',
+        argsIgnorePattern: '^_',
+      },
+    ],
+    'nuxt/no-cjs-in-config': 'off',
   },
-  plugins: [
-    'vue'
-  ],
-  'rules': {
-    camelcase: ["error", { properties: "never" }],
-    'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0
-  }
 }
