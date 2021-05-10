@@ -12,7 +12,14 @@ jobs:
       language: node_js
       node_js: 12
       script:
-        - yarn lint
+        - yarn lint .
+        - yarn run electronegativity -i . -x \
+            LimitNavigationJsCheck,\
+            LimitNavigationGlobalCheck,\
+            OpenExternalJsCheck,\
+            PreloadJsCheck,\
+            CspGlobalCheck,\
+            CspHtmlCheck
     -
       os: linux
       language: minimal
