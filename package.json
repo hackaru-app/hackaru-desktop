@@ -1,0 +1,125 @@
+{
+  "name": "hackaru-desktop",
+  "version": "1.2.0",
+  "author": "ktmouk <ktmouk@gmail.com>",
+  "description": "Hackaru for desktop",
+  "private": true,
+  "scripts": {
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore",
+    "test": "jest",
+    "dev": "webpack -c src/main/webpack.dev.js --progress && run-p -l dev:*",
+    "dev:main": "wait-on tcp:7865 && electron dist/main/main",
+    "dev:renderer": "nuxt dev --dotenv ../../.env src/renderer",
+    "build": "run-p -l build:* && electron-builder",
+    "build:main": "webpack -c src/main/webpack.prod.js",
+    "build:renderer": "nuxt generate --dotenv ../../.env src/renderer",
+    "build:icons": "electron-icon-maker -i icon.png -o build"
+  },
+  "lint-staged": {
+    "*.{js,vue}": [
+      "yarn lint --fix"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "build": {
+    "productName": "Hackaru",
+    "appId": "app.hackaru",
+    "afterSign": "bin/notarize",
+    "directories": {
+      "output": "build"
+    },
+    "appImage": {
+      "artifactName": "${name}-${version}.${ext}"
+    },
+    "nsis": {
+      "artifactName": "${name}-${version}.${ext}"
+    },
+    "mac": {
+      "icon": "build/icons/mac/icon.icns"
+    },
+    "win": {
+      "icon": "build/icons/win/icon.ico"
+    },
+    "files": [
+      "dist/**/*",
+      "static/**/*"
+    ],
+    "extraMetadata": {
+      "main": "dist/main/main.js"
+    },
+    "publish": {
+      "provider": "github",
+      "releaseType": "draft",
+      "publishAutoUpdate": true
+    }
+  },
+  "dependencies": {
+    "@nuxtjs/axios": "^5.12.5",
+    "@openid/appauth": "^1.3.0",
+    "@sentry/electron": "^2.4.1",
+    "@sentry/integrations": "^6.3.5",
+    "axios-case-converter": "^0.7.0",
+    "core-js": "^3.8.2",
+    "date-fns": "^2.16.1",
+    "dotenv": "^8.2.0",
+    "electron-store": "^7.0.2",
+    "electron-updater": "^4.3.8",
+    "hh-mm-ss": "^1.2.0",
+    "keytar": "^7.4.0",
+    "lodash.debounce": "^4.0.8",
+    "lodash.merge": "^4.6.2",
+    "lodash.omit": "^4.5.0",
+    "menubar": "^9.0.2",
+    "node-machine-id": "^1.1.12",
+    "normalizr": "^3.6.1",
+    "nuxt": "^2.14.12",
+    "nuxt-i18n": "^6.18.0",
+    "ress": "^3.0.0",
+    "universal-analytics": "^0.4.23",
+    "v-tooltip": "2.1.2",
+    "vue-feather-icons": "^5.1.0",
+    "vue-js-modal": "^1.3.34",
+    "vue-timers": "^2.0.4",
+    "vue2-animate": "^2.1.4"
+  },
+  "devDependencies": {
+    "@doyensec/electronegativity": "^1.9.0",
+    "@nuxtjs/eslint-config": "^5.0.0",
+    "@nuxtjs/style-resources": "^1.0.0",
+    "@vue/test-utils": "^1.1.2",
+    "axios-mock-adapter": "^1.19.0",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-eslint": "^10.1.0",
+    "babel-jest": "^26.6.3",
+    "dotenv-webpack": "^7.0.1",
+    "electron": "^11.2.1",
+    "electron-builder": "^22.10.5",
+    "electron-devtools-installer": "^3.1.1",
+    "electron-icon-maker": "^0.0.5",
+    "electron-notarize": "^1.0.0",
+    "eslint": "^7.18.0",
+    "eslint-config-prettier": "^7.1.0",
+    "eslint-plugin-nuxt": "^2.0.0",
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-vue": "^7.4.1",
+    "husky": "^4.3.8",
+    "jest": "^26.6.3",
+    "lint-staged": "^10.5.3",
+    "mockdate": "^3.0.5",
+    "node-loader": "^1.0.2",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.2.1",
+    "sass": "^1.32.5",
+    "sass-loader": "^10.1.1",
+    "vue-jest": "^3.0.4",
+    "vuex-mock-store": "^0.0.8",
+    "wait-on": "^5.2.1",
+    "webpack": "^5.25.0",
+    "webpack-cli": "^4.5.0",
+    "webpack-merge": "^5.7.3"
+  }
+}

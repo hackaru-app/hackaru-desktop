@@ -1,0 +1,30 @@
+# Dependencies
+node_modules
+
+# Logs
+npm-debug.log
+
+# Nuxt build
+.nuxt
+
+# Nuxt generate
+dist
+
+# Dotenv
+/.env*
+!.env.sample
+
+# Yarn
+yarn-error.log
+
+# Jest
+coverage
+
+# MacOS
+.DS_Store
+
+# ESLint
+.eslintcache
+
+# Electron
+/build

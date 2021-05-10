@@ -1,0 +1,16 @@
+@import 'vue-js-modal/dist/styles.css';
+
+.v--modal {
+  background-color: $background;
+  box-shadow: 0 10px 20px $shadow-darker;
+}
+.vue-dialog .dialog-content,
+.vue-dialog .vue-dialog-button {
+  background-color: $background;
+}
+.vue-dialog-button:not(:first-of-type) {
+  border-color: $border;
+}
+.vue-dialog .vue-dialog-buttons {
+  border-color: $border;
+}
