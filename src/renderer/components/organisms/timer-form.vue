@@ -70,6 +70,13 @@ export default {
     PlayButton,
     SuggestionList,
   },
+  data() {
+    return {
+      projectId: undefined,
+      description: '',
+      focused: false,
+    }
+  },
   computed: {
     ...mapGetters({
       activity: 'activities/working',
@@ -92,13 +99,6 @@ export default {
         }
       },
     },
-  },
-  data() {
-    return {
-      projectId: undefined,
-      description: '',
-      focused: false,
-    }
   },
   methods: {
     focus() {

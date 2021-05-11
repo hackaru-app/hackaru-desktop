@@ -27,16 +27,16 @@ export default {
   components: {
     ActivityName,
   },
-  computed: {
-    ...mapGetters({
-      suggestions: 'suggestions/all',
-    }),
-  },
   props: {
     query: {
       type: String,
       default: '',
     },
+  },
+  computed: {
+    ...mapGetters({
+      suggestions: 'suggestions/all',
+    }),
   },
   watch: {
     query: {
