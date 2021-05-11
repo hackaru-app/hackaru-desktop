@@ -1,17 +1,1 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 53 (72520) - https://sketchapp.com -->
-    <title>logo</title>
-    <desc>Created with Sketch.</desc>
-    <defs>
-        <linearGradient x1="50%" y1="-2.48949813e-15%" x2="50%" y2="100%" id="linearGradient-1">
-            <stop stop-color="#FFEEA3" offset="0%"></stop>
-            <stop stop-color="#FFCF6A" offset="100%"></stop>
-        </linearGradient>
-    </defs>
-    <g id="logo" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
-        <g id="zap-gradient" transform="translate(1.000000, 0.000000)" fill="url(#linearGradient-1)" stroke="url(#linearGradient-1)" stroke-width="1.188">
-            <path d="M10.6192405,9.50666667 L19.92,9.50666667 L10.3807595,22.56 L10.3807595,14.2533333 L1.08,14.2533333 L10.6192405,1.2 L10.6192405,9.50666667 Z" id="zap"></path>
-        </g>
-    </g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" version="1.1" viewBox="0 0 24 24"><title>logo</title><desc>Created with Sketch.</desc><defs><linearGradient id="linearGradient-1" x1="50%" x2="50%" y1="0%" y2="100%"><stop offset="0%" stop-color="#FFEEA3"/><stop offset="100%" stop-color="#FFCF6A"/></linearGradient></defs><g id="logo" fill="none" fill-rule="evenodd" stroke="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"><g id="zap-gradient" fill="url(#linearGradient-1)" stroke="url(#linearGradient-1)" stroke-width="1.188" transform="translate(1.000000, 0.000000)"><path id="zap" d="M10.6192405,9.50666667 L19.92,9.50666667 L10.3807595,22.56 L10.3807595,14.2533333 L1.08,14.2533333 L10.6192405,1.2 L10.6192405,9.50666667 Z"/></g></g></svg>
