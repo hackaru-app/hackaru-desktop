@@ -7,6 +7,29 @@ jobs:
   update_release_draft:
     runs-on: ubuntu-latest
     steps:
-      - uses: release-drafter/release-drafter@v5
+      - name: Update release draft
+        uses: release-drafter/release-drafter@v5
+        id: update_release_draft
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Update package.json
+        run: |
+          yarn version \
+            --no-git-tag-version \
+            --new-version $(echo '${{ steps.update_release_draft.outputs.tag_name }}' | tr -d 'v')
+
+      - name: Create pull request
+        uses: peter-evans/create-pull-request@v3
+        with:
+          branch: ${{ steps.update_release_draft.outputs.tag_name }}
+          delete-branch: true
+          draft: true
+          commit-message: Release ${{ steps.update_release_draft.outputs.tag_name }}
+          title: Release ${{ steps.update_release_draft.outputs.tag_name }}
+          body: ${{ steps.update_release_draft.outputs.body }}
+          labels: |
+            type: improvement
