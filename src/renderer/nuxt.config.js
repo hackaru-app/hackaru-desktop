@@ -40,7 +40,7 @@ module.exports = {
             "'unsafe-inline'",
             "'self'",
           ],
-          'img-src': ['https://www.google-analytics.com', "'self'"],
+          'img-src': ['https://www.google-analytics.com', 'data:', "'self'"],
           'object-src': ["'none'"],
           'default-src': ["'self'"],
         }),
