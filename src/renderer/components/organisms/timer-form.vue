@@ -80,8 +80,13 @@ export default {
   computed: {
     ...mapGetters({
       activity: 'activities/working',
-      projects: 'projects/all',
     }),
+    projects() {
+      return [
+        { id: null, name: 'No Project', color: '#cccfd9' },
+        ...this.$store.getters['projects/all'],
+      ]
+    },
     working() {
       return !!this.activity
     },
