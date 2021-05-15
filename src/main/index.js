@@ -39,6 +39,10 @@ menubar.on('after-create-window', async () => {
   }
 })
 
+menubar.on('show', () => {
+  menubar.window.webContents.send('showMenubar')
+})
+
 menubar.on('after-create-window', () => {
   if (process.platform === 'darwin') {
     app.dock.hide()

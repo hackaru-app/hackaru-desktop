@@ -108,6 +108,7 @@ module.exports = {
     mode: 'hash',
   },
   build: {
+    hardSource: process.env.NODE_ENV !== 'production',
     extend(config, { isDev }) {
       config.externals = {
         electron: 'commonjs electron',

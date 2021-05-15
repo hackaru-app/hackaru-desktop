@@ -61,4 +61,7 @@ contextBridge.exposeInMainWorld('electron', {
   onShutdown(callback) {
     ipcRenderer.on('shutdown', callback)
   },
+  onShowMenubar(callback) {
+    ipcRenderer.on('showMenubar', callback)
+  },
 })
