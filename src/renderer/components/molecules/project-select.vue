@@ -38,7 +38,8 @@ export default {
   },
   methods: {
     change(e) {
-      this.$emit('input', Number(e.target.value))
+      const id = e.target.value
+      this.$emit('input', id ? Number(id) : null)
     },
   },
 }
