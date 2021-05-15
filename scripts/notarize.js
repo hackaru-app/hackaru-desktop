@@ -1,5 +1,4 @@
 const path = require('path')
-const consola = require('consola')
 const { notarize } = require('electron-notarize')
 
 const appleId = process.env.APPLE_ID
@@ -18,7 +17,7 @@ function isSkipped() {
 
 exports.default = async () => {
   if (isSkipped()) {
-    consola.info('skipped notarization')
+    console.warn('skipped notarization')
     return
   }
   await notarize({
