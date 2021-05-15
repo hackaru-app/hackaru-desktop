@@ -1,8 +1,5 @@
-[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
-[![jest](https://jestjs.io/img/jest-badge.svg)](https://github.com/facebook/jest)
-[![Build Status](https://travis-ci.org/ktmouk/hackaru-desktop.svg?branch=master)](https://travis-ci.org/ktmouk/hackaru-desktop)
-[![Maintainability](https://api.codeclimate.com/v1/badges/5b7af3e22e611188ea0d/maintainability)](https://codeclimate.com/github/ktmouk/hackaru-desktop/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/5b7af3e22e611188ea0d/test_coverage)](https://codeclimate.com/github/ktmouk/hackaru-desktop/test_coverage)
+[![Maintainability](https://api.codeclimate.com/v1/badges/5b7af3e22e611188ea0d/maintainability)](https://codeclimate.com/github/hackaru-app/hackaru-desktop/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/5b7af3e22e611188ea0d/test_coverage)](https://codeclimate.com/github/hackaru-app/hackaru-desktop/test_coverage)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
 <p align="center">
@@ -10,23 +7,30 @@
   <p align="center">Hackaru for desktop</p>
 </p>
 
-## Downloads
-- [MacOS](https://github.com/ktmouk/hackaru-desktop/releases/download/v1.0.2/Hackaru-1.0.2.dmg)
-- [Windows](https://github.com/ktmouk/hackaru-desktop/releases/download/v1.0.2/hackaru-desktop-1.0.2.exe)
-- [Linux](https://github.com/ktmouk/hackaru-desktop/releases/download/v1.0.2/hackaru-desktop-1.0.2.AppImage)
+## Download
+- [MacOS](https://github.com/hackaru-app/hackaru-desktop/releases/download/v1.0.2/Hackaru-1.0.2.dmg)
+- [Windows](https://github.com/hackaru-app/hackaru-desktop/releases/download/v1.0.2/hackaru-desktop-1.0.2.exe)
+- [Linux](https://github.com/hackaru-app/hackaru-desktop/releases/download/v1.0.2/hackaru-desktop-1.0.2.AppImage)
 
+## Feedback
 
-## Contributing
-1. [Fork](https://github.com/ktmouk/hackaru-web/fork) and clone this repository.
-1. Check out new branch. `git checkout -b new-feature`
-1. Start app in dev mode. `npm install && npm run dev`
-1. Improve codes.
-1. Run linter and test. `npm run lint && npm run test`
-1. Push branch. `git push origin new-feature`
-1. Create a new pull request.
+Do you find a bug or would like to submit feature requests?  
+Please let us know via [Issues](https://github.com/hackaru-app/hackaru-desktop/issues). 😉
 
-> This app is using [atom/node-keytar](https://github.com/atom/node-keytar) to store OAuth tokens.  
-> So you may need to install libsecret if build on Linux. See [detail](https://github.com/atom/node-keytar).
+## Build
+```sh
+# Clone this repository.
+git clone git@github.com:hackaru-app/hackaru-desktop.git
+cd hackaru-desktop
+
+# Copy and rename env file.
+cp .env.sample .env
+
+# Install packages and launch the app.
+yarn && yarn dev
+```
+
+This app is using [atom/node-keytar](https://github.com/atom/node-keytar) to store OAuth tokens, so you may need to install libsecret if build on Linux. See [detail](https://github.com/atom/node-keytar).
 
 ## License
 

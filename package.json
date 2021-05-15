@@ -28,15 +28,10 @@
   "build": {
     "productName": "Hackaru",
     "appId": "app.hackaru",
+    "artifactName": "${name}-${version}.${ext}",
     "afterSign": "bin/notarize",
     "directories": {
       "output": "build"
-    },
-    "appImage": {
-      "artifactName": "${name}-${version}.${ext}"
-    },
-    "nsis": {
-      "artifactName": "${name}-${version}.${ext}"
     },
     "mac": {
       "icon": "build/icons/mac/icon.icns"

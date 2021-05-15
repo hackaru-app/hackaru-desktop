@@ -22,6 +22,12 @@ jobs:
             --no-git-tag-version \
             --new-version $(echo '${{ steps.update_release_draft.outputs.tag_name }}' | tr -d 'v')
 
+      - name: Update README.md
+        run: |
+          sed -E "s/v.+\.(dmg|exe|AppImage)/$VERSION\/hackaru-desktop-$VERSION.\1/g" README.md
+        env:
+          VERSION: ${{ steps.update_release_draft.outputs.tag_name }}
+
       - name: Create pull request
         uses: peter-evans/create-pull-request@v3
         with:
