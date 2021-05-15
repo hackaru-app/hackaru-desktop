@@ -24,7 +24,7 @@ jobs:
 
       - name: Update README.md
         run: |
-          sed -E "s/v.+\.(dmg|exe|AppImage)/$VERSION\/hackaru-desktop-$VERSION.\1/g" README.md
+          sed -i -E "s/v.+\.(dmg|exe|AppImage)/$VERSION\/hackaru-desktop-$VERSION.\1/g" README.md
         env:
           VERSION: ${{ steps.update_release_draft.outputs.tag_name }}
 
