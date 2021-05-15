@@ -50,6 +50,7 @@ menubar.on('after-create-window', () => {
 })
 
 app.on('ready', () => {
+  visitor.set('version', process.env.npm_package_version)
   autoUpdater.checkForUpdatesAndNotify()
 })
 

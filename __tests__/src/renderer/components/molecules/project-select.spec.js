@@ -10,12 +10,12 @@ describe('ProjectSelect', () => {
       propsData: {
         projects: [
           {
-            id: 1,
-            name: 'Development',
-            color: '#f00',
+            id: null,
+            name: 'No Project',
+            color: '#cccfd9',
           },
           {
-            id: 2,
+            id: 1,
             name: 'Review',
             color: '#ff0',
           },
@@ -30,7 +30,19 @@ describe('ProjectSelect', () => {
     })
 
     it('emits input', () => {
-      expect(wrapper.emitted('input')[0][0]).toBe(2)
+      expect(wrapper.emitted('input')[0][0]).toBe(1)
+    })
+  })
+
+  describe('when select no-project', () => {
+    beforeEach(async () => {
+      wrapper = factory()
+      await wrapper.setProps({ value: 1 })
+      wrapper.find(testId('select')).findAll('option').at(0).setSelected()
+    })
+
+    it('emits input', () => {
+      expect(wrapper.emitted('input')[0][0]).toBeNull()
     })
   })
 })

@@ -28,15 +28,10 @@
   "build": {
     "productName": "Hackaru",
     "appId": "app.hackaru",
-    "afterSign": "bin/notarize",
+    "artifactName": "${name}-${version}.${ext}",
+    "afterSign": "scripts/notarize",
     "directories": {
       "output": "build"
-    },
-    "appImage": {
-      "artifactName": "${name}-${version}.${ext}"
-    },
-    "nsis": {
-      "artifactName": "${name}-${version}.${ext}"
     },
     "mac": {
       "icon": "build/icons/mac/icon.icns"
@@ -94,7 +89,6 @@
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "^10.1.0",
     "babel-jest": "^26.6.3",
-    "consola": "^2.15.3",
     "dotenv-webpack": "^7.0.1",
     "electron": "^11.2.1",
     "electron-builder": "^22.10.5",
