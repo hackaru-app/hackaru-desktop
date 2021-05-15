@@ -1,0 +1,72 @@
+name: Publish
+on:
+  push:
+    branches:
+      - master
+jobs:
+  publish-linux:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: yarn --frozen-lockfile
+
+      - name: Publish
+        run: yarn build -p onTagOrDraft
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GOOGLE_ANALYTICS_ID: ${{ secrets.GOOGLE_ANALYTICS_ID }}
+          HACKARU_API_CLIENT_ID: ${{ secrets.HACKARU_API_CLIENT_ID }}
+          HACKARU_API_TIMEOUT: ${{ secrets.HACKARU_API_TIMEOUT }}
+          HACKARU_API_TOKEN_ENDPOINT: ${{ secrets.HACKARU_API_TOKEN_ENDPOINT }}
+          HACKARU_API_URL: ${{ secrets.HACKARU_API_URL }}
+          HACKARU_WEB_AUTHORIZATION_ENDPOINT: ${{ secrets.HACKARU_WEB_AUTHORIZATION_ENDPOINT }}
+          HACKARU_WEB_URL: ${{ secrets.HACKARU_WEB_URL }}
+
+  publish-windows:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: yarn --frozen-lockfile
+
+      - name: Publish
+        run: yarn build -p onTagOrDraft
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GOOGLE_ANALYTICS_ID: ${{ secrets.GOOGLE_ANALYTICS_ID }}
+          HACKARU_API_CLIENT_ID: ${{ secrets.HACKARU_API_CLIENT_ID }}
+          HACKARU_API_TIMEOUT: ${{ secrets.HACKARU_API_TIMEOUT }}
+          HACKARU_API_TOKEN_ENDPOINT: ${{ secrets.HACKARU_API_TOKEN_ENDPOINT }}
+          HACKARU_API_URL: ${{ secrets.HACKARU_API_URL }}
+          HACKARU_WEB_AUTHORIZATION_ENDPOINT: ${{ secrets.HACKARU_WEB_AUTHORIZATION_ENDPOINT }}
+          HACKARU_WEB_URL: ${{ secrets.HACKARU_WEB_URL }}
+
+  publish-macos:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: yarn --frozen-lockfile
+
+      - name: Publish
+        run: yarn build -p onTagOrDraft
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          APPLE_ID: ${{ secrets.APPLE_ID }}
+          APPLE_ID_PASSWORD: ${{ secrets.APPLE_ID_PASSWORD }}
+          CSC_KEY_PASSWORD: ${{ secrets.CSC_KEY_PASSWORD }}
+          CSC_LINK: ${{ secrets.CSC_LINK }}
+          GOOGLE_ANALYTICS_ID: ${{ secrets.GOOGLE_ANALYTICS_ID }}
+          HACKARU_API_CLIENT_ID: ${{ secrets.HACKARU_API_CLIENT_ID }}
+          HACKARU_API_TIMEOUT: ${{ secrets.HACKARU_API_TIMEOUT }}
+          HACKARU_API_TOKEN_ENDPOINT: ${{ secrets.HACKARU_API_TOKEN_ENDPOINT }}
+          HACKARU_API_URL: ${{ secrets.HACKARU_API_URL }}
+          HACKARU_WEB_AUTHORIZATION_ENDPOINT: ${{ secrets.HACKARU_WEB_AUTHORIZATION_ENDPOINT }}
+          HACKARU_WEB_URL: ${{ secrets.HACKARU_WEB_URL }}
