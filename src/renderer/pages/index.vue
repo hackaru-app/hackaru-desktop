@@ -82,6 +82,9 @@ export default {
   mounted() {
     electron.onSuspend(() => this.stopWorking())
     electron.onShutdown(() => this.stopWorking())
+    electron.onShowMenubar(() =>
+      this.$store.dispatch('activities/fetchWorking')
+    )
   },
   destroyed() {
     electron.stopTrayTimer()

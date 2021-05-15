@@ -31,6 +31,26 @@ describe('Actions', () => {
     })
   })
 
+  describe('when dispatch fetchWorking and working activity is null', () => {
+    const dispatch = jest.fn()
+    const getters = {
+      working: { id: 1 },
+    }
+
+    beforeEach(() => {
+      mock.onGet('/v1/activities/working').replyOnce(200, null)
+      actions.fetchWorking({ dispatch, getters })
+    })
+
+    it('dispatches entities/delete', () => {
+      expect(dispatch).toHaveBeenCalledWith(
+        'entities/delete',
+        { name: 'activities', id: 1 },
+        { root: true }
+      )
+    })
+  })
+
   describe('when dispatch add', () => {
     const dispatch = jest.fn()
 

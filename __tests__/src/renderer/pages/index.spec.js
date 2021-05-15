@@ -26,6 +26,7 @@ describe('Index', () => {
   global.electron = {
     onSuspend: () => {},
     onShutdown: () => {},
+    onShowMenubar: () => {},
     startTrayTimer: jest.fn(),
     stopTrayTimer: jest.fn(),
     openSettings: jest.fn(),

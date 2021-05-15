@@ -1,15 +1,23 @@
 import { activity } from '~/schemas'
 
 export const actions = {
-  async fetchWorking({ dispatch }) {
+  async fetchWorking({ dispatch, getters }) {
     const res = await this.$api.request({
       url: '/v1/activities/working',
     })
-    dispatch(
-      'entities/merge',
-      { json: res.data, schema: activity },
-      { root: true }
-    )
+    if (res.data !== null) {
+      dispatch(
+        'entities/merge',
+        { json: res.data, schema: activity },
+        { root: true }
+      )
+    } else if (getters.working) {
+      dispatch(
+        'entities/delete',
+        { name: 'activities', id: getters.working.id },
+        { root: true }
+      )
+    }
   },
   async add({ dispatch }, payload) {
     try {
