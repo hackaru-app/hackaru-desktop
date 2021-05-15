@@ -10,7 +10,7 @@ jobs:
       os: osx
       osx_image: xcode11
       language: node_js
-      node_js: 12
+      node_js: 15
       script:
         - yarn lint .
         - yarn run electronegativity -i . -x \
@@ -32,7 +32,7 @@ jobs:
       os: osx
       osx_image: xcode11
       language: node_js
-      node_js: 12
+      node_js: 15
       before_script:
         - curl -L "https://codeclimate.com/downloads/test-reporter/test-reporter-latest-darwin-amd64" > ./cc-test-reporter
         - chmod +x ./cc-test-reporter
@@ -45,14 +45,14 @@ jobs:
       os: osx
       osx_image: xcode11
       language: node_js
-      node_js: 12
+      node_js: 15
       if: (branch = master AND type = push) OR type = pull_request
       script: yarn build --mac
     -
       os: linux
       services: docker
       language: generic
-      node_js: 12
+      node_js: 15
       before_cache:
         - rm -rf $HOME/.cache/electron-builder/wine
       if: (branch = master AND type = push) OR type = pull_request
