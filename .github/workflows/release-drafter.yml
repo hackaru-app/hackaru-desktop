@@ -12,7 +12,7 @@ jobs:
         id: update_release_draft
 
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v2.3.3
 
       - name: Update package.json
         run: |
