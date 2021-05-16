@@ -9,14 +9,8 @@ const appPath = path.resolve(__dirname, '../build/mac/Hackaru.app')
 const config = require(configPath)
 const appBundleId = config.build.appId
 
-function isSkipped() {
-  return (
-    !appleId || !appleIdPassword || process.env.TRAVIS_PULL_REQUEST !== 'false'
-  )
-}
-
 exports.default = async () => {
-  if (isSkipped()) {
+  if (!appleId || !appleIdPassword) {
     console.warn('skipped notarization')
     return
   }
