@@ -1,0 +1,32 @@
+name: Source map
+on:
+  push:
+    tags:
+      - 'v*'
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: yarn --frozen-lockfile
+
+      - name: Build
+        run: yarn run run-p -l build:main build:renderer
+
+      - name: Get version
+        id: get-version
+        run: echo ::set-output name=version::${GITHUB_REF/refs\/tags\//}
+
+      - name: Upload source map
+        uses: getsentry/action-release@v1
+        with:
+          url_prefix: ~/dist
+          sourcemaps: dist
+          version: ${{ steps.get-version.outputs.version }}
+        env:
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
+          SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}

@@ -24,6 +24,7 @@ jobs:
           HACKARU_API_URL: ${{ secrets.HACKARU_API_URL }}
           HACKARU_WEB_AUTHORIZATION_ENDPOINT: ${{ secrets.HACKARU_WEB_AUTHORIZATION_ENDPOINT }}
           HACKARU_WEB_URL: ${{ secrets.HACKARU_WEB_URL }}
+          SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
 
   publish-windows:
     runs-on: windows-latest
@@ -45,6 +46,7 @@ jobs:
           HACKARU_API_URL: ${{ secrets.HACKARU_API_URL }}
           HACKARU_WEB_AUTHORIZATION_ENDPOINT: ${{ secrets.HACKARU_WEB_AUTHORIZATION_ENDPOINT }}
           HACKARU_WEB_URL: ${{ secrets.HACKARU_WEB_URL }}
+          SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
 
   publish-macos:
     runs-on: macos-latest
@@ -70,3 +72,4 @@ jobs:
           HACKARU_API_URL: ${{ secrets.HACKARU_API_URL }}
           HACKARU_WEB_AUTHORIZATION_ENDPOINT: ${{ secrets.HACKARU_WEB_AUTHORIZATION_ENDPOINT }}
           HACKARU_WEB_URL: ${{ secrets.HACKARU_WEB_URL }}
+          SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
