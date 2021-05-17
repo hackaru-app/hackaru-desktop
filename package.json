@@ -28,7 +28,7 @@
   "build": {
     "productName": "Hackaru",
     "appId": "app.hackaru",
-    "artifactName": "${name}-${version}.${ext}",
+    "artifactName": "${name}-v${version}.${ext}",
     "afterSign": "scripts/notarize",
     "directories": {
       "output": "build"
