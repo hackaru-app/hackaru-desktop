@@ -4,20 +4,20 @@ on:
     branches:
       - master
 jobs:
-  update-draft:
+  release-draft:
     runs-on: ubuntu-latest
     steps:
-      - name: Update draft
+      - name: Release draft
         uses: release-drafter/release-drafter@v5
-        id: update-draft
+        id: release-draft
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     outputs:
-      version: ${{ steps.update-draft.outputs.tag_name }}
+      version: ${{ steps.release-draft.outputs.tag_name }}
 
   create-pr:
     runs-on: ubuntu-latest
-    needs: update-draft
+    needs: release-draft
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -26,21 +26,21 @@ jobs:
         run: |
           yarn version \
             --no-git-tag-version \
-            --new-version $(echo '${{ needs.update-draft.outputs.version }}' | tr -d 'v')
+            --new-version $(echo '${{ needs.release-draft.outputs.version }}' | tr -d 'v')
 
       - name: Update README.md
         run: |
           sed -i -E "s/v.+\.(dmg|exe|AppImage)/$VERSION\/hackaru-desktop-$VERSION.\1/g" README.md
         env:
-          VERSION: ${{ needs.update-draft.outputs.version }}
+          VERSION: ${{ needs.release-draft.outputs.version }}
 
       - name: Create pull request
         uses: peter-evans/create-pull-request@v3
         with:
-          branch: ${{ needs.update-draft.outputs.version }}
+          branch: ${{ needs.release-draft.outputs.version }}
           delete-branch: true
           draft: true
-          commit-message: Release ${{ needs.update-draft.outputs.version }}
-          title: Release ${{ needs.update-draft.outputs.version }}
+          commit-message: Release ${{ needs.release-draft.outputs.version }}
+          title: Release ${{ needs.release-draft.outputs.version }}
           labels: |
             type: improvement
