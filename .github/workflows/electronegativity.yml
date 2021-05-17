@@ -13,13 +13,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Set up node
-        uses: actions/setup-node@v2
-        with:
-          node-version: 15
+      - name: Install dependencies
+        run: yarn --frozen-lockfile
 
       - name: Run electronegativity
-        uses: doyensec/electronegativity-action@v1.1
+        run: |
+          mkdir ../results
+          yarn run electronegativity -r -i . -o ../results/out.sarif
 
       - name: Upload sarif
         uses: github/codeql-action/upload-sarif@v1
