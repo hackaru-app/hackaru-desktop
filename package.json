@@ -90,7 +90,7 @@
     "babel-eslint": "^10.1.0",
     "babel-jest": "^26.6.3",
     "dotenv-webpack": "^7.0.2",
-    "electron": "^12.0.7",
+    "electron": "^11.2.1",
     "electron-builder": "^22.10.5",
     "electron-devtools-installer": "^3.2.0",
     "electron-icon-maker": "^0.0.5",
