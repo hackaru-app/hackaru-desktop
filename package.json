@@ -72,7 +72,7 @@
     "normalizr": "^3.6.1",
     "nuxt": "^2.14.12",
     "nuxt-i18n": "^6.18.0",
-    "ress": "^3.0.0",
+    "ress": "^4.0.0",
     "universal-analytics": "^0.4.23",
     "v-tooltip": "2.1.2",
     "vue-feather-icons": "^5.1.0",
