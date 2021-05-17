@@ -67,7 +67,7 @@
     "lodash.debounce": "^4.0.8",
     "lodash.merge": "^4.6.2",
     "lodash.omit": "^4.5.0",
-    "menubar": "^9.0.2",
+    "menubar": "^9.0.4",
     "node-machine-id": "^1.1.12",
     "normalizr": "^3.6.1",
     "nuxt": "^2.14.12",
