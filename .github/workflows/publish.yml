@@ -28,6 +28,7 @@ jobs:
 
   publish-windows:
     runs-on: windows-latest
+    needs: publish-linux
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -50,6 +51,7 @@ jobs:
 
   publish-macos:
     runs-on: macos-latest
+    needs: publish-macos
     steps:
       - name: Checkout
         uses: actions/checkout@v2
