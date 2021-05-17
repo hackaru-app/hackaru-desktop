@@ -12573,10 +12573,10 @@ responselike@^2.0.0:
   dependencies:
     lowercase-keys "^2.0.0"
 
-ress@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/ress/-/ress-3.0.0.tgz#45ec8304b67ea114b0cec733bf2628083f35aa9c"
-  integrity sha512-MTPto7t44AawqmSbEmvMKoSMWPnxjaTuHf94s7RjWxuSGFN0o8/b+6yOwkaC50+Vihjsu6ODUEQR397gTMn57w==
+ress@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/ress/-/ress-4.0.0.tgz#784200da045548f67c26ca35dc18ff764b924c7d"
+  integrity sha512-awpQM9e6VL6ljw4XuH/ww2q4IEU0SAY9Lcvu4h4nIB5c5XhTUXH3Me8WA0zW3s3naU79lY8uVUJg30dvKJ5cNw==
 
 restore-cursor@^3.1.0:
   version "3.1.0"
