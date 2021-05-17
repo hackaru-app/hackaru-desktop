@@ -42,6 +42,5 @@ jobs:
           draft: true
           commit-message: Release ${{ needs.update-draft.outputs.version }}
           title: Release ${{ needs.update-draft.outputs.version }}
-          body: ${{ needs.update-draft.outputs.body }}
           labels: |
             type: improvement
