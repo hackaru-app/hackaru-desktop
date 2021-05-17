@@ -10,6 +10,8 @@ jobs:
       - name: Update draft
         uses: release-drafter/release-drafter@v5
         id: update-draft
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     outputs:
       version: ${{ steps.update-draft.outputs.tag_name }}
 
