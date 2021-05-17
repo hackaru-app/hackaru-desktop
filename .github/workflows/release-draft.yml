@@ -1,4 +1,4 @@
-name: Release
+name: Release draft
 on:
   push:
     branches:
@@ -11,7 +11,7 @@ jobs:
         uses: release-drafter/release-drafter@v5
         id: release-draft
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
     outputs:
       version: ${{ steps.release-draft.outputs.tag_name }}
 
