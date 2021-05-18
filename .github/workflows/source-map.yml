@@ -1,4 +1,4 @@
-name: Source map
+name: source-map
 on:
   push:
     tags:

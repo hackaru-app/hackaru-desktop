@@ -1,4 +1,4 @@
-name: Electronegativity
+name: electronegativity
 on:
   push:
     branches:
