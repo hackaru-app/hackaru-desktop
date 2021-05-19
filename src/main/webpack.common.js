@@ -23,7 +23,7 @@ module.exports = {
   node: {
     __dirname: false,
   },
-  plugins: [new Dotenv()],
+  plugins: [new Dotenv({ systemvars: true })],
   output: {
     path: path.resolve(__dirname, '../../dist/main'),
   },
