@@ -3,6 +3,11 @@ on:
   push:
     branches:
       - master
+
+concurrency:
+  group: release-drafter
+  cancel-in-progress: true
+
 jobs:
   release-draft:
     runs-on: ubuntu-latest
