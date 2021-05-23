@@ -81,7 +81,7 @@ jobs:
           SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
 
   publish-linux:
-    runs-on: linux-latest
+    runs-on: ubuntu-latest
     needs: publish-windows
     steps:
       - name: Checkout
