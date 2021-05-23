@@ -30,7 +30,8 @@ cp .env.sample .env
 yarn && yarn dev
 ```
 
-This app is using [atom/node-keytar](https://github.com/atom/node-keytar) to store OAuth tokens, so you may need to install libsecret if build on Linux. See [detail](https://github.com/atom/node-keytar).
+This app is using [atom/node-keytar](https://github.com/atom/node-keytar) to store OAuth tokens.  
+You may need to install libsecret if build on Linux. See [detail](https://github.com/atom/node-keytar).
 
 ## License
 

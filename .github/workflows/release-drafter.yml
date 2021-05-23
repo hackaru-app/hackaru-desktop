@@ -3,6 +3,11 @@ on:
   push:
     branches:
       - master
+
+concurrency:
+  group: release-drafter
+  cancel-in-progress: true
+
 jobs:
   release-draft:
     runs-on: ubuntu-latest
@@ -11,7 +16,7 @@ jobs:
         uses: release-drafter/release-drafter@fe52e97d262833ae07d05efaf1a239df3f1b5cd4
         id: release-draft
         env:
-          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     outputs:
       version: ${{ steps.release-draft.outputs.tag_name }}
 

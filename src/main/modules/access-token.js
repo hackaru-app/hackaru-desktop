@@ -1,7 +1,7 @@
 const keytar = require('keytar')
 
 const service = `hackaru-desktop-${process.env.NODE_ENV}`
-const account = process.env.HACKARU_API_CLIENT_ID
+const account = 'current-user'
 
 module.exports.storeAccessToken = (accessToken) => {
   return keytar.setPassword(service, account, accessToken)

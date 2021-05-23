@@ -1,8 +1,8 @@
 name: source-map
 on:
-  push:
-    tags:
-      - 'v*'
+  release:
+    types:
+      - published
 jobs:
   upload:
     runs-on: ubuntu-latest
