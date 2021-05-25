@@ -70,7 +70,7 @@
     "menubar": "^9.0.4",
     "node-machine-id": "^1.1.12",
     "normalizr": "^3.6.1",
-    "nuxt": "^2.14.12",
+    "nuxt": "^2.15.6",
     "nuxt-i18n": "^6.27.0",
     "ress": "^4.0.0",
     "universal-analytics": "^0.4.23",
