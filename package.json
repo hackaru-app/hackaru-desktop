@@ -82,7 +82,7 @@
   },
   "devDependencies": {
     "@doyensec/electronegativity": "^1.9.1",
-    "@nuxtjs/eslint-config": "^5.0.0",
+    "@nuxtjs/eslint-config": "^6.0.0",
     "@nuxtjs/style-resources": "^1.0.0",
     "@vue/test-utils": "^1.1.2",
     "axios-mock-adapter": "^1.19.0",
