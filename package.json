@@ -61,7 +61,7 @@
     "core-js": "^3.12.1",
     "date-fns": "^2.21.3",
     "electron-store": "^8.0.0",
-    "electron-updater": "^4.3.8",
+    "electron-updater": "^4.3.9",
     "hh-mm-ss": "^1.2.0",
     "keytar": "^7.4.0",
     "lodash.debounce": "^4.0.8",
