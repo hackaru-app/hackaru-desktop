@@ -20,11 +20,6 @@
       "yarn lint --fix"
     ]
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "build": {
     "productName": "Hackaru",
     "appId": "app.hackaru",

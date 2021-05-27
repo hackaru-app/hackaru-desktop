@@ -6,7 +6,12 @@
 </template>
 
 <script>
+import DotText from '~/components/molecules/dot-text'
+
 export default {
+  components: {
+    DotText,
+  },
   props: {
     project: {
       type: Object,
