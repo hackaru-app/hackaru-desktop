@@ -12,7 +12,7 @@ describe('App', () => {
     app = new Application({
       path: electronPath,
       args: [path.join(__dirname, '../../dist/main/main')],
-      chromeDriverArgs: ['--remote-debugging-port=12209'],
+      chromeDriverArgs: ['--headless', '--remote-debugging-port=12209'],
     })
     await app.start()
   })
