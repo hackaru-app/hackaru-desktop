@@ -11,8 +11,9 @@ describe('App', () => {
   beforeEach(async () => {
     app = new Application({
       path: electronPath,
+      headless: true,
       args: [path.join(__dirname, '../../dist/main/main')],
-      chromeDriverArgs: ['--remote-debugging-port=12209'],
+      env: { DEBUG: 1 },
     })
     await app.start()
   })
