@@ -17,7 +17,8 @@ describe('App', () => {
         '--no-sandbox',
         '--single-process',
         '--disable-setuid-sandbox',
-        '--remote-debugging-port=12209',
+        '--remote-debugging-port=0',
+        '--disable-features=VizDisplayCompositor',
       ],
     })
     await app.start()
