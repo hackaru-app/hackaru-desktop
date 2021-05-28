@@ -11,7 +11,7 @@ describe('App', () => {
   beforeEach(async () => {
     app = new Application({
       path: electronPath,
-      args: [path.join(__dirname, '../../dist/main/main')],
+      args: ['--headless', path.join(__dirname, '../../dist/main/main')],
     })
     await app.start()
   })
