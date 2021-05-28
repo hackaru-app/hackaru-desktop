@@ -10,9 +10,9 @@ jobs:
   run-e2e-test:
     runs-on: ubuntu-latest
     steps:
-      - name: Install xvfb
-        run: |
-          sudo apt install xvfb libxtst6 libxss1 libgtk2.0-0 libnss3 libasound2 libgconf-2-4 -y
+      # - name: Install xvfb
+      #   run: |
+      #     sudo apt install xvfb libxtst6 libxss1 libgtk2.0-0 libnss3 libasound2 libgconf-2-4 -y
 
       - name: Setup chromedriver
         uses: nanasess/setup-chromedriver@3d375deb1534f1c32b9f1a9e463bb6cd30a40593
