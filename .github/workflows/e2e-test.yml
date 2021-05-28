@@ -10,13 +10,16 @@ jobs:
   run-e2e-test:
     runs-on: ubuntu-latest
     steps:
+      - name: Install xvfb
+        uses: sudo apt-get install xvfb
+
       - name: Setup chromedriver
         uses: nanasess/setup-chromedriver@3d375deb1534f1c32b9f1a9e463bb6cd30a40593
 
       - name: Set chromedriver options
         run: |
           export DISPLAY=:99
-          export {no_proxy,NO_PROXY}="127.0.0.1"
+          export {no_proxy,NO_PROXY}=127.0.0.1
           chromedriver --url-base=/wd/hub &
 
       - name: Checkout
