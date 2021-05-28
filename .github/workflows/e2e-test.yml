@@ -17,12 +17,6 @@ jobs:
       - name: Setup chromedriver
         uses: nanasess/setup-chromedriver@3d375deb1534f1c32b9f1a9e463bb6cd30a40593
 
-      - name: Set chromedriver options
-        run: |
-          export DISPLAY=:99
-          export {no_proxy,NO_PROXY}=127.0.0.1
-          chromedriver --url-base=/wd/hub &
-
       - name: Checkout
         uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f
 
@@ -41,4 +35,8 @@ jobs:
         run: yarn --frozen-lockfile
 
       - name: Run e2e test
-        run: yarn test:e2e
+        run: |
+          export DISPLAY=:99
+          export {no_proxy,NO_PROXY}=127.0.0.1
+          chromedriver --url-base=/wd/hub &
+          yarn test:e2e
