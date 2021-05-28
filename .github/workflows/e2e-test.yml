@@ -34,6 +34,9 @@ jobs:
       - name: Install dependencies
         run: yarn --frozen-lockfile
 
+      - name: Show driver
+        run: ps aux | grep chrome
+
       - name: Run e2e test
         run: |
           export DISPLAY=:99
