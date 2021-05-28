@@ -6,8 +6,7 @@
   "private": true,
   "scripts": {
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore",
-    "test:unit": "jest src",
-    "test:e2e": "run-p -l build:* && jest e2e",
+    "test": "jest",
     "dev": "webpack -c src/main/webpack.dev.js --progress && run-p -l dev:*",
     "dev:main": "wait-on tcp:7865 && electron dist/main/main",
     "dev:renderer": "nuxt dev --dotenv ../../.env src/renderer",
