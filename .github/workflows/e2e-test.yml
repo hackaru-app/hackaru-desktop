@@ -16,6 +16,7 @@ jobs:
       - name: Set chromedriver options
         run: |
           export DISPLAY=:99
+          export {no_proxy,NO_PROXY}="127.0.0.1"
           chromedriver --url-base=/wd/hub &
 
       - name: Checkout
