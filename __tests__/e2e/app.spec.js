@@ -6,6 +6,8 @@ import testId from '../__helpers__/test-id'
 describe('App', () => {
   let app
 
+  jest.setTimeout(30000)
+
   beforeEach(async () => {
     app = new Application({
       path: electronPath,
