@@ -7,7 +7,7 @@ on:
     branches:
       - master
 jobs:
-  run-test:
+  run-unit-test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -27,8 +27,8 @@ jobs:
       - name: Install dependencies
         run: yarn --frozen-lockfile
 
-      - name: Run test
-        run: yarn test
+      - name: Run unit test
+        run: yarn test:unit
 
       - name: Publish code coverage
         uses: paambaati/codeclimate-action@7bcf9e73c0ee77d178e72c0ec69f1a99c1afc1f3

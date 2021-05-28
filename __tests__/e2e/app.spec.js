@@ -1,0 +1,26 @@
+import path from 'path'
+import { Application } from 'spectron'
+import electronPath from 'electron'
+import testId from '../__helpers__/test-id'
+
+describe('App', () => {
+  let app
+
+  beforeEach(async () => {
+    app = new Application({
+      path: electronPath,
+      args: [path.join(__dirname, '../../dist/main/main')],
+    })
+    await app.start()
+  })
+
+  afterEach(() => {
+    if (app && app.isRunning()) app.stop()
+  })
+
+  it('shows auth-button', async () => {
+    const button = await app.client.$(testId('auth-button'))
+    const existing = await button.isExisting()
+    expect(existing).toBe(true)
+  })
+})
