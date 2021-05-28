@@ -36,4 +36,6 @@ jobs:
 
       - name: Run e2e test
         run: |
+          export DISPLAY=:99
+          export {no_proxy,NO_PROXY}=127.0.0.1
           yarn test:e2e

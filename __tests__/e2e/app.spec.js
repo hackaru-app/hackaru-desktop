@@ -11,7 +11,8 @@ describe('App', () => {
   beforeEach(async () => {
     app = new Application({
       path: electronPath,
-      args: ['--headless', path.join(__dirname, '../../dist/main/main')],
+      args: [path.join(__dirname, '../../dist/main/main')],
+      chromeDriverArgs: ['--headless'],
     })
     await app.start()
   })
