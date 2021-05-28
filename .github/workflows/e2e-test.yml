@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Install xvfb
-        uses: sudo apt-get install xvfb
+        run: sudo apt-get install xvfb
 
       - name: Setup chromedriver
         uses: nanasess/setup-chromedriver@3d375deb1534f1c32b9f1a9e463bb6cd30a40593
