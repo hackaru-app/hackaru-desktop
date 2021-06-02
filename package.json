@@ -54,7 +54,7 @@
     "@sentry/integrations": "^6.4.1",
     "axios-case-converter": "^0.7.0",
     "core-js": "^3.13.1",
-    "date-fns": "^2.21.3",
+    "date-fns": "^2.22.1",
     "electron-store": "^8.0.0",
     "electron-updater": "^4.3.9",
     "hh-mm-ss": "^1.2.0",
