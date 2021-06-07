@@ -8,6 +8,7 @@ export default ({ app, $config }, inject) => {
       '$current_url',
       '$initial_referring_domain',
       '$initial_referrer',
+      '$referring_domain',
       '$referrer',
     ],
   })

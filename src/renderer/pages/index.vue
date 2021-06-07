@@ -48,6 +48,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import { formatISO, parseISO, differenceInSeconds } from 'date-fns'
 import WindowHeader from '~/components/atoms/window-header'
 import TimerForm from '~/components/organisms/timer-form'
 import Icon from '~/components/atoms/icon'
@@ -94,19 +95,36 @@ export default {
       electron.openSettings()
     },
     openWeb() {
+      this.$mixpanel.track('Open web', {
+        component: 'index',
+      })
       electron.openWeb()
     },
     quit() {
+      this.$mixpanel.track('Quit app', {
+        component: 'index',
+      })
       electron.quit()
     },
     stopWorking() {
-      if (this.working) {
-        electron.sendGaEvent('Activities', 'stop')
-        this.$store.dispatch('activities/update', {
-          id: this.working.id,
-          stoppedAt: new Date(),
-        })
-      }
+      if (!this.working) return
+
+      const stoppedAt = new Date()
+      electron.sendGaEvent('Activities', 'stop')
+      this.$mixpanel.track('Stop activity', {
+        component: 'index',
+        projectId: this.working.project?.id,
+        descriptionLength: this.working.description.length,
+        stoppedAt: formatISO(stoppedAt),
+        duration: differenceInSeconds(
+          stoppedAt,
+          parseISO(this.working.startedAt)
+        ),
+      })
+      this.$store.dispatch('activities/update', {
+        id: this.working.id,
+        stoppedAt,
+      })
     },
     confirmLogout() {
       this.$modal.show('dialog', {

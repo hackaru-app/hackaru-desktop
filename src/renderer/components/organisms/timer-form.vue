@@ -54,6 +54,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import { formatISO, parseISO, differenceInSeconds } from 'date-fns'
 import Ticker from '~/components/atoms/ticker'
 import ProjectSelect from '~/components/molecules/project-select'
 import PlayButton from '~/components/molecules/play-button'
@@ -116,6 +117,9 @@ export default {
       this.projectId = id
       if (this.working) {
         this.update()
+        this.$mixpanel.track('Select project', {
+          component: 'timer-form',
+        })
       }
     },
     startOrUpdate() {
@@ -128,39 +132,66 @@ export default {
     selectSuggestion(suggestion) {
       this.description = suggestion.description
       this.projectId = suggestion.project?.id
+      this.$mixpanel.track('Click suggestion', { component: 'timer-form' })
       this.start()
     },
     async start() {
+      const startedAt = new Date()
+
       electron.sendGaEvent('Activities', 'start')
       const success = await this.$store.dispatch('activities/add', {
         description: this.description,
         projectId: this.projectId,
-        startedAt: new Date(),
+        startedAt,
       })
       if (success) {
+        this.$mixpanel.track('Start activity', {
+          component: 'timer-form',
+          startedAt: formatISO(startedAt),
+          projectId: this.projectId,
+          descriptionLength: this.description.length,
+        })
         this.$store.dispatch('toast/success', this.$t('started'))
       }
     },
     async update() {
-      if (this.working) {
-        electron.sendGaEvent('Activities', 'update')
-        const success = await this.$store.dispatch('activities/update', {
-          id: this.activity.id,
-          description: this.description,
-          projectId: this.projectId,
-        })
-        if (success) {
-          this.$store.dispatch('toast/success', this.$t('updated'))
-        }
-      }
-    },
-    async stop() {
-      electron.sendGaEvent('Activities', 'stop')
+      if (!this.working) return
+
+      electron.sendGaEvent('Activities', 'update')
       const success = await this.$store.dispatch('activities/update', {
         id: this.activity.id,
         description: this.description,
         projectId: this.projectId,
-        stoppedAt: new Date(),
+      })
+      if (success) {
+        this.$mixpanel.track('Update activity', {
+          component: 'timer-form',
+          projectId: this.projectId,
+          descriptionLength: this.description.length,
+        })
+        this.$store.dispatch('toast/success', this.$t('updated'))
+      }
+    },
+    async stop() {
+      const stoppedAt = new Date()
+
+      electron.sendGaEvent('Activities', 'stop')
+      this.$mixpanel.track('Stop activity', {
+        component: 'timer-form',
+        projectId: this.projectId,
+        descriptionLength: this.description.length,
+        stoppedAt: formatISO(stoppedAt),
+        duration: differenceInSeconds(
+          stoppedAt,
+          parseISO(this.activity.startedAt)
+        ),
+      })
+
+      const success = await this.$store.dispatch('activities/update', {
+        id: this.activity.id,
+        description: this.description,
+        projectId: this.projectId,
+        stoppedAt,
       })
       if (success) {
         this.$store.dispatch('toast/success', this.$t('stopped'))
@@ -178,6 +209,11 @@ export default {
     async deleteWorking() {
       this.$modal.hide('dialog')
       electron.sendGaEvent('Activities', 'delete')
+      this.$mixpanel.track('Delete activity', {
+        component: 'timer-form',
+        projectId: this.projectId,
+        descriptionLength: this.description.length,
+      })
       await this.$store.dispatch('activities/delete', this.activity.id)
       this.$store.dispatch('toast/success', this.$t('deleted'))
     },
