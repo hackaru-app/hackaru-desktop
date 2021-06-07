@@ -4,6 +4,12 @@ export default ({ app, $config }, inject) => {
   mixpanel.init($config.mixpanelProjectToken)
   mixpanel.set_config({
     debug: process.env.NODE_ENV !== 'production',
+    property_blacklist: [
+      '$current_url',
+      '$initial_referring_domain',
+      '$initial_referrer',
+      '$referrer',
+    ],
   })
 
   app.router.afterEach((to) =>
