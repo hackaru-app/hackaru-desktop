@@ -63,6 +63,7 @@
     "lodash.merge": "^4.6.2",
     "lodash.omit": "^4.5.0",
     "menubar": "^9.0.4",
+    "mixpanel-browser": "^2.41.0",
     "node-machine-id": "^1.1.12",
     "normalizr": "^3.6.1",
     "nuxt": "^2.15.6",

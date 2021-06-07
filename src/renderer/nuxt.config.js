@@ -27,6 +27,7 @@ module.exports = {
           'connect-src': [
             process.env.HACKARU_API_URL,
             'https://www.google-analytics.com',
+            'https://api-js.mixpanel.com',
             "'self'",
           ],
           'font-src': ['https://fonts.gstatic.com'],
@@ -61,11 +62,13 @@ module.exports = {
     { src: '~/plugins/vue-js-modal' },
     { src: '~/plugins/sentry' },
     { src: '~/plugins/api' },
+    { src: '~/plugins/mixpanel' },
   ],
   publicRuntimeConfig: {
     sentryDsn: process.env.SENTRY_DSN,
     sentryRelease: process.env.npm_package_version,
     hackaruApiTimeout: process.env.HACKARU_API_TIMEOUT,
+    mixpanelProjectToken: process.env.MIXPANEL_PROJECT_TOKEN,
     axios: {
       browserBaseURL: process.env.HACKARU_API_URL,
     },
