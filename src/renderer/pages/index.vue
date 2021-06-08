@@ -95,13 +95,13 @@ export default {
       electron.openSettings()
     },
     openWeb() {
-      this.$mixpanel.track('Open web', {
+      electron.sendMixpanelEvent('Open web', {
         component: 'index',
       })
       electron.openWeb()
     },
     quit() {
-      this.$mixpanel.track('Quit app', {
+      electron.sendMixpanelEvent('Quit app', {
         component: 'index',
       })
       electron.quit()
@@ -111,7 +111,7 @@ export default {
 
       const stoppedAt = new Date()
       electron.sendGaEvent('Activities', 'stop')
-      this.$mixpanel.track('Stop activity', {
+      electron.sendMixpanelEvent('Stop activity', {
         component: 'index',
         projectId: this.working.project?.id,
         descriptionLength: this.working.description.length,

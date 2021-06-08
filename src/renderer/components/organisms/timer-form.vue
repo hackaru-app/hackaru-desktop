@@ -117,7 +117,7 @@ export default {
       this.projectId = id
       if (this.working) {
         this.update()
-        this.$mixpanel.track('Select project', {
+        electron.sendMixpanelEvent('Select project', {
           component: 'timer-form',
         })
       }
@@ -132,7 +132,9 @@ export default {
     selectSuggestion(suggestion) {
       this.description = suggestion.description
       this.projectId = suggestion.project?.id
-      this.$mixpanel.track('Click suggestion', { component: 'timer-form' })
+      electron.sendMixpanelEvent('Click suggestion', {
+        component: 'timer-form',
+      })
       this.start()
     },
     async start() {
@@ -145,7 +147,7 @@ export default {
         startedAt,
       })
       if (success) {
-        this.$mixpanel.track('Start activity', {
+        electron.sendMixpanelEvent('Start activity', {
           component: 'timer-form',
           startedAt: formatISO(startedAt),
           projectId: this.projectId,
@@ -164,7 +166,7 @@ export default {
         projectId: this.projectId,
       })
       if (success) {
-        this.$mixpanel.track('Update activity', {
+        electron.sendMixpanelEvent('Update activity', {
           component: 'timer-form',
           projectId: this.projectId,
           descriptionLength: this.description.length,
@@ -176,7 +178,7 @@ export default {
       const stoppedAt = new Date()
 
       electron.sendGaEvent('Activities', 'stop')
-      this.$mixpanel.track('Stop activity', {
+      electron.sendMixpanelEvent('Stop activity', {
         component: 'timer-form',
         projectId: this.projectId,
         descriptionLength: this.description.length,
@@ -209,7 +211,7 @@ export default {
     async deleteWorking() {
       this.$modal.hide('dialog')
       electron.sendGaEvent('Activities', 'delete')
-      this.$mixpanel.track('Delete activity', {
+      electron.sendMixpanelEvent('Delete activity', {
         component: 'timer-form',
         projectId: this.projectId,
         descriptionLength: this.description.length,

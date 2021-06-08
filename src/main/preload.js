@@ -55,6 +55,9 @@ contextBridge.exposeInMainWorld('electron', {
   sendGaEvent(category, action) {
     ipcRenderer.invoke('sendGaEvent', category, action)
   },
+  sendMixpanelEvent(event, props) {
+    ipcRenderer.invoke('sendMixpanelEvent', event, props)
+  },
   onSuspend(callback) {
     ipcRenderer.on('suspend', callback)
   },

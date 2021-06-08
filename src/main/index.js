@@ -15,6 +15,7 @@ const { createSettingsWindow } = require('~/windows/settings')
 const { isWindowHostname } = require('~/modules/window-url')
 const { initMainSentry } = require('~/modules/sentry')
 const { createVisitor } = require('~/modules/universal-analytics')
+const Mixpanel = require('~/modules/mixpanel')
 
 if (process.env.NODE_ENV !== 'production') {
   debug.enable('universal-analytics')
@@ -27,6 +28,7 @@ const Sentry = initMainSentry()
 const store = createStore()
 const menubar = createMenubar()
 const visitor = createVisitor()
+const mixpanel = new Mixpanel(process.env.MIXPANEL_PROJECT_TOKEN)
 
 app.requestSingleInstanceLock()
 
@@ -118,11 +120,17 @@ ipcMain.handle('setConfig', (_event, key, value) => {
 ipcMain.handle('setUserId', (_event, id) => {
   visitor.set('uid', id)
   Sentry.setUser({ id })
+  mixpanel.setUserId(id)
 })
 
 ipcMain.handle('removeUserId', () => {
   visitor.set('uid', undefined)
   Sentry.setUser(null)
+  mixpanel.removeUserId()
+})
+
+ipcMain.handle('sendMixpanelEvent', (_event, name, props) => {
+  mixpanel.track(name, props)
 })
 
 ipcMain.handle('sendGaPageView', (_event, path) => {
