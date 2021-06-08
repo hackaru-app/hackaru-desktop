@@ -182,6 +182,7 @@ export default {
         component: 'timer-form',
         projectId: this.projectId,
         descriptionLength: this.description.length,
+        startedAt: this.activity.startedAt,
         stoppedAt: formatISO(stoppedAt),
         duration: differenceInSeconds(
           stoppedAt,

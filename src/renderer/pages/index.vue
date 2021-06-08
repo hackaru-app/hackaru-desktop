@@ -115,6 +115,7 @@ export default {
         component: 'index',
         projectId: this.working.project?.id,
         descriptionLength: this.working.description.length,
+        startedAt: this.working.startedAt,
         stoppedAt: formatISO(stoppedAt),
         duration: differenceInSeconds(
           stoppedAt,

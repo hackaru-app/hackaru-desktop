@@ -14,6 +14,7 @@ describe('Auth', () => {
     authorize: jest.fn(),
     showMenubar: jest.fn(),
     sendGaEvent: jest.fn(),
+    sendMixpanelEvent: jest.fn(),
   }
 
   beforeEach(() => {
@@ -42,6 +43,12 @@ describe('Auth', () => {
         'Accounts',
         'login'
       )
+    })
+
+    it('sends mixpanel event', () => {
+      expect(global.electron.sendMixpanelEvent).toHaveBeenCalledWith('Login', {
+        component: 'auth',
+      })
     })
 
     it('redirects to index', () => {
