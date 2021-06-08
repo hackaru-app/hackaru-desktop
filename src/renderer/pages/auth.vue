@@ -26,6 +26,7 @@ export default {
     async authorize() {
       await electron.authorize()
       electron.sendGaEvent('Accounts', 'login')
+      electron.sendMixpanelEvent('Login', { component: 'auth' })
       this.$store.dispatch('toast/success', this.$t('loggedIn'))
       this.$router.replace(this.localePath('index'))
       electron.showMenubar()

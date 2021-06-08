@@ -11,6 +11,7 @@ describe('PowerMonitor', () => {
     getShutdown: () => false,
     setSuspend: jest.fn(),
     setShutdown: jest.fn(),
+    sendMixpanelEvent: jest.fn(),
   }
 
   beforeEach(() => {
@@ -26,6 +27,16 @@ describe('PowerMonitor', () => {
     it('toggles suspend', () => {
       expect(global.electron.setSuspend).toHaveBeenCalledWith(true)
     })
+
+    it('sends mixpanel event', () => {
+      expect(global.electron.sendMixpanelEvent).toHaveBeenCalledWith(
+        'Toggle suspend',
+        {
+          component: 'power-monitor',
+          enabled: true,
+        }
+      )
+    })
   })
 
   describe('when click shutdown', () => {
@@ -36,6 +47,16 @@ describe('PowerMonitor', () => {
 
     it('toggles shutdown', () => {
       expect(global.electron.setShutdown).toHaveBeenCalledWith(true)
+    })
+
+    it('sends mixpanel event', () => {
+      expect(global.electron.sendMixpanelEvent).toHaveBeenCalledWith(
+        'Toggle shutdown',
+        {
+          component: 'power-monitor',
+          enabled: true,
+        }
+      )
     })
   })
 })

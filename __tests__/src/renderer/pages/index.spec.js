@@ -1,6 +1,7 @@
 import MockDate from 'mockdate'
 import { Store } from 'vuex-mock-store'
 import { shallowMount, createLocalVue } from '@vue/test-utils'
+import { formatISO } from 'date-fns'
 import testId from '../../../__helpers__/test-id'
 import Index from '~/pages/index'
 
@@ -33,6 +34,7 @@ describe('Index', () => {
     openWeb: jest.fn(),
     quit: jest.fn(),
     sendGaEvent: jest.fn(),
+    sendMixpanelEvent: jest.fn(),
     removeUserId: jest.fn(),
   }
 
@@ -71,6 +73,15 @@ describe('Index', () => {
     it('opens web', () => {
       expect(global.electron.openWeb).toHaveBeenCalled()
     })
+
+    it('sends mixpanel event', () => {
+      expect(global.electron.sendMixpanelEvent).toHaveBeenCalledWith(
+        'Open web',
+        {
+          component: 'index',
+        }
+      )
+    })
   })
 
   describe('when click quit-button', () => {
@@ -81,6 +92,15 @@ describe('Index', () => {
 
     it('quits app', () => {
       expect(global.electron.quit).toHaveBeenCalled()
+    })
+
+    it('sends mixpanel event', () => {
+      expect(global.electron.sendMixpanelEvent).toHaveBeenCalledWith(
+        'Quit app',
+        {
+          component: 'index',
+        }
+      )
     })
   })
 
@@ -116,9 +136,9 @@ describe('Index', () => {
       $store.getters['activities/working'] = {
         id: 1,
         project: null,
-        description: 'Create a database.',
+        description: 'Create a database',
         startedAt: '2019-01-01T00:12:34',
-        stoppedAt: '2019-01-02T00:12:34',
+        stoppedAt: null,
       }
       wrapper = factory()
       wrapper.vm.stopWorking()
@@ -126,6 +146,20 @@ describe('Index', () => {
 
     it('sends ga event', () => {
       expect(electron.sendGaEvent).toHaveBeenCalledWith('Activities', 'stop')
+    })
+
+    it('sends mixpanel event', () => {
+      expect(global.electron.sendMixpanelEvent).toHaveBeenCalledWith(
+        'Stop activity',
+        {
+          component: 'index',
+          startedAt: '2019-01-01T00:12:34',
+          stoppedAt: formatISO(new Date()),
+          projectId: undefined,
+          duration: 2596271,
+          descriptionLength: 17,
+        }
+      )
     })
 
     it('dispatches activities/update', () => {
@@ -158,7 +192,7 @@ describe('Index', () => {
       $store.getters['activities/working'] = {
         id: 1,
         project: null,
-        description: 'Create a database.',
+        description: 'Create a database',
         startedAt: '2019-01-01T00:12:34',
         stoppedAt: '2019-01-02T00:12:34',
       }
@@ -176,7 +210,7 @@ describe('Index', () => {
       $store.getters['activities/working'] = {
         id: 1,
         project: null,
-        description: 'Create a database.',
+        description: 'Create a database',
         startedAt: '2019-01-01T00:12:34',
         stoppedAt: '2019-01-02T00:12:34',
       }
