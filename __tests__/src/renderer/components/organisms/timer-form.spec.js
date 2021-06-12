@@ -1,6 +1,7 @@
 import MockDate from 'mockdate'
 import { Store } from 'vuex-mock-store'
 import { shallowMount, createLocalVue } from '@vue/test-utils'
+import { formatISO } from 'date-fns'
 import testId from '../../../../__helpers__/test-id'
 import TimerForm from '~/components/organisms/timer-form'
 
@@ -18,6 +19,7 @@ describe('TimerForm', () => {
 
   global.electron = {
     sendGaEvent: jest.fn(),
+    sendMixpanelEvent: jest.fn(),
   }
 
   const localVue = createLocalVue()
@@ -85,6 +87,15 @@ describe('TimerForm', () => {
       )
     })
 
+    it('sends mixpanel event', () => {
+      expect(global.electron.sendMixpanelEvent).toHaveBeenCalledWith(
+        'Select project',
+        {
+          component: 'timer-form',
+        }
+      )
+    })
+
     it('dispatches activities/update', () => {
       expect($store.dispatch).toHaveBeenCalledWith('activities/update', {
         id: 1,
@@ -103,6 +114,10 @@ describe('TimerForm', () => {
 
     it('does not send ga event', () => {
       expect(global.electron.sendGaEvent).not.toHaveBeenCalled()
+    })
+
+    it('does not send mixpanel event', () => {
+      expect(global.electron.sendMixpanelEvent).not.toHaveBeenCalled()
     })
 
     it('does not dispatch activities/update', () => {
@@ -155,9 +170,10 @@ describe('TimerForm', () => {
 
   describe('when change description and timer is working', () => {
     beforeEach(() => {
+      $store.dispatch.mockReturnValue(true)
       $store.getters['activities/working'] = {
         id: 1,
-        project: null,
+        project: { id: 2 },
         description: 'Review my tasks',
         startedAt: '2019-01-01T01:23:45',
         stoppedAt: null,
@@ -174,11 +190,22 @@ describe('TimerForm', () => {
       )
     })
 
+    it('sends mixpanel event', () => {
+      expect(global.electron.sendMixpanelEvent).toHaveBeenCalledWith(
+        'Update activity',
+        {
+          component: 'timer-form',
+          projectId: 2,
+          descriptionLength: 7,
+        }
+      )
+    })
+
     it('dispatches activities/update', () => {
       expect($store.dispatch).toHaveBeenCalledWith('activities/update', {
         id: 1,
         description: 'updated',
-        projectId: undefined,
+        projectId: 2,
       })
     })
   })
@@ -195,6 +222,10 @@ describe('TimerForm', () => {
       expect(global.electron.sendGaEvent).not.toHaveBeenCalled()
     })
 
+    it('does not send mixpanel event', () => {
+      expect(global.electron.sendMixpanelEvent).not.toHaveBeenCalled()
+    })
+
     it('does not dispatch activities/update', () => {
       expect($store.dispatch).not.toHaveBeenCalled()
     })
@@ -202,9 +233,10 @@ describe('TimerForm', () => {
 
   describe('when change description and timer is working', () => {
     beforeEach(() => {
+      $store.dispatch.mockReturnValue(true)
       $store.getters['activities/working'] = {
         id: 1,
-        project: null,
+        project: { id: 2 },
         description: 'Review my tasks',
         startedAt: '2019-01-01T01:23:45',
         stoppedAt: null,
@@ -221,11 +253,22 @@ describe('TimerForm', () => {
       )
     })
 
+    it('sends mixpanel event', () => {
+      expect(global.electron.sendMixpanelEvent).toHaveBeenCalledWith(
+        'Update activity',
+        {
+          component: 'timer-form',
+          projectId: 2,
+          descriptionLength: 7,
+        }
+      )
+    })
+
     it('dispatches activities/update', () => {
       expect($store.dispatch).toHaveBeenCalledWith('activities/update', {
         id: 1,
         description: 'updated',
-        projectId: undefined,
+        projectId: 2,
       })
     })
   })
@@ -242,6 +285,18 @@ describe('TimerForm', () => {
       expect(global.electron.sendGaEvent).toHaveBeenCalledWith(
         'Activities',
         'start'
+      )
+    })
+
+    it('sends mixpanel event', () => {
+      expect(global.electron.sendMixpanelEvent).toHaveBeenCalledWith(
+        'Start activity',
+        {
+          component: 'timer-form',
+          startedAt: formatISO(new Date()),
+          projectId: undefined,
+          descriptionLength: 7,
+        }
       )
     })
 
@@ -274,6 +329,20 @@ describe('TimerForm', () => {
       )
     })
 
+    it('sends mixpanel event', () => {
+      expect(global.electron.sendMixpanelEvent).toHaveBeenCalledWith(
+        'Stop activity',
+        {
+          component: 'timer-form',
+          startedAt: '2019-01-01T01:23:45',
+          stoppedAt: formatISO(new Date()),
+          projectId: undefined,
+          duration: 2592000,
+          descriptionLength: 15,
+        }
+      )
+    })
+
     it('dispatches activities/update', () => {
       expect($store.dispatch).toHaveBeenCalledWith('activities/update', {
         id: 1,
@@ -298,6 +367,18 @@ describe('TimerForm', () => {
       )
     })
 
+    it('sends mixpanel event', () => {
+      expect(global.electron.sendMixpanelEvent).toHaveBeenCalledWith(
+        'Start activity',
+        {
+          component: 'timer-form',
+          startedAt: formatISO(new Date()),
+          projectId: undefined,
+          descriptionLength: 0,
+        }
+      )
+    })
+
     it('dispatches activities/add', () => {
       expect($store.dispatch).toHaveBeenCalledWith('activities/add', {
         description: '',
@@ -307,7 +388,7 @@ describe('TimerForm', () => {
     })
   })
 
-  describe('when selects suggestion', () => {
+  describe('when select suggestion', () => {
     beforeEach(async () => {
       $store.getters['activities/working'] = null
       wrapper = factory()
@@ -327,6 +408,18 @@ describe('TimerForm', () => {
       )
     })
 
+    it('sends mixpanel event', () => {
+      expect(global.electron.sendMixpanelEvent).toHaveBeenCalledWith(
+        'Start activity',
+        {
+          component: 'timer-form',
+          startedAt: formatISO(new Date()),
+          projectId: 1,
+          descriptionLength: 15,
+        }
+      )
+    })
+
     it('dispatches activities/add', () => {
       expect($store.dispatch).toHaveBeenCalledWith('activities/add', {
         description: 'Review my tasks',
@@ -340,7 +433,7 @@ describe('TimerForm', () => {
     beforeEach(() => {
       $store.getters['activities/working'] = {
         id: 1,
-        project: null,
+        project: { id: 1 },
         description: 'Review my tasks',
         startedAt: '2019-01-01T01:23:45',
         stoppedAt: null,
@@ -353,6 +446,17 @@ describe('TimerForm', () => {
       expect(global.electron.sendGaEvent).toHaveBeenCalledWith(
         'Activities',
         'delete'
+      )
+    })
+
+    it('sends mixpanel event', () => {
+      expect(global.electron.sendMixpanelEvent).toHaveBeenCalledWith(
+        'Delete activity',
+        {
+          component: 'timer-form',
+          projectId: 1,
+          descriptionLength: 15,
+        }
       )
     })
 

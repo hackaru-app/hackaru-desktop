@@ -48,10 +48,18 @@ export default {
   methods: {
     toggleSuspend() {
       this.suspendEnabled = !this.suspendEnabled
+      electron.sendMixpanelEvent('Toggle suspend', {
+        component: 'power-monitor',
+        enabled: this.suspendEnabled,
+      })
       electron.setSuspend(this.suspendEnabled)
     },
     toggleShutdown() {
       this.shutdownEnabled = !this.shutdownEnabled
+      electron.sendMixpanelEvent('Toggle shutdown', {
+        component: 'power-monitor',
+        enabled: this.shutdownEnabled,
+      })
       electron.setShutdown(this.shutdownEnabled)
     },
   },
