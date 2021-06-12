@@ -45,6 +45,7 @@ jobs:
           HACKARU_WEB_AUTHORIZATION_ENDPOINT: ${{ secrets.HACKARU_WEB_AUTHORIZATION_ENDPOINT }}
           HACKARU_WEB_URL: ${{ secrets.HACKARU_WEB_URL }}
           SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
+          MIXPANEL_PROJECT_TOKEN: ${{ secrets.MIXPANEL_PROJECT_TOKEN }}
 
   publish-windows:
     runs-on: windows-latest
@@ -79,6 +80,7 @@ jobs:
           HACKARU_WEB_AUTHORIZATION_ENDPOINT: ${{ secrets.HACKARU_WEB_AUTHORIZATION_ENDPOINT }}
           HACKARU_WEB_URL: ${{ secrets.HACKARU_WEB_URL }}
           SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
+          MIXPANEL_PROJECT_TOKEN: ${{ secrets.MIXPANEL_PROJECT_TOKEN }}
 
   publish-linux:
     runs-on: ubuntu-latest
