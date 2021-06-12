@@ -23,6 +23,8 @@ module.exports = class {
       distinct_id: this.distinctId,
       standalone: false,
       repository: 'hackaru-desktop',
+      release: process.env.npm_package_version,
+      platform: process.platform,
       ...props,
     })
   }
