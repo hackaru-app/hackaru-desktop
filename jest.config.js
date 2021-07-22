@@ -22,4 +22,5 @@ module.exports = {
     '<rootDir>/src/renderer/plugins/**/*.js',
   ],
   clearMocks: true,
+  testEnvironment: 'jsdom',
 }
