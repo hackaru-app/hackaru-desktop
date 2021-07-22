@@ -9877,10 +9877,10 @@ memorystream@^0.3.1:
   resolved "https://registry.yarnpkg.com/memorystream/-/memorystream-0.3.1.tgz#86d7090b30ce455d63fbae12dda51a47ddcaf9b2"
   integrity sha1-htcJCzDORV1j+64S3aUaR93K+bI=
 
-menubar@^9.0.4:
-  version "9.0.4"
-  resolved "https://registry.yarnpkg.com/menubar/-/menubar-9.0.4.tgz#f28a8da6bea7f77720809351262103b80965c348"
-  integrity sha512-GaMW1MKobIYEthPyDqKuLnxq6Ae4G37x5XBdP0tP1mRtMmDuK/dewTc1ihhQF8RetGMWkLYlHJUadZro/Sqc7w==
+menubar@^9.0.5:
+  version "9.0.5"
+  resolved "https://registry.yarnpkg.com/menubar/-/menubar-9.0.5.tgz#374bd86d6357b69365966563c467384b43266b66"
+  integrity sha512-IjVtGom5Agq5hMR6GchxBUiq9qo//gu0pTzMzhoHtrsBRI2jqGxUJM27FirXlVv/CleUzZqkr+FIwajAUi+mFw==
   dependencies:
     electron-positioner "^4.1.0"
 
