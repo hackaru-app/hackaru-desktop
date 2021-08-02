@@ -65,7 +65,7 @@
     "menubar": "^9.0.5",
     "mixpanel": "^0.13.0",
     "normalizr": "^3.6.1",
-    "nuxt": "^2.14.12",
+    "nuxt": "^2.15.7",
     "nuxt-i18n": "^6.27.3",
     "ress": "^4.0.0",
     "universal-analytics": "^0.4.23",
