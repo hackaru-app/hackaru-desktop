@@ -204,7 +204,7 @@ export default {
       this.$modal.show('dialog', {
         text: this.$t('confirms.delete'),
         buttons: [
-          { title: 'Cancel' },
+          { title: 'Cancel', handler: () => this.$modal.hide('dialog') },
           { title: 'OK', handler: this.deleteWorking },
         ],
       })

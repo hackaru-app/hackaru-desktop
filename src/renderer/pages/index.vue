@@ -130,7 +130,10 @@ export default {
     confirmLogout() {
       this.$modal.show('dialog', {
         text: this.$t('confirms.logout'),
-        buttons: [{ title: 'Cancel' }, { title: 'OK', handler: this.logout }],
+        buttons: [
+          { title: 'Cancel', handler: () => this.$modal.hide('dialog') },
+          { title: 'OK', handler: this.logout },
+        ],
       })
     },
     async logout() {
