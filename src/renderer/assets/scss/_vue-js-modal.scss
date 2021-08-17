@@ -4,9 +4,11 @@
   background-color: $background;
   box-shadow: 0 10px 20px $shadow-darker;
 }
-.vue-dialog .dialog-content,
-.vue-dialog .vue-dialog-button {
+.vm--modal {
   background-color: $background;
+}
+.vue-dialog-button:hover {
+  background-color: $background-hover;
 }
 .vue-dialog-button:not(:first-of-type) {
   border-color: $border;
