@@ -15,13 +15,13 @@ export default {
 
 <style>
 .dot {
-  display: inline;
   border-radius: 50%;
-  min-width: 9px;
+  display: inline;
   min-height: 9px;
+  min-width: 9px;
 }
 .dot.is-large {
-  width: 14px;
   height: 14px;
+  width: 14px;
 }
 </style>

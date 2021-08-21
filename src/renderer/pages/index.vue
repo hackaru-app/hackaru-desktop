@@ -153,22 +153,22 @@ export default {
   margin-top: 30px;
 }
 .footer {
-  width: 100%;
-  overflow: hidden;
-  display: flex;
-  position: absolute;
-  bottom: 0;
-  justify-content: space-between;
   background-color: $background-light;
   border-top: 1px $border solid;
-  height: 50px;
-  padding: 0 20px;
+  bottom: 0;
   box-sizing: border-box;
+  display: flex;
+  height: 50px;
+  justify-content: space-between;
+  overflow: hidden;
+  padding: 0 20px;
+  position: absolute;
+  width: 100%;
 }
 .footer .icon {
-  display: flex;
   align-items: center;
   color: $text;
+  display: flex;
   margin: 0 10px;
 }
 .footer-icons {

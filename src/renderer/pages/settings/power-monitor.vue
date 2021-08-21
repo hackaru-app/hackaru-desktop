@@ -68,14 +68,14 @@ export default {
 
 <style scoped lang="scss">
 .header {
-  display: flex;
-  padding-bottom: 20px;
-  justify-content: space-between;
   border-bottom: 1px $border solid;
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 20px;
   h1 {
-    font-size: 18px;
-    display: flex;
     align-items: center;
+    display: flex;
+    font-size: 18px;
     font-weight: normal;
     .icon {
       margin-right: 10px;
@@ -83,9 +83,9 @@ export default {
   }
 }
 .form {
-  margin-top: 20px;
   display: flex;
   flex-direction: column;
+  margin-top: 20px;
   label {
     margin: 5px 0;
   }

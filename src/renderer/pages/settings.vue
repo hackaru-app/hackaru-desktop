@@ -35,26 +35,26 @@ export default {
 
 <style scoped lang="scss">
 .setting-menu {
-  position: fixed;
-  border-right: 1px $border solid;
   background-color: $highlight-background;
+  border-right: 1px $border solid;
   height: 100vh;
-  width: 150px;
   padding-top: 40px;
+  position: fixed;
+  width: 150px;
 }
 .setting-menu ul {
-  list-style-type: none;
   list-style-position: inside;
-  padding: 0;
+  list-style-type: none;
   margin: 0;
+  padding: 0;
 }
 .setting-menu li a {
+  border-left: 4px transparent solid;
+  color: $text;
+  cursor: pointer;
   display: block;
   padding: 8px 20px;
   text-decoration: none;
-  color: $text;
-  border-left: 4px transparent solid;
-  cursor: pointer;
   &:hover {
     border-left-color: $border;
   }

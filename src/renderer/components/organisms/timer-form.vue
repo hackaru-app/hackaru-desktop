@@ -226,30 +226,30 @@ export default {
 
 <style scoped lang="scss">
 .project-select {
-  display: flex;
   align-items: center;
+  display: flex;
 }
 .form-item {
+  align-items: center;
   border-bottom: 1px $border solid;
   box-sizing: border-box;
-  height: 65px;
-  align-items: center;
   display: flex;
+  height: 65px;
   padding: 0 30px;
 }
 .description {
+  border: 0;
   height: 100%;
   width: 100%;
-  border: 0;
 }
 .working-timer {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
   align-items: center;
-  font-size: 46px;
+  display: flex;
+  flex-direction: column;
   font-family: $font-family-duration;
+  font-size: 46px;
   font-weight: 300;
+  justify-content: center;
   margin-bottom: 10px;
   margin-top: 60px;
 }

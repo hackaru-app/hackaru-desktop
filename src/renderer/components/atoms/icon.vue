@@ -20,25 +20,25 @@ export default {
 
 <style scoped lang="scss">
 .icon {
-  width: 20px;
   height: 20px;
   vertical-align: bottom;
+  width: 20px;
 }
 .icon.is-small {
-  width: 16px;
   height: 16px;
+  width: 16px;
 }
 .icon.is-medium {
-  width: 18px;
   height: 18px;
+  width: 18px;
 }
 .icon.is-large {
-  width: 22px;
   height: 22px;
+  width: 22px;
 }
 .icon.is-x-large {
-  width: 24px;
   height: 24px;
+  width: 24px;
 }
 .icon.is-primary {
   color: $text-primary;

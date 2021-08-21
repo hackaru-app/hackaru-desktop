@@ -47,15 +47,15 @@ export default {
 
 <style scoped lang="scss">
 .project-select {
-  position: relative;
-  height: 100%;
   flex: 1;
+  height: 100%;
+  position: relative;
 }
 select {
+  height: 100%;
+  opacity: 0;
+  position: absolute;
   top: 0;
   width: 100%;
-  position: absolute;
-  opacity: 0;
-  height: 100%;
 }
 </style>

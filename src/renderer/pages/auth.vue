@@ -37,17 +37,17 @@ export default {
 
 <style scoped lang="scss">
 .content {
+  align-items: center;
+  background-color: $background-dark;
   display: flex;
   flex-direction: column;
   height: 100vh;
   justify-content: center;
-  background-color: $background-dark;
-  align-items: center;
 }
 .logo-icon {
-  width: 25px;
   height: 25px;
   margin-bottom: 40px;
+  width: 25px;
 }
 .auth-button {
   width: 140px;

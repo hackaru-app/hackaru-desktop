@@ -59,20 +59,20 @@ export default {
 
 <style scoped lang="scss">
 .suggestion-list {
-  position: fixed;
   animation-duration: 100ms;
-  width: 100%;
-  height: 100vh;
-  box-sizing: border-box;
-  z-index: index($z, backdrop);
   background-color: $backdrop-color;
+  box-sizing: border-box;
+  height: 100vh;
+  position: fixed;
+  width: 100%;
+  z-index: index($z, backdrop);
 }
 .container {
-  position: fixed;
   background: $background;
   box-shadow: 0 3px 5px $shadow-dark;
   max-height: 243px;
   overflow: scroll;
+  position: fixed;
   width: 100%;
 }
 .container::-webkit-scrollbar {
@@ -89,10 +89,10 @@ export default {
   }
 }
 .suggestion {
-  display: flex;
   align-items: center;
-  height: 60px;
   box-sizing: border-box;
+  display: flex;
+  height: 60px;
   padding: 0 30px;
 }
 </style>

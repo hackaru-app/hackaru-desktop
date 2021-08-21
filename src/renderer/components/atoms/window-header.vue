@@ -4,17 +4,17 @@
 
 <style scoped lang="scss">
 .window-header {
+  align-items: center;
+  -webkit-app-region: drag;
+  background-color: $background-dark;
+  box-sizing: border-box;
   display: flex;
+  height: 45px;
+  justify-content: flex-end;
+  padding: 0 15px;
   position: fixed;
   top: 0;
-  -webkit-app-region: drag;
-  align-items: center;
-  justify-content: flex-end;
-  background-color: $background-dark;
-  height: 45px;
   width: 100%;
-  box-sizing: border-box;
-  padding: 0 15px;
   z-index: index($z, window-header);
 }
 .is-small {
