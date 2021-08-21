@@ -45,30 +45,26 @@ export default {
 
 <style scoped lang="scss">
 .toast {
+  align-items: flex-end;
+  bottom: 0;
   display: flex;
   justify-content: center;
-  align-items: flex-end;
+  left: 0;
   position: fixed;
   width: 100vw;
-  bottom: 0;
-  left: 0;
   z-index: index($z, toast);
 }
-.toast {
-  left: 0;
-  width: 100vw;
-}
 .content {
-  padding: 18px 30px;
-  flex-direction: column;
-  box-sizing: border-box;
+  border-radius: 0;
   bottom: 0;
+  box-sizing: border-box;
+  color: $white;
+  flex-direction: column;
   left: 0;
   margin: 0;
-  width: 100%;
-  border-radius: 0;
+  padding: 18px 30px;
   text-align: center;
-  color: $white;
+  width: 100%;
 }
 .success {
   background-color: $cyan;

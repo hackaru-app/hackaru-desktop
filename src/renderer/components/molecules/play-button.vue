@@ -49,15 +49,15 @@ export default {
 
 <style scoped lang="scss">
 .base-button.control-button {
-  display: flex;
   align-self: center;
-  flex-shrink: 0;
-  padding: 0;
-  width: 50px;
-  height: 50px;
   border-radius: 50%;
-  pointer-events: auto;
   box-shadow: 0 3px 3px #00000010;
+  display: flex;
+  flex-shrink: 0;
+  height: 50px;
+  padding: 0;
+  pointer-events: auto;
+  width: 50px;
 }
 .base-button.control-button.start .icon {
   padding-left: 3px;
