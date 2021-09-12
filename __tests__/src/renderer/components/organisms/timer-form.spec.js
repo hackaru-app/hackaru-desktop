@@ -27,6 +27,7 @@ describe('TimerForm', () => {
 
   const factory = () =>
     shallowMount(TimerForm, {
+      attachTo: document.body,
       localVue,
       mocks: {
         $store,
