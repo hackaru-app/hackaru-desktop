@@ -122,7 +122,7 @@ describe('Api', () => {
   })
 
   describe('when response is not 401 error', () => {
-    const error = new Error()
+    const error = new Error('unauthorized')
 
     beforeEach(() => {
       mock.onGet('/example').replyOnce(500, error)
