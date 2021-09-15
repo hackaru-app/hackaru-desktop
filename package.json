@@ -119,7 +119,7 @@
     "vue-jest": "^3.0.4",
     "vuex-mock-store": "^0.0.8",
     "wait-on": "^6.0.0",
-    "webpack": "^5.52.0",
+    "webpack": "^5.52.1",
     "webpack-cli": "^4.8.0",
     "webpack-merge": "^5.8.0"
   }
