@@ -59,7 +59,7 @@
     "axios-case-converter": "^0.8.1",
     "core-js": "^3.18.0",
     "date-fns": "^2.23.0",
-    "electron-store": "^8.0.0",
+    "electron-store": "^8.0.1",
     "electron-updater": "^4.3.9",
     "hh-mm-ss": "^1.2.0",
     "keytar": "^7.7.0",
