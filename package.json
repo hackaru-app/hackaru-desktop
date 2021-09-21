@@ -115,7 +115,7 @@
     "stylelint-config-standard": "^22.0.0",
     "stylelint-order": "^4.1.0",
     "stylelint-prettier": "^1.2.0",
-    "stylelint-scss": "^3.20.1",
+    "stylelint-scss": "^3.21.0",
     "vue-jest": "^3.0.4",
     "vuex-mock-store": "^0.0.8",
     "wait-on": "^6.0.0",
