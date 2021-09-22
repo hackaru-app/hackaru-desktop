@@ -40,6 +40,16 @@ contextBridge.exposeInMainWorld('electron', {
   setShutdown(enabled) {
     ipcRenderer.invoke('setConfig', 'powerMonitor.shutdown', !!enabled)
   },
+  getRemindTimerOnResume() {
+    return ipcRenderer.invoke('getConfig', 'powerMonitor.remindTimerOnResume')
+  },
+  setRemindTimerOnResume(enabled) {
+    ipcRenderer.invoke(
+      'setConfig',
+      'powerMonitor.remindTimerOnResume',
+      !!enabled
+    )
+  },
   showMenubar() {
     ipcRenderer.invoke('showMenubar')
   },
@@ -58,11 +68,20 @@ contextBridge.exposeInMainWorld('electron', {
   sendMixpanelEvent(event, props) {
     ipcRenderer.invoke('sendMixpanelEvent', event, props)
   },
+  showReminderNotification(prevDescription) {
+    ipcRenderer.invoke('showReminderNotification', prevDescription)
+  },
   onSuspend(callback) {
     ipcRenderer.on('suspend', callback)
   },
   onShutdown(callback) {
     ipcRenderer.on('shutdown', callback)
+  },
+  onResume(callback) {
+    ipcRenderer.on('resume', callback)
+  },
+  onStartPrevActivity(callback) {
+    ipcRenderer.on('startPrevActivity', callback)
   },
   onShowMenubar(callback) {
     ipcRenderer.on('showMenubar', callback)

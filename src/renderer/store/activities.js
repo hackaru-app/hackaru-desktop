@@ -1,6 +1,21 @@
+import { compareDesc, parseISO, addDays } from 'date-fns'
 import { activity } from '~/schemas'
 
 export const actions = {
+  async fetchWeeklyActivities({ dispatch }, date) {
+    const res = await this.$api.request({
+      url: '/v1/activities',
+      params: {
+        start: addDays(date, -7),
+        end: date,
+      },
+    })
+    dispatch(
+      'entities/merge',
+      { json: res.data, schema: [activity] },
+      { root: true }
+    )
+  },
   async fetchWorking({ dispatch, getters }) {
     const res = await this.$api.request({
       url: '/v1/activities/working',
@@ -67,6 +82,16 @@ export const actions = {
 }
 
 export const getters = {
+  prev: (_state, getters) => {
+    return getters.all
+      .filter(({ stoppedAt }) => stoppedAt)
+      .sort((a, b) =>
+        compareDesc(parseISO(a.stoppedAt), parseISO(b.stoppedAt))
+      )[0]
+  },
+  prevDescription: (_state, getters) => {
+    return getters.prev?.description || getters.prev?.project?.name
+  },
   all(_state, _getters, _rootState, rootGetters) {
     return rootGetters['entities/getEntities']('activities', [activity])
   },

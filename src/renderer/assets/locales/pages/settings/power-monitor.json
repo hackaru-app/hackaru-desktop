@@ -2,11 +2,13 @@
   "en": {
     "title": "PowerMonitor",
     "suspend": "Stop a timer when paused",
-    "shutdown": "Stop a timer on shutdown"
+    "shutdown": "Stop a timer on shutdown",
+    "remindTimerOnResume": "Show reminder notification on resumed"
   },
   "ja": {
     "title": "電源監視",
-    "suspend": "スリープ時に計測を停止",
-    "shutdown": "シャットダウン時に計測を停止"
+    "suspend": "PCのスリープ時に計測を停止",
+    "shutdown": "PCのシャットダウン時に計測を停止",
+    "remindTimerOnResume": "PCの再開時に計測のリマインドを通知"
   }
 }

@@ -28,6 +28,8 @@ describe('Index', () => {
     onSuspend: () => {},
     onShutdown: () => {},
     onShowMenubar: () => {},
+    onResume: () => {},
+    onStartPrevActivity: () => {},
     startTrayTimer: jest.fn(),
     stopTrayTimer: jest.fn(),
     openSettings: jest.fn(),
