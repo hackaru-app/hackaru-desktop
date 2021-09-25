@@ -85,7 +85,7 @@ export default {
   mounted() {
     electron.onSuspend(() => this.stopWorking())
     electron.onShutdown(() => this.stopWorking())
-    electron.onResume(() => this.showReminderNotification())
+    electron.onUnlockScreen(() => this.showReminderNotification())
     electron.onStartPrevActivity(() => this.startPrevActivity())
     electron.onShowMenubar(() =>
       this.$store.dispatch('activities/fetchWorking')
