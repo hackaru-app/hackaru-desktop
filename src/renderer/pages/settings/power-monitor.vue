@@ -24,26 +24,40 @@
           @click="toggleShutdown"
         />{{ $t('shutdown') }}
       </label>
+      <label>
+        <input
+          class="shutdown"
+          :checked="remindTimerOnResumeEnabled"
+          data-test-id="remind-timer-on-resume"
+          type="checkbox"
+          @click="toggleRemindTimerOnResume"
+        />{{ $t('remindTimerOnResume') }}
+        <text-label class="purple">BETA</text-label>
+      </label>
     </div>
   </section>
 </template>
 
 <script>
 import Icon from '~/components/atoms/icon'
+import TextLabel from '~/components/atoms/text-label'
 
 export default {
   components: {
     Icon,
+    TextLabel,
   },
   data() {
     return {
       suspendEnabled: false,
       shutdownEnabled: false,
+      remindTimerOnResumeEnabled: false,
     }
   },
   async mounted() {
     this.suspendEnabled = await electron.getSuspend()
     this.shutdownEnabled = await electron.getShutdown()
+    this.remindTimerOnResumeEnabled = await electron.getRemindTimerOnResume()
   },
   methods: {
     toggleSuspend() {
@@ -61,6 +75,14 @@ export default {
         enabled: this.shutdownEnabled,
       })
       electron.setShutdown(this.shutdownEnabled)
+    },
+    toggleRemindTimerOnResume() {
+      this.remindTimerOnResumeEnabled = !this.remindTimerOnResumeEnabled
+      electron.sendMixpanelEvent('Toggle remindTimerOnResume', {
+        component: 'power-monitor',
+        enabled: this.remindTimerOnResumeEnabled,
+      })
+      electron.setRemindTimerOnResume(this.remindTimerOnResumeEnabled)
     },
   },
 }

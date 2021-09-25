@@ -15,6 +15,10 @@ const { createSettingsWindow } = require('~/windows/settings')
 const { isWindowHostname } = require('~/modules/window-url')
 const { initMainSentry } = require('~/modules/sentry')
 const { createVisitor } = require('~/modules/universal-analytics')
+const {
+  createReminderNotification,
+} = require('~/modules/reminder-notification')
+const { initI18next } = require('~/modules/i18next')
 const Mixpanel = require('~/modules/mixpanel')
 
 if (process.env.NODE_ENV !== 'production') {
@@ -53,6 +57,7 @@ menubar.on('after-create-window', () => {
 
 app.on('ready', () => {
   visitor.set('version', process.env.npm_package_version)
+  initI18next()
   autoUpdater.checkForUpdatesAndNotify()
 })
 
@@ -150,6 +155,18 @@ ipcMain.handle('openSettings', () => {
   }
 })
 
+ipcMain.handle('showReminderNotification', (_event, prevDescription) => {
+  setTimeout(() => {
+    const notification = createReminderNotification(prevDescription)
+    notification.show()
+    notification.on('click', () => menubar.showWindow())
+    notification.on('action', () => {
+      menubar.window.webContents.send('startPrevActivity')
+      menubar.showWindow()
+    })
+  }, 5000)
+})
+
 ipcMain.handle('showMenubar', () => {
   menubar.window.setAlwaysOnTop(true)
   menubar.showWindow()
@@ -165,5 +182,11 @@ powerMonitor.on('suspend', () => {
 powerMonitor.on('shutdown', () => {
   if (store.get('powerMonitor.shutdown')) {
     menubar.window.webContents.send('shutdown')
+  }
+})
+
+powerMonitor.on('resume', () => {
+  if (store.get('powerMonitor.remindTimerOnResume')) {
+    menubar.window.webContents.send('resume')
   }
 })

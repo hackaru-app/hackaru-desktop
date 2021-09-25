@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { parseISO } from 'date-fns'
 import MockAdapter from 'axios-mock-adapter'
 import { actions } from '~/store/activities'
 import { activity } from '~/schemas'
@@ -9,6 +10,36 @@ describe('Actions', () => {
   beforeEach(() => {
     mock.reset()
     actions.$api = axios
+  })
+
+  describe('when dispatch fetchWeeklyActivities', () => {
+    const dispatch = jest.fn()
+
+    beforeEach(() => {
+      mock
+        .onGet('/v1/activities', {
+          params: {
+            start: parseISO('2018-12-25T01:23:45'),
+            end: parseISO('2019-01-01T01:23:45'),
+          },
+        })
+        .replyOnce(200, {})
+      actions.fetchWeeklyActivities(
+        { dispatch },
+        parseISO('2019-01-01T01:23:45')
+      )
+    })
+
+    it('dispatches entities/merge', () => {
+      expect(dispatch).toHaveBeenCalledWith(
+        'entities/merge',
+        {
+          json: {},
+          schema: [activity],
+        },
+        { root: true }
+      )
+    })
   })
 
   describe('when dispatch fetchWorking', () => {

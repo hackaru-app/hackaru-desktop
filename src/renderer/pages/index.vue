@@ -69,6 +69,8 @@ export default {
   computed: {
     ...mapGetters({
       working: 'activities/working',
+      prevActivity: 'activities/prev',
+      prevActivityDescription: 'activities/prevDescription',
     }),
   },
   watch: {
@@ -83,6 +85,8 @@ export default {
   mounted() {
     electron.onSuspend(() => this.stopWorking())
     electron.onShutdown(() => this.stopWorking())
+    electron.onResume(() => this.showReminderNotification())
+    electron.onStartPrevActivity(() => this.startPrevActivity())
     electron.onShowMenubar(() =>
       this.$store.dispatch('activities/fetchWorking')
     )
@@ -91,6 +95,21 @@ export default {
     electron.stopTrayTimer()
   },
   methods: {
+    async showReminderNotification() {
+      if (this.working) return
+
+      await this.$store.dispatch('activities/fetchWeeklyActivities', new Date())
+      electron.showReminderNotification(this.prevActivityDescription)
+    },
+    startPrevActivity() {
+      if (!this.prevActivity || this.working) return
+
+      this.$store.dispatch('activities/add', {
+        description: this.prevActivity.description,
+        projectId: this.prevActivity.project?.id,
+        startedAt: new Date(),
+      })
+    },
     openSettings() {
       electron.openSettings()
     },
