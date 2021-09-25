@@ -10,7 +10,7 @@ const schema = {
       shutdown: {
         type: 'boolean',
       },
-      remindTimerOnResume: {
+      remindTimerOnUnlocking: {
         type: 'boolean',
       },
     },
@@ -21,13 +21,13 @@ const defaults = {
   powerMonitor: {
     suspend: true,
     shutdown: true,
-    remindTimerOnResume: true,
+    remindTimerOnUnlocking: true,
   },
 }
 
 const migrations = {
   '1.3.0': (store) => {
-    store.set('powerMonitor.remindTimerOnResume', true)
+    store.set('powerMonitor.remindTimerOnUnlocking', true)
   },
 }
 

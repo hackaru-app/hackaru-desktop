@@ -9,10 +9,10 @@ describe('PowerMonitor', () => {
   global.electron = {
     getSuspend: () => false,
     getShutdown: () => false,
-    getRemindTimerOnResume: () => false,
+    getRemindTimerOnUnlocking: () => false,
     setSuspend: jest.fn(),
     setShutdown: jest.fn(),
-    setRemindTimerOnResume: jest.fn(),
+    setRemindTimerOnUnlocking: jest.fn(),
     sendMixpanelEvent: jest.fn(),
   }
 
@@ -62,19 +62,21 @@ describe('PowerMonitor', () => {
     })
   })
 
-  describe('when click remindTimerOnResume', () => {
+  describe('when click remindTimerOnUnlocking', () => {
     beforeEach(() => {
       wrapper = factory()
-      wrapper.find(testId('remind-timer-on-resume')).trigger('click')
+      wrapper.find(testId('remind-timer-on-unlocking')).trigger('click')
     })
 
-    it('toggles remindTimerOnResume', () => {
-      expect(global.electron.setRemindTimerOnResume).toHaveBeenCalledWith(true)
+    it('toggles remindTimerOnUnlocking', () => {
+      expect(global.electron.setRemindTimerOnUnlocking).toHaveBeenCalledWith(
+        true
+      )
     })
 
     it('sends mixpanel event', () => {
       expect(global.electron.sendMixpanelEvent).toHaveBeenCalledWith(
-        'Toggle remindTimerOnResume',
+        'Toggle remindTimerOnUnlocking',
         {
           component: 'power-monitor',
           enabled: true,
