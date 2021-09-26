@@ -1,25 +1,13 @@
-import {
-  AuthorizationServiceConfiguration,
-} from '@openid/appauth/built/authorization_service_configuration'
-import {
-  AuthorizationRequest,
-} from '@openid/appauth/built/authorization_request'
+import { AuthorizationServiceConfiguration } from '@openid/appauth/built/authorization_service_configuration'
+import { AuthorizationRequest } from '@openid/appauth/built/authorization_request'
 import {
   GRANT_TYPE_AUTHORIZATION_CODE,
   TokenRequest,
 } from '@openid/appauth/built/token_request'
-import {
-  NodeRequestor,
-} from '@openid/appauth/built/node_support/node_requestor'
-import {
-  BaseTokenRequestHandler,
-} from '@openid/appauth/built/token_request_handler'
-import {
-  NodeBasedHandler,
-} from '@openid/appauth/built/node_support/node_request_handler'
-import {
-  AuthorizationNotifier,
-} from '@openid/appauth/built/authorization_request_handler'
+import { NodeRequestor } from '@openid/appauth/built/node_support/node_requestor'
+import { BaseTokenRequestHandler } from '@openid/appauth/built/token_request_handler'
+import { NodeBasedHandler } from '@openid/appauth/built/node_support/node_request_handler'
+import { AuthorizationNotifier } from '@openid/appauth/built/authorization_request_handler'
 import { NodeCrypto } from '@openid/appauth/built/node_support/'
 import { getRandomPort } from '~/modules/random-port'
 
@@ -32,16 +20,17 @@ const scope: string = [
   'user:read',
 ].join(' ')
 
-const configuration: AuthorizationServiceConfiguration = new AuthorizationServiceConfiguration({
-  authorization_endpoint: process.env.HACKARU_WEB_AUTHORIZATION_ENDPOINT!,
-  token_endpoint: process.env.HACKARU_API_TOKEN_ENDPOINT!,
-  revocation_endpoint: ''
-})
+const configuration: AuthorizationServiceConfiguration =
+  new AuthorizationServiceConfiguration({
+    authorization_endpoint: process.env.HACKARU_WEB_AUTHORIZATION_ENDPOINT,
+    token_endpoint: process.env.HACKARU_API_TOKEN_ENDPOINT,
+    revocation_endpoint: '',
+  })
 
 function buildAuthorizationRequest(redirectUri: string): AuthorizationRequest {
   return new AuthorizationRequest(
     {
-      client_id: process.env.HACKARU_API_CLIENT_ID!,
+      client_id: process.env.HACKARU_API_CLIENT_ID,
       redirect_uri: redirectUri,
       response_type: AuthorizationRequest.RESPONSE_TYPE_CODE,
       scope,
@@ -50,7 +39,10 @@ function buildAuthorizationRequest(redirectUri: string): AuthorizationRequest {
   )
 }
 
-function buildNotifier(redirectUri: string, resolve: (accessToken: string) => void): AuthorizationNotifier {
+function buildNotifier(
+  redirectUri: string,
+  resolve: (accessToken: string) => void
+): AuthorizationNotifier {
   const notifier = new AuthorizationNotifier()
 
   notifier.setAuthorizationListener(async (request, response) => {
@@ -68,9 +60,13 @@ function buildNotifier(redirectUri: string, resolve: (accessToken: string) => vo
   return notifier
 }
 
-function buildTokenRequest(redirectUri: string, code: string, codeVerifier: string): TokenRequest {
+function buildTokenRequest(
+  redirectUri: string,
+  code: string,
+  codeVerifier: string
+): TokenRequest {
   return new TokenRequest({
-    client_id: process.env.HACKARU_API_CLIENT_ID!,
+    client_id: process.env.HACKARU_API_CLIENT_ID,
     redirect_uri: redirectUri,
     grant_type: GRANT_TYPE_AUTHORIZATION_CODE,
     code,
@@ -86,7 +82,9 @@ async function requestAccessToken(tokenRequest: TokenRequest) {
   return request.accessToken
 }
 
-async function performAuthorizationRequest(resolve: (accessToken: string) => void) {
+async function performAuthorizationRequest(
+  resolve: (accessToken: string) => void
+) {
   const port = await getRandomPort()
   const redirectUri = `http://127.0.0.1:${port}`
 

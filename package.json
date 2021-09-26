@@ -5,7 +5,7 @@
   "description": "Hackaru for desktop",
   "private": true,
   "scripts": {
-    "eslint": "eslint --ext .js,.vue --ignore-path .gitignore",
+    "eslint": "eslint --ext .js,.ts,.vue --ignore-path .gitignore",
     "stylelint": "stylelint '**/*.{vue,scss}'",
     "test": "jest",
     "dev": "webpack -c src/main/webpack.dev.js --progress && run-p -l dev:*",
@@ -89,6 +89,8 @@
     "@types/hh-mm-ss": "^1.2.1",
     "@types/universal-analytics": "^0.4.5",
     "@types/uuid": "^8.3.1",
+    "@typescript-eslint/eslint-plugin": "^4.31.2",
+    "@typescript-eslint/parser": "^4.31.2",
     "@vue/test-utils": "^1.2.2",
     "axios-mock-adapter": "^1.20.0",
     "babel-core": "7.0.0-bridge.0",

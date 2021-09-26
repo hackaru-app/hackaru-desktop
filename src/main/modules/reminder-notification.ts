@@ -15,7 +15,9 @@ function getActions(prevDescription: string): Array<NotificationAction> {
   }
 }
 
-export function createReminderNotification(prevDescription: string): Notification {
+export function createReminderNotification(
+  prevDescription: string
+): Notification {
   return new Notification({
     title: i18next.t('reminderNotification.title'),
     body: getBodyText(prevDescription),

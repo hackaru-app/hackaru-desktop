@@ -3,12 +3,12 @@ import { Migrations } from 'conf/dist/source/types'
 import * as Store from 'electron-store'
 
 interface TypedStore {
-	powerMonitor: {
-    suspend: boolean,
-    shutdown: boolean,
+  powerMonitor: {
+    suspend: boolean
+    shutdown: boolean
     remindTimerOnUnlocking: boolean
-  };
-};
+  }
+}
 
 const schema: Store.Schema<TypedStore> = {
   powerMonitor: {

@@ -69,7 +69,7 @@ contextBridge.exposeInMainWorld('electron', {
   sendGaEvent(category: string, action: string) {
     ipcRenderer.invoke('sendGaEvent', category, action)
   },
-  sendMixpanelEvent(event: string, props: {}) {
+  sendMixpanelEvent(event: string, props: Record<string, unknown>) {
     ipcRenderer.invoke('sendMixpanelEvent', event, props)
   },
   showReminderNotification(prevDescription: string) {

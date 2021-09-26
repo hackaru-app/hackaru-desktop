@@ -1,7 +1,7 @@
-import * as path from'path'
-import { BrowserWindow } from'electron'
-import { basePath } from'~/modules/base-path'
-import { getWindowUrl } from'~/modules/window-url'
+import * as path from 'path'
+import { BrowserWindow } from 'electron'
+import { basePath } from '~/modules/base-path'
+import { getWindowUrl } from '~/modules/window-url'
 
 export function createSettingsWindow(): BrowserWindow {
   const window = new BrowserWindow({

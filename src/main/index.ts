@@ -1,6 +1,14 @@
-import { app, ipcMain, shell, powerMonitor, session } from 'electron'
+import {
+  app,
+  ipcMain,
+  shell,
+  powerMonitor,
+  session,
+  BrowserWindow,
+} from 'electron'
 import { autoUpdater } from 'electron-updater'
 import * as debug from 'debug'
+import * as Sentry from '@sentry/electron/dist/main'
 import {
   storeAccessToken,
   restoreAccessToken,
@@ -14,12 +22,8 @@ import { createMenubar } from '~/windows/menubar'
 import { createSettingsWindow } from '~/windows/settings'
 import { isWindowHostname } from '~/modules/window-url'
 import { createVisitor } from '~/modules/universal-analytics'
-import {
-  createReminderNotification,
-} from '~/modules/reminder-notification'
+import { createReminderNotification } from '~/modules/reminder-notification'
 import { initI18next } from '~/modules/i18next'
-import * as Sentry from '@sentry/electron/dist/main'
-import { BrowserWindow } from 'electron'
 import { initSentry } from '~/modules/init-sentry'
 import { MixPanel } from '~/modules/mixpanel'
 
@@ -44,12 +48,12 @@ menubar.on('after-create-window', async () => {
 
   if (process.env.NODE_ENV !== 'production') {
     await initDevtools()
-    menubar.window!.webContents.openDevTools({ mode: 'detach' })
+    menubar.window?.webContents.openDevTools({ mode: 'detach' })
   }
 })
 
 menubar.on('show', () => {
-  menubar.window!.webContents.send('showMenubar')
+  menubar.window?.webContents.send('showMenubar')
 })
 
 menubar.on('after-create-window', () => {
@@ -114,7 +118,7 @@ ipcMain.handle('logout', () => {
 })
 
 ipcMain.handle('openWeb', () => {
-  shell.openExternal(process.env.HACKARU_WEB_URL!) // TODO
+  shell.openExternal(process.env.HACKARU_WEB_URL)
 })
 
 ipcMain.handle('getConfig', (_event, key) => {
@@ -165,31 +169,31 @@ ipcMain.handle('showReminderNotification', (_event, prevDescription) => {
     notification.on('click', () => menubar.showWindow())
     notification.on('action', () => {
       menubar.showWindow()
-      menubar.window!.webContents.send('startPrevActivity')
+      menubar.window?.webContents.send('startPrevActivity')
     })
   }, 5000)
 })
 
 ipcMain.handle('showMenubar', () => {
-  menubar.window!.setAlwaysOnTop(true)
-  menubar!.showWindow()
-  menubar.window!.setAlwaysOnTop(false)
+  menubar.window?.setAlwaysOnTop(true)
+  menubar?.showWindow()
+  menubar.window?.setAlwaysOnTop(false)
 })
 
 powerMonitor.on('suspend', () => {
   if (store.get('powerMonitor.suspend')) {
-    menubar.window!.webContents.send('suspend')
+    menubar.window?.webContents.send('suspend')
   }
 })
 
 powerMonitor.on('shutdown', () => {
   if (store.get('powerMonitor.shutdown')) {
-    menubar.window!.webContents.send('shutdown')
+    menubar.window?.webContents.send('shutdown')
   }
 })
 
 powerMonitor.on('unlock-screen', () => {
   if (store.get('powerMonitor.remindTimerOnUnlocking')) {
-    menubar.window!.webContents.send('resume')
+    menubar.window?.webContents.send('resume')
   }
 })

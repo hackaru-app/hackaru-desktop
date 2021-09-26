@@ -1,7 +1,7 @@
 import * as keytar from 'keytar'
 
-const service: string = `hackaru-desktop-${process.env.NODE_ENV}`
-const account: string = 'current-user'
+const service = `hackaru-desktop-${process.env.NODE_ENV}`
+const account = 'current-user'
 
 export function storeAccessToken(accessToken: string): Promise<void> {
   return keytar.setPassword(service, account, accessToken)
