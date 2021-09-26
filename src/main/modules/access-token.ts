@@ -1,16 +1,16 @@
-const keytar = require('keytar')
+import * as keytar from 'keytar'
 
 const service = `hackaru-desktop-${process.env.NODE_ENV}`
 const account = 'current-user'
 
-module.exports.storeAccessToken = (accessToken) => {
+export function storeAccessToken(accessToken: string): Promise<void> {
   return keytar.setPassword(service, account, accessToken)
 }
 
-module.exports.restoreAccessToken = () => {
+export function restoreAccessToken(): Promise<string | null> {
   return keytar.getPassword(service, account)
 }
 
-module.exports.removeAccessToken = () => {
+export function removeAccessToken(): Promise<boolean> {
   return keytar.deletePassword(service, account)
 }

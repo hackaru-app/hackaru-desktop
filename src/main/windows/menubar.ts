@@ -1,10 +1,10 @@
-const path = require('path')
-const { menubar } = require('menubar')
-const { getTrayIcon } = require('~/modules/tray-icon')
-const { basePath } = require('~/modules/base-path')
-const { getWindowUrl } = require('~/modules/window-url')
+import * as path from 'path'
+import { Menubar, menubar } from 'menubar'
+import { getTrayIcon } from '~/modules/tray-icon'
+import { basePath } from '~/modules/base-path'
+import { getWindowUrl } from '~/modules/window-url'
 
-module.exports.createMenubar = () => {
+export function createMenubar(): Menubar {
   return menubar({
     index: `${getWindowUrl('/')}`,
     icon: getTrayIcon(),

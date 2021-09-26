@@ -1,7 +1,8 @@
-const { contextBridge, ipcRenderer } = require('electron')
-const { initRendererSentry } = require('~/modules/sentry')
+import * as Sentry from '@sentry/electron/dist/renderer'
+import { contextBridge, ipcRenderer } from 'electron'
+import { initSentry } from '~/modules/init-sentry'
 
-initRendererSentry()
+initSentry(Sentry)
 
 contextBridge.exposeInMainWorld('electron', {
   authorize() {
@@ -19,7 +20,7 @@ contextBridge.exposeInMainWorld('electron', {
   quit() {
     ipcRenderer.invoke('quit')
   },
-  startTrayTimer(startedAt) {
+  startTrayTimer(startedAt: string) {
     ipcRenderer.invoke('startTrayTimer', startedAt)
   },
   stopTrayTimer() {
@@ -31,13 +32,13 @@ contextBridge.exposeInMainWorld('electron', {
   getSuspend() {
     return ipcRenderer.invoke('getConfig', 'powerMonitor.suspend')
   },
-  setSuspend(enabled) {
+  setSuspend(enabled: boolean) {
     ipcRenderer.invoke('setConfig', 'powerMonitor.suspend', !!enabled)
   },
   getShutdown() {
     return ipcRenderer.invoke('getConfig', 'powerMonitor.shutdown')
   },
-  setShutdown(enabled) {
+  setShutdown(enabled: boolean) {
     ipcRenderer.invoke('setConfig', 'powerMonitor.shutdown', !!enabled)
   },
   getRemindTimerOnUnlocking() {
@@ -46,7 +47,7 @@ contextBridge.exposeInMainWorld('electron', {
       'powerMonitor.remindTimerOnUnlocking'
     )
   },
-  setRemindTimerOnUnlocking(enabled) {
+  setRemindTimerOnUnlocking(enabled: boolean) {
     ipcRenderer.invoke(
       'setConfig',
       'powerMonitor.remindTimerOnUnlocking',
@@ -56,37 +57,37 @@ contextBridge.exposeInMainWorld('electron', {
   showMenubar() {
     ipcRenderer.invoke('showMenubar')
   },
-  setUserId(id) {
+  setUserId(id: number) {
     ipcRenderer.invoke('setUserId', id)
   },
   removeUserId() {
     ipcRenderer.invoke('removeUserId')
   },
-  sendGaPageView(path) {
+  sendGaPageView(path: string) {
     ipcRenderer.invoke('sendGaPageView', path)
   },
-  sendGaEvent(category, action) {
+  sendGaEvent(category: string, action: string) {
     ipcRenderer.invoke('sendGaEvent', category, action)
   },
-  sendMixpanelEvent(event, props) {
+  sendMixpanelEvent(event: string, props: Record<string, unknown>) {
     ipcRenderer.invoke('sendMixpanelEvent', event, props)
   },
-  showReminderNotification(prevDescription) {
+  showReminderNotification(prevDescription: string) {
     ipcRenderer.invoke('showReminderNotification', prevDescription)
   },
-  onSuspend(callback) {
+  onSuspend(callback: () => void) {
     ipcRenderer.on('suspend', callback)
   },
-  onShutdown(callback) {
+  onShutdown(callback: () => void) {
     ipcRenderer.on('shutdown', callback)
   },
-  onUnlockScreen(callback) {
+  onUnlockScreen(callback: () => void) {
     ipcRenderer.on('resume', callback)
   },
-  onStartPrevActivity(callback) {
+  onStartPrevActivity(callback: () => void) {
     ipcRenderer.on('startPrevActivity', callback)
   },
-  onShowMenubar(callback) {
+  onShowMenubar(callback: () => void) {
     ipcRenderer.on('showMenubar', callback)
   },
 })

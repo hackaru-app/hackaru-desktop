@@ -1,38 +1,45 @@
-const { app, ipcMain, shell, powerMonitor, session } = require('electron')
-const { autoUpdater } = require('electron-updater')
-const debug = require('debug')
-const {
+import {
+  app,
+  ipcMain,
+  shell,
+  powerMonitor,
+  session,
+  BrowserWindow,
+} from 'electron'
+import { autoUpdater } from 'electron-updater'
+import * as debug from 'debug'
+import * as Sentry from '@sentry/electron/dist/main'
+import {
   storeAccessToken,
   restoreAccessToken,
   removeAccessToken,
-} = require('~/modules/access-token')
-const { createStore } = require('~/modules/store')
-const { initDevtools } = require('~/modules/devtools')
-const { authorize } = require('~/modules/oauth')
-const { startTrayTimer } = require('~/modules/tray-timer')
-const { createMenubar } = require('~/windows/menubar')
-const { createSettingsWindow } = require('~/windows/settings')
-const { isWindowHostname } = require('~/modules/window-url')
-const { initMainSentry } = require('~/modules/sentry')
-const { createVisitor } = require('~/modules/universal-analytics')
-const {
-  createReminderNotification,
-} = require('~/modules/reminder-notification')
-const { initI18next } = require('~/modules/i18next')
-const Mixpanel = require('~/modules/mixpanel')
+} from '~/modules/access-token'
+import { createStore } from '~/modules/store'
+import { initDevtools } from '~/modules/devtools'
+import { authorize } from '~/modules/oauth'
+import { startTrayTimer } from '~/modules/tray-timer'
+import { createMenubar } from '~/windows/menubar'
+import { createSettingsWindow } from '~/windows/settings'
+import { isWindowHostname } from '~/modules/window-url'
+import { createVisitor } from '~/modules/universal-analytics'
+import { createReminderNotification } from '~/modules/reminder-notification'
+import { initI18next } from '~/modules/i18next'
+import { initSentry } from '~/modules/init-sentry'
+import { MixPanel } from '~/modules/mixpanel'
 
 if (process.env.NODE_ENV !== 'production') {
   debug.enable('universal-analytics')
 }
 
-let trayTimer
-let settingsWindow
+let trayTimer: NodeJS.Timeout
+let settingsWindow: BrowserWindow | undefined
 
-const Sentry = initMainSentry()
+initSentry(Sentry)
+
 const store = createStore()
 const menubar = createMenubar()
 const visitor = createVisitor()
-const mixpanel = new Mixpanel(process.env.MIXPANEL_PROJECT_TOKEN)
+const mixpanel = new MixPanel(process.env.MIXPANEL_PROJECT_TOKEN)
 
 app.requestSingleInstanceLock()
 
@@ -41,12 +48,12 @@ menubar.on('after-create-window', async () => {
 
   if (process.env.NODE_ENV !== 'production') {
     await initDevtools()
-    menubar.window.webContents.openDevTools({ mode: 'detach' })
+    menubar.window?.webContents.openDevTools({ mode: 'detach' })
   }
 })
 
 menubar.on('show', () => {
-  menubar.window.webContents.send('showMenubar')
+  menubar.window?.webContents.send('showMenubar')
 })
 
 menubar.on('after-create-window', () => {
@@ -161,32 +168,32 @@ ipcMain.handle('showReminderNotification', (_event, prevDescription) => {
     notification.show()
     notification.on('click', () => menubar.showWindow())
     notification.on('action', () => {
-      menubar.window.webContents.send('startPrevActivity')
       menubar.showWindow()
+      menubar.window?.webContents.send('startPrevActivity')
     })
   }, 5000)
 })
 
 ipcMain.handle('showMenubar', () => {
-  menubar.window.setAlwaysOnTop(true)
-  menubar.showWindow()
-  menubar.window.setAlwaysOnTop(false)
+  menubar.window?.setAlwaysOnTop(true)
+  menubar?.showWindow()
+  menubar.window?.setAlwaysOnTop(false)
 })
 
 powerMonitor.on('suspend', () => {
   if (store.get('powerMonitor.suspend')) {
-    menubar.window.webContents.send('suspend')
+    menubar.window?.webContents.send('suspend')
   }
 })
 
 powerMonitor.on('shutdown', () => {
   if (store.get('powerMonitor.shutdown')) {
-    menubar.window.webContents.send('shutdown')
+    menubar.window?.webContents.send('shutdown')
   }
 })
 
 powerMonitor.on('unlock-screen', () => {
   if (store.get('powerMonitor.remindTimerOnUnlocking')) {
-    menubar.window.webContents.send('resume')
+    menubar.window?.webContents.send('resume')
   }
 })

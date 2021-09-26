@@ -28,4 +28,22 @@ module.exports = {
     ],
     'nuxt/no-cjs-in-config': 'off',
   },
+  overrides: [
+    {
+      env: {
+        node: true,
+      },
+      files: ['*.ts'],
+      parserOptions: {
+        parser: '@typescript-eslint/parser',
+      },
+      extends: [
+        'plugin:@typescript-eslint/eslint-recommended',
+        'plugin:@typescript-eslint/recommended',
+        'prettier',
+        'plugin:prettier/recommended',
+      ],
+      plugins: ['@typescript-eslint'],
+    },
+  ],
 }

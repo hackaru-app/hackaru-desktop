@@ -1,6 +1,16 @@
-const Store = require('electron-store')
+import Conf from 'conf/dist/source'
+import { Migrations } from 'conf/dist/source/types'
+import * as Store from 'electron-store'
 
-const schema = {
+interface TypedStore {
+  powerMonitor: {
+    suspend: boolean
+    shutdown: boolean
+    remindTimerOnUnlocking: boolean
+  }
+}
+
+const schema: Store.Schema<TypedStore> = {
   powerMonitor: {
     type: 'object',
     properties: {
@@ -17,7 +27,7 @@ const schema = {
   },
 }
 
-const defaults = {
+const defaults: TypedStore = {
   powerMonitor: {
     suspend: true,
     shutdown: true,
@@ -25,18 +35,18 @@ const defaults = {
   },
 }
 
-const migrations = {
-  '1.3.0': (store) => {
+const migrations: Migrations<TypedStore> = {
+  '1.3.0': (store: Conf<TypedStore>) => {
     store.set('powerMonitor.remindTimerOnUnlocking', true)
   },
 }
 
-module.exports.createStore = () =>
-  new Store({
+export function createStore(): Store<TypedStore> {
+  return new Store<TypedStore>({
     schema,
     defaults,
-    projectVersion: process.env.npm_package_version,
     name: process.env.NODE_ENV,
     serialize: (value) => JSON.stringify(value, null, '  '),
     migrations,
   })
+}

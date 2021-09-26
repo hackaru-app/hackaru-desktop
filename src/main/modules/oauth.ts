@@ -1,30 +1,17 @@
-const {
-  AuthorizationServiceConfiguration,
-} = require('@openid/appauth/built/authorization_service_configuration')
-const {
-  RESPONSE_TYPE_CODE,
-  AuthorizationRequest,
-} = require('@openid/appauth/built/authorization_request')
-const {
+import { AuthorizationServiceConfiguration } from '@openid/appauth/built/authorization_service_configuration'
+import { AuthorizationRequest } from '@openid/appauth/built/authorization_request'
+import {
   GRANT_TYPE_AUTHORIZATION_CODE,
   TokenRequest,
-} = require('@openid/appauth/built/token_request')
-const {
-  NodeRequestor,
-} = require('@openid/appauth/built/node_support/node_requestor')
-const {
-  BaseTokenRequestHandler,
-} = require('@openid/appauth/built/token_request_handler')
-const {
-  NodeBasedHandler,
-} = require('@openid/appauth/built/node_support/node_request_handler')
-const {
-  AuthorizationNotifier,
-} = require('@openid/appauth/built/authorization_request_handler')
-const { NodeCrypto } = require('@openid/appauth/built/node_support/')
-const { getRandomPort } = require('~/modules/random-port')
+} from '@openid/appauth/built/token_request'
+import { NodeRequestor } from '@openid/appauth/built/node_support/node_requestor'
+import { BaseTokenRequestHandler } from '@openid/appauth/built/token_request_handler'
+import { NodeBasedHandler } from '@openid/appauth/built/node_support/node_request_handler'
+import { AuthorizationNotifier } from '@openid/appauth/built/authorization_request_handler'
+import { NodeCrypto } from '@openid/appauth/built/node_support/'
+import { getRandomPort } from '~/modules/random-port'
 
-const scope = [
+const scope: string = [
   'activities:read',
   'activities:write',
   'projects:read',
@@ -33,24 +20,29 @@ const scope = [
   'user:read',
 ].join(' ')
 
-const configuration = new AuthorizationServiceConfiguration({
-  authorization_endpoint: process.env.HACKARU_WEB_AUTHORIZATION_ENDPOINT,
-  token_endpoint: process.env.HACKARU_API_TOKEN_ENDPOINT,
-})
+const configuration: AuthorizationServiceConfiguration =
+  new AuthorizationServiceConfiguration({
+    authorization_endpoint: process.env.HACKARU_WEB_AUTHORIZATION_ENDPOINT,
+    token_endpoint: process.env.HACKARU_API_TOKEN_ENDPOINT,
+    revocation_endpoint: '',
+  })
 
-function buildAuthorizationRequest(redirectUri) {
+function buildAuthorizationRequest(redirectUri: string): AuthorizationRequest {
   return new AuthorizationRequest(
     {
       client_id: process.env.HACKARU_API_CLIENT_ID,
       redirect_uri: redirectUri,
-      grant_type: RESPONSE_TYPE_CODE,
+      response_type: AuthorizationRequest.RESPONSE_TYPE_CODE,
       scope,
     },
     new NodeCrypto()
   )
 }
 
-function buildNotifier(redirectUri, resolve) {
+function buildNotifier(
+  redirectUri: string,
+  resolve: (accessToken: string) => void
+): AuthorizationNotifier {
   const notifier = new AuthorizationNotifier()
 
   notifier.setAuthorizationListener(async (request, response) => {
@@ -68,7 +60,11 @@ function buildNotifier(redirectUri, resolve) {
   return notifier
 }
 
-function buildTokenRequest(redirectUri, code, codeVerifier) {
+function buildTokenRequest(
+  redirectUri: string,
+  code: string,
+  codeVerifier: string
+): TokenRequest {
   return new TokenRequest({
     client_id: process.env.HACKARU_API_CLIENT_ID,
     redirect_uri: redirectUri,
@@ -80,13 +76,15 @@ function buildTokenRequest(redirectUri, code, codeVerifier) {
   })
 }
 
-async function requestAccessToken(tokenRequest) {
+async function requestAccessToken(tokenRequest: TokenRequest) {
   const handler = new BaseTokenRequestHandler(new NodeRequestor())
   const request = await handler.performTokenRequest(configuration, tokenRequest)
   return request.accessToken
 }
 
-async function performAuthorizationRequest(resolve) {
+async function performAuthorizationRequest(
+  resolve: (accessToken: string) => void
+) {
   const port = await getRandomPort()
   const redirectUri = `http://127.0.0.1:${port}`
 
@@ -98,6 +96,6 @@ async function performAuthorizationRequest(resolve) {
   )
 }
 
-module.exports.authorize = function () {
+export function authorize(): Promise<string> {
   return new Promise((resolve) => performAuthorizationRequest(resolve))
 }
