@@ -41,13 +41,16 @@ contextBridge.exposeInMainWorld('electron', {
   setShutdown(enabled: boolean) {
     ipcRenderer.invoke('setConfig', 'powerMonitor.shutdown', !!enabled)
   },
-  getRemindTimerOnResume() {
-    return ipcRenderer.invoke('getConfig', 'powerMonitor.remindTimerOnResume')
+  getRemindTimerOnUnlocking() {
+    return ipcRenderer.invoke(
+      'getConfig',
+      'powerMonitor.remindTimerOnUnlocking'
+    )
   },
-  setRemindTimerOnResume(enabled: boolean) {
+  setRemindTimerOnUnlocking(enabled: boolean) {
     ipcRenderer.invoke(
       'setConfig',
-      'powerMonitor.remindTimerOnResume',
+      'powerMonitor.remindTimerOnUnlocking',
       !!enabled
     )
   },
@@ -78,7 +81,7 @@ contextBridge.exposeInMainWorld('electron', {
   onShutdown(callback: () => void) {
     ipcRenderer.on('shutdown', callback)
   },
-  onResume(callback: () => void) {
+  onUnlockScreen(callback: () => void) {
     ipcRenderer.on('resume', callback)
   },
   onStartPrevActivity(callback: () => void) {

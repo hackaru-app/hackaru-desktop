@@ -188,8 +188,8 @@ powerMonitor.on('shutdown', () => {
   }
 })
 
-powerMonitor.on('resume', () => {
-  if (store.get('powerMonitor.remindTimerOnResume')) {
+powerMonitor.on('unlock-screen', () => {
+  if (store.get('powerMonitor.remindTimerOnUnlocking')) {
     menubar.window!.webContents.send('resume')
   }
 })

@@ -27,11 +27,11 @@
       <label>
         <input
           class="shutdown"
-          :checked="remindTimerOnResumeEnabled"
-          data-test-id="remind-timer-on-resume"
+          :checked="remindTimerOnUnlockingEnabled"
+          data-test-id="remind-timer-on-unlocking"
           type="checkbox"
-          @click="toggleRemindTimerOnResume"
-        />{{ $t('remindTimerOnResume') }}
+          @click="toggleRemindTimerOnUnlocking"
+        />{{ $t('remindTimerOnUnlocking') }}
         <text-label class="purple">BETA</text-label>
       </label>
     </div>
@@ -51,13 +51,14 @@ export default {
     return {
       suspendEnabled: false,
       shutdownEnabled: false,
-      remindTimerOnResumeEnabled: false,
+      remindTimerOnUnlockingEnabled: false,
     }
   },
   async mounted() {
     this.suspendEnabled = await electron.getSuspend()
     this.shutdownEnabled = await electron.getShutdown()
-    this.remindTimerOnResumeEnabled = await electron.getRemindTimerOnResume()
+    this.remindTimerOnUnlockingEnabled =
+      await electron.getRemindTimerOnUnlocking()
   },
   methods: {
     toggleSuspend() {
@@ -76,13 +77,13 @@ export default {
       })
       electron.setShutdown(this.shutdownEnabled)
     },
-    toggleRemindTimerOnResume() {
-      this.remindTimerOnResumeEnabled = !this.remindTimerOnResumeEnabled
-      electron.sendMixpanelEvent('Toggle remindTimerOnResume', {
+    toggleRemindTimerOnUnlocking() {
+      this.remindTimerOnUnlockingEnabled = !this.remindTimerOnUnlockingEnabled
+      electron.sendMixpanelEvent('Toggle remindTimerOnUnlocking', {
         component: 'power-monitor',
-        enabled: this.remindTimerOnResumeEnabled,
+        enabled: this.remindTimerOnUnlockingEnabled,
       })
-      electron.setRemindTimerOnResume(this.remindTimerOnResumeEnabled)
+      electron.setRemindTimerOnUnlocking(this.remindTimerOnUnlockingEnabled)
     },
   },
 }
