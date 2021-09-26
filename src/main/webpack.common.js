@@ -13,12 +13,17 @@ module.exports = {
         test: /\.node$/,
         loader: 'node-loader',
       },
+      {
+        test: /\.ts$/,
+        use: 'ts-loader',
+      },
     ],
   },
   resolve: {
     alias: {
       '~': path.resolve(__dirname),
     },
+    extensions: ['.ts', '.js'],
   },
   node: {
     __dirname: false,

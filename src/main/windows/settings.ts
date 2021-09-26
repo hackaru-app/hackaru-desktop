@@ -1,9 +1,9 @@
-const path = require('path')
-const { BrowserWindow } = require('electron')
-const { basePath } = require('~/modules/base-path')
-const { getWindowUrl } = require('~/modules/window-url')
+import * as path from'path'
+import { BrowserWindow } from'electron'
+import { basePath } from'~/modules/base-path'
+import { getWindowUrl } from'~/modules/window-url'
 
-module.exports.createSettingsWindow = () => {
+export function createSettingsWindow(): BrowserWindow {
   const window = new BrowserWindow({
     width: 600,
     height: 480,

@@ -1,5 +1,5 @@
-const path = require('path')
-const { basePath } = require('~/modules/base-path')
+import * as path from 'path'
+import { basePath } from '~/modules/base-path'
 
 function getTrayIconFileName() {
   switch (process.platform) {
@@ -12,6 +12,6 @@ function getTrayIconFileName() {
   }
 }
 
-module.exports.getTrayIcon = () => {
+export function getTrayIcon(): string {
   return path.resolve(basePath, `../static/${getTrayIconFileName()}`)
 }

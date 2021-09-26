@@ -1,7 +1,7 @@
-const i18next = require('i18next/dist/umd/i18next.min')
-const { app } = require('electron')
+import { app } from 'electron'
+import i18next from 'i18next'
 
-module.exports.initI18next = () => {
+export function initI18next(): void {
   i18next.init({
     fallbackLng: 'en',
     debug: process.env.NODE_ENV !== 'production',
@@ -28,5 +28,3 @@ module.exports.initI18next = () => {
     },
   })
 }
-
-module.exports.i18next = i18next

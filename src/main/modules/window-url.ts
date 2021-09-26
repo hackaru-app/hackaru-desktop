@@ -1,6 +1,6 @@
-const path = require('path')
-const { URL, pathToFileURL } = require('url')
-const { basePath } = require('~/modules/base-path')
+import * as path from 'path'
+import { URL, pathToFileURL } from 'url'
+import { basePath } from '~/modules/base-path'
 
 function getBaseUrl() {
   if (process.env.NODE_ENV === 'production') {
@@ -11,11 +11,11 @@ function getBaseUrl() {
   }
 }
 
-module.exports.isWindowHostname = (input) => {
+export function isWindowHostname(input: string): boolean {
   return new URL(input).origin === getBaseUrl().origin
 }
 
-module.exports.getWindowUrl = (input) => {
+export function getWindowUrl(input: string): URL {
   const url = getBaseUrl()
   url.hash = input
   return url

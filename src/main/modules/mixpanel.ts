@@ -1,23 +1,27 @@
-const Mixpanel = require('mixpanel')
-const { v4: uuidv4 } = require('uuid')
+import * as Mixpanel from 'mixpanel'
+import { v4 as uuidv4 } from 'uuid'
 
-module.exports = class {
-  constructor(token) {
+export class MixPanel {
+  private uuid: string
+  private mixpanel: Mixpanel.Mixpanel | undefined
+  private userId: string | undefined
+
+  constructor(token?: string) {
     this.mixpanel = this.init(token)
     this.uuid = uuidv4()
   }
 
-  setUserId(id) {
+  setUserId(id: string): void {
     this.userId = id
     this.mixpanel?.alias(id, this.uuid)
   }
 
-  removeUserId() {
+  removeUserId(): void {
     this.userId = undefined
     this.uuid = uuidv4()
   }
 
-  track(eventName, props = {}) {
+  track(eventName: string, props = {}): void {
     this.mixpanel?.track(eventName, {
       $user_id: this.userId,
       distinct_id: this.distinctId,
@@ -29,13 +33,11 @@ module.exports = class {
     })
   }
 
-  private
-
-  get distinctId() {
+  private get distinctId(): string {
     return this.userId || this.uuid
   }
 
-  init(token) {
+  private init(token?: string): Mixpanel.Mixpanel | undefined {
     if (!token) return
     return Mixpanel.init(token, {
       debug: process.env.NODE_ENV !== 'production',
