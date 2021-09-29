@@ -117,7 +117,7 @@ export default {
       this.projectId = id
       if (this.working) {
         this.update()
-        electron.sendMixpanelEvent('Select project', {
+        electron.mixpanel.sendEvent('Select project', {
           component: 'timer-form',
         })
       }
@@ -132,7 +132,7 @@ export default {
     selectSuggestion(suggestion) {
       this.description = suggestion.description
       this.projectId = suggestion.project?.id
-      electron.sendMixpanelEvent('Click suggestion', {
+      electron.mixpanel.sendEvent('Click suggestion', {
         component: 'timer-form',
       })
       this.start()
@@ -140,14 +140,14 @@ export default {
     async start() {
       const startedAt = new Date()
 
-      electron.sendGaEvent('Activities', 'start')
+      electron.googleAnalytics.sendEvent('Activities', 'start')
       const success = await this.$store.dispatch('activities/add', {
         description: this.description,
         projectId: this.projectId,
         startedAt,
       })
       if (success) {
-        electron.sendMixpanelEvent('Start activity', {
+        electron.mixpanel.sendEvent('Start activity', {
           component: 'timer-form',
           startedAt: formatISO(startedAt),
           projectId: this.projectId,
@@ -159,14 +159,14 @@ export default {
     async update() {
       if (!this.working) return
 
-      electron.sendGaEvent('Activities', 'update')
+      electron.googleAnalytics.sendEvent('Activities', 'update')
       const success = await this.$store.dispatch('activities/update', {
         id: this.activity.id,
         description: this.description,
         projectId: this.projectId,
       })
       if (success) {
-        electron.sendMixpanelEvent('Update activity', {
+        electron.mixpanel.sendEvent('Update activity', {
           component: 'timer-form',
           projectId: this.projectId,
           descriptionLength: this.description.length,
@@ -177,8 +177,8 @@ export default {
     async stop() {
       const stoppedAt = new Date()
 
-      electron.sendGaEvent('Activities', 'stop')
-      electron.sendMixpanelEvent('Stop activity', {
+      electron.googleAnalytics.sendEvent('Activities', 'stop')
+      electron.mixpanel.sendEvent('Stop activity', {
         component: 'timer-form',
         projectId: this.projectId,
         descriptionLength: this.description.length,
@@ -211,8 +211,8 @@ export default {
     },
     async deleteWorking() {
       this.$modal.hide('dialog')
-      electron.sendGaEvent('Activities', 'delete')
-      electron.sendMixpanelEvent('Delete activity', {
+      electron.googleAnalytics.sendEvent('Activities', 'delete')
+      electron.mixpanel.sendEvent('Delete activity', {
         component: 'timer-form',
         projectId: this.projectId,
         descriptionLength: this.description.length,

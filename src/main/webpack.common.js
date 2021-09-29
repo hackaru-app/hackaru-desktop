@@ -1,11 +1,22 @@
 const path = require('path')
+const glob = require('glob')
 const Dotenv = require('dotenv-webpack')
+
+function buildEntries({ dir, filename }) {
+  return glob.sync(dir).reduce((entries, entryPath) => {
+    const name = path.parse(entryPath).name
+    return { ...entries, [name]: { import: entryPath, filename } }
+  }, {})
+}
 
 module.exports = {
   target: 'electron-main',
   entry: {
     main: './src/main/index',
-    preload: './src/main/preload',
+    ...buildEntries({
+      dir: './src/main/preloads/*.ts',
+      filename: 'preloads/[name].js',
+    }),
   },
   module: {
     rules: [

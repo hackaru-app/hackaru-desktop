@@ -55,35 +55,37 @@ export default {
     }
   },
   async mounted() {
-    this.suspendEnabled = await electron.getSuspend()
-    this.shutdownEnabled = await electron.getShutdown()
+    this.suspendEnabled = await electron.settings.getSuspend()
+    this.shutdownEnabled = await electron.settings.getShutdown()
     this.remindTimerOnUnlockingEnabled =
-      await electron.getRemindTimerOnUnlocking()
+      await electron.settings.getRemindTimerOnUnlocking()
   },
   methods: {
     toggleSuspend() {
       this.suspendEnabled = !this.suspendEnabled
-      electron.sendMixpanelEvent('Toggle suspend', {
+      electron.mixpanel.sendEvent('Toggle suspend', {
         component: 'power-monitor',
         enabled: this.suspendEnabled,
       })
-      electron.setSuspend(this.suspendEnabled)
+      electron.settings.setSuspend(this.suspendEnabled)
     },
     toggleShutdown() {
       this.shutdownEnabled = !this.shutdownEnabled
-      electron.sendMixpanelEvent('Toggle shutdown', {
+      electron.mixpanel.sendEvent('Toggle shutdown', {
         component: 'power-monitor',
         enabled: this.shutdownEnabled,
       })
-      electron.setShutdown(this.shutdownEnabled)
+      electron.settings.setShutdown(this.shutdownEnabled)
     },
     toggleRemindTimerOnUnlocking() {
       this.remindTimerOnUnlockingEnabled = !this.remindTimerOnUnlockingEnabled
-      electron.sendMixpanelEvent('Toggle remindTimerOnUnlocking', {
+      electron.mixpanel.sendEvent('Toggle remindTimerOnUnlocking', {
         component: 'power-monitor',
         enabled: this.remindTimerOnUnlockingEnabled,
       })
-      electron.setRemindTimerOnUnlocking(this.remindTimerOnUnlockingEnabled)
+      electron.settings.setRemindTimerOnUnlocking(
+        this.remindTimerOnUnlockingEnabled
+      )
     },
   },
 }

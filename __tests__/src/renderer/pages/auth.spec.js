@@ -11,10 +11,10 @@ describe('Auth', () => {
   const $store = new Store({})
 
   global.electron = {
-    authorize: jest.fn(),
-    showMenubar: jest.fn(),
-    sendGaEvent: jest.fn(),
-    sendMixpanelEvent: jest.fn(),
+    auth: { authorize: jest.fn() },
+    menubar: { show: jest.fn() },
+    googleAnalytics: { sendEvent: jest.fn() },
+    mixpanel: { sendEvent: jest.fn() },
   }
 
   beforeEach(() => {
@@ -35,18 +35,18 @@ describe('Auth', () => {
     })
 
     it('authorizes user', () => {
-      expect(global.electron.authorize).toHaveBeenCalled()
+      expect(global.electron.auth.authorize).toHaveBeenCalled()
     })
 
     it('sends ga event', () => {
-      expect(global.electron.sendGaEvent).toHaveBeenCalledWith(
+      expect(global.electron.googleAnalytics.sendEvent).toHaveBeenCalledWith(
         'Accounts',
         'login'
       )
     })
 
     it('sends mixpanel event', () => {
-      expect(global.electron.sendMixpanelEvent).toHaveBeenCalledWith('Login', {
+      expect(global.electron.mixpanel.sendEvent).toHaveBeenCalledWith('Login', {
         component: 'auth',
       })
     })
@@ -56,7 +56,7 @@ describe('Auth', () => {
     })
 
     it('shows menubar', () => {
-      expect(global.electron.showMenubar).toHaveBeenCalled()
+      expect(global.electron.menubar.show).toHaveBeenCalled()
     })
   })
 })
