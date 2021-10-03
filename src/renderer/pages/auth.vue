@@ -24,12 +24,12 @@ export default {
   },
   methods: {
     async authorize() {
-      await electron.authorize()
-      electron.sendGaEvent('Accounts', 'login')
-      electron.sendMixpanelEvent('Login', { component: 'auth' })
+      await electron.auth.authorize()
+      electron.googleAnalytics.sendEvent('Accounts', 'login')
+      electron.mixpanel.sendEvent('Login', { component: 'auth' })
       this.$store.dispatch('toast/success', this.$t('loggedIn'))
       this.$router.replace(this.localePath('index'))
-      electron.showMenubar()
+      electron.menubar.show()
     },
   },
 }

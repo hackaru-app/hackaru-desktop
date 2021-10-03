@@ -8,11 +8,11 @@ export const state = () => ({
 export const actions = {
   async restoreAccessToken({ commit, state }) {
     if (state.accessToken) return
-    const accessToken = await electron.restoreAccessToken()
+    const accessToken = await electron.auth.restoreAccessToken()
     commit(SET_ACCESS_TOKEN, accessToken || '')
   },
   logout({ commit }) {
-    electron.logout()
+    electron.auth.removeAccessToken()
     commit(LOGOUT)
   },
 }

@@ -70,36 +70,36 @@ export default {
     ...mapGetters({
       working: 'activities/working',
       prevActivity: 'activities/prev',
-      prevActivityDescription: 'activities/prevDescription',
+      prevDescription: 'activities/prevDescription',
     }),
   },
   watch: {
     working() {
       if (this.working) {
-        electron.startTrayTimer(this.working.startedAt)
+        electron.menubar.startTrayTimer(this.working.startedAt)
       } else {
-        electron.stopTrayTimer()
+        electron.menubar.stopTrayTimer()
       }
     },
   },
   mounted() {
-    electron.onSuspend(() => this.stopWorking())
-    electron.onShutdown(() => this.stopWorking())
-    electron.onUnlockScreen(() => this.showReminderNotification())
-    electron.onStartPrevActivity(() => this.startPrevActivity())
-    electron.onShowMenubar(() =>
+    electron.menubar.on.suspend(() => this.stopWorking())
+    electron.menubar.on.shutdown(() => this.stopWorking())
+    electron.menubar.on.unlockScreen(() => this.showReminder())
+    electron.menubar.on.clickDuplicate(() => this.startPrevActivity())
+    electron.menubar.on.showMenubar(() =>
       this.$store.dispatch('activities/fetchWorking')
     )
   },
   destroyed() {
-    electron.stopTrayTimer()
+    electron.menubar.stopTrayTimer()
   },
   methods: {
-    async showReminderNotification() {
+    async showReminder() {
       if (this.working) return
 
       await this.$store.dispatch('activities/fetchWeeklyActivities', new Date())
-      electron.showReminderNotification(this.prevActivityDescription)
+      electron.menubar.showReminder(this.prevDescription)
     },
     startPrevActivity() {
       if (!this.prevActivity || this.working) return
@@ -111,26 +111,26 @@ export default {
       })
     },
     openSettings() {
-      electron.openSettings()
+      electron.menubar.openSettings()
     },
     openWeb() {
-      electron.sendMixpanelEvent('Open web', {
+      electron.mixpanel.sendEvent('Open web', {
         component: 'index',
       })
-      electron.openWeb()
+      electron.menubar.openWeb()
     },
     quit() {
-      electron.sendMixpanelEvent('Quit app', {
+      electron.mixpanel.sendEvent('Quit app', {
         component: 'index',
       })
-      electron.quit()
+      electron.menubar.quit()
     },
     stopWorking() {
       if (!this.working) return
 
       const stoppedAt = new Date()
-      electron.sendGaEvent('Activities', 'stop')
-      electron.sendMixpanelEvent('Stop activity', {
+      electron.googleAnalytics.sendEvent('Activities', 'stop')
+      electron.mixpanel.sendEvent('Stop activity', {
         component: 'index',
         projectId: this.working.project?.id,
         descriptionLength: this.working.description.length,
@@ -157,8 +157,10 @@ export default {
     },
     async logout() {
       this.$modal.hide('dialog')
-      electron.removeUserId()
-      electron.sendGaEvent('Accounts', 'logout')
+      electron.sentry.removeUserId()
+      electron.mixpanel.removeUserId()
+      electron.googleAnalytics.sendEvent('Accounts', 'logout')
+      electron.googleAnalytics.removeUserId()
       this.$store.dispatch('auth/logout')
       await this.$router.replace(this.localePath('auth'))
       window.location.reload()

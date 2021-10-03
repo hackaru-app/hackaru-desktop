@@ -1,5 +1,5 @@
 import * as path from 'path'
-import { basePath } from '~/modules/base-path'
+import { srcDir } from '~/modules/src-dir'
 
 function getTrayIconFileName() {
   switch (process.platform) {
@@ -13,5 +13,5 @@ function getTrayIconFileName() {
 }
 
 export function getTrayIcon(): string {
-  return path.resolve(basePath, `../static/${getTrayIconFileName()}`)
+  return path.resolve(srcDir, `../static/${getTrayIconFileName()}`)
 }

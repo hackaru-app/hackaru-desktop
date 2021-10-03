@@ -25,19 +25,23 @@ describe('Index', () => {
   localVue.directive('tooltip', () => {})
 
   global.electron = {
-    onSuspend: () => {},
-    onShutdown: () => {},
-    onShowMenubar: () => {},
-    onUnlockScreen: () => {},
-    onStartPrevActivity: () => {},
-    startTrayTimer: jest.fn(),
-    stopTrayTimer: jest.fn(),
-    openSettings: jest.fn(),
-    openWeb: jest.fn(),
-    quit: jest.fn(),
-    sendGaEvent: jest.fn(),
-    sendMixpanelEvent: jest.fn(),
-    removeUserId: jest.fn(),
+    menubar: {
+      startTrayTimer: jest.fn(),
+      stopTrayTimer: jest.fn(),
+      openSettings: jest.fn(),
+      openWeb: jest.fn(),
+      quit: jest.fn(),
+      on: {
+        suspend: () => {},
+        shutdown: () => {},
+        showMenubar: () => {},
+        unlockScreen: () => {},
+        clickDuplicate: () => {},
+      },
+    },
+    googleAnalytics: { sendEvent: jest.fn(), removeUserId: jest.fn() },
+    mixpanel: { sendEvent: jest.fn(), removeUserId: jest.fn() },
+    sentry: { removeUserId: jest.fn() },
   }
 
   beforeEach(() => {
@@ -62,7 +66,7 @@ describe('Index', () => {
     })
 
     it('opens settings', () => {
-      expect(global.electron.openSettings).toHaveBeenCalled()
+      expect(global.electron.menubar.openSettings).toHaveBeenCalled()
     })
   })
 
@@ -73,11 +77,11 @@ describe('Index', () => {
     })
 
     it('opens web', () => {
-      expect(global.electron.openWeb).toHaveBeenCalled()
+      expect(global.electron.menubar.openWeb).toHaveBeenCalled()
     })
 
     it('sends mixpanel event', () => {
-      expect(global.electron.sendMixpanelEvent).toHaveBeenCalledWith(
+      expect(global.electron.mixpanel.sendEvent).toHaveBeenCalledWith(
         'Open web',
         {
           component: 'index',
@@ -93,11 +97,11 @@ describe('Index', () => {
     })
 
     it('quits app', () => {
-      expect(global.electron.quit).toHaveBeenCalled()
+      expect(global.electron.menubar.quit).toHaveBeenCalled()
     })
 
     it('sends mixpanel event', () => {
-      expect(global.electron.sendMixpanelEvent).toHaveBeenCalledWith(
+      expect(global.electron.mixpanel.sendEvent).toHaveBeenCalledWith(
         'Quit app',
         {
           component: 'index',
@@ -113,11 +117,22 @@ describe('Index', () => {
     })
 
     it('sends ga event', () => {
-      expect(electron.sendGaEvent).toHaveBeenCalledWith('Accounts', 'logout')
+      expect(electron.googleAnalytics.sendEvent).toHaveBeenCalledWith(
+        'Accounts',
+        'logout'
+      )
     })
 
-    it('removes user-id', () => {
-      expect(electron.removeUserId).toHaveBeenCalled()
+    it('removes ga user-id', () => {
+      expect(electron.googleAnalytics.removeUserId).toHaveBeenCalled()
+    })
+
+    it('removes mixpanel user-id', () => {
+      expect(electron.mixpanel.removeUserId).toHaveBeenCalled()
+    })
+
+    it('removes sentry user-id', () => {
+      expect(electron.sentry.removeUserId).toHaveBeenCalled()
     })
 
     it('dispatches auth/logout', () => {
@@ -147,11 +162,14 @@ describe('Index', () => {
     })
 
     it('sends ga event', () => {
-      expect(electron.sendGaEvent).toHaveBeenCalledWith('Activities', 'stop')
+      expect(electron.googleAnalytics.sendEvent).toHaveBeenCalledWith(
+        'Activities',
+        'stop'
+      )
     })
 
     it('sends mixpanel event', () => {
-      expect(global.electron.sendMixpanelEvent).toHaveBeenCalledWith(
+      expect(global.electron.mixpanel.sendEvent).toHaveBeenCalledWith(
         'Stop activity',
         {
           component: 'index',
@@ -180,7 +198,7 @@ describe('Index', () => {
     })
 
     it('does not send ga event', () => {
-      expect(electron.sendGaEvent).not.toHaveBeenCalled()
+      expect(electron.googleAnalytics.sendEvent).not.toHaveBeenCalled()
     })
 
     it('does not dispatch activities/update', () => {
@@ -201,7 +219,7 @@ describe('Index', () => {
     })
 
     it('starts tray timer', () => {
-      expect(global.electron.startTrayTimer).toHaveBeenCalledWith(
+      expect(global.electron.menubar.startTrayTimer).toHaveBeenCalledWith(
         '2019-01-01T00:12:34'
       )
     })
@@ -221,7 +239,7 @@ describe('Index', () => {
     })
 
     it('stops tray timer', () => {
-      expect(global.electron.stopTrayTimer).toHaveBeenCalled()
+      expect(global.electron.menubar.stopTrayTimer).toHaveBeenCalled()
     })
   })
 })

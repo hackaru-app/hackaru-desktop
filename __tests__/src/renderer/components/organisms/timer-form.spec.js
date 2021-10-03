@@ -18,8 +18,8 @@ describe('TimerForm', () => {
   })
 
   global.electron = {
-    sendGaEvent: jest.fn(),
-    sendMixpanelEvent: jest.fn(),
+    googleAnalytics: { sendEvent: jest.fn() },
+    mixpanel: { sendEvent: jest.fn() },
   }
 
   const localVue = createLocalVue()
@@ -82,14 +82,14 @@ describe('TimerForm', () => {
     })
 
     it('sends ga event', () => {
-      expect(global.electron.sendGaEvent).toHaveBeenCalledWith(
+      expect(global.electron.googleAnalytics.sendEvent).toHaveBeenCalledWith(
         'Activities',
         'update'
       )
     })
 
     it('sends mixpanel event', () => {
-      expect(global.electron.sendMixpanelEvent).toHaveBeenCalledWith(
+      expect(global.electron.mixpanel.sendEvent).toHaveBeenCalledWith(
         'Select project',
         {
           component: 'timer-form',
@@ -114,11 +114,11 @@ describe('TimerForm', () => {
     })
 
     it('does not send ga event', () => {
-      expect(global.electron.sendGaEvent).not.toHaveBeenCalled()
+      expect(global.electron.googleAnalytics.sendEvent).not.toHaveBeenCalled()
     })
 
     it('does not send mixpanel event', () => {
-      expect(global.electron.sendMixpanelEvent).not.toHaveBeenCalled()
+      expect(global.electron.mixpanel.sendEvent).not.toHaveBeenCalled()
     })
 
     it('does not dispatch activities/update', () => {
@@ -185,14 +185,14 @@ describe('TimerForm', () => {
     })
 
     it('sends ga event', () => {
-      expect(global.electron.sendGaEvent).toHaveBeenCalledWith(
+      expect(global.electron.googleAnalytics.sendEvent).toHaveBeenCalledWith(
         'Activities',
         'update'
       )
     })
 
     it('sends mixpanel event', () => {
-      expect(global.electron.sendMixpanelEvent).toHaveBeenCalledWith(
+      expect(global.electron.mixpanel.sendEvent).toHaveBeenCalledWith(
         'Update activity',
         {
           component: 'timer-form',
@@ -220,11 +220,11 @@ describe('TimerForm', () => {
     })
 
     it('does not send ga event', () => {
-      expect(global.electron.sendGaEvent).not.toHaveBeenCalled()
+      expect(global.electron.googleAnalytics.sendEvent).not.toHaveBeenCalled()
     })
 
     it('does not send mixpanel event', () => {
-      expect(global.electron.sendMixpanelEvent).not.toHaveBeenCalled()
+      expect(global.electron.mixpanel.sendEvent).not.toHaveBeenCalled()
     })
 
     it('does not dispatch activities/update', () => {
@@ -248,14 +248,14 @@ describe('TimerForm', () => {
     })
 
     it('sends ga event', () => {
-      expect(global.electron.sendGaEvent).toHaveBeenCalledWith(
+      expect(global.electron.googleAnalytics.sendEvent).toHaveBeenCalledWith(
         'Activities',
         'update'
       )
     })
 
     it('sends mixpanel event', () => {
-      expect(global.electron.sendMixpanelEvent).toHaveBeenCalledWith(
+      expect(global.electron.mixpanel.sendEvent).toHaveBeenCalledWith(
         'Update activity',
         {
           component: 'timer-form',
@@ -283,14 +283,14 @@ describe('TimerForm', () => {
     })
 
     it('sends ga event', () => {
-      expect(global.electron.sendGaEvent).toHaveBeenCalledWith(
+      expect(global.electron.googleAnalytics.sendEvent).toHaveBeenCalledWith(
         'Activities',
         'start'
       )
     })
 
     it('sends mixpanel event', () => {
-      expect(global.electron.sendMixpanelEvent).toHaveBeenCalledWith(
+      expect(global.electron.mixpanel.sendEvent).toHaveBeenCalledWith(
         'Start activity',
         {
           component: 'timer-form',
@@ -324,14 +324,14 @@ describe('TimerForm', () => {
     })
 
     it('sends ga event', () => {
-      expect(global.electron.sendGaEvent).toHaveBeenCalledWith(
+      expect(global.electron.googleAnalytics.sendEvent).toHaveBeenCalledWith(
         'Activities',
         'stop'
       )
     })
 
     it('sends mixpanel event', () => {
-      expect(global.electron.sendMixpanelEvent).toHaveBeenCalledWith(
+      expect(global.electron.mixpanel.sendEvent).toHaveBeenCalledWith(
         'Stop activity',
         {
           component: 'timer-form',
@@ -362,14 +362,14 @@ describe('TimerForm', () => {
     })
 
     it('sends ga event', () => {
-      expect(global.electron.sendGaEvent).toHaveBeenCalledWith(
+      expect(global.electron.googleAnalytics.sendEvent).toHaveBeenCalledWith(
         'Activities',
         'start'
       )
     })
 
     it('sends mixpanel event', () => {
-      expect(global.electron.sendMixpanelEvent).toHaveBeenCalledWith(
+      expect(global.electron.mixpanel.sendEvent).toHaveBeenCalledWith(
         'Start activity',
         {
           component: 'timer-form',
@@ -403,14 +403,14 @@ describe('TimerForm', () => {
     })
 
     it('sends ga event', () => {
-      expect(global.electron.sendGaEvent).toHaveBeenCalledWith(
+      expect(global.electron.googleAnalytics.sendEvent).toHaveBeenCalledWith(
         'Activities',
         'start'
       )
     })
 
     it('sends mixpanel event', () => {
-      expect(global.electron.sendMixpanelEvent).toHaveBeenCalledWith(
+      expect(global.electron.mixpanel.sendEvent).toHaveBeenCalledWith(
         'Start activity',
         {
           component: 'timer-form',
@@ -444,14 +444,14 @@ describe('TimerForm', () => {
     })
 
     it('sends ga event', () => {
-      expect(global.electron.sendGaEvent).toHaveBeenCalledWith(
+      expect(global.electron.googleAnalytics.sendEvent).toHaveBeenCalledWith(
         'Activities',
         'delete'
       )
     })
 
     it('sends mixpanel event', () => {
-      expect(global.electron.sendMixpanelEvent).toHaveBeenCalledWith(
+      expect(global.electron.mixpanel.sendEvent).toHaveBeenCalledWith(
         'Delete activity',
         {
           component: 'timer-form',

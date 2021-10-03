@@ -41,12 +41,10 @@ const migrations: Migrations<TypedStore> = {
   },
 }
 
-export function createStore(): Store<TypedStore> {
-  return new Store<TypedStore>({
-    schema,
-    defaults,
-    name: process.env.NODE_ENV,
-    serialize: (value) => JSON.stringify(value, null, '  '),
-    migrations,
-  })
-}
+export const store = new Store<TypedStore>({
+  schema,
+  defaults,
+  name: process.env.NODE_ENV,
+  serialize: (value) => JSON.stringify(value, null, '  '),
+  migrations,
+})

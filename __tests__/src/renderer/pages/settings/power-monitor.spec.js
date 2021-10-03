@@ -7,13 +7,15 @@ describe('PowerMonitor', () => {
   let wrapper
 
   global.electron = {
-    getSuspend: () => false,
-    getShutdown: () => false,
-    getRemindTimerOnUnlocking: () => false,
-    setSuspend: jest.fn(),
-    setShutdown: jest.fn(),
-    setRemindTimerOnUnlocking: jest.fn(),
-    sendMixpanelEvent: jest.fn(),
+    settings: {
+      getSuspend: () => false,
+      getShutdown: () => false,
+      getRemindTimerOnUnlocking: () => false,
+      setSuspend: jest.fn(),
+      setShutdown: jest.fn(),
+      setRemindTimerOnUnlocking: jest.fn(),
+    },
+    mixpanel: { sendEvent: jest.fn() },
   }
 
   beforeEach(() => {
@@ -27,11 +29,11 @@ describe('PowerMonitor', () => {
     })
 
     it('toggles suspend', () => {
-      expect(global.electron.setSuspend).toHaveBeenCalledWith(true)
+      expect(global.electron.settings.setSuspend).toHaveBeenCalledWith(true)
     })
 
     it('sends mixpanel event', () => {
-      expect(global.electron.sendMixpanelEvent).toHaveBeenCalledWith(
+      expect(global.electron.mixpanel.sendEvent).toHaveBeenCalledWith(
         'Toggle suspend',
         {
           component: 'power-monitor',
@@ -48,11 +50,11 @@ describe('PowerMonitor', () => {
     })
 
     it('toggles shutdown', () => {
-      expect(global.electron.setShutdown).toHaveBeenCalledWith(true)
+      expect(global.electron.settings.setShutdown).toHaveBeenCalledWith(true)
     })
 
     it('sends mixpanel event', () => {
-      expect(global.electron.sendMixpanelEvent).toHaveBeenCalledWith(
+      expect(global.electron.mixpanel.sendEvent).toHaveBeenCalledWith(
         'Toggle shutdown',
         {
           component: 'power-monitor',
@@ -69,13 +71,13 @@ describe('PowerMonitor', () => {
     })
 
     it('toggles remindTimerOnUnlocking', () => {
-      expect(global.electron.setRemindTimerOnUnlocking).toHaveBeenCalledWith(
-        true
-      )
+      expect(
+        global.electron.settings.setRemindTimerOnUnlocking
+      ).toHaveBeenCalledWith(true)
     })
 
     it('sends mixpanel event', () => {
-      expect(global.electron.sendMixpanelEvent).toHaveBeenCalledWith(
+      expect(global.electron.mixpanel.sendEvent).toHaveBeenCalledWith(
         'Toggle remindTimerOnUnlocking',
         {
           component: 'power-monitor',

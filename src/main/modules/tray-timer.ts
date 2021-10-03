@@ -1,14 +1,26 @@
 import { fromS } from 'hh-mm-ss'
-import { parseISO, differenceInSeconds } from 'date-fns'
+import { differenceInSeconds } from 'date-fns'
 import { Tray } from 'electron'
 
-function getDuration(startedAt: string): number {
-  return differenceInSeconds(new Date(), parseISO(startedAt))
-}
+export class TrayTimer {
+  private timer?: NodeJS.Timeout
 
-export function startTrayTimer(tray: Tray, startedAt: string): NodeJS.Timeout {
-  return setInterval(() => {
-    const title = fromS(getDuration(startedAt))
-    tray.setTitle(title, { fontType: 'monospacedDigit' })
-  }, 500)
+  public start(tray: Tray, startedAt: Date): void {
+    this.stop(tray)
+    this.timer = setInterval(() => {
+      const duration = this.getDuration(startedAt)
+      tray.setTitle(duration, { fontType: 'monospacedDigit' })
+    }, 500)
+  }
+
+  public stop(tray: Tray): void {
+    tray.setTitle('')
+    if (this.timer) {
+      clearInterval(this.timer)
+    }
+  }
+
+  private getDuration(startedAt: Date): string {
+    return fromS(differenceInSeconds(new Date(), startedAt))
+  }
 }

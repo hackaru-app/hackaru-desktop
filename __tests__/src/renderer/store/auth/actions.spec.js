@@ -6,8 +6,10 @@ describe('Actions', () => {
     const state = { accessToken: '' }
 
     global.electron = {
-      restoreAccessToken: () => 'accessToken',
-      logout: jest.fn(),
+      auth: {
+        restoreAccessToken: () => 'accessToken',
+        removeAccessToken: jest.fn(),
+      },
     }
 
     beforeEach(() => {
@@ -24,7 +26,7 @@ describe('Actions', () => {
     const state = { accessToken: '' }
 
     beforeEach(() => {
-      global.electron.restoreAccessToken = () => undefined
+      global.electron.auth.restoreAccessToken = () => undefined
       actions.restoreAccessToken({ state, commit })
     })
 
@@ -46,7 +48,7 @@ describe('Actions', () => {
     })
   })
 
-  describe('when logout', () => {
+  describe('when removeAccessToken', () => {
     const commit = jest.fn()
     const state = { accessToken: 'accessToken' }
 
@@ -55,7 +57,7 @@ describe('Actions', () => {
     })
 
     it('calls logout', () => {
-      expect(global.electron.logout).toHaveBeenCalled()
+      expect(global.electron.auth.removeAccessToken).toHaveBeenCalled()
     })
 
     it('commits LOGOUT', () => {

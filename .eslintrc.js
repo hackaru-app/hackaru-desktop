@@ -44,6 +44,14 @@ module.exports = {
         'plugin:prettier/recommended',
       ],
       plugins: ['@typescript-eslint'],
+      rules: {
+        '@typescript-eslint/no-explicit-any': [
+          'error',
+          {
+            ignoreRestArgs: true,
+          },
+        ],
+      },
     },
   ],
 }
