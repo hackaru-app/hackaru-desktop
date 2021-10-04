@@ -96,7 +96,7 @@
     "axios-mock-adapter": "^1.20.0",
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "^10.1.0",
-    "babel-jest": "^27.2.2",
+    "babel-jest": "^27.2.4",
     "conf": "^10.0.3",
     "dotenv-webpack": "^7.0.3",
     "electron": "^13.4.0",
