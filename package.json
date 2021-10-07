@@ -99,7 +99,7 @@
     "babel-jest": "^27.2.4",
     "conf": "^10.0.3",
     "dotenv-webpack": "^7.0.3",
-    "electron": "^13.4.0",
+    "electron": "^13.5.1",
     "electron-builder": "^22.11.7",
     "electron-devtools-installer": "^3.2.0",
     "electron-icon-maker": "^0.0.5",
