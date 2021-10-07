@@ -1,27 +1,27 @@
 import * as Mixpanel from 'mixpanel'
 import { v4 as uuidv4 } from 'uuid'
 
-export class MixPanel {
+export class MixpanelClient {
   private uuid: string
   private mixpanel: Mixpanel.Mixpanel | undefined
   private userId: string | undefined
 
-  constructor(token?: string) {
-    this.mixpanel = this.init(token)
+  constructor() {
+    this.mixpanel = this.init(process.env.MIXPANEL_PROJECT_TOKEN)
     this.uuid = uuidv4()
   }
 
-  setUserId(id: string): void {
+  public setUserId(id: string): void {
     this.userId = id
     this.mixpanel?.alias(id, this.uuid)
   }
 
-  removeUserId(): void {
+  public removeUserId(): void {
     this.userId = undefined
     this.uuid = uuidv4()
   }
 
-  track(eventName: string, props = {}): void {
+  public track(eventName: string, props: Mixpanel.Callback): void {
     this.mixpanel?.track(eventName, {
       $user_id: this.userId,
       distinct_id: this.distinctId,

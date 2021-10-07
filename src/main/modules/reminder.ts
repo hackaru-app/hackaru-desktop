@@ -1,30 +1,23 @@
 import { Notification, NotificationAction } from 'electron'
 import i18next from 'i18next'
 
-function getBodyText(prevDescription: string): string {
+function buildBodyText(prevDescription: string): string {
   return prevDescription
     ? i18next.t('reminder:prevDescription', { prevDescription })
     : i18next.t('reminder:noPrevDescription')
 }
 
-function getActions(prevDescription: string): Array<NotificationAction> {
-  if (prevDescription) {
-    return [
-      {
-        type: 'button',
-        text: i18next.t('reminder:duplicate'),
-      },
-    ]
-  } else {
-    return []
-  }
+function buildActions(prevDescription: string): Array<NotificationAction> {
+  if (!prevDescription) return []
+
+  return [{ type: 'button', text: i18next.t('reminder:duplicate') }]
 }
 
 export function createReminder(prevDescription: string): Notification {
   return new Notification({
     title: i18next.t('reminder:title'),
-    body: getBodyText(prevDescription),
-    actions: getActions(prevDescription),
+    body: buildBodyText(prevDescription),
+    actions: buildActions(prevDescription),
     silent: true,
   })
 }
