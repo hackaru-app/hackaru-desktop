@@ -4,7 +4,7 @@ import i18next from 'i18next'
 import { handle } from '~/core/handlers'
 import { createPrefixer } from '~/core/prefixer'
 import { initDevtools } from '~/modules/devtools'
-import { TrayTimer } from '~/modules/tray-timer'
+import * as TrayTimer from '~/modules/tray-timer'
 import { createMenubar } from '~/windows/menubar'
 import { createSettingsWindow } from '~/windows/settings'
 import { createReminder } from '~/modules/reminder'
@@ -12,9 +12,9 @@ import { store } from '~/modules/store'
 
 const namespace = 'menubar'
 const prefix = createPrefixer(namespace)
-
-const trayTimer = new TrayTimer()
 const menubar = createMenubar()
+
+let trayTimer: NodeJS.Timeout | undefined
 
 menubar.on('ready', () => {
   menubar.tray.setToolTip(i18next.t('menubar:tooltip'))
@@ -71,11 +71,11 @@ handle(prefix('quit'), () => {
 })
 
 handle(prefix('startTrayTimer'), (_event, startedAt: string) => {
-  trayTimer.start(menubar.tray, parseISO(startedAt))
+  trayTimer = TrayTimer.start(menubar.tray, parseISO(startedAt))
 })
 
 handle(prefix('stopTrayTimer'), () => {
-  trayTimer.stop(menubar.tray)
+  if (trayTimer) TrayTimer.stop(menubar.tray, trayTimer)
 })
 
 handle(prefix('show'), () => {

@@ -1,13 +1,16 @@
 import { BrowserWindow } from 'electron'
-import { SingleWindow } from '~/modules/single-window'
 import { getWindowUrl, buildWindowOptions } from '~/modules/window'
 
-const options = buildWindowOptions('settings', { width: 600, height: 480 })
-const singleWindow = new SingleWindow(options)
+let window: BrowserWindow | undefined
 
 export function createSettingsWindow(): BrowserWindow {
-  return singleWindow.ensure((window) => {
-    window.removeMenu()
-    window.loadURL(getWindowUrl('/settings/power-monitor'))
-  })
+  if (window) return window
+
+  const options = buildWindowOptions('settings', { width: 600, height: 480 })
+  window = new BrowserWindow(options)
+  window.on('closed', () => (window = undefined))
+  window.removeMenu()
+  window.loadURL(getWindowUrl('/settings/power-monitor'))
+
+  return window
 }
