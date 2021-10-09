@@ -8,12 +8,12 @@ describe('PowerMonitor', () => {
 
   global.electron = {
     settings: {
-      getSuspend: () => false,
-      getShutdown: () => false,
-      getRemindTimerOnUnlocking: () => false,
-      setSuspend: jest.fn(),
-      setShutdown: jest.fn(),
-      setRemindTimerOnUnlocking: jest.fn(),
+      getStopTimerOnSuspend: () => false,
+      getStopTimerOnShutdown: () => false,
+      getRemindTimerOnUnlocked: () => false,
+      setStopTimerOnSuspend: jest.fn(),
+      setStopTimerOnShutdown: jest.fn(),
+      setRemindTimerOnUnlocked: jest.fn(),
     },
     mixpanel: { sendEvent: jest.fn() },
   }
@@ -29,7 +29,9 @@ describe('PowerMonitor', () => {
     })
 
     it('toggles suspend', () => {
-      expect(global.electron.settings.setSuspend).toHaveBeenCalledWith(true)
+      expect(
+        global.electron.settings.setStopTimerOnSuspend
+      ).toHaveBeenCalledWith(true)
     })
 
     it('sends mixpanel event', () => {
@@ -50,7 +52,9 @@ describe('PowerMonitor', () => {
     })
 
     it('toggles shutdown', () => {
-      expect(global.electron.settings.setShutdown).toHaveBeenCalledWith(true)
+      expect(
+        global.electron.settings.setStopTimerOnShutdown
+      ).toHaveBeenCalledWith(true)
     })
 
     it('sends mixpanel event', () => {
@@ -72,7 +76,7 @@ describe('PowerMonitor', () => {
 
     it('toggles remindTimerOnUnlocking', () => {
       expect(
-        global.electron.settings.setRemindTimerOnUnlocking
+        global.electron.settings.setRemindTimerOnUnlocked
       ).toHaveBeenCalledWith(true)
     })
 
