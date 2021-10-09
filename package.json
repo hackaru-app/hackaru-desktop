@@ -1,15 +1,16 @@
 {
   "name": "hackaru-desktop",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "author": "ktmouk <ktmouk@gmail.com>",
   "description": "Hackaru for desktop",
   "private": true,
+  "main": "dist/main/main.js",
   "scripts": {
     "eslint": "eslint --ext .js,.ts,.vue --ignore-path .gitignore",
     "stylelint": "stylelint '**/*.{vue,scss}'",
     "test": "jest",
     "dev": "webpack -c src/main/webpack.dev.js --progress && run-p -l dev:*",
-    "dev:main": "wait-on tcp:7865 && electron dist/main/main",
+    "dev:main": "wait-on tcp:7865 && electron .",
     "dev:renderer": "nuxt dev --dotenv ../../.env src/renderer",
     "build": "run-p -l build:* && electron-builder",
     "build:main": "webpack -c src/main/webpack.prod.js",
@@ -129,7 +130,7 @@
     "vue-jest": "^3.0.4",
     "vuex-mock-store": "^0.0.8",
     "wait-on": "^6.0.0",
-    "webpack": "^5.56.1",
+    "webpack": "^5.58.0",
     "webpack-cli": "^4.8.0",
     "webpack-merge": "^5.8.0"
   }
