@@ -8,9 +8,9 @@
 </p>
 
 ## Download
-- [MacOS](https://github.com/hackaru-app/hackaru-desktop/releases/download/v1.3.0/hackaru-desktop-v1.3.0.dmg)
-- [Windows](https://github.com/hackaru-app/hackaru-desktop/releases/download/v1.3.0/hackaru-desktop-v1.3.0.exe)
-- [Linux](https://github.com/hackaru-app/hackaru-desktop/releases/download/v1.3.0/hackaru-desktop-v1.3.0.AppImage)
+- [MacOS](https://github.com/hackaru-app/hackaru-desktop/releases/download/v1.3.1/hackaru-desktop-v1.3.1.dmg)
+- [Windows](https://github.com/hackaru-app/hackaru-desktop/releases/download/v1.3.1/hackaru-desktop-v1.3.1.exe)
+- [Linux](https://github.com/hackaru-app/hackaru-desktop/releases/download/v1.3.1/hackaru-desktop-v1.3.1.AppImage)
 
 ## Feedback
 
