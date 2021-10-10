@@ -6,7 +6,7 @@ interface TypedStore {
   powerMonitor: {
     suspend: boolean
     shutdown: boolean
-    remindTimerOnUnlocking: boolean
+    remindTimerOnUnlocked: boolean
   }
 }
 
@@ -20,7 +20,7 @@ const schema: Store.Schema<TypedStore> = {
       shutdown: {
         type: 'boolean',
       },
-      remindTimerOnUnlocking: {
+      remindTimerOnUnlocked: {
         type: 'boolean',
       },
     },
@@ -31,13 +31,13 @@ const defaults: TypedStore = {
   powerMonitor: {
     suspend: true,
     shutdown: true,
-    remindTimerOnUnlocking: true,
+    remindTimerOnUnlocked: true,
   },
 }
 
 const migrations: Migrations<TypedStore> = {
   '1.3.0': (store: Conf<TypedStore>) => {
-    store.set('powerMonitor.remindTimerOnUnlocking', true)
+    store.set('powerMonitor.remindTimerOnUnlocked', true)
   },
 }
 
