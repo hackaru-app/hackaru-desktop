@@ -9,7 +9,7 @@
       <label>
         <input
           class="suspend"
-          :checked="suspendEnabled"
+          :checked="stopTimerOnSuspend"
           type="checkbox"
           data-test-id="suspend"
           @click="toggleSuspend"
@@ -18,7 +18,7 @@
       <label>
         <input
           class="shutdown"
-          :checked="shutdownEnabled"
+          :checked="stopTimerOnShutdown"
           data-test-id="shutdown"
           type="checkbox"
           @click="toggleShutdown"
@@ -27,7 +27,7 @@
       <label>
         <input
           class="shutdown"
-          :checked="remindTimerOnUnlockingEnabled"
+          :checked="remindTimerOnUnlocked"
           data-test-id="remind-timer-on-unlocking"
           type="checkbox"
           @click="toggleRemindTimerOnUnlocking"
@@ -49,43 +49,42 @@ export default {
   },
   data() {
     return {
-      suspendEnabled: false,
-      shutdownEnabled: false,
-      remindTimerOnUnlockingEnabled: false,
+      stopTimerOnSuspend: false,
+      stopTimerOnShutdown: false,
+      remindTimerOnUnlocked: false,
     }
   },
   async mounted() {
-    this.suspendEnabled = await electron.settings.getSuspend()
-    this.shutdownEnabled = await electron.settings.getShutdown()
-    this.remindTimerOnUnlockingEnabled =
-      await electron.settings.getRemindTimerOnUnlocking()
+    this.stopTimerOnSuspend = await electron.config.get('stopTimerOnSuspend')
+    this.stopTimerOnShutdown = await electron.config.get('stopTimerOnShutdown')
+    this.remindTimerOnUnlocked = await electron.config.get(
+      'remindTimerOnUnlocked'
+    )
   },
   methods: {
     toggleSuspend() {
-      this.suspendEnabled = !this.suspendEnabled
+      this.stopTimerOnSuspend = !this.stopTimerOnSuspend
       electron.mixpanel.sendEvent('Toggle suspend', {
         component: 'power-monitor',
-        enabled: this.suspendEnabled,
+        enabled: this.stopTimerOnSuspend,
       })
-      electron.settings.setSuspend(this.suspendEnabled)
+      electron.config.set('stopTimerOnSuspend', this.stopTimerOnSuspend)
     },
     toggleShutdown() {
-      this.shutdownEnabled = !this.shutdownEnabled
+      this.stopTimerOnShutdown = !this.stopTimerOnShutdown
       electron.mixpanel.sendEvent('Toggle shutdown', {
         component: 'power-monitor',
-        enabled: this.shutdownEnabled,
+        enabled: this.stopTimerOnShutdown,
       })
-      electron.settings.setShutdown(this.shutdownEnabled)
+      electron.config.set('stopTimerOnShutdown', this.stopTimerOnShutdown)
     },
     toggleRemindTimerOnUnlocking() {
-      this.remindTimerOnUnlockingEnabled = !this.remindTimerOnUnlockingEnabled
+      this.remindTimerOnUnlocked = !this.remindTimerOnUnlocked
       electron.mixpanel.sendEvent('Toggle remindTimerOnUnlocking', {
         component: 'power-monitor',
-        enabled: this.remindTimerOnUnlockingEnabled,
+        enabled: this.remindTimerOnUnlocked,
       })
-      electron.settings.setRemindTimerOnUnlocking(
-        this.remindTimerOnUnlockingEnabled
-      )
+      electron.config.set('remindTimerOnUnlocked', this.remindTimerOnUnlocked)
     },
   },
 }

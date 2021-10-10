@@ -8,7 +8,7 @@ import * as TrayTimer from '~/modules/tray-timer'
 import { createMenubar } from '~/windows/menubar'
 import { createSettingsWindow } from '~/windows/settings'
 import { createReminder } from '~/modules/reminder'
-import { store } from '~/modules/store'
+import { config } from '~/config'
 
 const namespace = 'menubar'
 const prefix = createPrefixer(namespace)
@@ -41,19 +41,19 @@ menubar.on('show', () => {
 })
 
 powerMonitor.on('suspend', () => {
-  if (store.get('powerMonitor.suspend')) {
+  if (config.get('stopTimerOnSuspend')) {
     menubar.window?.webContents.send(prefix('suspend'))
   }
 })
 
 powerMonitor.on('shutdown', () => {
-  if (store.get('powerMonitor.shutdown')) {
+  if (config.get('stopTimerOnShutdown')) {
     menubar.window?.webContents.send(prefix('shutdown'))
   }
 })
 
 powerMonitor.on('unlock-screen', () => {
-  if (store.get('powerMonitor.remindTimerOnUnlocking')) {
+  if (config.get('remindTimerOnUnlocked')) {
     menubar.window?.webContents.send(prefix('unlockScreen'))
   }
 })
