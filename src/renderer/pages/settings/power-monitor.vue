@@ -11,27 +11,27 @@
           class="suspend"
           :checked="stopTimerOnSuspend"
           type="checkbox"
-          data-test-id="suspend"
-          @click="toggleSuspend"
-        />{{ $t('suspend') }}
+          data-test-id="stop-timer-on-suspend"
+          @click="toggleChecked('stopTimerOnSuspend')"
+        />{{ $t('stopTimerOnSuspend') }}
       </label>
       <label>
         <input
           class="shutdown"
           :checked="stopTimerOnShutdown"
-          data-test-id="shutdown"
+          data-test-id="stop-timer-on-shutdown"
           type="checkbox"
-          @click="toggleShutdown"
-        />{{ $t('shutdown') }}
+          @click="toggleChecked('stopTimerOnShutdown')"
+        />{{ $t('stopTimerOnShutdown') }}
       </label>
       <label>
         <input
           class="shutdown"
           :checked="remindTimerOnUnlocked"
-          data-test-id="remind-timer-on-unlocking"
+          data-test-id="remind-timer-on-unlocked"
           type="checkbox"
-          @click="toggleRemindTimerOnUnlocking"
-        />{{ $t('remindTimerOnUnlocking') }}
+          @click="toggleChecked('remindTimerOnUnlocked')"
+        />{{ $t('remindTimerOnUnlocked') }}
         <text-label class="purple">BETA</text-label>
       </label>
     </div>
@@ -62,29 +62,13 @@ export default {
     )
   },
   methods: {
-    toggleSuspend() {
-      this.stopTimerOnSuspend = !this.stopTimerOnSuspend
-      electron.mixpanel.sendEvent('Toggle suspend', {
+    toggleChecked(key) {
+      this[key] = !this[key]
+      electron.config.set(key, this[key])
+      electron.mixpanel.sendEvent(`Toggle ${key}`, {
         component: 'power-monitor',
-        enabled: this.stopTimerOnSuspend,
+        enabled: this[key],
       })
-      electron.config.set('stopTimerOnSuspend', this.stopTimerOnSuspend)
-    },
-    toggleShutdown() {
-      this.stopTimerOnShutdown = !this.stopTimerOnShutdown
-      electron.mixpanel.sendEvent('Toggle shutdown', {
-        component: 'power-monitor',
-        enabled: this.stopTimerOnShutdown,
-      })
-      electron.config.set('stopTimerOnShutdown', this.stopTimerOnShutdown)
-    },
-    toggleRemindTimerOnUnlocking() {
-      this.remindTimerOnUnlocked = !this.remindTimerOnUnlocked
-      electron.mixpanel.sendEvent('Toggle remindTimerOnUnlocking', {
-        component: 'power-monitor',
-        enabled: this.remindTimerOnUnlocked,
-      })
-      electron.config.set('remindTimerOnUnlocked', this.remindTimerOnUnlocked)
     },
   },
 }

@@ -18,13 +18,13 @@ describe('PowerMonitor', () => {
     factory = () => shallowMount(PowerMonitor)
   })
 
-  describe('when click suspend', () => {
+  describe('when click stop-timer-on-suspend', () => {
     beforeEach(() => {
       wrapper = factory()
-      wrapper.find(testId('suspend')).trigger('click')
+      wrapper.find(testId('stop-timer-on-suspend')).trigger('click')
     })
 
-    it('toggles suspend', () => {
+    it('toggles stopTimerOnSuspend', () => {
       expect(global.electron.config.set).toHaveBeenCalledWith(
         'stopTimerOnSuspend',
         true
@@ -33,7 +33,7 @@ describe('PowerMonitor', () => {
 
     it('sends mixpanel event', () => {
       expect(global.electron.mixpanel.sendEvent).toHaveBeenCalledWith(
-        'Toggle suspend',
+        'Toggle stopTimerOnSuspend',
         {
           component: 'power-monitor',
           enabled: true,
@@ -42,13 +42,13 @@ describe('PowerMonitor', () => {
     })
   })
 
-  describe('when click shutdown', () => {
+  describe('when click stop-timer-on-shutdown', () => {
     beforeEach(() => {
       wrapper = factory()
-      wrapper.find(testId('shutdown')).trigger('click')
+      wrapper.find(testId('stop-timer-on-shutdown')).trigger('click')
     })
 
-    it('toggles shutdown', () => {
+    it('toggles stopTimerOnShutdown', () => {
       expect(global.electron.config.set).toHaveBeenCalledWith(
         'stopTimerOnShutdown',
         true
@@ -57,7 +57,7 @@ describe('PowerMonitor', () => {
 
     it('sends mixpanel event', () => {
       expect(global.electron.mixpanel.sendEvent).toHaveBeenCalledWith(
-        'Toggle shutdown',
+        'Toggle stopTimerOnShutdown',
         {
           component: 'power-monitor',
           enabled: true,
@@ -66,10 +66,10 @@ describe('PowerMonitor', () => {
     })
   })
 
-  describe('when click remindTimerOnUnlocking', () => {
+  describe('when click remind-timer-on-unlocked', () => {
     beforeEach(() => {
       wrapper = factory()
-      wrapper.find(testId('remind-timer-on-unlocking')).trigger('click')
+      wrapper.find(testId('remind-timer-on-unlocked')).trigger('click')
     })
 
     it('toggles remindTimerOnUnlocked', () => {
@@ -81,7 +81,7 @@ describe('PowerMonitor', () => {
 
     it('sends mixpanel event', () => {
       expect(global.electron.mixpanel.sendEvent).toHaveBeenCalledWith(
-        'Toggle remindTimerOnUnlocking',
+        'Toggle remindTimerOnUnlocked',
         {
           component: 'power-monitor',
           enabled: true,
