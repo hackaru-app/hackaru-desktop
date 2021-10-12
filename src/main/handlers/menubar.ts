@@ -71,6 +71,7 @@ handle(prefix('quit'), () => {
 })
 
 handle(prefix('startTrayTimer'), (_event, startedAt: string) => {
+  if (trayTimer) TrayTimer.stop(menubar.tray, trayTimer)
   trayTimer = TrayTimer.start(menubar.tray, parseISO(startedAt))
 })
 
