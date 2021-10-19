@@ -89,7 +89,7 @@
     "@types/hh-mm-ss": "^1.2.1",
     "@types/universal-analytics": "^0.4.5",
     "@types/uuid": "^8.3.1",
-    "@types/webpack-env": "^1.16.2",
+    "@types/webpack-env": "^1.16.3",
     "@typescript-eslint/eslint-plugin": "^4.33.0",
     "@typescript-eslint/parser": "^4.33.0",
     "@vue/test-utils": "^1.2.2",
