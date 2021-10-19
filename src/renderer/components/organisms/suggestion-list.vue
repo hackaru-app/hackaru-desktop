@@ -63,14 +63,13 @@ export default {
   background-color: $backdrop-color;
   box-sizing: border-box;
   height: 100vh;
-  position: fixed;
   width: 100%;
   z-index: index($z, backdrop);
 }
 .container {
-  background: $background;
+  background: $background-translucent;
   box-shadow: 0 3px 5px $shadow-dark;
-  max-height: 243px;
+  max-height: 182px;
   overflow: scroll;
   position: fixed;
   width: 100%;
@@ -93,6 +92,6 @@ export default {
   box-sizing: border-box;
   display: flex;
   height: 60px;
-  padding: 0 30px;
+  padding: 0 25px;
 }
 </style>

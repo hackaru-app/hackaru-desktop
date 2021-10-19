@@ -9,7 +9,7 @@ import { sentry } from '~/preloads/common/sentry'
 
 initSentry(Sentry)
 
-const namespace = 'menubar'
+const namespace = 'index'
 const prefix = createPrefixer(namespace)
 
 bridge({
@@ -21,23 +21,11 @@ bridge({
     logout(): void {
       invoke(prefix('logout'))
     },
-    openWeb(): void {
-      invoke(prefix('openWeb'))
-    },
-    quit(): void {
-      invoke(prefix('quit'))
-    },
-    show(): void {
-      invoke(prefix('show'))
-    },
     startTrayTimer(startedAt: string): void {
       invoke(prefix('startTrayTimer'), startedAt)
     },
     stopTrayTimer(): void {
       invoke(prefix('stopTrayTimer'))
-    },
-    openSettings(): void {
-      invoke(prefix('openSettings'))
     },
     showReminder(prevDescription: string): void {
       invoke(prefix('showReminder'), prevDescription)
@@ -47,7 +35,7 @@ bridge({
       shutdown: listen(prefix('shutdown')),
       unlockScreen: listen(prefix('unlockScreen')),
       clickDuplicate: listen(prefix('clickDuplicate')),
-      showMenubar: listen(prefix('showMenubar')),
+      logout: listen(prefix('logout')),
     },
   },
 })

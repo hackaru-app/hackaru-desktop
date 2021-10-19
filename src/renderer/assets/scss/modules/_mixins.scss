@@ -1,0 +1,5 @@
+@mixin mq($breakpoint: small) {
+  @media screen and (max-height: #{map-get($breakpoints, $breakpoint)}) {
+    @content;
+  }
+}

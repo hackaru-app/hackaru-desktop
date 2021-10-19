@@ -68,7 +68,6 @@
     "lodash.get": "^4.4.2",
     "lodash.merge": "^4.6.2",
     "lodash.omit": "^4.5.0",
-    "menubar": "^9.0.5",
     "mixpanel": "^0.13.0",
     "normalizr": "^3.6.1",
     "nuxt": "^2.14.12",

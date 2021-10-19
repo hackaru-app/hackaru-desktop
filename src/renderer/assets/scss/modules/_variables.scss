@@ -49,7 +49,7 @@ $white-lighter: #fffffff0;
   // Dark
   @media (prefers-color-scheme: dark) {
     // Background
-    --background-translucent: #303748;
+    --background-translucent: #303748f5;
     --background-light: #303748;
     --background: #2c3241;
     --background-hover: #2a303e;
@@ -118,9 +118,10 @@ $background-dark-hover: var(--background-dark-hover);
 // Animation
 $animation-duration: 0.25s;
 
+// MediaQueries
+$breakpoints: (
+  'small': 170px,
+);
+
 // ZIndex
-$z: tooltip,
-  // low
-  backdrop,
-  toast, window-header, // high
-;
+$z: backdrop, ticker, tooltip, toast, window-header;

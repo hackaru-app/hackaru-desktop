@@ -30,6 +30,11 @@ export default {
       ],
     }
   },
+  head() {
+    return {
+      title: 'Settings',
+    }
+  },
 }
 </script>
 

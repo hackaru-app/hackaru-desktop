@@ -1,6 +1,6 @@
 <template>
   <div class="project-select">
-    <project-name v-bind="selected" class="project-name" />
+    <dot :color="selectedColor" />
     <select data-test-id="select" @change="change">
       <option
         v-for="project in projects"
@@ -15,11 +15,11 @@
 </template>
 
 <script>
-import ProjectName from '~/components/molecules/project-name'
+import Dot from '~/components/atoms/dot'
 
 export default {
   components: {
-    ProjectName,
+    Dot,
   },
   props: {
     value: {
@@ -35,6 +35,9 @@ export default {
     selected() {
       return this.projects.find(({ id }) => id === this.value)
     },
+    selectedColor() {
+      return this.selected?.color || '#cccfd9'
+    },
   },
   methods: {
     change(e) {
@@ -47,8 +50,12 @@ export default {
 
 <style scoped lang="scss">
 .project-select {
+  align-items: center;
+  border-right: 1px $border-dark solid;
+  display: flex;
   flex: 1;
   height: 100%;
+  padding: 0 25px;
   position: relative;
 }
 select {

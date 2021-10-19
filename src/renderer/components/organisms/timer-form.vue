@@ -1,44 +1,44 @@
 <i18n src="~/assets/locales/components/organisms/timer-form.json"></i18n>
 
 <template>
-  <form @submit.prevent>
-    <div class="form-item">
-      <project-select
-        :value="projectId"
-        :projects="projects"
-        class="project-select"
-        data-test-id="project-select"
-        @input="selectProject"
+  <section>
+    <header class="header">
+      <form class="form" @submit.prevent>
+        <project-select
+          :value="projectId"
+          :projects="projects"
+          class="project-select"
+          data-test-id="project-select"
+          @input="selectProject"
+        />
+        <input
+          ref="description"
+          v-model="description"
+          :placeholder="$t('description')"
+          class="description"
+          data-test-id="description"
+          @change="update"
+          @focus="focus"
+          @blur="blur"
+          @keypress.enter.prevent="startOrUpdate"
+        />
+        <play-button
+          :working="working"
+          class="play-button"
+          data-test-id="play-button"
+          @start="start"
+          @stop="stop"
+        />
+      </form>
+      <suggestion-list
+        v-if="focused && !working"
+        class="suggestion-list"
+        data-test-id="suggestion-list"
+        :query="description"
+        @select="selectSuggestion"
       />
-    </div>
-    <div class="form-item">
-      <input
-        v-model="description"
-        :placeholder="$t('description')"
-        class="description"
-        data-test-id="description"
-        @change="update"
-        @focus="focus"
-        @blur="blur"
-        @keypress.enter.prevent="startOrUpdate"
-      />
-    </div>
-    <suggestion-list
-      v-if="focused && !working"
-      class="suggestion-list"
-      data-test-id="suggestion-list"
-      :query="description"
-      @select="selectSuggestion"
-    />
-    <section class="working-timer">
-      <ticker v-bind="activity" class="ticker" />
-      <play-button
-        :working="working"
-        data-test-id="play-button"
-        @start="start"
-        @stop="stop"
-      />
-    </section>
+    </header>
+    <ticker v-bind="activity" class="ticker" />
     <icon-button
       v-if="working"
       v-tooltip="$t('delete')"
@@ -49,7 +49,7 @@
     >
       <icon name="trash-2-icon" class="icon is-danger" />
     </icon-button>
-  </form>
+  </section>
 </template>
 
 <script>
@@ -106,12 +106,19 @@ export default {
       },
     },
   },
+  mounted() {
+    document.addEventListener('mouseleave', this.blur)
+  },
+  destroyed() {
+    document.removeEventListener('mouseleave', this.blur)
+  },
   methods: {
     focus() {
       this.focused = true
     },
     blur() {
       this.focused = false
+      this.$refs.description.blur()
     },
     selectProject(id) {
       this.projectId = id
@@ -225,40 +232,68 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.project-select {
-  align-items: center;
-  display: flex;
+.header {
+  margin-top: 30px;
+  position: absolute;
+  transition: opacity 0.3s;
 }
-.form-item {
+.form {
   align-items: center;
-  border-bottom: 1px $border solid;
+  background-color: $background-translucent;
+  border-bottom: 1px $border-dark solid;
+  box-shadow: 3px 0 5px $shadow-dark;
   box-sizing: border-box;
   display: flex;
   height: 65px;
-  padding: 0 30px;
+  width: 100vw;
+}
+.suggestion-list {
+  position: fixed;
+  top: 95px;
 }
 .description {
   border: 0;
   height: 100%;
+  overflow: hidden;
+  padding: 0 20px;
+  padding-right: 15px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   width: 100%;
 }
-.working-timer {
+.ticker {
   align-items: center;
   display: flex;
-  flex-direction: column;
   font-family: $font-family-duration;
-  font-size: 46px;
+  font-size: 15vw;
   font-weight: 300;
+  height: 100vh;
   justify-content: center;
-  margin-bottom: 10px;
-  margin-top: 60px;
+  margin: 0;
+  min-width: 100vw;
+  padding-top: 50px;
+  pointer-events: none;
 }
-.ticker {
-  margin-bottom: 10px;
+.play-button {
+  margin-bottom: 1px;
+  margin-right: 10px;
 }
 .delete-button {
-  float: right;
-  margin-right: 30px;
-  margin-top: 20px;
+  bottom: 15px;
+  left: 15px;
+  position: absolute;
+}
+@include mq(small) {
+  .header,
+  .delete-button {
+    opacity: 0;
+  }
+  html:hover .header,
+  html:hover .delete-button {
+    opacity: 1;
+  }
+  .ticker {
+    padding-top: 20px;
+  }
 }
 </style>

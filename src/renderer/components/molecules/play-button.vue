@@ -7,7 +7,7 @@
       data-test-id="start-button"
       @click="start"
     >
-      <icon name="play-icon" class="is-x-large" />
+      <icon name="play-icon" />
     </base-button>
     <base-button
       v-else
@@ -16,7 +16,7 @@
       data-test-id="stop-button"
       @click="stop"
     >
-      <icon name="square-icon" class="is-large" />
+      <icon name="square-icon" />
     </base-button>
   </div>
 </template>
@@ -54,12 +54,12 @@ export default {
   box-shadow: 0 3px 3px #00000010;
   display: flex;
   flex-shrink: 0;
-  height: 50px;
+  height: 40px;
   padding: 0;
   pointer-events: auto;
-  width: 50px;
+  width: 40px;
 }
 .base-button.control-button.start .icon {
-  padding-left: 3px;
+  margin-left: 3px;
 }
 </style>

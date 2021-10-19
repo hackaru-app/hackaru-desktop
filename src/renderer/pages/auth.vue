@@ -29,7 +29,6 @@ export default {
       electron.mixpanel.sendEvent('Login', { component: 'auth' })
       this.$store.dispatch('toast/success', this.$t('loggedIn'))
       this.$router.replace(this.localePath('index'))
-      electron.menubar.show()
     },
   },
 }
@@ -43,13 +42,20 @@ export default {
   flex-direction: column;
   height: 100vh;
   justify-content: center;
+  padding-top: 10px;
 }
 .logo-icon {
   height: 25px;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
   width: 25px;
 }
 .auth-button {
   width: 140px;
+}
+
+@include mq(small) {
+  .logo-icon {
+    display: none;
+  }
 }
 </style>
