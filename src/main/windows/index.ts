@@ -13,7 +13,7 @@ export function createIndexWindow(): BrowserWindow {
       titleBarStyle: 'hidden',
       titleBarOverlay: {
         color: '#2c3241',
-        symbolColor: '#74b1be',
+        symbolColor: '#fff',
       },
     })
   )
