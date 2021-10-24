@@ -3,6 +3,7 @@
 <template>
   <section>
     <div class="content">
+      <window-header class="is-small" />
       <img src="~/assets/images/logo.svg" class="logo-icon" />
       <base-button
         class="is-primary auth-button"

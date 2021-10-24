@@ -293,7 +293,7 @@ export default {
     opacity: 1;
   }
   .ticker {
-    padding-top: 20px;
+    padding-top: 25px;
   }
 }
 </style>

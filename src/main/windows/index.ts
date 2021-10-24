@@ -11,6 +11,10 @@ export function createIndexWindow(): BrowserWindow {
       alwaysOnTop: true,
       frame: true,
       titleBarStyle: 'hidden',
+      titleBarOverlay: {
+        color: '#2c3241',
+        symbolColor: '#74b1be',
+      },
     })
   )
   window.removeMenu()

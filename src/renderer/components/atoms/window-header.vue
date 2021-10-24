@@ -6,7 +6,7 @@
 .window-header {
   align-items: center;
   -webkit-app-region: drag;
-  background-color: $background-dark;
+  background-color: $title-header-background;
   box-sizing: border-box;
   display: flex;
   height: 45px;
