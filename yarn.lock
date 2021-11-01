@@ -10351,10 +10351,10 @@ memorystream@^0.3.1:
   resolved "https://registry.yarnpkg.com/memorystream/-/memorystream-0.3.1.tgz#86d7090b30ce455d63fbae12dda51a47ddcaf9b2"
   integrity sha1-htcJCzDORV1j+64S3aUaR93K+bI=
 
-menubar@^9.0.5:
-  version "9.0.5"
-  resolved "https://registry.yarnpkg.com/menubar/-/menubar-9.0.5.tgz#374bd86d6357b69365966563c467384b43266b66"
-  integrity sha512-IjVtGom5Agq5hMR6GchxBUiq9qo//gu0pTzMzhoHtrsBRI2jqGxUJM27FirXlVv/CleUzZqkr+FIwajAUi+mFw==
+menubar@^9.1.0:
+  version "9.1.0"
+  resolved "https://registry.yarnpkg.com/menubar/-/menubar-9.1.0.tgz#194acc6b50eb36efff60aab77c038a027e0ca2d5"
+  integrity sha512-JPnaswwTKjPj11mn52TkeAohlzpfUb5R8zbwpESvFVIejIqj0IYFw6I3H5+n3Pph5VT2LhxLvm0eURTAwjXpxg==
   dependencies:
     electron-positioner "^4.1.0"
 
