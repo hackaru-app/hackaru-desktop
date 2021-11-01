@@ -80,23 +80,28 @@ export default {
   display: flex;
   justify-content: space-between;
   padding-bottom: 20px;
+
   h1 {
     align-items: center;
     display: flex;
     font-size: 18px;
     font-weight: normal;
+
     .icon {
       margin-right: 10px;
     }
   }
 }
+
 .form {
   display: flex;
   flex-direction: column;
   margin-top: 20px;
+
   label {
     margin: 5px 0;
   }
+
   input {
     margin-right: 10px;
   }

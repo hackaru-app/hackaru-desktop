@@ -44,11 +44,13 @@ export default {
   height: 100vh;
   justify-content: center;
 }
+
 .logo-icon {
   height: 25px;
   margin-bottom: 40px;
   width: 25px;
 }
+
 .auth-button {
   width: 140px;
 }

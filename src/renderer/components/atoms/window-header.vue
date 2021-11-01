@@ -17,6 +17,7 @@
   width: 100%;
   z-index: index($z, window-header);
 }
+
 .is-small {
   height: 30px;
 }

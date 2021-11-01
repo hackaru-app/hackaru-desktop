@@ -59,6 +59,7 @@ export default {
   pointer-events: auto;
   width: 50px;
 }
+
 .base-button.control-button.start .icon {
   padding-left: 3px;
 }
