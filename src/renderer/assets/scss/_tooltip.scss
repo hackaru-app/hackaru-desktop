@@ -25,7 +25,7 @@
       border-bottom-color: transparent !important;
       border-left-color: transparent !important;
       border-right-color: transparent !important;
-      border-width: 5px 5px 0 5px;
+      border-width: 5px 5px 0;
       bottom: -5px;
       left: calc(50% - 5px);
       margin-bottom: 0;
@@ -37,7 +37,7 @@
       border-left-color: transparent !important;
       border-right-color: transparent !important;
       border-top-color: transparent !important;
-      border-width: 0 5px 5px 5px;
+      border-width: 0 5px 5px;
       left: calc(50% - 5px);
       margin-bottom: 0;
       margin-top: 0;
@@ -75,7 +75,7 @@
   .popover-inner {
     background: $background-light;
     border-radius: 5px;
-    box-shadow: 0 5px 30px rgba(black, 0.1);
+    box-shadow: 0 5px 30px #00000010;
     color: $text;
     padding: 0;
   }
@@ -84,12 +84,12 @@
   }
 }
 .tooltip[aria-hidden='true'] {
-  opacity: 0;
+  opacity: 0%;
   transition: opacity 0.15s, visibility 0.15s;
   visibility: hidden;
 }
 .tooltip[aria-hidden='false'] {
-  opacity: 1;
+  opacity: 100%;
   transition: opacity 0.15s;
   visibility: visible;
 }
