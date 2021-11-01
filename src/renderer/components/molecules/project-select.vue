@@ -51,6 +51,7 @@ export default {
   height: 100%;
   position: relative;
 }
+
 select {
   height: 100%;
   opacity: 0%;

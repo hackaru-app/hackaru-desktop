@@ -67,6 +67,7 @@ export default {
   width: 100%;
   z-index: index($z, backdrop);
 }
+
 .container {
   background: $background;
   box-shadow: 0 3px 5px $shadow-dark;
@@ -75,19 +76,24 @@ export default {
   position: fixed;
   width: 100%;
 }
+
 .container::-webkit-scrollbar {
   display: none;
 }
+
 .container li {
   border-bottom: 1px $border solid;
+
   &:last-child {
     border: 0;
     padding-bottom: 2px;
   }
+
   &:hover {
     background-color: $background-hover;
   }
 }
+
 .suggestion {
   align-items: center;
   box-sizing: border-box;

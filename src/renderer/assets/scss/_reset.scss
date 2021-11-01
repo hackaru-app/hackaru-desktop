@@ -2,15 +2,18 @@ html {
   -webkit-tap-highlight-color: rgb(0 0 0 / 0%);
   user-select: none;
 }
+
 body,
 select,
 input,
 button {
   color: $text;
 }
+
 option {
   background-color: $background;
 }
+
 body {
   background-color: $background;
   font-display: auto;
@@ -18,6 +21,7 @@ body {
   font-size: $font-size;
   line-height: $line-height;
   outline: none;
+
   &::before {
     background: $background;
     content: '';
@@ -28,6 +32,7 @@ body {
     z-index: -1;
   }
 }
+
 input[type='text'],
 input[type='time'],
 input[type='date'],
@@ -36,11 +41,13 @@ input[type='password'] {
   appearance: none;
   box-sizing: border-box;
 }
+
 input::placeholder {
   color: $grey-ccc;
   opacity: 100%;
   padding-top: 2px;
 }
+
 input:focus,
 button:focus {
   outline: none;
