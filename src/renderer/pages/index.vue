@@ -105,6 +105,7 @@ export default {
   position: absolute;
   right: 15px;
 }
+
 .icon-button {
   margin-left: 5px;
 }
