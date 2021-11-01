@@ -45,11 +45,13 @@ export default {
   justify-content: center;
   padding-top: 10px;
 }
+
 .logo-icon {
   height: 25px;
   margin-bottom: 30px;
   width: 25px;
 }
+
 .auth-button {
   width: 140px;
 }

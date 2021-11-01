@@ -58,9 +58,10 @@ export default {
   padding: 0 25px;
   position: relative;
 }
+
 select {
   height: 100%;
-  opacity: 0;
+  opacity: 0%;
   position: absolute;
   top: 0;
   width: 100%;

@@ -237,6 +237,7 @@ export default {
   position: absolute;
   transition: opacity 0.3s;
 }
+
 .form {
   align-items: center;
   background-color: $background-translucent;
@@ -247,10 +248,12 @@ export default {
   height: 65px;
   width: 100vw;
 }
+
 .suggestion-list {
   position: fixed;
   top: 95px;
 }
+
 .description {
   border: 0;
   height: 100%;
@@ -261,6 +264,7 @@ export default {
   white-space: nowrap;
   width: 100%;
 }
+
 .ticker {
   align-items: center;
   display: flex;
@@ -274,10 +278,12 @@ export default {
   padding-top: 50px;
   pointer-events: none;
 }
+
 .play-button {
   margin-bottom: 1px;
   margin-right: 10px;
 }
+
 .delete-button {
   bottom: 15px;
   left: 15px;
@@ -286,12 +292,14 @@ export default {
 @include mq(small) {
   .header,
   .delete-button {
-    opacity: 0;
+    opacity: 0%;
   }
+
   html:hover .header,
   html:hover .delete-button {
-    opacity: 1;
+    opacity: 100%;
   }
+
   .ticker {
     padding-top: 25px;
   }

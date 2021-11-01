@@ -54,6 +54,7 @@ export default {
   width: 100vw;
   z-index: index($z, toast);
 }
+
 .content {
   border-radius: 0;
   bottom: 0;
@@ -66,9 +67,11 @@ export default {
   text-align: center;
   width: 100%;
 }
+
 .success {
   background-color: $cyan;
 }
+
 .error {
   background-color: $red;
 }

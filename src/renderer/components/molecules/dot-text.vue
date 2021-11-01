@@ -31,6 +31,7 @@ export default {
   display: flex;
   overflow: hidden;
 }
+
 p {
   display: inline;
   margin: 0;
@@ -39,6 +40,7 @@ p {
   white-space: nowrap;
   width: 100%;
 }
+
 .dot {
   margin-right: 15px;
 }

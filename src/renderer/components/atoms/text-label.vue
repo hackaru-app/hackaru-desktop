@@ -11,6 +11,7 @@
   margin: 0 5px;
   padding: 2px 7px;
 }
+
 .purple {
   background-color: $purple;
   color: $white;
