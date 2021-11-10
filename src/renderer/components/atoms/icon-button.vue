@@ -14,11 +14,11 @@
   transition: opacity 0.3s, transform 0.1s;
 
   &:hover {
-    opacity: 70%;
+    opacity: 0.7;
   }
 
   &:active {
-    opacity: 100%;
+    opacity: 1;
   }
 
   &::after {
