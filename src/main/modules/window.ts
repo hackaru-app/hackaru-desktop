@@ -32,7 +32,6 @@ export function buildWindowOptions(
       ...options.webPreferences,
       nodeIntegration: false,
       contextIsolation: true,
-      worldSafeExecuteJavaScript: true,
       disableBlinkFeatures: 'Auxclick',
       sandbox: true,
       preload: path.resolve(srcDir, 'main/preloads', `${preload}.js`),
