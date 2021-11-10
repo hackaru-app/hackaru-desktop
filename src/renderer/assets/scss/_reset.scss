@@ -1,5 +1,5 @@
 html {
-  -webkit-tap-highlight-color: rgb(0 0 0 / 0%);
+  -webkit-tap-highlight-color: rgb(0 0 0 / 0);
   user-select: none;
 }
 
@@ -44,7 +44,7 @@ input[type='password'] {
 
 input::placeholder {
   color: $grey-ccc;
-  opacity: 100%;
+  opacity: 1;
   padding-top: 2px;
 }
 

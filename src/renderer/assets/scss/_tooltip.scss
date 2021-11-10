@@ -97,13 +97,13 @@
 }
 
 .tooltip[aria-hidden='true'] {
-  opacity: 0%;
+  opacity: 0;
   transition: opacity 0.15s, visibility 0.15s;
   visibility: hidden;
 }
 
 .tooltip[aria-hidden='false'] {
-  opacity: 100%;
+  opacity: 1;
   transition: opacity 0.15s;
   visibility: visible;
 }
