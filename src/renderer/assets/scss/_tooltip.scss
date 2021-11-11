@@ -3,6 +3,7 @@
   display: block !important;
   outline: none;
   z-index: index($z, tooltip);
+
   .tooltip-inner {
     background: darken($grey-333, 10%);
     border-radius: 3px;
@@ -10,6 +11,7 @@
     font-size: 14px;
     padding: 10px 13px;
   }
+
   .tooltip-arrow {
     border-color: darken($grey-333, 10%);
     border-style: solid;
@@ -19,33 +21,39 @@
     width: 0;
     z-index: 1;
   }
+
   &[x-placement^='top'] {
     margin-bottom: 5px;
+
     .tooltip-arrow {
       border-bottom-color: transparent !important;
       border-left-color: transparent !important;
       border-right-color: transparent !important;
-      border-width: 5px 5px 0 5px;
+      border-width: 5px 5px 0;
       bottom: -5px;
       left: calc(50% - 5px);
       margin-bottom: 0;
     }
   }
+
   &[x-placement^='bottom'] {
     margin-top: 5px;
+
     .tooltip-arrow {
       border-left-color: transparent !important;
       border-right-color: transparent !important;
       border-top-color: transparent !important;
-      border-width: 0 5px 5px 5px;
+      border-width: 0 5px 5px;
       left: calc(50% - 5px);
       margin-bottom: 0;
       margin-top: 0;
       top: -5px;
     }
   }
+
   &[x-placement^='right'] {
     margin-left: 5px;
+
     .tooltip-arrow {
       border-bottom-color: transparent !important;
       border-left-color: transparent !important;
@@ -57,8 +65,10 @@
       top: calc(50% - 5px);
     }
   }
+
   &[x-placement^='left'] {
     margin-right: 5px;
+
     .tooltip-arrow {
       border-bottom-color: transparent !important;
       border-right-color: transparent !important;
@@ -71,23 +81,27 @@
     }
   }
 }
+
 .tooltip.popover {
   .popover-inner {
     background: $background-light;
     border-radius: 5px;
-    box-shadow: 0 5px 30px rgba(black, 0.1);
+    box-shadow: 0 5px 30px #00000010;
     color: $text;
     padding: 0;
   }
+
   .popover-arrow {
     border-color: $background-light;
   }
 }
+
 .tooltip[aria-hidden='true'] {
   opacity: 0;
   transition: opacity 0.15s, visibility 0.15s;
   visibility: hidden;
 }
+
 .tooltip[aria-hidden='false'] {
   opacity: 1;
   transition: opacity 0.15s;

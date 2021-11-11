@@ -20,6 +20,7 @@ export default {
   min-height: 9px;
   min-width: 9px;
 }
+
 .dot.is-large {
   height: 14px;
   width: 14px;

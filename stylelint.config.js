@@ -5,5 +5,22 @@ module.exports = {
     'at-rule-no-unknown': null,
     'scss/at-rule-no-unknown': true,
     'order/properties-alphabetical-order': true,
+    'alpha-value-notation': 'number',
   },
+  overrides: [
+    {
+      files: ['**/*.vue'],
+      customSyntax: 'postcss-html',
+    },
+    {
+      files: ['**/*.scss'],
+      customSyntax: 'postcss-scss',
+    },
+    {
+      files: ['src/renderer/assets/scss/_vue-js-modal.scss'],
+      rules: {
+        'selector-class-pattern': null,
+      },
+    },
+  ],
 }

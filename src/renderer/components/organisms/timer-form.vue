@@ -229,6 +229,7 @@ export default {
   align-items: center;
   display: flex;
 }
+
 .form-item {
   align-items: center;
   border-bottom: 1px $border solid;
@@ -237,11 +238,13 @@ export default {
   height: 65px;
   padding: 0 30px;
 }
+
 .description {
   border: 0;
   height: 100%;
   width: 100%;
 }
+
 .working-timer {
   align-items: center;
   display: flex;
@@ -253,9 +256,11 @@ export default {
   margin-bottom: 10px;
   margin-top: 60px;
 }
+
 .ticker {
   margin-bottom: 10px;
 }
+
 .delete-button {
   float: right;
   margin-right: 30px;

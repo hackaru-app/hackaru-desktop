@@ -42,12 +42,14 @@ export default {
   position: fixed;
   width: 150px;
 }
+
 .setting-menu ul {
   list-style-position: inside;
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
+
 .setting-menu li a {
   border-left: 4px transparent solid;
   color: $text;
@@ -55,13 +57,16 @@ export default {
   display: block;
   padding: 8px 20px;
   text-decoration: none;
+
   &:hover {
     border-left-color: $border;
   }
+
   &.selected {
     border-left-color: $cyan;
   }
 }
+
 .content {
   flex: 1;
   margin-left: 150px;
