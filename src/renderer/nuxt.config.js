@@ -107,6 +107,9 @@ module.exports = {
   router: {
     mode: 'hash',
   },
+  render: {
+    resourceHints: false,
+  },
   build: {
     extend(config, { isDev }) {
       config.externals = {
@@ -118,6 +121,13 @@ module.exports = {
       } else {
         config.devtool = 'source-map'
       }
+    },
+  },
+  hooks: {
+    generate: {
+      before(generator) {
+        generator.options.app.assetsPath = './_nuxt/'
+      },
     },
   },
   generate: {
