@@ -18,8 +18,19 @@ Do you find a bug or would like to submit feature requests?
 Please let us know via [Issues](https://github.com/hackaru-app/hackaru-desktop/issues). 😉
 
 ## Build
+
+To try the desktop app on your local, you need to start the API and web server in advance.  
+For information on how to start these servers, see the the [API README](https://github.com/hackaru-app/hackaru-api#quickstart) and [web README](https://github.com/hackaru-app/hackaru-web#quickstart).
+
 ```sh
+# Move to the api directory you cloned.
+cd hackaru-api
+
+# Create an OAuth app on the API server. 
+docker-compose -f docker-compose.yml -f docker-compose.dev.yml run --rm api bin/rails db:seed
+
 # Clone this repository.
+cd .. 
 git clone git@github.com:hackaru-app/hackaru-desktop.git
 cd hackaru-desktop
 
