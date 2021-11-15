@@ -121,7 +121,7 @@
     "prettier": "^2.4.1",
     "sass": "^1.43.4",
     "sass-loader": "^10.1.1",
-    "stylelint": "^14.0.1",
+    "stylelint": "^14.1.0",
     "stylelint-config-prettier": "^9.0.3",
     "stylelint-config-standard": "^23.0.0",
     "stylelint-order": "^5.0.0",
