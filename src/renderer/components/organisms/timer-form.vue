@@ -38,17 +38,17 @@
         @start="start"
         @stop="stop"
       />
+      <icon-button
+        v-if="working"
+        v-tooltip="$t('delete')"
+        type="button"
+        data-test-id="delete-button"
+        class="delete-button"
+        @click="confirmDeleteWorking"
+      >
+        <icon name="trash-2-icon" class="icon is-danger" />
+      </icon-button>
     </section>
-    <icon-button
-      v-if="working"
-      v-tooltip="$t('delete')"
-      type="button"
-      data-test-id="delete-button"
-      class="delete-button"
-      @click="confirmDeleteWorking"
-    >
-      <icon name="trash-2-icon" class="icon is-danger" />
-    </icon-button>
   </form>
 </template>
 
@@ -231,12 +231,12 @@ export default {
 }
 
 .form-item {
-  align-items: center;
+  align-items: baseline;
   border-bottom: 1px $border solid;
   box-sizing: border-box;
   display: flex;
-  height: 65px;
-  padding: 0 30px;
+  height: 60px;
+  padding: 0 25px;
 }
 
 .description {
@@ -250,11 +250,13 @@ export default {
   display: flex;
   flex-direction: column;
   font-family: $font-family-duration;
-  font-size: 46px;
+  font-size: 36px;
   font-weight: 300;
+  height: calc(100vh - 120px - 50px - 30px);
   justify-content: center;
-  margin-bottom: 10px;
-  margin-top: 60px;
+  position: absolute;
+  top: 150px;
+  width: 100%;
 }
 
 .ticker {
@@ -262,8 +264,8 @@ export default {
 }
 
 .delete-button {
-  float: right;
-  margin-right: 30px;
-  margin-top: 20px;
+  bottom: 25px;
+  position: absolute;
+  right: 30px;
 }
 </style>

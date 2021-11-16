@@ -54,10 +54,10 @@ export default {
   box-shadow: 0 3px 3px #00000010;
   display: flex;
   flex-shrink: 0;
-  height: 50px;
+  height: 42px;
   padding: 0;
   pointer-events: auto;
-  width: 50px;
+  width: 42px;
 }
 
 .base-button.control-button.start .icon {

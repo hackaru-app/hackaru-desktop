@@ -71,7 +71,7 @@ export default {
 .container {
   background: $background;
   box-shadow: 0 3px 5px $shadow-dark;
-  max-height: 243px;
+  max-height: 167px;
   overflow: scroll;
   position: fixed;
   width: 100%;
@@ -98,7 +98,7 @@ export default {
   align-items: center;
   box-sizing: border-box;
   display: flex;
-  height: 60px;
-  padding: 0 30px;
+  height: 55px;
+  padding: 0 25px;
 }
 </style>
