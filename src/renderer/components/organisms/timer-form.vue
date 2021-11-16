@@ -30,11 +30,12 @@
       :query="description"
       @select="selectSuggestion"
     />
-    <section class="working-timer">
+    <section :class="['working-timer', { working: working }]">
       <ticker v-bind="activity" class="ticker" />
       <play-button
         :working="working"
         data-test-id="play-button"
+        class="play-button"
         @start="start"
         @stop="stop"
       />
@@ -245,6 +246,26 @@ export default {
   width: 100%;
 }
 
+.ticker {
+  opacity: 0.2;
+  transition: opacity 0.1s;
+}
+
+.play-button {
+  opacity: 1;
+  position: absolute;
+  transition: opacity 0.1s;
+  z-index: 1;
+}
+
+.delete-button {
+  bottom: 25px;
+  opacity: 0;
+  position: absolute;
+  right: 25px;
+  transition: opacity 0.1s;
+}
+
 .working-timer {
   align-items: center;
   display: flex;
@@ -254,18 +275,33 @@ export default {
   font-weight: 300;
   height: calc(100vh - 120px - 30px);
   justify-content: center;
+  padding-bottom: 5px;
   position: absolute;
   top: 150px;
   width: 100%;
 }
 
-.ticker {
-  margin-bottom: 10px;
+.working-timer.working {
+  .play-button {
+    opacity: 0;
+  }
+
+  .ticker {
+    opacity: 1;
+  }
 }
 
-.delete-button {
-  bottom: 25px;
-  position: absolute;
-  right: 25px;
+.working-timer:hover {
+  .ticker {
+    opacity: 0.2;
+  }
+
+  .play-button {
+    opacity: 1;
+  }
+
+  .delete-button {
+    opacity: 1;
+  }
 }
 </style>
