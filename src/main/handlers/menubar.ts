@@ -22,6 +22,7 @@ menubar.on('ready', () => {
 
 menubar.on('after-create-window', () => {
   menubar.showWindow()
+  menubar.window?.setMenuBarVisibility(false)
 })
 
 menubar.on('after-create-window', () => {

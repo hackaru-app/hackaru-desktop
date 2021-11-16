@@ -11,7 +11,7 @@ export function createMenubar(): Menubar {
       width: 255,
       height: 400,
       transparent: true,
-      frame: false,
+      frame: true,
       titleBarStyle: 'hidden',
     }),
   })
