@@ -2,27 +2,29 @@
 
 <template>
   <form @submit.prevent>
-    <div class="form-item">
-      <project-select
-        :value="projectId"
-        :projects="projects"
-        class="project-select"
-        data-test-id="project-select"
-        @input="selectProject"
-      />
-    </div>
-    <div class="form-item">
-      <input
-        v-model="description"
-        :placeholder="$t('description')"
-        class="description"
-        data-test-id="description"
-        @change="update"
-        @focus="focus"
-        @blur="blur"
-        @keypress.enter.prevent="startOrUpdate"
-      />
-    </div>
+    <header class="form-header">
+      <div class="form-item">
+        <project-select
+          :value="projectId"
+          :projects="projects"
+          class="project-select"
+          data-test-id="project-select"
+          @input="selectProject"
+        />
+      </div>
+      <div class="form-item">
+        <input
+          v-model="description"
+          :placeholder="$t('description')"
+          class="description"
+          data-test-id="description"
+          @change="update"
+          @focus="focus"
+          @blur="blur"
+          @keypress.enter.prevent="startOrUpdate"
+        />
+      </div>
+    </header>
     <suggestion-list
       v-if="focused && !working"
       class="suggestion-list"
@@ -228,6 +230,10 @@ export default {
 .project-select {
   align-items: center;
   display: flex;
+}
+
+.form-header {
+  box-shadow: 0 3px 3px $shadow;
 }
 
 .form-item {
