@@ -8,8 +8,8 @@ export function createMenubar(): Menubar {
     icon: getTrayIcon(),
     preloadWindow: true,
     browserWindow: buildWindowOptions('menubar', {
-      width: 255,
-      height: 400,
+      width: 250,
+      height: 410,
       transparent: true,
       frame: true,
       titleBarStyle: 'hidden',
