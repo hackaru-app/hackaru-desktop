@@ -10,6 +10,9 @@ export function createMenubar(): Menubar {
     browserWindow: buildWindowOptions('menubar', {
       width: 285,
       height: 480,
+      transparent: true,
+      frame: false,
+      titleBarStyle: 'hidden',
     }),
   })
 }
