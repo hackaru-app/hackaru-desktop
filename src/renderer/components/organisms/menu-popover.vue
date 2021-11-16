@@ -35,7 +35,14 @@
 </template>
 
 <script>
+import Icon from '~/components/atoms/icon'
+import IconButton from '~/components/atoms/icon-button'
+
 export default {
+  components: {
+    Icon,
+    IconButton,
+  },
   data() {
     return {
       opened: false,
@@ -88,7 +95,6 @@ export default {
 <style scoped lang="scss">
 .more-button {
   color: $white;
-  width: 20px;
 }
 
 .popover {

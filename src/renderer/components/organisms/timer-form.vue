@@ -255,12 +255,11 @@ export default {
   height: calc(100vh - 120px - 30px);
   justify-content: center;
   position: absolute;
-  top: 150px;
   width: 100%;
 }
 
 .ticker {
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 
 .delete-button {
