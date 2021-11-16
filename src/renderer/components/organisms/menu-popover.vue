@@ -2,8 +2,8 @@
 
 <template>
   <v-popover :open.sync="opened" offset="10" placement="top-end">
-    <icon-button type="button" class="tooltip-target">
-      <icon name="more-horizontal-icon" class="more-icon icon" />
+    <icon-button type="button" class="more-button tooltip-target">
+      <icon name="more-horizontal-icon" class="icon" />
     </icon-button>
     <template slot="popover">
       <ul class="popover">
@@ -86,37 +86,9 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.timer-form {
-  margin-top: 30px;
-}
-
-.footer {
-  background-color: $background-light;
-  border-top: 1px $border solid;
-  bottom: 0;
-  box-sizing: border-box;
-  display: flex;
-  height: 50px;
-  justify-content: space-between;
-  overflow: hidden;
-  padding: 0 20px;
-  position: absolute;
-  width: 100%;
-}
-
-.footer .icon {
-  align-items: center;
-  color: $text;
-  display: flex;
-  margin: 0 10px;
-}
-
-.footer-icons {
-  display: flex;
-}
-
-.more-icon {
+.more-button {
   color: $white;
+  width: 20px;
 }
 
 .popover {

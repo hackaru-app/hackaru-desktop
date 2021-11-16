@@ -98,33 +98,4 @@ export default {
 .timer-form {
   margin-top: 30px;
 }
-
-.footer {
-  background-color: $background-light;
-  border-top: 1px $border solid;
-  bottom: 0;
-  box-sizing: border-box;
-  display: flex;
-  height: 50px;
-  justify-content: space-between;
-  overflow: hidden;
-  padding: 0 20px;
-  position: absolute;
-  width: 100%;
-}
-
-.footer .icon {
-  align-items: center;
-  color: $text;
-  display: flex;
-  margin: 0 10px;
-}
-
-.footer-icons {
-  display: flex;
-}
-
-.more-icon {
-  color: $white;
-}
 </style>
