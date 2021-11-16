@@ -86,7 +86,7 @@
   .popover-inner {
     background: $background-light;
     border-radius: 5px;
-    box-shadow: 0 5px 30px #00000010;
+    box-shadow: 0 5px 30px $shadow-darker;
     color: $text;
     padding: 0;
   }

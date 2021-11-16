@@ -1,7 +1,7 @@
 {
   "en": {
     "settings": "Settings",
-    "web": "Open website in a browser",
+    "web": "Open website",
     "logout": "Logout",
     "quit": "Quit the app",
     "confirms": {
@@ -10,9 +10,9 @@
   },
   "ja": {
     "settings": "設定",
-    "web": "Web版をブラウザで開く",
+    "web": "Web版を開く",
     "logout": "ログアウト",
-    "quit": "アプリを終了",
+    "quit": "完全に終了",
     "confirms": {
       "logout":  "ログアウトしますか？"
     }

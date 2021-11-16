@@ -1,65 +1,24 @@
-<i18n src="~/assets/locales/pages/index.json"></i18n>
-
 <template>
   <section>
-    <window-header class="is-small" />
+    <window-header>
+      <menu-popover />
+    </window-header>
     <timer-form class="timer-form" />
-    <footer class="footer">
-      <div class="footer-icons">
-        <icon-button
-          v-tooltip="$t('settings')"
-          type="button"
-          data-test-id="settings-button"
-          @click="openSettings"
-        >
-          <icon name="settings-icon" class="icon is-small" />
-        </icon-button>
-        <icon-button
-          v-tooltip="$t('web')"
-          data-test-id="web-button"
-          type="button"
-          @click="openWeb"
-        >
-          <icon name="globe-icon" class="icon is-small" />
-        </icon-button>
-      </div>
-
-      <div class="footer-icons">
-        <icon-button
-          v-tooltip="$t('quit')"
-          data-test-id="quit-button"
-          type="button"
-          @click="quit"
-        >
-          <icon name="x-circle-icon" class="icon is-small" />
-        </icon-button>
-        <icon-button
-          v-tooltip="$t('logout')"
-          data-test-id="logout-button"
-          type="button"
-          @click="confirmLogout"
-        >
-          <icon name="log-out-icon" class="icon is-small" />
-        </icon-button>
-      </div>
-    </footer>
   </section>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
 import { formatISO, parseISO, differenceInSeconds } from 'date-fns'
+import MenuPopover from '../components/organisms/menu-popover.vue'
 import WindowHeader from '~/components/atoms/window-header'
 import TimerForm from '~/components/organisms/timer-form'
-import Icon from '~/components/atoms/icon'
-import IconButton from '~/components/atoms/icon-button'
 
 export default {
   components: {
     WindowHeader,
     TimerForm,
-    Icon,
-    IconButton,
+    MenuPopover,
   },
   middleware: 'authenticated',
   fetch() {
@@ -110,21 +69,6 @@ export default {
         startedAt: new Date(),
       })
     },
-    openSettings() {
-      electron.menubar.openSettings()
-    },
-    openWeb() {
-      electron.mixpanel.sendEvent('Open web', {
-        component: 'index',
-      })
-      electron.menubar.openWeb()
-    },
-    quit() {
-      electron.mixpanel.sendEvent('Quit app', {
-        component: 'index',
-      })
-      electron.menubar.quit()
-    },
     stopWorking() {
       if (!this.working) return
 
@@ -145,25 +89,6 @@ export default {
         id: this.working.id,
         stoppedAt,
       })
-    },
-    confirmLogout() {
-      this.$modal.show('dialog', {
-        text: this.$t('confirms.logout'),
-        buttons: [
-          { title: 'Cancel', handler: () => this.$modal.hide('dialog') },
-          { title: 'OK', handler: this.logout },
-        ],
-      })
-    },
-    async logout() {
-      this.$modal.hide('dialog')
-      electron.sentry.removeUserId()
-      electron.mixpanel.removeUserId()
-      electron.googleAnalytics.sendEvent('Accounts', 'logout')
-      electron.googleAnalytics.removeUserId()
-      this.$store.dispatch('auth/logout')
-      await this.$router.replace(this.localePath('auth'))
-      window.location.reload()
     },
   },
 }
@@ -197,5 +122,9 @@ export default {
 
 .footer-icons {
   display: flex;
+}
+
+.more-icon {
+  color: $white;
 }
 </style>

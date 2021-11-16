@@ -1,7 +1,9 @@
 import Vue from 'vue'
-import VTooltipPlugin from 'v-tooltip'
+import { VTooltip, VPopover } from 'v-tooltip'
 
-Vue.use(VTooltipPlugin, {
+Vue.use(VTooltip, {
   defaultOffset: 5,
   defaultDelay: { show: 500 },
 })
+
+Vue.component('VPopover', VPopover)

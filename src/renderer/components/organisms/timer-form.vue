@@ -252,7 +252,7 @@ export default {
   font-family: $font-family-duration;
   font-size: 36px;
   font-weight: 300;
-  height: calc(100vh - 120px - 50px - 30px);
+  height: calc(100vh - 120px - 30px);
   justify-content: center;
   position: absolute;
   top: 150px;
@@ -266,6 +266,6 @@ export default {
 .delete-button {
   bottom: 25px;
   position: absolute;
-  right: 30px;
+  right: 25px;
 }
 </style>
