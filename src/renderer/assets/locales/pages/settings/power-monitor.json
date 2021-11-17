@@ -3,12 +3,14 @@
     "title": "PowerMonitor",
     "stopTimerOnSuspend": "Stop a timer when paused",
     "stopTimerOnShutdown": "Stop a timer on shutdown",
-    "remindTimerOnUnlocked": "Show reminder notification on resumed"
+    "remindTimerOnUnlocked": "Show reminder notification on resumed",
+    "alwaysOnTop": "Keep the window always on top"
   },
   "ja": {
     "title": "電源監視",
     "stopTimerOnSuspend": "PCのスリープ時に計測を停止",
     "stopTimerOnShutdown": "PCのシャットダウン時に計測を停止",
-    "remindTimerOnUnlocked": "PCの再開時に計測のリマインドを通知"
+    "remindTimerOnUnlocked": "PCの再開時に計測のリマインドを通知",
+    "alwaysOnTop": "ウィンドウを最前面に表示"
   }
 }

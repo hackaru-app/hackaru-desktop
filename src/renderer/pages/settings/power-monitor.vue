@@ -8,7 +8,6 @@
     <div class="form">
       <label>
         <input
-          class="suspend"
           :checked="stopTimerOnSuspend"
           type="checkbox"
           data-test-id="stop-timer-on-suspend"
@@ -17,7 +16,6 @@
       </label>
       <label>
         <input
-          class="shutdown"
           :checked="stopTimerOnShutdown"
           data-test-id="stop-timer-on-shutdown"
           type="checkbox"
@@ -26,12 +24,18 @@
       </label>
       <label>
         <input
-          class="shutdown"
           :checked="remindTimerOnUnlocked"
           data-test-id="remind-timer-on-unlocked"
           type="checkbox"
           @click="toggleChecked('remindTimerOnUnlocked')"
         />{{ $t('remindTimerOnUnlocked') }}
+      </label>
+      <label>
+        <input
+          :checked="alwaysOnTop"
+          type="checkbox"
+          @click="toggleChecked('alwaysOnTop')"
+        />{{ $t('alwaysOnTop') }}
         <text-label class="purple">BETA</text-label>
       </label>
     </div>
@@ -52,6 +56,7 @@ export default {
       stopTimerOnSuspend: false,
       stopTimerOnShutdown: false,
       remindTimerOnUnlocked: false,
+      alwaysOnTop: false,
     }
   },
   async mounted() {
@@ -60,6 +65,7 @@ export default {
     this.remindTimerOnUnlocked = await electron.config.get(
       'remindTimerOnUnlocked'
     )
+    this.alwaysOnTop = await electron.config.get('alwaysOnTop')
   },
   methods: {
     toggleChecked(key) {

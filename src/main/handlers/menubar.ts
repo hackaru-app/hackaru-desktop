@@ -21,8 +21,8 @@ menubar.on('ready', () => {
 })
 
 menubar.on('after-create-window', () => {
-  menubar.showWindow()
   menubar.window?.setMenuBarVisibility(false)
+  menubar.showWindow()
 })
 
 menubar.on('after-create-window', () => {
@@ -39,6 +39,7 @@ menubar.on('after-create-window', () => {
 
 menubar.on('show', () => {
   menubar.window?.webContents.send(prefix('showMenubar'))
+  menubar.window?.setAlwaysOnTop(config.get('alwaysOnTop'))
 })
 
 powerMonitor.on('suspend', () => {
@@ -81,9 +82,7 @@ handle(prefix('stopTrayTimer'), () => {
 })
 
 handle(prefix('show'), () => {
-  menubar.window?.setAlwaysOnTop(true)
   menubar.showWindow()
-  menubar.window?.setAlwaysOnTop(false)
 })
 
 handle(prefix('showReminder'), (_event, prevDescription: string) => {
