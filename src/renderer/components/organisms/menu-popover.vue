@@ -2,30 +2,34 @@
 
 <template>
   <v-popover :open.sync="opened" offset="10" placement="top-end">
-    <icon-button type="button" class="more-button tooltip-target">
+    <icon-button
+      data-test-id="more-button"
+      type="button"
+      class="more-button tooltip-target"
+    >
       <icon name="more-horizontal-icon" class="icon" />
     </icon-button>
     <template slot="popover">
       <ul class="popover">
         <li class="popover-item">
-          <button @click="openSettings">
+          <button data-test-id="settings-button" @click="openSettings">
             <icon name="settings-icon" class="icon is-small" />
             {{ $t('settings') }}
           </button>
         </li>
         <li class="popover-item">
-          <button @click="openWeb">
+          <button data-test-id="web-button" @click="openWeb">
             <icon name="globe-icon" class="icon is-small" /> {{ $t('web') }}
           </button>
         </li>
         <li class="popover-item">
-          <button @click="confirmLogout">
+          <button data-test-id="logout-button" @click="confirmLogout">
             <icon name="log-out-icon" class="icon is-small" />
             {{ $t('logout') }}
           </button>
         </li>
         <li class="popover-item">
-          <button @click="quit">
+          <button data-test-id="quit-button" @click="quit">
             <icon name="x-circle-icon" class="icon is-small" /> {{ $t('quit') }}
           </button>
         </li>
@@ -35,6 +39,7 @@
 </template>
 
 <script>
+import { VPopover } from 'v-tooltip'
 import Icon from '~/components/atoms/icon'
 import IconButton from '~/components/atoms/icon-button'
 
@@ -42,6 +47,7 @@ export default {
   components: {
     Icon,
     IconButton,
+    VPopover,
   },
   data() {
     return {

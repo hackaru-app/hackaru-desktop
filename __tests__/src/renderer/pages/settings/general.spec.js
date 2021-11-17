@@ -1,8 +1,8 @@
 import { shallowMount } from '@vue/test-utils'
 import testId from '../../../../__helpers__/test-id'
-import PowerMonitor from '~/pages/settings/power-monitor'
+import General from '~/pages/settings/general'
 
-describe('PowerMonitor', () => {
+describe('General', () => {
   let factory
   let wrapper
 
@@ -15,7 +15,7 @@ describe('PowerMonitor', () => {
   }
 
   beforeEach(() => {
-    factory = () => shallowMount(PowerMonitor)
+    factory = () => shallowMount(General)
   })
 
   describe('when click stop-timer-on-suspend', () => {
@@ -35,7 +35,7 @@ describe('PowerMonitor', () => {
       expect(global.electron.mixpanel.sendEvent).toHaveBeenCalledWith(
         'Toggle stopTimerOnSuspend',
         {
-          component: 'power-monitor',
+          component: 'general',
           enabled: true,
         }
       )
@@ -59,7 +59,7 @@ describe('PowerMonitor', () => {
       expect(global.electron.mixpanel.sendEvent).toHaveBeenCalledWith(
         'Toggle stopTimerOnShutdown',
         {
-          component: 'power-monitor',
+          component: 'general',
           enabled: true,
         }
       )
@@ -83,7 +83,31 @@ describe('PowerMonitor', () => {
       expect(global.electron.mixpanel.sendEvent).toHaveBeenCalledWith(
         'Toggle remindTimerOnUnlocked',
         {
-          component: 'power-monitor',
+          component: 'general',
+          enabled: true,
+        }
+      )
+    })
+  })
+
+  describe('when click always-on-top', () => {
+    beforeEach(() => {
+      wrapper = factory()
+      wrapper.find(testId('always-on-top')).trigger('click')
+    })
+
+    it('toggles alwaysOnTop', () => {
+      expect(global.electron.config.set).toHaveBeenCalledWith(
+        'alwaysOnTop',
+        true
+      )
+    })
+
+    it('sends mixpanel event', () => {
+      expect(global.electron.mixpanel.sendEvent).toHaveBeenCalledWith(
+        'Toggle alwaysOnTop',
+        {
+          component: 'general',
           enabled: true,
         }
       )

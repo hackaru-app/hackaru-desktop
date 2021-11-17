@@ -33,6 +33,7 @@
       <label>
         <input
           :checked="alwaysOnTop"
+          data-test-id="always-on-top"
           type="checkbox"
           @click="toggleChecked('alwaysOnTop')"
         />{{ $t('alwaysOnTop') }}
