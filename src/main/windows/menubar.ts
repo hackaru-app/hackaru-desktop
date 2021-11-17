@@ -9,7 +9,7 @@ export function createMenubar(): Menubar {
     preloadWindow: true,
     browserWindow: buildWindowOptions('menubar', {
       width: 225,
-      height: 360,
+      height: 370,
       transparent: true,
       frame: true,
       maximizable: false,
