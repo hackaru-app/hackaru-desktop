@@ -24,8 +24,8 @@ export default {
     return {
       links: [
         {
-          path: this.localePath('/settings/power-monitor'),
-          name: this.$t('powerMonitor'),
+          path: this.localePath('/settings/general'),
+          name: this.$t('general'),
         },
       ],
     }

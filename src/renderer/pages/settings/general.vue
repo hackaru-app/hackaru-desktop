@@ -1,9 +1,9 @@
-<i18n src="~/assets/locales/pages/settings/power-monitor.json"></i18n>
+<i18n src="~/assets/locales/pages/settings/general.json"></i18n>
 
 <template>
   <section>
     <header class="header">
-      <h1><icon name="power-icon" />{{ $t('title') }}</h1>
+      <h1><icon name="settings-icon" />{{ $t('title') }}</h1>
     </header>
     <div class="form">
       <label>
@@ -72,7 +72,7 @@ export default {
       this[key] = !this[key]
       electron.config.set(key, this[key])
       electron.mixpanel.sendEvent(`Toggle ${key}`, {
-        component: 'power-monitor',
+        component: 'general',
         enabled: this[key],
       })
     },
