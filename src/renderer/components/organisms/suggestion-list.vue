@@ -69,7 +69,7 @@ export default {
 }
 
 .container {
-  background: $background;
+  background: $background-translucent;
   box-shadow: 0 3px 5px $shadow-dark;
   max-height: 167px;
   overflow: scroll;

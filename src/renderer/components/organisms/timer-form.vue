@@ -238,6 +238,7 @@ export default {
 
 .form-item {
   align-items: baseline;
+  background-color: $background-translucent;
   border-bottom: 1px $border solid;
   box-sizing: border-box;
   display: flex;
@@ -262,6 +263,7 @@ export default {
   justify-content: center;
   position: absolute;
   width: 100%;
+  z-index: -1;
 }
 
 .ticker {
