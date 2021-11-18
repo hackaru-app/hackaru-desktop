@@ -69,6 +69,7 @@ describe('MenuPopover', () => {
 
   describe('when click logout-button', () => {
     beforeEach(() => {
+      global.confirm = () => true
       wrapper = factory()
       wrapper.vm.logout()
     })
@@ -102,6 +103,42 @@ describe('MenuPopover', () => {
 
     it('reloads window', () => {
       expect(window.location.reload).toHaveBeenCalled()
+    })
+  })
+
+  describe('when click logout-button and cancel', () => {
+    beforeEach(() => {
+      global.confirm = () => false
+      wrapper = factory()
+      wrapper.vm.logout()
+    })
+
+    it('does not send ga event', () => {
+      expect(electron.googleAnalytics.sendEvent).not.toHaveBeenCalled()
+    })
+
+    it('does not remove ga user-id', () => {
+      expect(electron.googleAnalytics.removeUserId).not.toHaveBeenCalled()
+    })
+
+    it('does not remove mixpanel user-id', () => {
+      expect(electron.mixpanel.removeUserId).not.toHaveBeenCalled()
+    })
+
+    it('does not remove sentry user-id', () => {
+      expect(electron.sentry.removeUserId).not.toHaveBeenCalled()
+    })
+
+    it('does not dispatche auth/logout', () => {
+      expect($store.dispatch).not.toHaveBeenCalled()
+    })
+
+    it('does not redirect to index', () => {
+      expect($router.replace).not.toHaveBeenCalled()
+    })
+
+    it('does not reload window', () => {
+      expect(window.location.reload).not.toHaveBeenCalled()
     })
   })
 })
