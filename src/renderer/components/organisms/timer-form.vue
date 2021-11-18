@@ -253,6 +253,7 @@ export default {
   font-weight: 300;
   height: calc(100vh - 120px - 30px);
   justify-content: center;
+  padding-bottom: 10px;
   position: absolute;
   width: 100%;
   z-index: -1;
