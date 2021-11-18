@@ -47,7 +47,7 @@ export default {
 
 .logo-icon {
   height: 25px;
-  margin-bottom: 40px;
+  margin-bottom: 25px;
   width: 25px;
 }
 
