@@ -46,7 +46,7 @@
         type="button"
         data-test-id="delete-button"
         class="delete-button"
-        @click="confirmDeleteWorking"
+        @click="deleteWorking"
       >
         <icon name="trash-2-icon" class="icon is-danger" />
       </icon-button>
@@ -202,17 +202,9 @@ export default {
         this.$store.dispatch('toast/success', this.$t('stopped'))
       }
     },
-    confirmDeleteWorking() {
-      this.$modal.show('dialog', {
-        text: this.$t('confirms.delete'),
-        buttons: [
-          { title: 'Cancel', handler: () => this.$modal.hide('dialog') },
-          { title: 'OK', handler: this.deleteWorking },
-        ],
-      })
-    },
     async deleteWorking() {
-      this.$modal.hide('dialog')
+      if (!window.confirm(this.$t('confirms.delete'))) return
+
       electron.googleAnalytics.sendEvent('Activities', 'delete')
       electron.mixpanel.sendEvent('Delete activity', {
         component: 'timer-form',

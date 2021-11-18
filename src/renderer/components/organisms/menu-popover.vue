@@ -23,7 +23,7 @@
           </button>
         </li>
         <li class="popover-item">
-          <button data-test-id="logout-button" @click="confirmLogout">
+          <button data-test-id="logout-button" @click="logout">
             <icon name="log-out-icon" class="icon is-small" />
             {{ $t('logout') }}
           </button>
@@ -73,19 +73,10 @@ export default {
       })
       electron.main.quit()
     },
-    confirmLogout() {
-      this.opened = false
-      this.$modal.show('dialog', {
-        text: this.$t('confirms.logout'),
-        buttons: [
-          { title: 'Cancel', handler: () => this.$modal.hide('dialog') },
-          { title: 'OK', handler: this.logout },
-        ],
-      })
-    },
     async logout() {
+      if (!window.confirm(this.$t('confirms.logout'))) return
+
       this.opened = false
-      this.$modal.hide('dialog')
       electron.sentry.removeUserId()
       electron.mixpanel.removeUserId()
       electron.googleAnalytics.sendEvent('Accounts', 'logout')
