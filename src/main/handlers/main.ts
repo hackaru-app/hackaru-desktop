@@ -31,6 +31,18 @@ app.on('ready', () => {
     mainWindow?.webContents.send(prefix('show'))
     mainWindow?.setAlwaysOnTop(config.get('alwaysOnTop'))
   })
+
+  mainWindow.on('close', () => {
+    if (process.platform === 'darwin') {
+      app.dock.hide()
+    }
+  })
+
+  mainWindow.on('show', () => {
+    if (process.platform === 'darwin') {
+      app.dock.show()
+    }
+  })
 })
 
 app.on('ready', () => {
