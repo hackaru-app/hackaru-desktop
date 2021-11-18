@@ -26,7 +26,7 @@ export default {
     this.$store.dispatch('activities/fetchWorking')
   },
   head: {
-    title: 'Timer',
+    title: 'Hackaru',
   },
   computed: {
     ...mapGetters({
