@@ -14,7 +14,7 @@ describe('MenuPopover', () => {
   const $store = new Store()
 
   global.electron = {
-    menubar: {
+    main: {
       openSettings: jest.fn(),
       openWeb: jest.fn(),
       quit: jest.fn(),
@@ -44,7 +44,7 @@ describe('MenuPopover', () => {
     })
 
     it('opens settings', () => {
-      expect(global.electron.menubar.openSettings).toHaveBeenCalled()
+      expect(global.electron.main.openSettings).toHaveBeenCalled()
     })
   })
 
@@ -55,7 +55,7 @@ describe('MenuPopover', () => {
     })
 
     it('opens web', () => {
-      expect(global.electron.menubar.openWeb).toHaveBeenCalled()
+      expect(global.electron.main.openWeb).toHaveBeenCalled()
     })
 
     it('sends mixpanel event', () => {
@@ -75,7 +75,7 @@ describe('MenuPopover', () => {
     })
 
     it('quits app', () => {
-      expect(global.electron.menubar.quit).toHaveBeenCalled()
+      expect(global.electron.main.quit).toHaveBeenCalled()
     })
 
     it('sends mixpanel event', () => {

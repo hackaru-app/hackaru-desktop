@@ -35,30 +35,28 @@ export default {
   watch: {
     working() {
       if (this.working) {
-        electron.menubar.startTrayTimer(this.working.startedAt)
+        electron.main.startTrayTimer(this.working.startedAt)
       } else {
-        electron.menubar.stopTrayTimer()
+        electron.main.stopTrayTimer()
       }
     },
   },
   mounted() {
-    electron.menubar.on.suspend(() => this.stopWorking())
-    electron.menubar.on.shutdown(() => this.stopWorking())
-    electron.menubar.on.unlockScreen(() => this.showReminder())
-    electron.menubar.on.clickDuplicate(() => this.startPrevActivity())
-    electron.menubar.on.showMenubar(() =>
-      this.$store.dispatch('activities/fetchWorking')
-    )
+    electron.main.on.suspend(() => this.stopWorking())
+    electron.main.on.shutdown(() => this.stopWorking())
+    electron.main.on.unlockScreen(() => this.showReminder())
+    electron.main.on.clickDuplicate(() => this.startPrevActivity())
+    electron.main.on.show(() => this.$store.dispatch('activities/fetchWorking'))
   },
   destroyed() {
-    electron.menubar.stopTrayTimer()
+    electron.main.stopTrayTimer()
   },
   methods: {
     async showReminder() {
       if (this.working) return
 
       await this.$store.dispatch('activities/fetchWeeklyActivities', new Date())
-      electron.menubar.showReminder(this.prevDescription)
+      electron.main.showReminder(this.prevDescription)
     },
     startPrevActivity() {
       if (!this.prevActivity || this.working) return

@@ -29,7 +29,7 @@ export default {
       electron.mixpanel.sendEvent('Login', { component: 'auth' })
       this.$store.dispatch('toast/success', this.$t('loggedIn'))
       this.$router.replace(this.localePath('index'))
-      electron.menubar.show()
+      electron.main.show()
     },
   },
 }

@@ -57,21 +57,21 @@ export default {
   methods: {
     openSettings() {
       this.opened = false
-      electron.menubar.openSettings()
+      electron.main.openSettings()
     },
     openWeb() {
       this.opened = false
       electron.mixpanel.sendEvent('Open web', {
         component: 'index',
       })
-      electron.menubar.openWeb()
+      electron.main.openWeb()
     },
     quit() {
       this.opened = false
       electron.mixpanel.sendEvent('Quit app', {
         component: 'index',
       })
-      electron.menubar.quit()
+      electron.main.quit()
     },
     confirmLogout() {
       this.opened = false

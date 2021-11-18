@@ -12,7 +12,7 @@ describe('Auth', () => {
 
   global.electron = {
     auth: { authorize: jest.fn() },
-    menubar: { show: jest.fn() },
+    main: { show: jest.fn() },
     googleAnalytics: { sendEvent: jest.fn() },
     mixpanel: { sendEvent: jest.fn() },
   }
@@ -55,8 +55,8 @@ describe('Auth', () => {
       expect($router.replace).toHaveBeenCalledWith('/en/index')
     })
 
-    it('shows menubar', () => {
-      expect(global.electron.menubar.show).toHaveBeenCalled()
+    it('shows main', () => {
+      expect(global.electron.main.show).toHaveBeenCalled()
     })
   })
 })

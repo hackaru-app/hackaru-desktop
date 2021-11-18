@@ -17,13 +17,13 @@ describe('Index', () => {
   })
 
   global.electron = {
-    menubar: {
+    main: {
       startTrayTimer: jest.fn(),
       stopTrayTimer: jest.fn(),
       on: {
         suspend: () => {},
         shutdown: () => {},
-        showMenubar: () => {},
+        show: () => {},
         unlockScreen: () => {},
         clickDuplicate: () => {},
       },
@@ -113,7 +113,7 @@ describe('Index', () => {
     })
 
     it('starts tray timer', () => {
-      expect(global.electron.menubar.startTrayTimer).toHaveBeenCalledWith(
+      expect(global.electron.main.startTrayTimer).toHaveBeenCalledWith(
         '2019-01-01T00:12:34'
       )
     })
@@ -133,7 +133,7 @@ describe('Index', () => {
     })
 
     it('stops tray timer', () => {
-      expect(global.electron.menubar.stopTrayTimer).toHaveBeenCalled()
+      expect(global.electron.main.stopTrayTimer).toHaveBeenCalled()
     })
   })
 })
