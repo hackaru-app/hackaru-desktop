@@ -24,9 +24,6 @@ bridge({
     openWeb(): void {
       invoke(prefix('openWeb'))
     },
-    quit(): void {
-      invoke(prefix('quit'))
-    },
     show(): void {
       invoke(prefix('show'))
     },

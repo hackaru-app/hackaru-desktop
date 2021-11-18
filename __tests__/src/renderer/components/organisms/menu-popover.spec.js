@@ -17,7 +17,6 @@ describe('MenuPopover', () => {
     main: {
       openSettings: jest.fn(),
       openWeb: jest.fn(),
-      quit: jest.fn(),
     },
     googleAnalytics: { sendEvent: jest.fn(), removeUserId: jest.fn() },
     mixpanel: { sendEvent: jest.fn(), removeUserId: jest.fn() },
@@ -61,26 +60,6 @@ describe('MenuPopover', () => {
     it('sends mixpanel event', () => {
       expect(global.electron.mixpanel.sendEvent).toHaveBeenCalledWith(
         'Open web',
-        {
-          component: 'index',
-        }
-      )
-    })
-  })
-
-  describe('when click quit-button', () => {
-    beforeEach(() => {
-      wrapper = factory()
-      wrapper.find(testId('quit-button')).trigger('click')
-    })
-
-    it('quits app', () => {
-      expect(global.electron.main.quit).toHaveBeenCalled()
-    })
-
-    it('sends mixpanel event', () => {
-      expect(global.electron.mixpanel.sendEvent).toHaveBeenCalledWith(
-        'Quit app',
         {
           component: 'index',
         }

@@ -58,10 +58,6 @@ handle(prefix('openWeb'), () => {
   shell.openExternal(process.env.HACKARU_WEB_URL)
 })
 
-handle(prefix('quit'), () => {
-  app.quit()
-})
-
 handle(prefix('startTrayTimer'), (_event, startedAt: string) => {
   if (tray) TrayTimer.start(tray, parseISO(startedAt))
 })
