@@ -18,8 +18,16 @@ let tray: Tray | undefined
 
 app.on('ready', () => {
   mainWindow = createMainWindow()
-  mainWindow.webContents.send(prefix('show'))
   mainWindow.setAlwaysOnTop(config.get('alwaysOnTop'))
+
+  mainWindow.on('close', (e) => {
+    e.preventDefault()
+    mainWindow?.hide()
+  })
+
+  mainWindow.on('show', () => {
+    mainWindow?.webContents.send(prefix('show'))
+  })
 })
 
 app.on('ready', () => {
