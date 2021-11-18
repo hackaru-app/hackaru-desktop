@@ -1,5 +1,6 @@
-import { app, shell, powerMonitor, BrowserWindow, Tray } from 'electron'
+import { app, shell, powerMonitor, BrowserWindow, Tray, Menu } from 'electron'
 import { parseISO } from 'date-fns'
+import i18next from 'i18next'
 import { handle } from '~/core/handlers'
 import { createPrefixer } from '~/core/prefixer'
 import { initDevtools } from '~/modules/devtools'
@@ -38,6 +39,13 @@ app.on('ready', () => {
 
 app.on('ready', () => {
   tray = new Tray(getTrayIcon())
+  tray.setContextMenu(
+    Menu.buildFromTemplate([
+      { label: i18next.t('main:open'), click: () => mainWindow?.show() },
+      { type: 'separator' },
+      { role: 'quit', click: () => app.quit() },
+    ])
+  )
 })
 
 powerMonitor.on('suspend', () => {
