@@ -25,6 +25,9 @@ export default {
     this.$store.dispatch('projects/fetch')
     this.$store.dispatch('activities/fetchWorking')
   },
+  head: {
+    title: 'Timer',
+  },
   computed: {
     ...mapGetters({
       working: 'activities/working',

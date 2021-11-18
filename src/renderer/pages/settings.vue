@@ -30,6 +30,9 @@ export default {
       ],
     }
   },
+  head: {
+    title: 'Settings',
+  },
 }
 </script>
 
