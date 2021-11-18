@@ -266,10 +266,6 @@ export default {
   z-index: -1;
 }
 
-.ticker {
-  margin-bottom: 5px;
-}
-
 .delete-button {
   bottom: 25px;
   position: absolute;
