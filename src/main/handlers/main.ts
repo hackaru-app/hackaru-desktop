@@ -14,7 +14,7 @@ import { getTrayIcon } from '~/modules/tray-icon'
 const namespace = 'main'
 const prefix = createPrefixer(namespace)
 
-let appExiting = false
+const appExiting = false
 let mainWindow: BrowserWindow | undefined
 let tray: Tray | undefined
 
@@ -57,19 +57,7 @@ app.on('ready', () => {
 
 app.on('ready', () => {
   tray = new Tray(getTrayIcon())
-  tray.setContextMenu(
-    Menu.buildFromTemplate([
-      { label: i18next.t('main:open'), click: () => mainWindow?.show() },
-      { type: 'separator' },
-      {
-        label: i18next.t('main:quit'),
-        click: () => {
-          appExiting = true
-          app.quit()
-        },
-      },
-    ])
-  )
+  tray.on('click', () => mainWindow?.show())
 })
 
 powerMonitor.on('suspend', () => {
