@@ -14,7 +14,7 @@ import { getTrayIcon } from '~/modules/tray-icon'
 const namespace = 'main'
 const prefix = createPrefixer(namespace)
 
-const appExiting = false
+let appExiting = false
 let mainWindow: BrowserWindow | undefined
 let tray: Tray | undefined
 
@@ -87,6 +87,7 @@ handle(prefix('openWeb'), () => {
 })
 
 handle(prefix('quit'), () => {
+  appExiting = true
   app.quit()
 })
 
