@@ -28,6 +28,11 @@
             {{ $t('logout') }}
           </button>
         </li>
+        <li class="popover-item">
+          <button data-test-id="quit-button" @click="quit">
+            <icon name="x-circle-icon" class="icon is-small" /> {{ $t('quit') }}
+          </button>
+        </li>
       </ul>
     </template>
   </v-popover>
@@ -60,6 +65,13 @@ export default {
         component: 'index',
       })
       electron.main.openWeb()
+    },
+    quit() {
+      this.opened = false
+      electron.mixpanel.sendEvent('Quit app', {
+        component: 'index',
+      })
+      electron.main.quit()
     },
     async logout() {
       if (!window.confirm(this.$t('confirms.logout'))) return

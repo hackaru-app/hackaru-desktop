@@ -3,6 +3,7 @@
     "settings": "Settings",
     "web": "Open website",
     "logout": "Logout",
+    "quit": "Quit the app",
     "confirms": {
       "logout":  "Are you sure you want to logout?"
     }
@@ -11,6 +12,7 @@
     "settings": "設定",
     "web": "Web版を開く",
     "logout": "ログアウト",
+    "quit": "完全に終了",
     "confirms": {
       "logout":  "ログアウトしますか？"
     }
