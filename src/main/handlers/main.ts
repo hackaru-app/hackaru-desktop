@@ -43,6 +43,10 @@ app.on('ready', () => {
       app.dock.show()
     }
   })
+
+  mainWindow.on('focus', () => {
+    mainWindow?.webContents.send(prefix('focus'))
+  })
 })
 
 app.on('ready', () => {

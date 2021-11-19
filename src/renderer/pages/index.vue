@@ -10,6 +10,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import { formatISO, parseISO, differenceInSeconds } from 'date-fns'
+import throttle from 'lodash.throttle'
 import MenuPopover from '../components/organisms/menu-popover.vue'
 import WindowHeader from '~/components/atoms/window-header'
 import TimerForm from '~/components/organisms/timer-form'
@@ -49,7 +50,7 @@ export default {
     electron.main.on.shutdown(() => this.stopWorking())
     electron.main.on.unlockScreen(() => this.showReminder())
     electron.main.on.clickDuplicate(() => this.startPrevActivity())
-    electron.main.on.show(() => this.$store.dispatch('activities/fetchWorking'))
+    electron.main.on.focus(() => this.fetchWorking())
   },
   destroyed() {
     electron.main.stopTrayTimer()
@@ -91,6 +92,9 @@ export default {
         stoppedAt,
       })
     },
+    fetchWorking: throttle(function () {
+      this.$store.dispatch('activities/fetchWorking')
+    }, 5000),
   },
 }
 </script>

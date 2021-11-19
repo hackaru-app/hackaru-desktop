@@ -45,6 +45,7 @@ bridge({
       unlockScreen: listen(prefix('unlockScreen')),
       clickDuplicate: listen(prefix('clickDuplicate')),
       show: listen(prefix('show')),
+      focus: listen(prefix('focus')),
     },
   },
 })
