@@ -23,7 +23,7 @@ describe('Index', () => {
       on: {
         suspend: () => {},
         shutdown: () => {},
-        show: () => {},
+        focus: () => {},
         unlockScreen: () => {},
         clickDuplicate: () => {},
       },
