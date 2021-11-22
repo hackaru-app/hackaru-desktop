@@ -40,17 +40,17 @@
         @start="start"
         @stop="stop"
       />
-      <icon-button
-        v-if="working"
-        v-tooltip="$t('delete')"
-        type="button"
-        data-test-id="delete-button"
-        class="delete-button"
-        @click="deleteWorking"
-      >
-        <icon name="trash-2-icon" class="icon is-danger" />
-      </icon-button>
     </section>
+    <icon-button
+      v-if="working"
+      v-tooltip="$t('delete')"
+      type="button"
+      data-test-id="delete-button"
+      class="delete-button"
+      @click="deleteWorking"
+    >
+      <icon name="trash-2-icon" class="icon is-danger" />
+    </icon-button>
   </form>
 </template>
 
