@@ -10,10 +10,10 @@
     "test": "jest",
     "dev": "webpack -c src/main/webpack.dev.js --progress && run-p -l dev:*",
     "dev:main": "wait-on tcp:7865 && electron dist/main/main",
-    "dev:renderer": "nuxt dev --dotenv ../../.env src/renderer",
+    "dev:renderer": "nuxt dev --dotenv ../../.env.development src/renderer",
     "build": "run-p -l build:* && electron-builder",
     "build:main": "webpack -c src/main/webpack.prod.js",
-    "build:renderer": "nuxt generate --dotenv ../../.env src/renderer",
+    "build:renderer": "nuxt generate --dotenv ../../.env.production src/renderer",
     "build:icons": "electron-icon-maker -i icon.png -o build"
   },
   "lint-staged": {

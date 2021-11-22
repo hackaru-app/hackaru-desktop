@@ -35,7 +35,7 @@ git clone git@github.com:hackaru-app/hackaru-desktop.git
 cd hackaru-desktop
 
 # Copy and rename env file.
-cp .env.sample .env
+cp .env.sample .env.development
 
 # Install packages and launch the app.
 yarn && yarn dev
