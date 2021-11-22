@@ -241,6 +241,7 @@ export default {
 .description {
   border: 0;
   height: 100%;
+  text-overflow: ellipsis;
   width: 100%;
 }
 
