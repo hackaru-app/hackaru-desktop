@@ -1,6 +1,5 @@
 const path = require('path')
 const glob = require('glob')
-const Dotenv = require('dotenv-webpack')
 
 function buildEntries({ dir, filename }) {
   return glob.sync(dir).reduce((entries, entryPath) => {
@@ -39,7 +38,6 @@ module.exports = {
   node: {
     __dirname: false,
   },
-  plugins: [new Dotenv({ systemvars: true })],
   output: {
     path: path.resolve(__dirname, '../../dist/main'),
   },
