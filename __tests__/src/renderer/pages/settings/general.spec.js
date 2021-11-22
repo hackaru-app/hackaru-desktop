@@ -113,4 +113,28 @@ describe('General', () => {
       )
     })
   })
+
+  describe('when click show-mini-timer', () => {
+    beforeEach(() => {
+      wrapper = factory()
+      wrapper.find(testId('show-mini-timer')).trigger('click')
+    })
+
+    it('toggles showMiniTimer', () => {
+      expect(global.electron.config.set).toHaveBeenCalledWith(
+        'showMiniTimer',
+        true
+      )
+    })
+
+    it('sends mixpanel event', () => {
+      expect(global.electron.mixpanel.sendEvent).toHaveBeenCalledWith(
+        'Toggle showMiniTimer',
+        {
+          component: 'general',
+          enabled: true,
+        }
+      )
+    })
+  })
 })
