@@ -1,8 +1,6 @@
 <template>
   <section class="mini-timer">
-    <div class="content">
-      <ticker :started-at="startedAt" class="ticker" />
-    </div>
+    <ticker :started-at="startedAt" class="ticker" />
   </section>
 </template>
 
@@ -47,21 +45,18 @@ body {
   }
 }
 
-.content {
+.ticker {
   align-items: center;
   background-color: #0009;
   border-radius: 5px;
   box-shadow: 0 3px 10px $shadow-darker;
   color: $white;
   display: flex;
-  height: 100%;
-  justify-content: center;
-}
-
-.ticker {
   filter: drop-shadow(0 2px 1px $shadow-darker);
   font-family: $font-family-duration;
   font-size: 24px;
-  margin-top: 2px;
+  height: 100%;
+  justify-content: center;
+  padding-top: 2px;
 }
 </style>
