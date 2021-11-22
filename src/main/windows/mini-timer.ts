@@ -16,7 +16,6 @@ export function createMiniTimerWindow(): BrowserWindow {
     frame: false,
     alwaysOnTop: true,
     hasShadow: false,
-    roundedCorners: false,
   })
   window = new BrowserWindow(options)
   window.on('closed', () => (window = undefined))
