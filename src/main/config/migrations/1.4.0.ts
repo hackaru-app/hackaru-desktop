@@ -6,10 +6,12 @@ export type TypedStore = {
   stopTimerOnShutdown: boolean
   remindTimerOnUnlocked: boolean
   alwaysOnTop: boolean
+  showMiniTimer: boolean
 }
 
 export const migration = (
   store: Conf<TypedStore & Partial<PrevTypedStore>>
 ): void => {
   store.set('alwaysOnTop', false)
+  store.set('showMiniTimer', false)
 }

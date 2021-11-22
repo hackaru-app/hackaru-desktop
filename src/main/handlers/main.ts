@@ -22,10 +22,6 @@ let miniTimerWindow: BrowserWindow | undefined
 app.on('ready', () => {
   mainWindow = createMainWindow()
 
-  // TODO
-  miniTimerWindow = createMiniTimerWindow()
-  miniTimerWindow.show()
-
   mainWindow.on('close', (e) => {
     if (appExiting) return
     e.preventDefault()
@@ -44,13 +40,21 @@ app.on('ready', () => {
     }
   })
 
-  mainWindow.on('focus', () => {
-    mainWindow?.webContents.send(prefix('focus'))
+  mainWindow.on('show', () => {
+    mainWindow?.setAlwaysOnTop(config.get('alwaysOnTop'))
   })
 
   mainWindow.on('focus', () => {
-    mainWindow?.setAlwaysOnTop(config.get('alwaysOnTop'))
+    mainWindow?.webContents.send(prefix('focus'))
   })
+})
+
+app.on('ready', () => {
+  miniTimerWindow = createMiniTimerWindow()
+
+  if (config.get('showMiniTimer')) {
+    miniTimerWindow.show()
+  }
 })
 
 app.on('ready', () => {
@@ -62,6 +66,16 @@ app.on('ready', () => {
 app.on('ready', () => {
   tray = new Tray(getTrayIcon())
   tray.on('click', () => mainWindow?.show())
+})
+
+config.onDidChange('alwaysOnTop', () => {
+  mainWindow?.setAlwaysOnTop(config.get('alwaysOnTop'))
+})
+
+config.onDidChange('showMiniTimer', () => {
+  config.get('showMiniTimer')
+    ? miniTimerWindow?.show()
+    : miniTimerWindow?.hide()
 })
 
 powerMonitor.on('suspend', () => {

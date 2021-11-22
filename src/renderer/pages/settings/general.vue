@@ -39,6 +39,15 @@
         />{{ $t('alwaysOnTop') }}
         <text-label class="purple">BETA</text-label>
       </label>
+      <label>
+        <input
+          :checked="showMiniTimer"
+          data-test-id="show-mini-timer"
+          type="checkbox"
+          @click="toggleChecked('showMiniTimer')"
+        />{{ $t('showMiniTimer') }}
+        <text-label class="purple">BETA</text-label>
+      </label>
     </div>
   </section>
 </template>
@@ -58,6 +67,7 @@ export default {
       stopTimerOnShutdown: false,
       remindTimerOnUnlocked: false,
       alwaysOnTop: false,
+      showMiniTimer: false,
     }
   },
   async mounted() {
@@ -67,6 +77,7 @@ export default {
       'remindTimerOnUnlocked'
     )
     this.alwaysOnTop = await electron.config.get('alwaysOnTop')
+    this.showMiniTimer = await electron.config.get('showMiniTimer')
   },
   methods: {
     toggleChecked(key) {

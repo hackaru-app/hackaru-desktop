@@ -16,6 +16,9 @@ const schema: Store.Schema<TypedStore> = {
   alwaysOnTop: {
     type: 'boolean',
   },
+  showMiniTimer: {
+    type: 'boolean',
+  },
 }
 
 const defaults: TypedStore = {
@@ -23,6 +26,7 @@ const defaults: TypedStore = {
   stopTimerOnShutdown: true,
   remindTimerOnUnlocked: true,
   alwaysOnTop: false,
+  showMiniTimer: false,
 }
 
 function getMigrationVersions(filePaths: string[]): string[] {

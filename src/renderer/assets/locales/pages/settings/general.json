@@ -4,13 +4,15 @@
     "stopTimerOnSuspend": "Stop a timer when paused",
     "stopTimerOnShutdown": "Stop a timer on shutdown",
     "remindTimerOnUnlocked": "Show reminder notification on resumed",
-    "alwaysOnTop": "Keep the window always on top"
+    "alwaysOnTop": "Keep the window always on top",
+    "showMiniTimer": "Show the timer at the bottom right of the screen"
   },
   "ja": {
     "title": "一般",
     "stopTimerOnSuspend": "PCのスリープ時に計測を停止",
     "stopTimerOnShutdown": "PCのシャットダウン時に計測を停止",
     "remindTimerOnUnlocked": "PCの再開時に計測のリマインドを通知",
-    "alwaysOnTop": "ウィンドウを最前面に表示"
+    "alwaysOnTop": "ウィンドウを最前面に表示",
+    "showMiniTimer": "画面右下にタイマーを表示"
   }
 }
