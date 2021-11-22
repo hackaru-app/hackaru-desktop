@@ -20,6 +20,8 @@ describe('Index', () => {
     main: {
       startTrayTimer: jest.fn(),
       stopTrayTimer: jest.fn(),
+      startMiniTimer: jest.fn(),
+      stopMiniTimer: jest.fn(),
       on: {
         suspend: () => {},
         shutdown: () => {},
@@ -117,9 +119,15 @@ describe('Index', () => {
         '2019-01-01T00:12:34'
       )
     })
+
+    it('starts mini timer', () => {
+      expect(global.electron.main.startMiniTimer).toHaveBeenCalledWith(
+        '2019-01-01T00:12:34'
+      )
+    })
   })
 
-  describe('when start timer', () => {
+  describe('when stop timer', () => {
     beforeEach(() => {
       $store.getters['activities/working'] = {
         id: 1,
@@ -134,6 +142,10 @@ describe('Index', () => {
 
     it('stops tray timer', () => {
       expect(global.electron.main.stopTrayTimer).toHaveBeenCalled()
+    })
+
+    it('stop mini timer', () => {
+      expect(global.electron.main.stopMiniTimer).toHaveBeenCalled()
     })
   })
 })
