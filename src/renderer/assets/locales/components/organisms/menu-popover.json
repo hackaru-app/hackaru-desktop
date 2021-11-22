@@ -5,7 +5,7 @@
     "logout": "Logout",
     "quit": "Quit the app",
     "confirms": {
-      "logout":  "Are you sure you want to logout?"
+      "logout": "Are you sure you want to logout?"
     }
   },
   "ja": {
@@ -14,7 +14,7 @@
     "logout": "ログアウト",
     "quit": "完全に終了",
     "confirms": {
-      "logout":  "ログアウトしますか？"
+      "logout": "ログアウトしますか？"
     }
   }
 }

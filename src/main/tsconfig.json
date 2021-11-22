@@ -5,12 +5,9 @@
     "moduleResolution": "node",
     "strict": true,
     "typeRoots": ["./types"],
-    "types": [
-      "node",
-      "webpack-env"
-    ],
+    "types": ["node", "webpack-env"],
     "paths": {
-      "~/*": ["./*"],
+      "~/*": ["./*"]
     }
   }
 }
