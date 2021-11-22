@@ -40,8 +40,10 @@ export default {
     working() {
       if (this.working) {
         electron.main.startTrayTimer(this.working.startedAt)
+        electron.main.startMiniTimer(this.working.startedAt)
       } else {
         electron.main.stopTrayTimer()
+        electron.main.stopMiniTimer()
       }
     },
   },

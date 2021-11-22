@@ -36,6 +36,12 @@ bridge({
     stopTrayTimer(): void {
       invoke(prefix('stopTrayTimer'))
     },
+    startMiniTimer(startedAt: string): void {
+      invoke(prefix('startMiniTimer'), startedAt)
+    },
+    stopMiniTimer(): void {
+      invoke(prefix('stopMiniTimer'))
+    },
     openSettings(): void {
       invoke(prefix('openSettings'))
     },

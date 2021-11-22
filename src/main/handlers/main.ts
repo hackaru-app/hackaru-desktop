@@ -1,6 +1,5 @@
-import { app, shell, powerMonitor, BrowserWindow, Tray, Menu } from 'electron'
+import { app, shell, powerMonitor, BrowserWindow, Tray } from 'electron'
 import { parseISO } from 'date-fns'
-import i18next from 'i18next'
 import { handle } from '~/core/handlers'
 import { createPrefixer } from '~/core/prefixer'
 import { initDevtools } from '~/modules/devtools'
@@ -10,16 +9,22 @@ import { createSettingsWindow } from '~/windows/settings'
 import { createReminder } from '~/modules/reminder'
 import { config } from '~/config'
 import { getTrayIcon } from '~/modules/tray-icon'
+import { createMiniTimerWindow } from '~/windows/mini-timer'
 
-const namespace = 'main'
-const prefix = createPrefixer(namespace)
+const prefix = createPrefixer('main')
+const miniTimerPrefix = createPrefixer('miniTimer')
 
 let appExiting = false
-let mainWindow: BrowserWindow | undefined
 let tray: Tray | undefined
+let mainWindow: BrowserWindow | undefined
+let miniTimerWindow: BrowserWindow | undefined
 
 app.on('ready', () => {
   mainWindow = createMainWindow()
+
+  // TODO
+  miniTimerWindow = createMiniTimerWindow()
+  miniTimerWindow.show()
 
   mainWindow.on('close', (e) => {
     if (appExiting) return
@@ -96,6 +101,14 @@ handle(prefix('startTrayTimer'), (_event, startedAt: string) => {
 
 handle(prefix('stopTrayTimer'), () => {
   if (tray) TrayTimer.stop(tray)
+})
+
+handle(prefix('startMiniTimer'), (_event, startedAt: string) => {
+  miniTimerWindow?.webContents.send(miniTimerPrefix('start'), startedAt)
+})
+
+handle(prefix('stopMiniTimer'), () => {
+  miniTimerWindow?.webContents.send(miniTimerPrefix('stop'))
 })
 
 handle(prefix('show'), () => {

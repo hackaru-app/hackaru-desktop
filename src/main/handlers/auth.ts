@@ -7,8 +7,7 @@ import {
   removeAccessToken,
 } from '~/modules/access-token'
 
-const namespace = 'auth'
-const prefix = createPrefixer(namespace)
+const prefix = createPrefixer('auth')
 
 handle(prefix('restoreAccessToken'), () => {
   return restoreAccessToken()
