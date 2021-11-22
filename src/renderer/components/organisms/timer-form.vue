@@ -261,8 +261,8 @@ export default {
 }
 
 .delete-button {
-  bottom: 25px;
+  bottom: 15px;
   position: absolute;
-  right: 25px;
+  right: 15px;
 }
 </style>
