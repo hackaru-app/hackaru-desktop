@@ -6,7 +6,8 @@
   "private": true,
   "scripts": {
     "eslint": "eslint --ext .js,.ts,.vue --ignore-path .gitignore",
-    "stylelint": "stylelint '**/*.{vue,scss}'",
+    "stylelint": "stylelint '**/*.{vue,scss}' --ignore-path .gitignore",
+    "prettier": "prettier --ignore-path .gitignore",
     "test": "jest",
     "dev": "webpack -c src/main/webpack.dev.js --progress && run-p -l dev:*",
     "dev:main": "wait-on tcp:7865 && electron dist/main/main",
@@ -17,11 +18,18 @@
     "build:icons": "electron-icon-maker -i icon.png -o build"
   },
   "lint-staged": {
-    "*.{vue,js,ts}": [
-      "yarn eslint --fix"
+    "*.{js,ts}": [
+      "yarn eslint --fix",
+      "yarn prettier --write"
     ],
-    "*.{vue,scss}": [
-      "yarn stylelint --fix"
+    "*.vue": [
+      "yarn eslint --fix",
+      "yarn stylelint --fix",
+      "yarn prettier --write"
+    ],
+    "*.scss": [
+      "yarn stylelint --fix",
+      "yarn prettier --write"
     ]
   },
   "build": {
@@ -84,7 +92,6 @@
   },
   "devDependencies": {
     "@doyensec/electronegativity": "^1.9.1",
-    "@nuxtjs/eslint-config": "^6.0.1",
     "@nuxtjs/style-resources": "^1.2.1",
     "@types/hh-mm-ss": "^1.2.1",
     "@types/universal-analytics": "^0.4.5",
@@ -95,7 +102,6 @@
     "@vue/test-utils": "^1.2.2",
     "axios-mock-adapter": "^1.20.0",
     "babel-core": "7.0.0-bridge.0",
-    "babel-eslint": "^10.1.0",
     "babel-jest": "^27.3.1",
     "conf": "^10.0.3",
     "dotenv-webpack": "^7.0.3",
@@ -106,8 +112,6 @@
     "electron-notarize": "^1.1.1",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-nuxt": "^3.0.0",
-    "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-vue": "^7.20.0",
     "husky": "^7.0.4",
     "jest": "^27.3.1",
@@ -123,9 +127,8 @@
     "sass-loader": "^10.1.1",
     "stylelint": "^14.1.0",
     "stylelint-config-prettier": "^9.0.3",
-    "stylelint-config-standard": "^24.0.0",
+    "stylelint-config-standard-scss": "^3.0.0",
     "stylelint-order": "^5.0.0",
-    "stylelint-prettier": "^2.0.0",
     "stylelint-scss": "^4.0.0",
     "ts-loader": "^9.2.6",
     "typescript": "^4.4.4",

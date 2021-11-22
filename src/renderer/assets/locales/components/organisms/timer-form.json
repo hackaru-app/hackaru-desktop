@@ -7,7 +7,7 @@
     "stopped": "Timer stopped! 🎉",
     "deleted": "Timer deleted",
     "confirms": {
-      "delete":  "Are you sure you want to delete the timer?"
+      "delete": "Are you sure you want to delete the timer?"
     }
   },
   "ja": {
@@ -18,7 +18,7 @@
     "stopped": "計測を完了しました！🎉",
     "deleted": "計測を削除しました",
     "confirms": {
-      "delete":  "計測を削除しますか？"
+      "delete": "計測を削除しますか？"
     }
   }
 }

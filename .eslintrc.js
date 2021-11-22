@@ -4,20 +4,15 @@ module.exports = {
     browser: true,
     node: true,
   },
-  parserOptions: {
-    parser: 'babel-eslint',
-  },
   globals: {
     electron: true,
   },
   extends: [
-    '@nuxtjs',
+    'plugin:vue/essential',
+    'plugin:vue/strongly-recommended',
+    'plugin:vue/recommended',
     'prettier',
-    'plugin:prettier/recommended',
-    'plugin:nuxt/recommended',
   ],
-  plugins: ['prettier'],
-  // add your custom rules here
   rules: {
     'no-unused-vars': [
       'error',
@@ -26,7 +21,6 @@ module.exports = {
         argsIgnorePattern: '^_',
       },
     ],
-    'nuxt/no-cjs-in-config': 'off',
   },
   overrides: [
     {
@@ -41,7 +35,6 @@ module.exports = {
         'plugin:@typescript-eslint/eslint-recommended',
         'plugin:@typescript-eslint/recommended',
         'prettier',
-        'plugin:prettier/recommended',
       ],
       plugins: ['@typescript-eslint'],
       rules: {

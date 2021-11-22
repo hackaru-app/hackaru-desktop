@@ -6,4 +6,4 @@ checks:
   method-lines:
     enabled: false
 exclude_paths:
-  - "__tests__/**/*"
+  - '__tests__/**/*'
