@@ -14,6 +14,7 @@ module.exports = {
     'prettier',
   ],
   rules: {
+    'vue/multi-word-component-names': 'off',
     'no-unused-vars': [
       'error',
       {
