@@ -32,3 +32,6 @@ jobs:
 
       - name: Run stylelint
         run: yarn stylelint
+
+      - name: Run prettier
+        run: yarn prettier --check .

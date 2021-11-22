@@ -8,6 +8,7 @@
 </p>
 
 ## Download
+
 - [MacOS](https://github.com/hackaru-app/hackaru-desktop/releases/download/v1.3.5/hackaru-desktop-v1.3.5.dmg)
 - [Windows](https://github.com/hackaru-app/hackaru-desktop/releases/download/v1.3.5/hackaru-desktop-v1.3.5.exe)
 - [Linux](https://github.com/hackaru-app/hackaru-desktop/releases/download/v1.3.5/hackaru-desktop-v1.3.5.AppImage)
@@ -26,11 +27,11 @@ For information on how to start these servers, see the the [API README](https://
 # Move to the api directory you cloned.
 cd hackaru-api
 
-# Create an OAuth app on the API server. 
+# Create an OAuth app on the API server.
 docker-compose -f docker-compose.yml -f docker-compose.dev.yml run --rm api bin/rails db:seed
 
 # Clone this repository.
-cd .. 
+cd ..
 git clone git@github.com:hackaru-app/hackaru-desktop.git
 cd hackaru-desktop
 
