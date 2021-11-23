@@ -22,7 +22,13 @@ export function createMiniTimerWindow(): BrowserWindow {
   window.removeMenu()
   window.setIgnoreMouseEvents(true)
   window.loadURL(getWindowUrl('/mini-timer'))
-  new Positioner(window).move('bottomRight')
+  updateMiniTimerWindowPosition()
 
   return window
+}
+
+export function updateMiniTimerWindowPosition() {
+  if (!window) return
+
+  new Positioner(window).move('bottomRight')
 }

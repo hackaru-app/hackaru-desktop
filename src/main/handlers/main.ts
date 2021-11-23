@@ -1,4 +1,4 @@
-import { app, shell, powerMonitor, BrowserWindow, Tray } from 'electron'
+import { app, screen, shell, powerMonitor, BrowserWindow, Tray } from 'electron'
 import { parseISO } from 'date-fns'
 import { handle } from '~/core/handlers'
 import { createPrefixer } from '~/core/prefixer'
@@ -9,7 +9,10 @@ import { createSettingsWindow } from '~/windows/settings'
 import { createReminder } from '~/modules/reminder'
 import { config } from '~/config'
 import { getTrayIcon } from '~/modules/tray-icon'
-import { createMiniTimerWindow } from '~/windows/mini-timer'
+import {
+  createMiniTimerWindow,
+  updateMiniTimerWindowPosition,
+} from '~/windows/mini-timer'
 
 const prefix = createPrefixer('main')
 const miniTimerPrefix = createPrefixer('miniTimer')
@@ -59,6 +62,10 @@ app.on('ready', () => {
   miniTimerWindow.on('close', (e) => {
     if (appExiting) return
     e.preventDefault()
+  })
+
+  screen.on('display-metrics-changed', () => {
+    updateMiniTimerWindowPosition()
   })
 })
 
