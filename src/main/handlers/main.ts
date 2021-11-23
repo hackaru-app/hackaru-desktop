@@ -104,7 +104,7 @@ powerMonitor.on('shutdown', () => {
 
 powerMonitor.on('unlock-screen', () => {
   if (config.get('remindTimerOnUnlocked')) {
-    mainWindow?.webContents.send(prefix('unlockScreen'))
+    setTimeout(() => mainWindow?.webContents.send(prefix('unlockScreen')), 5000)
   }
 })
 
@@ -142,13 +142,11 @@ handle(prefix('show'), () => {
 })
 
 handle(prefix('showReminder'), (_event, prevDescription: string) => {
-  setTimeout(() => {
-    const reminder = createReminder(prevDescription)
-    reminder.show()
-    reminder.on('click', () => mainWindow?.show())
-    reminder.on('action', () => {
-      mainWindow?.show()
-      mainWindow?.webContents.send(prefix('clickDuplicate'))
-    })
-  }, 5000)
+  const reminder = createReminder(prevDescription)
+  reminder.show()
+  reminder.on('click', () => mainWindow?.show())
+  reminder.on('action', () => {
+    mainWindow?.show()
+    mainWindow?.webContents.send(prefix('clickDuplicate'))
+  })
 })
