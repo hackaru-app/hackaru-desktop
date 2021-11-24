@@ -2608,6 +2608,13 @@
   dependencies:
     "@types/ms" "*"
 
+"@types/electron-positioner@^4.1.0":
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/@types/electron-positioner/-/electron-positioner-4.1.0.tgz#289fbbdec00cda8ac62a969fc3937763a7a2a535"
+  integrity sha512-sW6JR5wKWlfSk4myf+/AhG7ET+wOoA7vKppIg93vB8DQE2udPdIjzbd6/+wNYqU2988x3pQlkPcz9hRPt3belA==
+  dependencies:
+    electron "^15.3.1"
+
 "@types/eslint-scope@^3.7.0":
   version "3.7.0"
   resolved "https://registry.yarnpkg.com/@types/eslint-scope/-/eslint-scope-3.7.0.tgz#4792816e31119ebd506902a482caec4951fabd86"

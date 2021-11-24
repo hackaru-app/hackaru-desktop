@@ -1,5 +1,5 @@
 import { BrowserWindow } from 'electron'
-import Positioner from 'electron-positioner'
+import * as Positioner from 'electron-positioner'
 import { getWindowUrl, buildWindowOptions } from '~/modules/window'
 
 let window: BrowserWindow | undefined
