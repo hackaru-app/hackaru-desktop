@@ -9,9 +9,9 @@
 
 ## Download
 
-- [MacOS](https://github.com/hackaru-app/hackaru-desktop/releases/download/v1.3.5/hackaru-desktop-v1.3.5.dmg)
-- [Windows](https://github.com/hackaru-app/hackaru-desktop/releases/download/v1.3.5/hackaru-desktop-v1.3.5.exe)
-- [Linux](https://github.com/hackaru-app/hackaru-desktop/releases/download/v1.3.5/hackaru-desktop-v1.3.5.AppImage)
+- [MacOS](https://github.com/hackaru-app/hackaru-desktop/releases/download/v1.3.6/hackaru-desktop-v1.3.6.dmg)
+- [Windows](https://github.com/hackaru-app/hackaru-desktop/releases/download/v1.3.6/hackaru-desktop-v1.3.6.exe)
+- [Linux](https://github.com/hackaru-app/hackaru-desktop/releases/download/v1.3.6/hackaru-desktop-v1.3.6.AppImage)
 
 ## Feedback
 
