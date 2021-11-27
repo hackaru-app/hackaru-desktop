@@ -20,7 +20,7 @@ export function createMiniTimerWindow(): BrowserWindow {
   window = new BrowserWindow(options)
   window.on('closed', () => (window = undefined))
   window.removeMenu()
-  window.setIgnoreMouseEvents(true)
+  window.setIgnoreMouseEvents(true, { forward: true })
   window.loadURL(getWindowUrl('/mini-timer'))
   updateMiniTimerWindowPosition()
 

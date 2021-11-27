@@ -1,5 +1,5 @@
 <template>
-  <section class="mini-timer">
+  <section @mousemove="hide" :class="['mini-timer', { hidden }]">
     <ticker :started-at="startedAt" class="ticker" />
   </section>
 </template>
@@ -14,6 +14,8 @@ export default {
   data() {
     return {
       startedAt: undefined,
+      hidden: false,
+      showTimer: undefined
     }
   },
   mounted() {
@@ -24,6 +26,13 @@ export default {
       this.startedAt = startedAt
     })
   },
+  methods: {
+    hide() {
+      this.hidden = true
+      clearTimeout(this.showTimer)
+      this.showTimer = setTimeout(() => this.hidden = false, 3000)
+    }
+  }
 }
 </script>
 
@@ -40,7 +49,7 @@ body {
   padding: 10px;
   transition: opacity 0.15s;
 
-  &:hover {
+  &.hidden {
     opacity: 0;
   }
 }
