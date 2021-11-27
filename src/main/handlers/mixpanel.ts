@@ -3,8 +3,7 @@ import { handle } from '~/core/handlers'
 import { createPrefixer } from '~/core/prefixer'
 import { MixpanelClient } from '~/modules/mixpanel-client'
 
-const namespace = 'mixpanel'
-const prefix = createPrefixer(namespace)
+const prefix = createPrefixer('mixpanel')
 const mixpanelClient = new MixpanelClient()
 
 handle(

@@ -9,12 +9,16 @@ const readables = [
   'stopTimerOnSuspend',
   'stopTimerOnShutdown',
   'remindTimerOnUnlocked',
+  'alwaysOnTop',
+  'showMiniTimer',
 ]
 
 const settables = [
   'stopTimerOnSuspend',
   'stopTimerOnShutdown',
   'remindTimerOnUnlocked',
+  'alwaysOnTop',
+  'showMiniTimer',
 ]
 
 export const config = {

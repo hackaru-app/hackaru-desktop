@@ -13,12 +13,5 @@ module.exports = {
       files: ['**/*.scss'],
       customSyntax: 'postcss-scss',
     },
-    // TODO: Remove
-    {
-      files: ['src/renderer/assets/scss/_vue-js-modal.scss'],
-      rules: {
-        'selector-class-pattern': null,
-      },
-    },
   ],
 }

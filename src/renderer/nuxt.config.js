@@ -58,7 +58,6 @@ module.exports = {
     { src: '~/plugins/v-tooltip' },
     { src: '~/plugins/vue-timers' },
     { src: '~/plugins/vue-router' },
-    { src: '~/plugins/vue-js-modal' },
     { src: '~/plugins/sentry' },
     { src: '~/plugins/api' },
   ],

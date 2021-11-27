@@ -10,7 +10,7 @@ export function createSettingsWindow(): BrowserWindow {
   window = new BrowserWindow(options)
   window.on('closed', () => (window = undefined))
   window.removeMenu()
-  window.loadURL(getWindowUrl('/settings/power-monitor'))
+  window.loadURL(getWindowUrl('/settings/general'))
 
   return window
 }

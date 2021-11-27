@@ -4,9 +4,7 @@ import { createPrefixer } from '~/core/prefixer'
 import { handle } from '~/core/handlers'
 import { createVisitor } from '~/modules/universal-analytics'
 
-const namespace = 'googleAnalytics'
-const prefix = createPrefixer(namespace)
-
+const prefix = createPrefixer('googleAnalytics')
 const visitor = createVisitor()
 
 if (process.env.NODE_ENV !== 'production') {

@@ -63,7 +63,7 @@ export default {
   flex-direction: column;
   left: 0;
   margin: 0;
-  padding: 18px 30px;
+  padding: 15px 20px;
   text-align: center;
   width: 100%;
 }

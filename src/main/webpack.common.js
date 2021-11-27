@@ -1,10 +1,10 @@
 const path = require('path')
 const glob = require('glob')
 
-function buildEntries({ dir, filename }) {
-  return glob.sync(dir).reduce((entries, entryPath) => {
-    const name = path.parse(entryPath).name
-    return { ...entries, [name]: { import: entryPath, filename } }
+function buildPreloadEntries() {
+  return glob.sync('./src/main/preloads/*.ts').reduce((entries, entryPath) => {
+    const name = `preloads/${path.parse(entryPath).name}`
+    return { ...entries, [name]: { import: entryPath } }
   }, {})
 }
 
@@ -12,10 +12,7 @@ module.exports = {
   target: 'electron-main',
   entry: {
     main: './src/main/index',
-    ...buildEntries({
-      dir: './src/main/preloads/*.ts',
-      filename: 'preloads/[name].js',
-    }),
+    ...buildPreloadEntries(),
   },
   module: {
     rules: [
