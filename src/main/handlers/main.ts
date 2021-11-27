@@ -138,7 +138,9 @@ handle(prefix('stopMiniTimer'), () => {
 })
 
 handle(prefix('show'), () => {
+  mainWindow?.setAlwaysOnTop(true)
   mainWindow?.show()
+  mainWindow?.setAlwaysOnTop(config.get('alwaysOnTop'))
 })
 
 handle(prefix('showReminder'), (_event, prevDescription: string) => {
