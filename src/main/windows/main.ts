@@ -14,8 +14,8 @@ export function createMainWindow(): BrowserWindow {
     hasShadow: true,
     titleBarOverlay: {
       color: nativeTheme.shouldUseDarkColors ? '#262b38' : '#3f4961',
-      symbolColor: '#fff'
-    }
+      symbolColor: '#fff',
+    },
   })
   window = new BrowserWindow(options)
   window.on('closed', () => (window = undefined))

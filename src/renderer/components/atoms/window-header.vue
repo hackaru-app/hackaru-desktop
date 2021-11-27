@@ -8,9 +8,9 @@
 export default {
   data() {
     return {
-      platform: navigator.platform
+      platform: navigator.platform,
     }
-  }
+  },
 }
 </script>
 
@@ -28,6 +28,7 @@ export default {
   top: 0;
   width: 100%;
   z-index: index($z, window-header);
+
   &.win {
     justify-content: flex-start;
   }
