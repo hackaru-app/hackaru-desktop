@@ -465,6 +465,10 @@ describe('TimerForm', () => {
     it('dispatches activities/delete', () => {
       expect($store.dispatch).toHaveBeenCalledWith('activities/delete', 1)
     })
+
+    it('dispatches activities/fetchWorking', () => {
+      expect($store.dispatch).toHaveBeenCalledWith('activities/fetchWorking')
+    })
   })
 
   describe('when click delete button and cancel', () => {
