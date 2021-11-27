@@ -1,7 +1,11 @@
 <template>
-  <section :class="['mini-timer', { hidden }]" @mousemove="hide">
-    <ticker :started-at="startedAt" class="ticker" />
-  </section>
+  <div>
+    <transition name="fade">
+      <section v-if="show" class="mini-timer" @mousemove="mousemove">
+        <ticker :started-at="startedAt" class="ticker" />
+      </section>
+    </transition>
+  </div>
 </template>
 
 <script>
@@ -13,10 +17,15 @@ export default {
   },
   data() {
     return {
+      mousemoved: false,
+      mouseTimer: undefined,
       startedAt: undefined,
-      hidden: false,
-      showTimer: undefined,
     }
+  },
+  computed: {
+    show() {
+      return !this.mousemoved && this.startedAt
+    },
   },
   mounted() {
     electron.miniTimer.on.stop(() => {
@@ -27,10 +36,10 @@ export default {
     })
   },
   methods: {
-    hide() {
-      this.hidden = true
-      clearTimeout(this.showTimer)
-      this.showTimer = setTimeout(() => (this.hidden = false), 3000)
+    mousemove() {
+      this.mousemoved = true
+      clearTimeout(this.mouseTimer)
+      this.mouseTimer = setTimeout(() => (this.mousemoved = false), 3000)
     },
   },
 }
@@ -45,13 +54,7 @@ body {
 <style scoped lang="scss">
 .mini-timer {
   height: 100vh;
-  opacity: 1;
   padding: 10px;
-  transition: opacity 0.15s;
-
-  &.hidden {
-    opacity: 0;
-  }
 }
 
 .ticker {
