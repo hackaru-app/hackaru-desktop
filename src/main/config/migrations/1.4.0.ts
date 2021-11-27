@@ -13,5 +13,5 @@ export const migration = (
   store: Conf<TypedStore & Partial<PrevTypedStore>>
 ): void => {
   store.set('alwaysOnTop', false)
-  store.set('showMiniTimer', false)
+  store.set('showMiniTimer', true)
 }

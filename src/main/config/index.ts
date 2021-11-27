@@ -26,7 +26,7 @@ const defaults: TypedStore = {
   stopTimerOnShutdown: true,
   remindTimerOnUnlocked: true,
   alwaysOnTop: false,
-  showMiniTimer: false,
+  showMiniTimer: true,
 }
 
 function getMigrationVersions(filePaths: string[]): string[] {
