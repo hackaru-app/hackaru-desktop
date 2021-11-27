@@ -37,7 +37,6 @@
           type="checkbox"
           @click="toggleChecked('alwaysOnTop')"
         />{{ $t('alwaysOnTop') }}
-        <text-label class="purple">BETA</text-label>
       </label>
       <label>
         <input
