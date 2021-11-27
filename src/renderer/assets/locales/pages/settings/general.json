@@ -13,6 +13,6 @@
     "stopTimerOnShutdown": "PCのシャットダウン時に計測を停止",
     "remindTimerOnUnlocked": "PCの再開時に計測のリマインドを通知",
     "alwaysOnTop": "ウィンドウを最前面に表示",
-    "showMiniTimer": "画面右下にタイマーを表示"
+    "showMiniTimer": "画面右下に経過時間を表示"
   }
 }
