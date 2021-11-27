@@ -57,6 +57,8 @@ app.on('ready', () => {
 
   if (config.get('showMiniTimer')) {
     miniTimerWindow.show()
+  } else {
+    miniTimerWindow.hide()
   }
 
   miniTimerWindow.on('close', (e) => {
