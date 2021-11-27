@@ -1,4 +1,4 @@
-import { BrowserWindow } from 'electron'
+import { BrowserWindow, nativeTheme } from 'electron'
 import { getWindowUrl, buildWindowOptions } from '~/modules/window'
 
 let window: BrowserWindow | undefined
@@ -13,7 +13,7 @@ export function createMainWindow(): BrowserWindow {
     titleBarStyle: 'hidden',
     hasShadow: true,
     titleBarOverlay: {
-      color: '#3f4961',
+      color: nativeTheme.shouldUseDarkColors ? '#262b38' : '#3f4961',
       symbolColor: '#fff'
     }
   })
