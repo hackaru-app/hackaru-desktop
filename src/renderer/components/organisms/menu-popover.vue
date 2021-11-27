@@ -92,6 +92,7 @@ export default {
 <style scoped lang="scss">
 .more-button {
   color: $white;
+  -webkit-app-region: no-drag;
 }
 
 .popover {

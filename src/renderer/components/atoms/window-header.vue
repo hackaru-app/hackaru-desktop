@@ -1,8 +1,18 @@
 <template>
-  <span class="window-header">
+  <span :class="['window-header', { win: platform === 'Win32' }]">
     <slot />
   </span>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      platform: navigator.platform
+    }
+  }
+}
+</script>
 
 <style scoped lang="scss">
 .window-header {
@@ -18,5 +28,8 @@
   top: 0;
   width: 100%;
   z-index: index($z, window-header);
+  &.win {
+    justify-content: flex-start;
+  }
 }
 </style>
