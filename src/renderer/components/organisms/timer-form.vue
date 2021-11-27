@@ -213,6 +213,7 @@ export default {
       })
       await this.$store.dispatch('activities/delete', this.activity.id)
       this.$store.dispatch('toast/success', this.$t('deleted'))
+      await this.$store.dispatch('activities/fetchWorking')
     },
   },
 }
