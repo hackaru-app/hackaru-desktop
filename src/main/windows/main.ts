@@ -9,10 +9,13 @@ export function createMainWindow(): BrowserWindow {
   const options = buildWindowOptions('main', {
     width: 225,
     height: 370,
-    transparent: true,
-    frame: true,
     maximizable: false,
     titleBarStyle: 'hidden',
+    hasShadow: true,
+    titleBarOverlay: {
+      color: '#3f4961',
+      symbolColor: '#fff'
+    }
   })
   window = new BrowserWindow(options)
   window.on('closed', () => (window = undefined))
