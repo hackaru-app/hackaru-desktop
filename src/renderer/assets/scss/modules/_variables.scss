@@ -119,8 +119,4 @@ $background-dark-hover: var(--background-dark-hover);
 $animation-duration: 0.25s;
 
 // ZIndex
-$z: tooltip,
-  // low
-  backdrop,
-  toast, window-header, // high
-;
+$z: tooltip, backdrop, toast, window-header;

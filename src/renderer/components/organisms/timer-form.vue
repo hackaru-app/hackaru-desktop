@@ -2,27 +2,29 @@
 
 <template>
   <form @submit.prevent>
-    <div class="form-item">
-      <project-select
-        :value="projectId"
-        :projects="projects"
-        class="project-select"
-        data-test-id="project-select"
-        @input="selectProject"
-      />
-    </div>
-    <div class="form-item">
-      <input
-        v-model="description"
-        :placeholder="$t('description')"
-        class="description"
-        data-test-id="description"
-        @change="update"
-        @focus="focus"
-        @blur="blur"
-        @keypress.enter.prevent="startOrUpdate"
-      />
-    </div>
+    <header class="form-header">
+      <div class="form-item">
+        <project-select
+          :value="projectId"
+          :projects="projects"
+          class="project-select"
+          data-test-id="project-select"
+          @input="selectProject"
+        />
+      </div>
+      <div class="form-item">
+        <input
+          v-model="description"
+          :placeholder="$t('description')"
+          class="description"
+          data-test-id="description"
+          @change="update"
+          @focus="focus"
+          @blur="blur"
+          @keypress.enter.prevent="startOrUpdate"
+        />
+      </div>
+    </header>
     <suggestion-list
       v-if="focused && !working"
       class="suggestion-list"
@@ -45,7 +47,7 @@
       type="button"
       data-test-id="delete-button"
       class="delete-button"
-      @click="confirmDeleteWorking"
+      @click="deleteWorking"
     >
       <icon name="trash-2-icon" class="icon is-danger" />
     </icon-button>
@@ -200,17 +202,9 @@ export default {
         this.$store.dispatch('toast/success', this.$t('stopped'))
       }
     },
-    confirmDeleteWorking() {
-      this.$modal.show('dialog', {
-        text: this.$t('confirms.delete'),
-        buttons: [
-          { title: 'Cancel', handler: () => this.$modal.hide('dialog') },
-          { title: 'OK', handler: this.deleteWorking },
-        ],
-      })
-    },
     async deleteWorking() {
-      this.$modal.hide('dialog')
+      if (!window.confirm(this.$t('confirms.delete'))) return
+
       electron.googleAnalytics.sendEvent('Activities', 'delete')
       electron.mixpanel.sendEvent('Delete activity', {
         component: 'timer-form',
@@ -230,18 +224,24 @@ export default {
   display: flex;
 }
 
+.form-header {
+  box-shadow: 0 3px 3px $shadow;
+}
+
 .form-item {
-  align-items: center;
+  align-items: baseline;
+  background-color: $background-translucent;
   border-bottom: 1px $border solid;
   box-sizing: border-box;
   display: flex;
-  height: 65px;
-  padding: 0 30px;
+  height: 60px;
+  padding: 0 25px;
 }
 
 .description {
   border: 0;
   height: 100%;
+  text-overflow: ellipsis;
   width: 100%;
 }
 
@@ -250,20 +250,19 @@ export default {
   display: flex;
   flex-direction: column;
   font-family: $font-family-duration;
-  font-size: 46px;
+  font-size: 36px;
   font-weight: 300;
+  height: calc(100vh - 120px - 30px);
   justify-content: center;
-  margin-bottom: 10px;
-  margin-top: 60px;
-}
-
-.ticker {
-  margin-bottom: 10px;
+  padding-bottom: 10px;
+  position: absolute;
+  width: 100%;
+  z-index: -1;
 }
 
 .delete-button {
-  float: right;
-  margin-right: 30px;
-  margin-top: 20px;
+  bottom: 15px;
+  position: absolute;
+  right: 15px;
 }
 </style>

@@ -430,8 +430,9 @@ describe('TimerForm', () => {
     })
   })
 
-  describe('when delete timer', () => {
+  describe('when click delete button', () => {
     beforeEach(() => {
+      global.confirm = () => true
       $store.getters['activities/working'] = {
         id: 1,
         project: { id: 1 },
@@ -463,6 +464,26 @@ describe('TimerForm', () => {
 
     it('dispatches activities/delete', () => {
       expect($store.dispatch).toHaveBeenCalledWith('activities/delete', 1)
+    })
+  })
+
+  describe('when click delete button and cancel', () => {
+    beforeEach(() => {
+      global.confirm = () => false
+      wrapper = factory()
+      wrapper.vm.deleteWorking()
+    })
+
+    it('does not send ga event', () => {
+      expect(global.electron.googleAnalytics.sendEvent).not.toHaveBeenCalled()
+    })
+
+    it('does not send mixpanel event', () => {
+      expect(global.electron.mixpanel.sendEvent).not.toHaveBeenCalled()
+    })
+
+    it('does not dispatches activities/delete', () => {
+      expect($store.dispatch).not.toHaveBeenCalled()
     })
   })
 })

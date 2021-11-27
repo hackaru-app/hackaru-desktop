@@ -1,14 +1,13 @@
-<i18n src="~/assets/locales/pages/settings/power-monitor.json"></i18n>
+<i18n src="~/assets/locales/pages/settings/general.json"></i18n>
 
 <template>
   <section>
     <header class="header">
-      <h1><icon name="power-icon" />{{ $t('title') }}</h1>
+      <h1><icon name="settings-icon" />{{ $t('title') }}</h1>
     </header>
     <div class="form">
       <label>
         <input
-          class="suspend"
           :checked="stopTimerOnSuspend"
           type="checkbox"
           data-test-id="stop-timer-on-suspend"
@@ -17,7 +16,6 @@
       </label>
       <label>
         <input
-          class="shutdown"
           :checked="stopTimerOnShutdown"
           data-test-id="stop-timer-on-shutdown"
           type="checkbox"
@@ -26,12 +24,27 @@
       </label>
       <label>
         <input
-          class="shutdown"
           :checked="remindTimerOnUnlocked"
           data-test-id="remind-timer-on-unlocked"
           type="checkbox"
           @click="toggleChecked('remindTimerOnUnlocked')"
         />{{ $t('remindTimerOnUnlocked') }}
+      </label>
+      <label>
+        <input
+          :checked="alwaysOnTop"
+          data-test-id="always-on-top"
+          type="checkbox"
+          @click="toggleChecked('alwaysOnTop')"
+        />{{ $t('alwaysOnTop') }}
+      </label>
+      <label>
+        <input
+          :checked="showMiniTimer"
+          data-test-id="show-mini-timer"
+          type="checkbox"
+          @click="toggleChecked('showMiniTimer')"
+        />{{ $t('showMiniTimer') }}
         <text-label class="purple">BETA</text-label>
       </label>
     </div>
@@ -52,6 +65,8 @@ export default {
       stopTimerOnSuspend: false,
       stopTimerOnShutdown: false,
       remindTimerOnUnlocked: false,
+      alwaysOnTop: false,
+      showMiniTimer: false,
     }
   },
   async mounted() {
@@ -60,13 +75,15 @@ export default {
     this.remindTimerOnUnlocked = await electron.config.get(
       'remindTimerOnUnlocked'
     )
+    this.alwaysOnTop = await electron.config.get('alwaysOnTop')
+    this.showMiniTimer = await electron.config.get('showMiniTimer')
   },
   methods: {
     toggleChecked(key) {
       this[key] = !this[key]
       electron.config.set(key, this[key])
       electron.mixpanel.sendEvent(`Toggle ${key}`, {
-        component: 'power-monitor',
+        component: 'general',
         enabled: this[key],
       })
     },

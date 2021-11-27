@@ -9,7 +9,7 @@ import { sentry } from '~/preloads/common/sentry'
 
 initSentry(Sentry)
 
-const namespace = 'menubar'
+const namespace = 'main'
 const prefix = createPrefixer(namespace)
 
 bridge({
@@ -36,6 +36,12 @@ bridge({
     stopTrayTimer(): void {
       invoke(prefix('stopTrayTimer'))
     },
+    startMiniTimer(startedAt: string): void {
+      invoke(prefix('startMiniTimer'), startedAt)
+    },
+    stopMiniTimer(): void {
+      invoke(prefix('stopMiniTimer'))
+    },
     openSettings(): void {
       invoke(prefix('openSettings'))
     },
@@ -47,7 +53,8 @@ bridge({
       shutdown: listen(prefix('shutdown')),
       unlockScreen: listen(prefix('unlockScreen')),
       clickDuplicate: listen(prefix('clickDuplicate')),
-      showMenubar: listen(prefix('showMenubar')),
+      show: listen(prefix('show')),
+      focus: listen(prefix('focus')),
     },
   },
 })

@@ -1,70 +1,33 @@
-<i18n src="~/assets/locales/pages/index.json"></i18n>
-
 <template>
   <section>
-    <window-header class="is-small" />
+    <window-header>
+      <menu-popover />
+    </window-header>
     <timer-form class="timer-form" />
-    <footer class="footer">
-      <div class="footer-icons">
-        <icon-button
-          v-tooltip="$t('settings')"
-          type="button"
-          data-test-id="settings-button"
-          @click="openSettings"
-        >
-          <icon name="settings-icon" class="icon is-small" />
-        </icon-button>
-        <icon-button
-          v-tooltip="$t('web')"
-          data-test-id="web-button"
-          type="button"
-          @click="openWeb"
-        >
-          <icon name="globe-icon" class="icon is-small" />
-        </icon-button>
-      </div>
-
-      <div class="footer-icons">
-        <icon-button
-          v-tooltip="$t('quit')"
-          data-test-id="quit-button"
-          type="button"
-          @click="quit"
-        >
-          <icon name="x-circle-icon" class="icon is-small" />
-        </icon-button>
-        <icon-button
-          v-tooltip="$t('logout')"
-          data-test-id="logout-button"
-          type="button"
-          @click="confirmLogout"
-        >
-          <icon name="log-out-icon" class="icon is-small" />
-        </icon-button>
-      </div>
-    </footer>
   </section>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
 import { formatISO, parseISO, differenceInSeconds } from 'date-fns'
+import throttle from 'lodash.throttle'
+import MenuPopover from '../components/organisms/menu-popover.vue'
 import WindowHeader from '~/components/atoms/window-header'
 import TimerForm from '~/components/organisms/timer-form'
-import Icon from '~/components/atoms/icon'
-import IconButton from '~/components/atoms/icon-button'
 
 export default {
   components: {
     WindowHeader,
     TimerForm,
-    Icon,
-    IconButton,
+    MenuPopover,
   },
   middleware: 'authenticated',
   fetch() {
     this.$store.dispatch('projects/fetch')
     this.$store.dispatch('activities/fetchWorking')
+  },
+  head: {
+    title: 'Hackaru',
   },
   computed: {
     ...mapGetters({
@@ -76,30 +39,30 @@ export default {
   watch: {
     working() {
       if (this.working) {
-        electron.menubar.startTrayTimer(this.working.startedAt)
+        electron.main.startTrayTimer(this.working.startedAt)
+        electron.main.startMiniTimer(this.working.startedAt)
       } else {
-        electron.menubar.stopTrayTimer()
+        electron.main.stopTrayTimer()
+        electron.main.stopMiniTimer()
       }
     },
   },
   mounted() {
-    electron.menubar.on.suspend(() => this.stopWorking())
-    electron.menubar.on.shutdown(() => this.stopWorking())
-    electron.menubar.on.unlockScreen(() => this.showReminder())
-    electron.menubar.on.clickDuplicate(() => this.startPrevActivity())
-    electron.menubar.on.showMenubar(() =>
-      this.$store.dispatch('activities/fetchWorking')
-    )
+    electron.main.on.suspend(() => this.stopWorking())
+    electron.main.on.shutdown(() => this.stopWorking())
+    electron.main.on.unlockScreen(() => this.showReminder())
+    electron.main.on.clickDuplicate(() => this.startPrevActivity())
+    electron.main.on.focus(() => this.fetchWorking())
   },
   destroyed() {
-    electron.menubar.stopTrayTimer()
+    electron.main.stopTrayTimer()
   },
   methods: {
     async showReminder() {
       if (this.working) return
 
       await this.$store.dispatch('activities/fetchWeeklyActivities', new Date())
-      electron.menubar.showReminder(this.prevDescription)
+      electron.main.showReminder(this.prevDescription)
     },
     startPrevActivity() {
       if (!this.prevActivity || this.working) return
@@ -109,21 +72,6 @@ export default {
         projectId: this.prevActivity.project?.id,
         startedAt: new Date(),
       })
-    },
-    openSettings() {
-      electron.menubar.openSettings()
-    },
-    openWeb() {
-      electron.mixpanel.sendEvent('Open web', {
-        component: 'index',
-      })
-      electron.menubar.openWeb()
-    },
-    quit() {
-      electron.mixpanel.sendEvent('Quit app', {
-        component: 'index',
-      })
-      electron.menubar.quit()
     },
     stopWorking() {
       if (!this.working) return
@@ -146,25 +94,9 @@ export default {
         stoppedAt,
       })
     },
-    confirmLogout() {
-      this.$modal.show('dialog', {
-        text: this.$t('confirms.logout'),
-        buttons: [
-          { title: 'Cancel', handler: () => this.$modal.hide('dialog') },
-          { title: 'OK', handler: this.logout },
-        ],
-      })
-    },
-    async logout() {
-      this.$modal.hide('dialog')
-      electron.sentry.removeUserId()
-      electron.mixpanel.removeUserId()
-      electron.googleAnalytics.sendEvent('Accounts', 'logout')
-      electron.googleAnalytics.removeUserId()
-      this.$store.dispatch('auth/logout')
-      await this.$router.replace(this.localePath('auth'))
-      window.location.reload()
-    },
+    fetchWorking: throttle(function () {
+      this.$store.dispatch('activities/fetchWorking')
+    }, 5000),
   },
 }
 </script>
@@ -172,30 +104,5 @@ export default {
 <style scoped lang="scss">
 .timer-form {
   margin-top: 30px;
-}
-
-.footer {
-  background-color: $background-light;
-  border-top: 1px $border solid;
-  bottom: 0;
-  box-sizing: border-box;
-  display: flex;
-  height: 50px;
-  justify-content: space-between;
-  overflow: hidden;
-  padding: 0 20px;
-  position: absolute;
-  width: 100%;
-}
-
-.footer .icon {
-  align-items: center;
-  color: $text;
-  display: flex;
-  margin: 0 10px;
-}
-
-.footer-icons {
-  display: flex;
 }
 </style>
