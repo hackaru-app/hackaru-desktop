@@ -11,7 +11,7 @@ describe('General', () => {
       get: () => false,
       set: jest.fn(),
     },
-    mixpanel: { sendEvent: jest.fn() },
+    mixpanel: { sendEvent: jest.fn(), syncConfig: jest.fn() },
   }
 
   beforeEach(() => {
@@ -40,6 +40,10 @@ describe('General', () => {
         }
       )
     })
+
+    it('syncs mixpanel config', () => {
+      expect(global.electron.mixpanel.syncConfig).toHaveBeenCalled()
+    })
   })
 
   describe('when click stop-timer-on-shutdown', () => {
@@ -63,6 +67,10 @@ describe('General', () => {
           enabled: true,
         }
       )
+    })
+
+    it('syncs mixpanel config', () => {
+      expect(global.electron.mixpanel.syncConfig).toHaveBeenCalled()
     })
   })
 
@@ -88,6 +96,10 @@ describe('General', () => {
         }
       )
     })
+
+    it('syncs mixpanel config', () => {
+      expect(global.electron.mixpanel.syncConfig).toHaveBeenCalled()
+    })
   })
 
   describe('when click always-on-top', () => {
@@ -112,6 +124,10 @@ describe('General', () => {
         }
       )
     })
+
+    it('syncs mixpanel config', () => {
+      expect(global.electron.mixpanel.syncConfig).toHaveBeenCalled()
+    })
   })
 
   describe('when click show-mini-timer', () => {
@@ -135,6 +151,10 @@ describe('General', () => {
           enabled: true,
         }
       )
+    })
+
+    it('syncs mixpanel config', () => {
+      expect(global.electron.mixpanel.syncConfig).toHaveBeenCalled()
     })
   })
 })

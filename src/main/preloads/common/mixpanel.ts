@@ -14,4 +14,7 @@ export const mixpanel = {
   removeUserId(): void {
     invoke(prefix('removeUserId'))
   },
+  syncConfig(): void {
+    invoke(prefix('syncConfig'))
+  },
 }

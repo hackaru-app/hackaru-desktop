@@ -1,5 +1,6 @@
 import * as Mixpanel from 'mixpanel'
 import { v4 as uuidv4 } from 'uuid'
+import { config } from '../config'
 
 export class MixpanelClient {
   private uuid: string
@@ -31,6 +32,50 @@ export class MixpanelClient {
       platform: process.platform,
       ...props,
     })
+  }
+
+  public syncConfig(): void {
+    const props = {
+      ...this.generateConfigProps([
+        'stopTimerOnSuspend',
+        'stopTimerOnShutdown',
+        'remindTimerOnUnlocked',
+        'alwaysOnTop',
+        'showMiniTimer',
+      ]),
+      release: process.env.npm_package_version,
+      platform: process.platform,
+    }
+    this.setPeople(this.addPrefix('hackaru-desktop', props))
+  }
+
+  private generateConfigProps(configKeys: string[]): Mixpanel.PropertyDict {
+    return configKeys.reduce(
+      (prev, key) => ({
+        ...prev,
+        [key]: config.get(key),
+      }),
+      {}
+    )
+  }
+
+  private addPrefix(
+    prefix: string,
+    props: Mixpanel.PropertyDict
+  ): Mixpanel.PropertyDict {
+    return Object.keys(props).reduce(
+      (prev, key) => ({
+        ...prev,
+        [`${prefix}/${key}`]: props[key],
+      }),
+      {}
+    )
+  }
+
+  private setPeople(props: Mixpanel.PropertyDict): void {
+    if (!this.userId) return
+
+    this.mixpanel?.people.set(this.userId, props)
   }
 
   private get distinctId(): string {

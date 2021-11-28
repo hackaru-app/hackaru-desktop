@@ -82,6 +82,7 @@ export default {
     toggleChecked(key) {
       this[key] = !this[key]
       electron.config.set(key, this[key])
+      electron.mixpanel.syncConfig()
       electron.mixpanel.sendEvent(`Toggle ${key}`, {
         component: 'general',
         enabled: this[key],

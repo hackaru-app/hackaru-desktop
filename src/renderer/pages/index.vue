@@ -53,6 +53,7 @@ export default {
     electron.main.on.unlockScreen(() => this.showReminder())
     electron.main.on.clickDuplicate(() => this.startPrevActivity())
     electron.main.on.focus(() => this.fetchWorking())
+    electron.mixpanel.syncConfig()
   },
   destroyed() {
     electron.main.stopTrayTimer()
