@@ -4,11 +4,11 @@ import { srcDir } from '~/modules/src-dir'
 function getTrayIconFileName() {
   switch (process.platform) {
     case 'darwin':
-      return 'IconTemplate.png'
+      return 'trayIconTemplate.png'
     case 'win32':
-      return 'icon-tray.ico'
+      return 'tray-icon.ico'
     default:
-      return 'icon-tray-light.png'
+      return 'tray-icon.png'
   }
 }
 
