@@ -14,8 +14,7 @@
     "dev:renderer": "nuxt dev --dotenv ../../.env.development src/renderer",
     "build": "run-p -l build:* && electron-builder",
     "build:main": "webpack -c src/main/webpack.prod.js",
-    "build:renderer": "nuxt generate --dotenv ../../.env.production src/renderer",
-    "build:icons": "electron-icon-maker -i icon.png -o build"
+    "build:renderer": "nuxt generate --dotenv ../../.env.production src/renderer"
   },
   "lint-staged": {
     "*.{js,ts}": [
@@ -41,10 +40,10 @@
       "output": "build"
     },
     "mac": {
-      "icon": "build/icons/mac/icon.icns"
+      "icon": "icons/mac.icns"
     },
     "win": {
-      "icon": "build/icons/win/icon.ico"
+      "icon": "icons/win.ico"
     },
     "files": [
       "dist/**/*",
@@ -109,7 +108,6 @@
     "electron": "^15.3.2",
     "electron-builder": "^22.14.5",
     "electron-devtools-installer": "^3.2.0",
-    "electron-icon-maker": "^0.0.5",
     "electron-notarize": "^1.1.1",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
