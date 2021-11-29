@@ -31,7 +31,11 @@ describe('Index', () => {
       },
     },
     googleAnalytics: { sendEvent: jest.fn(), removeUserId: jest.fn() },
-    mixpanel: { sendEvent: jest.fn(), removeUserId: jest.fn() },
+    mixpanel: {
+      sendEvent: jest.fn(),
+      removeUserId: jest.fn(),
+      syncConfig: jest.fn(),
+    },
   }
 
   beforeEach(() => {
