@@ -157,4 +157,32 @@ describe('General', () => {
       expect(global.electron.mixpanel.syncConfig).toHaveBeenCalled()
     })
   })
+
+  describe('when click enable-auto-launch', () => {
+    beforeEach(() => {
+      wrapper = factory()
+      wrapper.find(testId('enable-auto-launch')).trigger('click')
+    })
+
+    it('toggles enableAutoLaunch', () => {
+      expect(global.electron.config.set).toHaveBeenCalledWith(
+        'enableAutoLaunch',
+        true
+      )
+    })
+
+    it('sends mixpanel event', () => {
+      expect(global.electron.mixpanel.sendEvent).toHaveBeenCalledWith(
+        'Toggle enableAutoLaunch',
+        {
+          component: 'general',
+          enabled: true,
+        }
+      )
+    })
+
+    it('syncs mixpanel config', () => {
+      expect(global.electron.mixpanel.syncConfig).toHaveBeenCalled()
+    })
+  })
 })

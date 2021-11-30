@@ -47,6 +47,14 @@
         />{{ $t('showMiniTimer') }}
         <text-label class="purple">BETA</text-label>
       </label>
+      <label>
+        <input
+          :checked="enableAutoLaunch"
+          data-test-id="enable-auto-launch"
+          type="checkbox"
+          @click="toggleChecked('enableAutoLaunch')"
+        />{{ $t('enableAutoLaunch') }}
+      </label>
     </div>
   </section>
 </template>
@@ -67,6 +75,7 @@ export default {
       remindTimerOnUnlocked: false,
       alwaysOnTop: false,
       showMiniTimer: false,
+      enableAutoLaunch: false,
     }
   },
   async mounted() {
@@ -77,6 +86,7 @@ export default {
     )
     this.alwaysOnTop = await electron.config.get('alwaysOnTop')
     this.showMiniTimer = await electron.config.get('showMiniTimer')
+    this.enableAutoLaunch = await electron.config.get('enableAutoLaunch')
   },
   methods: {
     toggleChecked(key) {

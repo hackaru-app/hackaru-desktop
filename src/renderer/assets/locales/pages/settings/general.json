@@ -5,7 +5,8 @@
     "stopTimerOnShutdown": "Stop a timer on shutdown",
     "remindTimerOnUnlocked": "Show reminder notification on resumed",
     "alwaysOnTop": "Keep the window always on top",
-    "showMiniTimer": "Show the timer at the bottom right of the screen"
+    "showMiniTimer": "Show the timer at the bottom right of the screen",
+    "enableAutoLaunch": "Launch the app at login"
   },
   "ja": {
     "title": "一般",
@@ -13,6 +14,7 @@
     "stopTimerOnShutdown": "PCのシャットダウン時に計測を停止",
     "remindTimerOnUnlocked": "PCの再開時に計測のリマインドを通知",
     "alwaysOnTop": "ウィンドウを最前面に表示",
-    "showMiniTimer": "画面右下に経過時間を表示"
+    "showMiniTimer": "画面右下に経過時間を表示",
+    "enableAutoLaunch": "ログイン時にアプリを自動的に起動"
   }
 }
