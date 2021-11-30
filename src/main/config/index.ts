@@ -1,7 +1,7 @@
 import * as path from 'path'
-import * as Store from 'electron-store'
+import Store from 'electron-store'
 import { sort as semverSort } from 'semver'
-import { TypedStore } from '~/config/migrations/1.4.0'
+import { TypedStore } from '~/config/migrations/1.5.0'
 
 const schema: Store.Schema<TypedStore> = {
   stopTimerOnSuspend: {
@@ -19,6 +19,9 @@ const schema: Store.Schema<TypedStore> = {
   showMiniTimer: {
     type: 'boolean',
   },
+  openAtLogin: {
+    type: 'boolean',
+  },
 }
 
 const defaults: TypedStore = {
@@ -27,7 +30,17 @@ const defaults: TypedStore = {
   remindTimerOnUnlocked: true,
   alwaysOnTop: false,
   showMiniTimer: true,
+  openAtLogin: true,
 }
+
+export const trackingConfigKeys: (keyof TypedStore)[] = [
+  'stopTimerOnSuspend',
+  'stopTimerOnShutdown',
+  'remindTimerOnUnlocked',
+  'alwaysOnTop',
+  'showMiniTimer',
+  'openAtLogin',
+]
 
 function getMigrationVersions(filePaths: string[]): string[] {
   const versions = filePaths.map((filePath) => path.parse(filePath).name)

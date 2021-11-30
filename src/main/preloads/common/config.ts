@@ -5,29 +5,22 @@ const namespace = 'config'
 const prefix = createPrefixer(namespace)
 const missingKeyError = new Error('Requested key is missing')
 
-const readables = [
+const accessibleKeys = [
   'stopTimerOnSuspend',
   'stopTimerOnShutdown',
   'remindTimerOnUnlocked',
   'alwaysOnTop',
   'showMiniTimer',
-]
-
-const settables = [
-  'stopTimerOnSuspend',
-  'stopTimerOnShutdown',
-  'remindTimerOnUnlocked',
-  'alwaysOnTop',
-  'showMiniTimer',
+  'openAtLogin',
 ]
 
 export const config = {
   get(key: string): Promise<unknown> {
-    if (!readables.includes(key)) throw missingKeyError
+    if (!accessibleKeys.includes(key)) throw missingKeyError
     return invoke(prefix('get'), key)
   },
   set(key: string, value: string): void {
-    if (!settables.includes(key)) throw missingKeyError
+    if (!accessibleKeys.includes(key)) throw missingKeyError
     invoke(prefix('set'), key, value)
   },
 }

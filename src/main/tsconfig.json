@@ -6,6 +6,7 @@
     "strict": true,
     "typeRoots": ["./types"],
     "types": ["node", "webpack-env"],
+    "esModuleInterop": true,
     "paths": {
       "~/*": ["./*"]
     }

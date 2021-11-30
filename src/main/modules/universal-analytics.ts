@@ -1,4 +1,4 @@
-import * as ua from 'universal-analytics'
+import ua from 'universal-analytics'
 import { v4 as uuidv4 } from 'uuid'
 
 export function createVisitor(): ua.Visitor {

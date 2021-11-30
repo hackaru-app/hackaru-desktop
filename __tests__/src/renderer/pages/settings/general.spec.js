@@ -157,4 +157,32 @@ describe('General', () => {
       expect(global.electron.mixpanel.syncConfig).toHaveBeenCalled()
     })
   })
+
+  describe('when click open-at-login', () => {
+    beforeEach(() => {
+      wrapper = factory()
+      wrapper.find(testId('open-at-login')).trigger('click')
+    })
+
+    it('toggles openAtLogin', () => {
+      expect(global.electron.config.set).toHaveBeenCalledWith(
+        'openAtLogin',
+        true
+      )
+    })
+
+    it('sends mixpanel event', () => {
+      expect(global.electron.mixpanel.sendEvent).toHaveBeenCalledWith(
+        'Toggle openAtLogin',
+        {
+          component: 'general',
+          enabled: true,
+        }
+      )
+    })
+
+    it('syncs mixpanel config', () => {
+      expect(global.electron.mixpanel.syncConfig).toHaveBeenCalled()
+    })
+  })
 })
