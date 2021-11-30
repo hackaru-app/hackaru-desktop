@@ -17,7 +17,7 @@ import {
 const prefix = createPrefixer('main')
 const miniTimerPrefix = createPrefixer('miniTimer')
 
-let appExiting = false
+let appQuiting = false
 let tray: Tray | undefined
 let mainWindow: BrowserWindow | undefined
 let miniTimerWindow: BrowserWindow | undefined
@@ -26,7 +26,7 @@ app.on('ready', () => {
   mainWindow = createMainWindow()
 
   mainWindow.on('close', (e) => {
-    if (appExiting) return
+    if (appQuiting) return
     e.preventDefault()
     mainWindow?.hide()
   })
@@ -62,7 +62,7 @@ app.on('ready', () => {
   }
 
   miniTimerWindow.on('close', (e) => {
-    if (appExiting) return
+    if (appQuiting) return
     e.preventDefault()
   })
 
@@ -92,6 +92,10 @@ config.onDidChange('showMiniTimer', () => {
     : miniTimerWindow?.hide()
 })
 
+powerMonitor.on('shutdown', () => {
+  appQuiting = true
+})
+
 powerMonitor.on('suspend', () => {
   if (config.get('stopTimerOnSuspend')) {
     mainWindow?.webContents.send(prefix('suspend'))
@@ -119,7 +123,7 @@ handle(prefix('openWeb'), () => {
 })
 
 handle(prefix('quit'), () => {
-  appExiting = true
+  appQuiting = true
   app.quit()
 })
 
