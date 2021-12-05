@@ -105,7 +105,7 @@
     "babel-jest": "^27.3.1",
     "conf": "^10.0.3",
     "dotenv-webpack": "^7.0.3",
-    "electron": "^15.3.2",
+    "electron": "^16.0.2",
     "electron-builder": "^22.14.5",
     "electron-devtools-installer": "^3.2.0",
     "electron-notarize": "^1.1.1",
