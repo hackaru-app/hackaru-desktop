@@ -1,6 +1,6 @@
 import * as Mixpanel from 'mixpanel'
 import { v4 as uuidv4 } from 'uuid'
-import { config } from '../config'
+import { trackingConfigKeys, config } from '~/config'
 
 export class MixpanelClient {
   private uuid: string
@@ -36,13 +36,7 @@ export class MixpanelClient {
 
   public syncConfig(): void {
     const props = {
-      ...this.generateConfigProps([
-        'stopTimerOnSuspend',
-        'stopTimerOnShutdown',
-        'remindTimerOnUnlocked',
-        'alwaysOnTop',
-        'showMiniTimer',
-      ]),
+      ...this.generateConfigProps(trackingConfigKeys),
       release: process.env.npm_package_version,
       platform: process.platform,
     }

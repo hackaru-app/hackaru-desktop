@@ -47,6 +47,14 @@
         />{{ $t('showMiniTimer') }}
         <text-label class="purple">BETA</text-label>
       </label>
+      <label>
+        <input
+          :checked="openAtLogin"
+          data-test-id="open-at-login"
+          type="checkbox"
+          @click="toggleChecked('openAtLogin')"
+        />{{ $t('openAtLogin') }}
+      </label>
     </div>
   </section>
 </template>
@@ -67,6 +75,7 @@ export default {
       remindTimerOnUnlocked: false,
       alwaysOnTop: false,
       showMiniTimer: false,
+      openAtLogin: false,
     }
   },
   async mounted() {
@@ -77,6 +86,7 @@ export default {
     )
     this.alwaysOnTop = await electron.config.get('alwaysOnTop')
     this.showMiniTimer = await electron.config.get('showMiniTimer')
+    this.openAtLogin = await electron.config.get('openAtLogin')
   },
   methods: {
     toggleChecked(key) {
