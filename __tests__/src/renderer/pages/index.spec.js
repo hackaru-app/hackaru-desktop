@@ -152,4 +152,46 @@ describe('Index', () => {
       expect(global.electron.main.stopMiniTimer).toHaveBeenCalled()
     })
   })
+
+  describe('when click duplicate button on notification', () => {
+    beforeEach(() => {
+      $store.getters['activities/working'] = null
+      $store.getters['activities/prev'] = {
+        id: 1,
+        project: { id: 1 },
+        description: 'Create a database',
+        startedAt: '2019-01-01T00:12:34',
+        stoppedAt: '2019-01-02T00:12:34',
+      }
+      wrapper = factory()
+      wrapper.vm.startPrevActivity()
+    })
+
+    it('sends ga event', () => {
+      expect(global.electron.googleAnalytics.sendEvent).toHaveBeenCalledWith(
+        'Activities',
+        'startPrev'
+      )
+    })
+
+    it('sends mixpanel event', () => {
+      expect(global.electron.mixpanel.sendEvent).toHaveBeenCalledWith(
+        'Start prev activity',
+        {
+          component: 'index',
+          startedAt: formatISO(new Date()),
+          projectId: 1,
+          descriptionLength: 17,
+        }
+      )
+    })
+
+    it('dispatches activities/add', () => {
+      expect($store.dispatch).toHaveBeenCalledWith('activities/add', {
+        description: 'Create a database',
+        projectId: 1,
+        startedAt: new Date(),
+      })
+    })
+  })
 })
