@@ -68,6 +68,14 @@ export default {
     startPrevActivity() {
       if (!this.prevActivity || this.working) return
 
+      const startedAt = new Date()
+      electron.googleAnalytics.sendEvent('Activities', 'startPrev')
+      electron.mixpanel.sendEvent('Start prev activity', {
+        component: 'index',
+        startedAt: formatISO(startedAt),
+        descriptionLength: this.prevActivity.description.length,
+        projectId: this.prevActivity.project?.id,
+      })
       this.$store.dispatch('activities/add', {
         description: this.prevActivity.description,
         projectId: this.prevActivity.project?.id,
