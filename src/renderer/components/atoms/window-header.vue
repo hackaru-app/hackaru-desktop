@@ -1,7 +1,7 @@
 <template>
-  <span :class="['window-header', { win: platform === 'Win32' }]">
+  <header :class="['window-header', { win: platform === 'Win32' }]">
     <slot />
-  </span>
+  </header>
 </template>
 
 <script>
@@ -23,7 +23,6 @@ export default {
   display: flex;
   height: 30px;
   justify-content: flex-end;
-  padding: 0 15px;
   position: fixed;
   top: 0;
   width: 100%;

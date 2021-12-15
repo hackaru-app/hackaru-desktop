@@ -12,14 +12,14 @@
     <template slot="popover">
       <ul class="popover">
         <li class="popover-item">
-          <button data-test-id="settings-button" @click="openSettings">
-            <icon name="settings-icon" class="icon is-small" />
-            {{ $t('settings') }}
+          <button data-test-id="web-button" @click="openWeb">
+            <icon name="globe-icon" class="icon is-small" /> {{ $t('web') }}
           </button>
         </li>
         <li class="popover-item">
-          <button data-test-id="web-button" @click="openWeb">
-            <icon name="globe-icon" class="icon is-small" /> {{ $t('web') }}
+          <button data-test-id="settings-button" @click="openSettings">
+            <icon name="settings-icon" class="icon is-small" />
+            {{ $t('settings') }}
           </button>
         </li>
         <li class="popover-item">
@@ -93,6 +93,12 @@ export default {
 .more-button {
   color: $white;
   -webkit-app-region: no-drag;
+  padding: 0 15px;
+
+  &:hover {
+    background-color: $background-dark-hover;
+    height: 30px;
+  }
 }
 
 .popover {
@@ -103,7 +109,8 @@ export default {
   button {
     align-items: center;
     display: flex;
-    padding: 10px 15px;
+    padding: 12px 20px;
+    padding-left: 15px;
     width: 100%;
 
     &:hover {
