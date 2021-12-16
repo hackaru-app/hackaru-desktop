@@ -64,7 +64,7 @@
     "@sentry/electron": "^2.5.4",
     "@sentry/integrations": "^6.15.0",
     "axios-case-converter": "^0.9.0",
-    "core-js": "^3.19.2",
+    "core-js": "^3.20.0",
     "date-fns": "^2.27.0",
     "electron-positioner": "^4.1.0",
     "electron-store": "^8.0.1",
