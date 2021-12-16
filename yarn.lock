@@ -2318,10 +2318,10 @@
   dependencies:
     "@types/ms" "*"
 
-"@types/electron-positioner@^4.1.0":
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/@types/electron-positioner/-/electron-positioner-4.1.0.tgz#289fbbdec00cda8ac62a969fc3937763a7a2a535"
-  integrity sha512-sW6JR5wKWlfSk4myf+/AhG7ET+wOoA7vKppIg93vB8DQE2udPdIjzbd6/+wNYqU2988x3pQlkPcz9hRPt3belA==
+"@types/electron-positioner@^4.1.1":
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/@types/electron-positioner/-/electron-positioner-4.1.1.tgz#76a22403f2ad2435cb78e0f7d52c081035d36fd5"
+  integrity sha512-yAEmInmGpw39IYyc2P/f9q9gjqrPtyRlufJJ7NsvoB9m74sQZUeM6SraZx6zD86B8P+m1wepfTRdeIJK6ReKiw==
   dependencies:
     electron "^15.3.1"
 
@@ -13734,12 +13734,12 @@ unique-string@^2.0.0:
   dependencies:
     crypto-random-string "^2.0.0"
 
-universal-analytics@^0.5.1:
-  version "0.5.1"
-  resolved "https://registry.yarnpkg.com/universal-analytics/-/universal-analytics-0.5.1.tgz#6bdaba2109d98522dd74018d8fe56f0464d21625"
-  integrity sha512-raLjYsNQmJbK0o8veSU9GXA5XG/YhfuZDzWCAB4SNDnPI4ozXLrbFSDZiRENdOFEIUqmdUTYcaQCOa0Y36EtsQ==
+universal-analytics@^0.5.3:
+  version "0.5.3"
+  resolved "https://registry.yarnpkg.com/universal-analytics/-/universal-analytics-0.5.3.tgz#ff2d9b850062cdd4a8f652448047982a183c8e96"
+  integrity sha512-HXSMyIcf2XTvwZ6ZZQLfxfViRm/yTGoRgDeTbojtq6rezeyKB0sTBcKH2fhddnteAHRcHiKgr/ACpbgjGOC6RQ==
   dependencies:
-    debug "^4.1.1"
+    debug "^4.3.1"
     uuid "^8.0.0"
 
 universalify@^0.1.0, universalify@^0.1.2:
