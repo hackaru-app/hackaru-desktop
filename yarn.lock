@@ -2318,10 +2318,10 @@
   dependencies:
     "@types/ms" "*"
 
-"@types/electron-positioner@^4.1.0":
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/@types/electron-positioner/-/electron-positioner-4.1.0.tgz#289fbbdec00cda8ac62a969fc3937763a7a2a535"
-  integrity sha512-sW6JR5wKWlfSk4myf+/AhG7ET+wOoA7vKppIg93vB8DQE2udPdIjzbd6/+wNYqU2988x3pQlkPcz9hRPt3belA==
+"@types/electron-positioner@^4.1.1":
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/@types/electron-positioner/-/electron-positioner-4.1.1.tgz#76a22403f2ad2435cb78e0f7d52c081035d36fd5"
+  integrity sha512-yAEmInmGpw39IYyc2P/f9q9gjqrPtyRlufJJ7NsvoB9m74sQZUeM6SraZx6zD86B8P+m1wepfTRdeIJK6ReKiw==
   dependencies:
     electron "^15.3.1"
 

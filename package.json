@@ -92,7 +92,7 @@
   "devDependencies": {
     "@doyensec/electronegativity": "^1.9.1",
     "@nuxtjs/style-resources": "^1.2.1",
-    "@types/electron-positioner": "^4.1.0",
+    "@types/electron-positioner": "^4.1.1",
     "@types/hh-mm-ss": "^1.2.1",
     "@types/universal-analytics": "^0.4.5",
     "@types/uuid": "^8.3.3",
