@@ -103,7 +103,7 @@
     "axios-mock-adapter": "^1.20.0",
     "babel-core": "7.0.0-bridge.0",
     "babel-jest": "^27.4.5",
-    "conf": "^10.0.3",
+    "conf": "^10.1.1",
     "dotenv-webpack": "^7.0.3",
     "electron": "^16.0.5",
     "electron-builder": "^22.14.5",
