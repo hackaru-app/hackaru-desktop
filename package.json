@@ -70,7 +70,7 @@
     "electron-store": "^8.0.1",
     "electron-updater": "^4.6.1",
     "hh-mm-ss": "^1.2.0",
-    "i18next": "^21.6.3",
+    "i18next": "^21.6.6",
     "keytar": "^7.7.0",
     "lodash.debounce": "^4.0.8",
     "lodash.get": "^4.4.2",
