@@ -27,10 +27,7 @@ jobs:
       - name: Install dependencies
         run: yarn --frozen-lockfile
 
-      - name: Run electronegativity
-        run: |
-          mkdir ../results
-          yarn run electronegativity -r -i . -o ../results/out.sarif
+      - uses: doyensec/electronegativity-action@a8facd6408075fc604fa8850d508319526ae7cd1
 
       - name: Upload sarif
         uses: github/codeql-action/upload-sarif@21830ef0c1f0f06f2d82ba3f1f07cb3ffe543ed7
