@@ -90,7 +90,6 @@
     "vue2-animate": "^2.1.4"
   },
   "devDependencies": {
-    "@doyensec/electronegativity": "^1.9.1",
     "@nuxtjs/style-resources": "^1.2.1",
     "@types/electron-positioner": "^4.1.1",
     "@types/hh-mm-ss": "^1.2.1",
