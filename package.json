@@ -103,7 +103,7 @@
     "babel-core": "7.0.0-bridge.0",
     "babel-jest": "^27.4.6",
     "conf": "^10.1.1",
-    "dotenv-webpack": "^7.0.3",
+    "dotenv-webpack": "^7.1.0",
     "electron": "^16.0.7",
     "electron-builder": "^22.14.5",
     "electron-devtools-installer": "^3.2.0",
