@@ -1,25 +1,16 @@
+const { merge } = require('webpack-merge')
 const path = require('path')
 const glob = require('glob')
 
 function buildPreloadEntries() {
   return glob.sync('./src/main/preloads/*.ts').reduce((entries, entryPath) => {
-    const name = `preloads/${path.parse(entryPath).name}`
-    return { ...entries, [name]: { import: entryPath } }
+    return { ...entries, [path.parse(entryPath).name]: entryPath }
   }, {})
 }
 
-module.exports = {
-  target: 'electron-main',
-  entry: {
-    main: './src/main/index',
-    ...buildPreloadEntries(),
-  },
+const common = {
   module: {
     rules: [
-      {
-        test: /\.node$/,
-        loader: 'node-loader',
-      },
       {
         test: /\.ts$/,
         use: 'ts-loader',
@@ -35,7 +26,32 @@ module.exports = {
   node: {
     __dirname: false,
   },
+}
+
+const main = merge(common, {
+  target: 'electron-main',
+  entry: {
+    main: './src/main/index',
+  },
+  module: {
+    rules: [
+      {
+        test: /\.node$/,
+        loader: 'node-loader',
+      },
+    ],
+  },
   output: {
     path: path.resolve(__dirname, '../../dist/main'),
   },
-}
+})
+
+const preload = merge(common, {
+  target: 'electron-preload',
+  entry: buildPreloadEntries(),
+  output: {
+    path: path.resolve(__dirname, '../../dist/main/preloads'),
+  },
+})
+
+module.exports = [main, preload]
