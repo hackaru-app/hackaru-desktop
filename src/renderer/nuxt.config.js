@@ -64,6 +64,7 @@ module.exports = {
   publicRuntimeConfig: {
     sentryDsn: process.env.SENTRY_DSN,
     sentryRelease: process.env.npm_package_version,
+    sentryEnvironment: process.env.SENTRY_ENVIRONMENT,
     hackaruApiTimeout: process.env.HACKARU_API_TIMEOUT,
     axios: {
       browserBaseURL: process.env.HACKARU_API_URL,
