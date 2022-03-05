@@ -4,11 +4,13 @@ const common = require('./webpack.common.js')
 
 process.env.NODE_ENV = 'development'
 
-module.exports = merge(common, {
-  mode: 'development',
-  plugins: [
-    new Dotenv({
-      path: '.env.development',
-    }),
-  ],
-})
+module.exports = common.map((config) =>
+  merge(config, {
+    mode: 'development',
+    plugins: [
+      new Dotenv({
+        path: '.env.development',
+      }),
+    ],
+  })
+)
