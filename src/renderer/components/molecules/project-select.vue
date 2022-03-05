@@ -50,6 +50,7 @@ export default {
   flex: 1;
   height: 100%;
   position: relative;
+  overflow: hidden;
 }
 
 select {
