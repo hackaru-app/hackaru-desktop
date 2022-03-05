@@ -6,6 +6,7 @@ export default ({ $config }, inject) => {
   Sentry.init({
     dsn: $config.sentryDsn,
     release: $config.sentryRelease,
+    environment: $config.sentryEnvironment,
     debug: process.env.NODE_ENV !== 'production',
     integrations: [
       new VueIntegration({
