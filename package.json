@@ -79,7 +79,7 @@
     "lodash.omit": "^4.5.0",
     "lodash.throttle": "^4.1.1",
     "mixpanel": "^0.14.0",
-    "normalizr": "^3.6.1",
+    "normalizr": "^3.6.2",
     "nuxt": "^2.15.8",
     "nuxt-i18n": "^6.28.1",
     "ress": "^5.0.2",
