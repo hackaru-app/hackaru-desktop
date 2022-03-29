@@ -2,5 +2,7 @@ import { app } from 'electron'
 import { autoUpdater } from 'electron-updater'
 
 app.on('ready', () => {
-  autoUpdater.checkForUpdatesAndNotify()
+  if (process.env.AUTO_UPDATE === 'true') {
+    autoUpdater.checkForUpdatesAndNotify()
+  }
 })
