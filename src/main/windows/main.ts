@@ -1,5 +1,6 @@
 import { BrowserWindow, nativeTheme } from 'electron'
 import { getWindowUrl, buildWindowOptions } from '~/modules/window'
+import { getTrayIcon } from '~/modules/tray-icon'
 
 let window: BrowserWindow | undefined
 
@@ -21,6 +22,7 @@ export function createMainWindow(): BrowserWindow {
   window.on('closed', () => (window = undefined))
   window.removeMenu()
   window.loadURL(getWindowUrl('/'))
+  window.setIcon(getTrayIcon())
 
   return window
 }
