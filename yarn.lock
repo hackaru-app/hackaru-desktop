@@ -9276,10 +9276,10 @@ mixin-deep@^1.2.0:
     for-in "^1.0.2"
     is-extendable "^1.0.1"
 
-mixpanel@^0.14.0:
-  version "0.14.0"
-  resolved "https://registry.yarnpkg.com/mixpanel/-/mixpanel-0.14.0.tgz#5d948c30cd1ad17acb235dc084478c7b32eff04f"
-  integrity sha512-PY2zSMXCGHSEnuuFnlPeSX3R7YeU3/8IaSUgmGc9DnM2U7weg6sfdKu7s5+3euwGz0R1KHQoUJOUbIuXtHgGmA==
+mixpanel@^0.15.0:
+  version "0.15.0"
+  resolved "https://registry.yarnpkg.com/mixpanel/-/mixpanel-0.15.0.tgz#73a9be279fd2550568405ecaf813c5dd383de6ff"
+  integrity sha512-amODV4d9lKk7opUOAjVcVkzLcMI9MCptKC2XvN4ae25hVlHCICUAK3Q9nvQ1hH4sF+WWiYx7lPzh93KKn1InTQ==
   dependencies:
     https-proxy-agent "5.0.0"
 
