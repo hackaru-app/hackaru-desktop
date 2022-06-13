@@ -68,7 +68,7 @@
     "core-js": "^3.22.8",
     "date-fns": "^2.28.0",
     "electron-positioner": "^4.1.0",
-    "electron-store": "^8.0.1",
+    "electron-store": "^8.0.2",
     "electron-updater": "^5.0.1",
     "hh-mm-ss": "^1.2.0",
     "i18next": "^21.8.5",
