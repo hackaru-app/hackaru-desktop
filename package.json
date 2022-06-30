@@ -106,7 +106,7 @@
     "conf": "^10.1.2",
     "dotenv-webpack": "^7.1.1",
     "electron": "^19.0.6",
-    "electron-builder": "^23.0.3",
+    "electron-builder": "^23.1.0",
     "electron-devtools-installer": "^3.2.0",
     "electron-notarize": "^1.2.1",
     "eslint": "^7.32.0",
